@@ -1,0 +1,311 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  max-height: 100vh;
+  color: hsla(0, 0%, 0%);
+  background-color: hsla(360, 4%, 94%, 1);
+  font-family: -apple-system, BlinkMacSystemFont,
+    “Segoe UI”, “Roboto”, “Oxygen”, “Ubuntu”, “Cantarell”,
+    “Fira Sans”, “Droid Sans”, “Helvetica Neue”, sans-serif;
+  -webkit-font-smoothing: subpixel-antialiased
+  font-size: 16px;
+  line-height: 1.3;
+}
+
+/* Primary header */
+.header-main {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: hsla(0, 0%, 0%);
+  height: 80px;
+  width: 100vw;
+}
+
+/* Main form and footer content container */
+#parking-form {
+  width: 100%;
+  overflow-y: scroll; /* Scroll window for main content so header stays fixed */
+  height: 100vh; /* To push footer to bottom of page */
+}
+
+/* Main content containers */
+#parking-form,
+.questionnaire-container,
+.section-container,
+.cta-sticky,
+.final-section-container {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.questionnaire-container {
+  background-color: hsla(220, 16%, 97%, 1);
+  max-width: 500px;
+}
+
+.section-container {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+/* For testing */
+.questionnaire-container,
+.section-container,
+.field-container,
+.field-date,
+.fieldset-radio,
+.field-checkbox ,
+.field-radioButton,
+.field-label,
+.field-hint,
+.field-example,
+.field-abstract-example,
+.cta-sticky {
+  border: 1px solid red; /* for testing */
+}
+
+/* To center and control questionnaire fields with flexbox*/
+.field-container,
+.field-date,
+.field-checkbox,
+.fieldset-radio {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+/* Fields that are aligned with flexbox using row */
+.cta-sticky-container,
+.date-container {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+}
+
+/* Primary question styling */
+.question-primary {
+  margin-top: 30px;
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+/* Margin to next question */
+.field-container,
+.field-date,
+.fieldset-radio,
+.field-checkbox {
+  margin-bottom: 20px;
+}
+
+/* Standard & large input field widths */
+.section-container,
+.field-container,
+.field-container #abstract,
+.field-abstract-example,
+.field-checkbox,
+.field-date,
+.fieldset-radio {
+  max-width: 400px;
+  width: 100%; /* of .questionnaire-container */
+}
+
+/* Unselected field styling */
+.field-container input[type="text"],
+.field-container input[type="email"],
+.field-container input[type="password"],
+.field-container #abstract,
+.field-date input[type="number"],
+.field-date input[type="text"] {
+  background-color: hsl(210, 17%, 93%);
+  border: 3px solid hsla(180, 100%, 13%, 1);
+  border-radius: 4px;
+  width: 100%;
+  padding: 7px;
+  font-size: 14px;
+}
+
+/* Styling when select a field */
+.field-container input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+.field-container #abstract:focus,
+.field-date input[type="number"]:focus,
+.field-date input[type="text"]:focus {
+  background-color: #FFF;
+  border-color: hsl(208, 100%, 45%);
+}
+
+/* Fields that aren't aligned with flexbox */
+.field-label,
+.field-hint,
+.field-example,
+.field-abstract-example {
+  display: block;
+  font-family: sans-serif;
+  margin-left: 2px;
+}
+
+/* Primary label styling */
+.field-label {
+  font-size: 22px;
+}
+
+/* Supporting label styling */
+.field-hint,
+.field-example,
+.field-abstract-example {
+  font-size: 14px;
+}
+
+/* To remove radio button fieldset default border */
+.fieldset-radio {
+  border-style: none;
+}
+
+/* Styling of date fields */
+.container-month {
+ margin-right: 10px;
+}
+
+.container-day #date-number {
+  -webkit-appearance: none; /* To remove stepper */
+  -moz-appearance: textfield; /* To remove stepper in FF */
+}
+
+.container-day,
+.container-day #date-number {
+  max-width: 50px;
+  width: 100%;
+  margin-right: 10px;
+}
+
+.container-year #date-text {
+  max-width: 60px;
+  width: 100%;
+}
+
+/* To style the date dropdown */
+.container-month select {
+  background-color: #EAEDF0;
+  border: 3px solid hsla(180, 100%, 13%, 1);
+  border-radius: 7px;
+  width: 100%;
+  padding: 7px;
+  font-size: 14px;            /* This won't work in Chrome or Safari */
+  -webkit-appearance: none;   /* This will make it work */
+}
+
+.container-month select:focus {
+  background-color: #fff
+}
+
+/* Buttons */
+#button-previous,
+#button-next {
+ font: inherit;
+ border: none;
+ border-radius: 3px;
+ appearance: none;
+ -webkit-appearance:none;
+ padding:10px 20px;
+ background-color: hsl(200, 50%, 80%);
+ margin-top: 10px;
+ margin-bottom: 20px;
+}
+
+#button-submit {
+ font: inherit;
+ border: none;
+ border-radius: 3px;
+ appearance: none;
+ -webkit-appearance:none;
+ padding:10px 20px;
+ background-color: hsla(136, 100%, 70%, 1);
+ margin-bottom: 20px;
+}
+
+/* Spacing for last section */
+.final-section-container {
+  margin-bottom: 20px;
+}
+
+/* Output Section */
+.output {
+  padding: 30px;
+
+}
+
+/* CTA sticky*/
+.cta-sticky {
+  margin-top: auto; /* Uses flex to stay fixed to bottom of content */
+}
+
+/* Main footer */
+.footer-main {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  background-color: hsla(0, 0%, 0%);
+  height: 80px;
+  width: 100vw;
+
+  margin-top: auto; /* Uses flex to stay fixed to bottom of content without jumping out of document flow like fixed position */
+}
+
+/* Mobile Styles */
+@media only screen and (max-width: 400px) {
+  .questionnaire-container {
+    background-color: #D6E9FE; /* Light Blue */
+  }
+}
+
+/* Tablet Styles */
+@media only screen and (min-width: 401px) and (max-width: 960px) {
+  .questionnaire-container {
+    background-color: #F5CF8E; /* Yellow */
+  }
+}
+
+/* Desktop Styles */
+@media only screen and (min-width: 961px) {
+
+}
