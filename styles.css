@@ -143,6 +143,10 @@ body {
   width: 100%; /* of .questionnaire-container */
 }
 
+.section-container-highlight {
+  background-color: red;
+}
+
 /* Unselected field styling */
 .field-container input[type="text"],
 .field-container input[type="email"],
@@ -233,31 +237,6 @@ input[type="password"]:focus,
   background-color: #fff
 }
 
-/* Buttons */
-#button-previous,
-#button-next {
- font: inherit;
- border: none;
- border-radius: 3px;
- appearance: none;
- -webkit-appearance:none;
- padding:10px 20px;
- background-color: hsl(200, 50%, 80%);
- margin-top: 10px;
- margin-bottom: 20px;
-}
-
-#button-submit {
- font: inherit;
- border: none;
- border-radius: 3px;
- appearance: none;
- -webkit-appearance:none;
- padding:10px 20px;
- background-color: hsla(136, 100%, 70%, 1);
- margin-bottom: 20px;
-}
-
 /* Spacing for last section */
 .final-section-container {
   margin-bottom: 20px;
@@ -271,7 +250,35 @@ input[type="password"]:focus,
 
 /* CTA sticky*/
 .cta-sticky {
-  margin-top: auto; /* Uses flex to stay fixed to bottom of content */
+  position: sticky;
+  bottom: 0;
+
+  background-color: hsla(0, 0%, 0%);
+  width: 100%;
+  padding: 15px;
+}
+
+/* Buttons */
+#button-previous,
+#button-next {
+  font: inherit;
+  border: none;
+  border-radius: 3px;
+  appearance: none;
+  -webkit-appearance:none;
+  padding:10px 20px;
+  background-color: hsl(200, 50%, 80%);
+}
+
+#button-submit {
+  /* display: none; to hide and avoid clashing with prev/next button divs until completed all steps */
+  font: inherit;
+  border: none;
+  border-radius: 3px;
+  appearance: none;
+  -webkit-appearance:none;
+  padding:10px 20px;
+  background-color: hsla(136, 100%, 70%, 1);
 }
 
 /* Main footer */

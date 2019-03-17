@@ -122,15 +122,15 @@ const buttonVisibility = (function() {
   var count = 0;
   function checkButtonStep() {
     if (count == 0) {
-      document.getElementById("button-previous").style.visibility="hidden";
-      document.getElementById("button-submit").style.visibility="hidden";
+      document.getElementById("button-previous").style.display="none";
+      document.getElementById("button-submit").style.display="none";
     } else if (count > 0 && count < stepsQuestionnaire.length -1) {
-        document.getElementById("button-previous").style.visibility="visible";
-        document.getElementById("button-submit").style.visibility="hidden";
+        document.getElementById("button-previous").style.display="inline";
+        document.getElementById("button-submit").style.display="none";
     } else if (count >= stepsQuestionnaire.length - 1) {
-        document.getElementById("button-previous").style.visibility="hidden";
-        document.getElementById("button-next").style.visibility="hidden";
-        document.getElementById("button-submit").style.visibility="visible";
+        document.getElementById("button-previous").style.display="none";
+        document.getElementById("button-next").style.display="none";
+        document.getElementById("button-submit").style.display="block";
     }
   };
 
