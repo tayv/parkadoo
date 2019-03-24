@@ -25,7 +25,7 @@ body {
 }
 
 /* Primary header */
-.header-main {
+#header-main {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -238,13 +238,16 @@ input[type="password"]:focus,
 }
 
 /* Spacing for last section */
-.final-section-container {
+#final-section-container {
   margin-bottom: 20px;
 }
 
 /* Output Section */
-.output {
-  padding: 30px;
+#output {
+  padding-top: 30px;
+  padding-right: 30px;
+  padding-left: 30px;
+  /* padding-bottom: calc(100vh - 125px - 80px); */
 
 }
 
@@ -282,7 +285,7 @@ input[type="password"]:focus,
 }
 
 /* Main footer */
-.footer-main {
+#footer-main {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;

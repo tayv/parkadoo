@@ -155,10 +155,17 @@ const buttonVisibility = (function() {
         checkButtonStep();
     } return count;
   };
+
 }());
 
-
-
+// To add whitespace to the end of the document so each section div will scroll to the top of the window when Next button selected 
+const setWhiteSpaceAtEndOfDocument = (function calcAndSetWhiteSpace() {
+  var lastDivHeight = document.getElementById("final-section-container").offsetHeight;
+  var headerHeight = document.getElementById("header-main").offsetHeight;
+  var footerHeight = document.getElementById("footer-main").offsetHeight;
+  var newPadding = (window.innerHeight - lastDivHeight - headerHeight - footerHeight);
+  var setNewPadding = document.getElementById("output").style.paddingBottom = newPadding + "px";
+}());
 
 
 
