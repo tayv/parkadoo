@@ -240,6 +240,9 @@ input[type="password"]:focus,
 /* Spacing for last section */
 #final-section-container {
   margin-bottom: 20px;
+  padding-top: 30px;
+  padding-right: 30px;
+  padding-left: 30px;
 }
 
 /* Output Section */
