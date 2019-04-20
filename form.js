@@ -122,12 +122,12 @@ const buttonVisibility = function() {
   stepHideByDefault();
 
   // To display and hide steps depending on visibility conditions
-    const stepMakeVisible = function(...stepToHide) { // rest parameter seems right but not working?? What happens if back-to-back hidden sections?
+    const stepMakeVisible = function(stepToHide) { // rest parameter seems right but not working?? What happens if back-to-back hidden sections?
       console.log("stepMakeVisible triggered. The parameter = ", stepToHide);
       for (let i = 0; i < stepToHide.length; i++) {
         console.log("i: ", i);
-        console.log("stepToHide: ", stepToHide[0][i]);
-        if (stepsQuestionnaire[count] === stepToHide[0][i]) { // works, array within array. appears to be because we used push() instead of apply()
+        console.log("stepToHide: ", stepToHide[i]);
+        if (stepsQuestionnaire[count] === stepToHide[i]) { // works, array within array. appears to be because we used push() instead of apply()
           stepsQuestionnaire[count+1].style.display="block";
           stepsQuestionnaire[count+1].scrollIntoView(true);
           console.log("hide a step");
@@ -170,7 +170,7 @@ const inputs = document.querySelectorAll(".test-class");
 
 const hideTheseAnswersArray = [];
 
-function updateHideTheseAnswersArray(addItem, subtractItem) {
+function updateHideTheseAnswersArray(addItem, subtractItem) { //use undefined when passing the unused parameter
   function addToHideTheseAnswersArray(addItem) {
     if (hideTheseAnswersArray.indexOf(addItem) === -1 && typeof addItem !== "undefined") { // Need to exclude undefined because one parameter (either addItem or subtractItem) is likely left blank in the original function call
       hideTheseAnswersArray.push(addItem);
@@ -220,10 +220,10 @@ const parkingViolationMULTIRadioAnswer = (function checkRadioAnswer() {
         insertText("2");
         return;
       }
-      else if (radios[i].value === "3") { // need to use the specific section id instead of i
+      else if (radios[i].value === "3") {
         updateHideTheseAnswersArray(ticketDate, undefined);
         insertText("3");
-        return
+        return;
       }
       else if (radios[i].value === "4") {
         updateHideTheseAnswersArray(undefined, ticketDate);
