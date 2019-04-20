@@ -121,27 +121,13 @@ const buttonVisibility = function() {
   };
   stepHideByDefault();
 
-  // To make next step visible. Used inside onclick for next button
-/*  const stepMakeVisible = function() {
-      stepsQuestionnaire[count].style.display="block";
-      updateStepVisiblity();
-  };
-*/
-// test partially works for single parameter
-/*  const stepMakeVisible = function(stepToHide) { // rest parameter seems right but not working?? What happens if back-to-back hidden sections?
-    if (stepsQuestionnaire[count] == stepToHide) {
-      stepsQuestionnaire[count+1].style.display="block";
-      stepsQuestionnaire[count+1].scrollIntoView(true);
-    } else {
-      stepsQuestionnaire[count].style.display="block";
-    }
-  }; */
-
-  // test 2 works except when use array
+  // To display and hide steps depending on visibility conditions
     const stepMakeVisible = function(...stepToHide) { // rest parameter seems right but not working?? What happens if back-to-back hidden sections?
-      console.log(stepToHide);
+      console.log("stepMakeVisible triggered. The parameter = ", stepToHide);
       for (let i = 0; i < stepToHide.length; i++) {
-        if (stepsQuestionnaire[count] === stepToHide[i]) { // works when set to ticketDate but not variable ??
+        console.log("i: ", i);
+        console.log("stepToHide: ", stepToHide[0][i]);
+        if (stepsQuestionnaire[count] === stepToHide[0][i]) { // works, array within array. appears to be because we used push() instead of apply()
           stepsQuestionnaire[count+1].style.display="block";
           stepsQuestionnaire[count+1].scrollIntoView(true);
           console.log("hide a step");
@@ -184,29 +170,13 @@ const inputs = document.querySelectorAll(".test-class");
 
 const hideTheseAnswersArray = [];
 
-/* function updateHideTheseAnswersArray(addItem, subtractItem) { // does add/subtract need to be separate functions??
-  if (hideTheseAnswersArray.indexOf(addItem) === -1) {
-    hideTheseAnswersArray.push(addItem);
-    console.log("add an item: " + addItem);
-    console.log(addItem);
-  } else if (hideTheseAnswersArray.indexOf(addItem) === 0) {
-      console.log("There's already an " + addItem + " here. Don't do anything");
-  } else if (hideTheseAnswersArray.indexOf(addItem && subtractItem) > -1) {
-      var arrayIndex = hideTheseAnswersArray.indexOf(subtractItem);
-      hideTheseAnswersArray.splice(arrayIndex, 1);
-      console.log("subtract:" + subtractItem);
-      console.log(subtractItem);
-      }
-} */
-
 function updateHideTheseAnswersArray(addItem, subtractItem) {
   function addToHideTheseAnswersArray(addItem) {
     if (hideTheseAnswersArray.indexOf(addItem) === -1 && typeof addItem !== "undefined") { // Need to exclude undefined because one parameter (either addItem or subtractItem) is likely left blank in the original function call
       hideTheseAnswersArray.push(addItem);
-      console.log("add an item: " + addItem);
-      console.log(addItem);
+      console.log("add an item: ", addItem);
     } else {
-        console.log("There's already an " + addItem + " here. Don't do anything");
+        console.log("There's already an ", addItem, " here. Don't do anything");
     }
   }
   addToHideTheseAnswersArray(addItem);
