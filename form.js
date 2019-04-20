@@ -13,6 +13,8 @@ window.onload = function setDefaultAnswerState() {
 
 // To set default answers/visibility. To be used on page load.
 
+// Variable list
+const checkboxSection = document.getElementById("checkbox-container"); // used in parkingViolationRadioAnswer()
 
 // CB VISIBILITY CONDITION (works)
 const newsletterCheckbox = document.getElementById("newsletterSignUp");
@@ -142,6 +144,7 @@ const buttonVisibility = function() {
     if (count < stepsQuestionnaire.length - 1) {
       count++;
       stepMakeVisible(hideTheseAnswersArray);
+      applyActiveVisibilityConditions();
       stepsQuestionnaire[count].scrollIntoView(true);
       stepsQuestionnaire[count].style.opacity="1";
       stepsQuestionnaire[count-1].style.opacity="0.2"; // reduce opacity of a completed step so user focus is on current step
@@ -170,7 +173,7 @@ const inputs = document.querySelectorAll(".test-class");
 
 const hideTheseAnswersArray = [];
 
-function updateHideTheseAnswersArray(addItem, subtractItem) { //use undefined when passing the unused parameter
+function updateHideTheseAnswersArray(addItem, subtractItem) { //use undefined when passing the unused parameter. Note that parameters must represent section IDs for stepMakeVisible() to work
   function addToHideTheseAnswersArray(addItem) {
     if (hideTheseAnswersArray.indexOf(addItem) === -1 && typeof addItem !== "undefined") { // Need to exclude undefined because one parameter (either addItem or subtractItem) is likely left blank in the original function call
       hideTheseAnswersArray.push(addItem);
@@ -192,11 +195,14 @@ function updateHideTheseAnswersArray(addItem, subtractItem) { //use undefined wh
   subtractFromHideTheseAnswersArray(subtractItem);
 }
 
-function updateStepVisiblity() {
-  if (hideTheseAnswersArray.includes("ticketDate")) {
+function applyActiveVisibilityConditions() { 
+  if (hideTheseAnswersArray.includes(ticketDate)) {
     ticketDate.style.display = "none";
     console.log("I found ticketDate in the array and will hide the step");
-
+  }
+  if (hideTheseAnswersArray.includes(checkboxSection)) {
+    checkboxSection.style.display = "none";
+    console.log("I found checkboxSection in the array and will hide the step");
   }
 }
 
@@ -221,12 +227,12 @@ const parkingViolationMULTIRadioAnswer = (function checkRadioAnswer() {
         return;
       }
       else if (radios[i].value === "3") {
-        updateHideTheseAnswersArray(ticketDate, undefined);
+        updateHideTheseAnswersArray(ticketDate, checkboxSection);
         insertText("3");
         return;
       }
       else if (radios[i].value === "4") {
-        updateHideTheseAnswersArray(undefined, ticketDate);
+        updateHideTheseAnswersArray(checkboxSection, ticketDate);
         insertText("4");
         return;
       }
