@@ -71,7 +71,7 @@ function insertText(answerOption) {
 
 // Previous/Next/Submit button visiblity and to scroll to next div/step. Needs to be initialized before question specific visibility conditions
 const stepsQuestionnaire = document.getElementsByClassName("section-container");
-const finalSectionDiv = document.getElementById("final-section-container");
+const finishedSectionDiv = document.getElementById("finished-section-container");
 const buttonVisibility = function() {
   var count = 0;
   function checkButtonStep() {
@@ -99,15 +99,19 @@ const buttonVisibility = function() {
   stepHideByDefault();
 
   // To display and hide steps depending on visibility conditions
-    const stepMakeVisible = function(...stepToHide) { // Keeping ... in parameter is necessary to fix the bug of for loop not firing.
+    const stepMakeVisible = function(...stepToHide) { // Keeping ... in parameter. Removing it causes a bug where the for loop doesn't fire
       console.log("stepMakeVisible triggered. The parameter = ", stepToHide);
       for (let i = 0; i < stepToHide.length; i++) {
         console.log("i: ", i);
         console.log("stepToHide: ", stepToHide[i]);
-        if (stepsQuestionnaire[count] === stepToHide[0][i]) { // adding [0] necessary because ... makes it an array within an array
-          stepsQuestionnaire[count+1].style.display="block";
-          stepsQuestionnaire[count+1].scrollIntoView(true);
-          console.log("hide a step");
+        if (stepsQuestionnaire[count] === stepToHide[0][i]) { // adding [0] necessary because ...stepToHide makes an array within an array
+          if (stepsQuestionnaire[count+1] > stepsQuestionnaire.length) {
+            finishedSectionDiv.scrollIntoView(true);
+          } else {
+              stepsQuestionnaire[count+1].style.display="block";
+              stepsQuestionnaire[count+1].scrollIntoView(true);
+              console.log("hide a step");
+          }
         } else {
           stepsQuestionnaire[count].style.display="block";
           console.log("no step to hide. continue as usual");
@@ -148,7 +152,7 @@ const inputs = document.querySelectorAll(".test-class");
 
 const hideTheseAnswersArray = [];
 
-function updateHideTheseAnswersArray(addItem, subtractItem) { //use undefined when passing the unused parameter. Note that parameters must represent section IDs for stepMakeVisible() to work
+function updateHideTheseAnswersArray(addItem, subtractItem) { //use undefined when passing the unused parameter. Note that parameters must represent section IDs for stepMakeVisible() to work. Call it x times if need to hide multiple steps.
   function addToHideTheseAnswersArray(addItem) {
     if (hideTheseAnswersArray.indexOf(addItem) === -1 && typeof addItem !== "undefined") { // Need to exclude undefined because one parameter (either addItem or subtractItem) is likely left blank in the original function call
       hideTheseAnswersArray.push(addItem);
@@ -197,7 +201,8 @@ const parkingViolationMULTIRadioAnswer = (function checkRadioAnswer() {
         return; // to stop from going through entire loop
       }
       else if (radios[i].value === "2") {
-        ticketDate.style.display = "none";
+        updateHideTheseAnswersArray(ticketDate, undefined);
+        updateHideTheseAnswersArray(checkboxSection, undefined);
         insertText("2");
         return;
       }
@@ -218,7 +223,7 @@ const parkingViolationMULTIRadioAnswer = (function checkRadioAnswer() {
 
 // To add whitespace to the end of the document so each section div will scroll to the top of the window when Next button selected
 const setWhiteSpaceAtEndOfDocument = (function calcAndSetWhiteSpace() {
-  var lastDivHeight = finalSectionDiv.offsetHeight;
+  var lastDivHeight = finishedSectionDiv.offsetHeight;
   var headerHeight = document.getElementById("header-main").offsetHeight;
   var footerHeight = document.getElementById("footer-main").offsetHeight;
   var newPadding = (window.innerHeight - lastDivHeight - headerHeight - footerHeight);

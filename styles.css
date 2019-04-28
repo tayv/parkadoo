@@ -51,7 +51,7 @@ body {
 .questionnaire-container,
 .section-container,
 .cta-sticky,
-.final-section-container {
+.finished-section-container {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -238,7 +238,7 @@ input[type="password"]:focus,
 }
 
 /* Spacing for last section */
-#final-section-container {
+#finished-section-container {
   margin-bottom: 20px;
   padding-top: 30px;
   padding-right: 30px;
