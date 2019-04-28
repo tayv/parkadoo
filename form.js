@@ -67,31 +67,6 @@ function insertText(answerOption) {
   }
 };
 
-/* works
-const showNextQ = (function () {
-  document.getElementById("button-next").addEventListener("click", scrollToQuestion);
-
-  function scrollToQuestion() {
-    document.getElementById("question2").scrollIntoView(true);
-  }
-}());
-*/
-
-/* works
-const stepsQuestionnaire = document.getElementsByClassName("section-container");
-
-const currentStep = (function() {
-  for (var i=0; i<stepsQuestionnaire.length; i++) {
-    document.getElementById("button-next").addEventListener("click", scrollToQuestion);
-
-    function scrollToQuestion() {
-      stepsQuestionnaire[i].scrollIntoView(true);
-      i++
-    }
-    return
-  }
-}());
-*/
 
 
 // Previous/Next/Submit button visiblity and to scroll to next div/step. Needs to be initialized before question specific visibility conditions
@@ -124,12 +99,12 @@ const buttonVisibility = function() {
   stepHideByDefault();
 
   // To display and hide steps depending on visibility conditions
-    const stepMakeVisible = function(stepToHide) { // rest parameter seems right but not working?? What happens if back-to-back hidden sections?
+    const stepMakeVisible = function(...stepToHide) { // Keeping ... in parameter is necessary to fix the bug of for loop not firing.
       console.log("stepMakeVisible triggered. The parameter = ", stepToHide);
       for (let i = 0; i < stepToHide.length; i++) {
         console.log("i: ", i);
         console.log("stepToHide: ", stepToHide[i]);
-        if (stepsQuestionnaire[count] === stepToHide[i]) { // works, array within array. appears to be because we used push() instead of apply()
+        if (stepsQuestionnaire[count] === stepToHide[0][i]) { // adding [0] necessary because ... makes it an array within an array
           stepsQuestionnaire[count+1].style.display="block";
           stepsQuestionnaire[count+1].scrollIntoView(true);
           console.log("hide a step");
@@ -195,7 +170,7 @@ function updateHideTheseAnswersArray(addItem, subtractItem) { //use undefined wh
   subtractFromHideTheseAnswersArray(subtractItem);
 }
 
-function applyActiveVisibilityConditions() { 
+function applyActiveVisibilityConditions() {
   if (hideTheseAnswersArray.includes(ticketDate)) {
     ticketDate.style.display = "none";
     console.log("I found ticketDate in the array and will hide the step");
@@ -249,48 +224,3 @@ const setWhiteSpaceAtEndOfDocument = (function calcAndSetWhiteSpace() {
   var newPadding = (window.innerHeight - lastDivHeight - headerHeight - footerHeight);
   var setNewPadding = document.getElementById("output").style.paddingBottom = newPadding + "px";
 }());
-
-
-
-// testing
-function testing2() {
-  document.getElementById("header-main").style.backgroundColor="red";
-};
-
-function testing3() {
-  document.getElementById("header-main").style.backgroundColor="green";
-};
-
-
-/*
-const testAnswer = (function checkTestAnswer() {
-  if (parkingViolationMULTIRadioAnswer.radios == radios[3]) {
-  document.getElementById("ticket-date").innerHTML = "Some text to enter";
-}
-}());
-*/
-
-
-
-/*
-// MULTI RADIO BUTTON CONDITION (works with html onclick added)
-function parkingViolationRadioAnswer() {
-  var radios = document.getElementsByName("violationType")
-  for (var i = 0, length = radios.length; i < length; i++) {
-      if (radios[i].checked) {
-        if (radios[i].value == "1") {
-          ticketDate.style.display = "none";
-        }
-        if (radios[i].value == "2") {
-          ticketDate.style.display = "none";
-        }
-        if (radios[i].value == "3") {
-          ticketDate.style.display = "block";
-        }
-        if (radios[i].value == "4") {
-          ticketDate.style.display = "block";
-        }
-      }
-    }
-};
-*/
