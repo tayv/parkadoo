@@ -80,10 +80,14 @@ body {
 .fieldset-radio,
 .field-checkbox ,
 .field-radioButton,
-.field-label,
+.field-label-large,
+.field-label-small,
 .field-hint,
 .field-example,
 .field-abstract-example,
+.container-day,
+.container-month,
+.container-year,
 .cta-sticky {
   border: 1px solid red; /* for testing */
 }
@@ -114,14 +118,6 @@ body {
   display: -webkit-flex;
   display: flex;
   flex-direction: row;
-}
-
-/* Primary question styling */
-.question-primary {
-  margin-top: 30px;
-  margin-bottom: 15px;
-  font-size: 24px;
-  text-align: center;
 }
 
 /* Margin to next question */
@@ -174,26 +170,45 @@ input[type="password"]:focus,
   border-color: hsl(208, 100%, 45%);
 }
 
-/* Fields that aren't aligned with flexbox */
-.field-label,
-.field-hint,
-.field-example,
-.field-abstract-example {
-  display: block;
-  font-family: sans-serif;
-  margin-left: 2px;
+/* h1 styling for questions without standard primary label */
+.question-primary {
+  margin-top: 30px;
+  margin-bottom: 15px;
+  font-size: 24px;
 }
 
 /* Primary label styling */
-.field-label {
-  font-size: 22px;
+.field-label-large {
+  margin-top: 20px;
+  margin-bottom: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.field-label-small {
+  margin-top: 20px;
+  margin-bottom: 15px;
+  font-size: 19px;
 }
 
 /* Supporting label styling */
 .field-hint,
 .field-example,
 .field-abstract-example {
+  display: block;
   font-size: 14px;
+  font-family: sans-serif;
+  margin-left: 2px;
+}
+
+.field-example,
+.field-abstract-example {
+  padding-top: 5px;
+}
+
+.field-hint {
+  padding-bottom: 2px;
 }
 
 /* To remove radio button fieldset default border */
@@ -204,6 +219,7 @@ input[type="password"]:focus,
 /* Styling of date fields */
 .container-month {
  margin-right: 10px;
+ display: block;
 }
 
 .container-day #date-number {
@@ -216,11 +232,13 @@ input[type="password"]:focus,
   max-width: 50px;
   width: 100%;
   margin-right: 10px;
+  display: block;
 }
 
 .container-year #date-text {
   max-width: 60px;
   width: 100%;
+  display: block;
 }
 
 /* To style the date dropdown */

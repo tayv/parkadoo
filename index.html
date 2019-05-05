@@ -17,11 +17,10 @@
       <form class="questionnaire-container" action="letter.html" method="post">
         <!--Question-->
         <section class="section-container">
-          <h1 class="question-primary">What is your question?</h1>
           <!--Password Field-->
           <div class="field-container">
             <label for="password">
-              <span class="field-label">Password</span>
+              <span class="field-label-large">What is your password?</span>
               <span class="field-hint">Must contain 8+ characters</span>
             </label>
             <input id="password"
@@ -31,11 +30,10 @@
         </section>
         <!--Question-->
         <section class="section-container">
-          <h1 class="question-primary">What is your second question?</h1>
           <!--Generic Text Field-->
           <div class="field-container">
             <label for="text">
-              <span class="field-label">Where did you park?</span>
+              <span class="field-label-large">Where did you park?</span>
             </label>
             <input id="text"
               type="text"
@@ -47,7 +45,7 @@
         <section class="section-container">
           <div class="field-container">
             <label for="text">
-              <span class="field-label">What is your home address?</span>
+              <span class="field-label-large">What is your home address?</span>
             </label>
             <input id="text"
               type="text"
@@ -59,7 +57,7 @@
         <section class="section-container">
           <div class="field-container">
             <label for="abstract">
-              <span class="field-label">Large input field</span>
+              <span class="field-label-large">Large input field</span>
             </label>
             <textarea id="abstract"
               name="abstract">
@@ -71,7 +69,7 @@
         <section class="section-container">
           <div class="field-container">
             <label for="email">
-              <span class="field-label">What is your email?</span>
+              <span class="field-label-large">What is your email?</span>
             </label>
             <input id="email"
               type="email"
@@ -161,7 +159,7 @@
           <div class="date-container">
             <div class="container-month">
               <label for="date-month">
-                <span class="field-label">Month</span>
+                <span class="field-label-small">Month</span>
               </label>
               <select id="ticket-month" name="ticket-month">
                 <option value="Jan">January</option>
@@ -180,7 +178,7 @@
             </div>
             <div class="container-day">
               <label for="date-day">
-                <span class="field-label">Day</span>
+                <span class="field-label-small">Day</span>
               </label>
               <input id="date-number"
                 type="number"
@@ -192,7 +190,7 @@
             </div>
             <div class="container-year">
               <label for="date-year">
-                <span class="field-label">Year</span>
+                <span class="field-label-small">Year</span>
               </label>
               <!--Pattern used to trigger numeric keyboard on ios-->
               <input id="date-text"
