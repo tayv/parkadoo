@@ -15,6 +15,663 @@
     </header>
     <main id="parking-form">
       <form class="questionnaire-container" action="letter.html" method="post">
+        <!--Intro Message-->
+        <section class="section-container">
+          <!--Message Field-->
+          <div class="field-container">
+              <span class="field-label-large">Welcome to Parkadoo :-)</span>
+              <p>I'm a free app that helps you avoid and appeal parking tickets.
+              All you have to do is answer some questions and leave the rest to me.
+              Are you ready to get started?</p>
+          </div>
+        </section>
+        <!--Type of Parking Problem Radio Buttons-->
+        <section id="parking-issue-radio" class="section-container">
+          <fieldset class="fieldset-radio">
+            <legend>
+              <h1 class="question-primary">What is your parking problem?</h1>
+            </legend>
+            <div class="field-radioButton">
+              <label for="parkingIssue1">
+                <input id="parkingIssue1"
+                  type="radio"
+                  name="chooseParkingIssue"
+                  value="1"
+                  checked="checked"
+                  class="radio-list">
+                <span>I want to appeal a parking ticket</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="parkingIssue2">
+                <input id="parkingIssue2"
+                  type="radio"
+                  name="chooseParkingIssue"
+                  value="2"
+                  class="radio-list">
+                <span>I want to report a car that has been parked for more than 72 hrs in my neighbourhood</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="parkingIssue3">
+                <input id="parkingIssue3"
+                  type="radio"
+                  name="chooseParkingIssue"
+                  value="3"
+                  class="radio-list">
+                <span>I want to check if my current parking situation is likely to result in a parking ticket</span>
+              </label>
+            </div>
+          </fieldset>
+        </section>
+        <!--Ticket Issuer Radio Buttons-->
+        <section id="parking-issue-radio" class="section-container">
+          <fieldset class="fieldset-radio">
+            <legend>
+              <h1 class="question-primary">Who issued your ticket?</h1>
+            </legend>
+            <div class="field-radioButton">
+              <label for="ticketIssuerCity">
+                <input id="ticketIssuerCity"
+                  type="radio"
+                  name="ticketIssuer"
+                  value="1"
+                  checked="checked"
+                  class="radio-list">
+                <span>City</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketIssuerUniversity">
+                <input id="ticketIssuerUniversity"
+                  type="radio"
+                  name="ticketIssuer"
+                  value="2"
+                  class="radio-list">
+                <span>Hospital, university, or other institution</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketIssuerPrivate">
+                <input id="ticketIssuerPrivate"
+                  type="radio"
+                  name="ticketIssuer"
+                  value="3"
+                  class="radio-list">
+                <span>Private lot operator (e.g. Impark)</span>
+              </label>
+            </div>
+          </fieldset>
+        </section>
+        <!--Which Municipality Radio Buttons-->
+        <section id="municipality-radio" class="section-container">
+          <fieldset class="fieldset-radio">
+            <legend>
+              <h1 class="question-primary">Which municipality issued your ticket?</h1>
+            </legend>
+            <div class="field-radioButton">
+              <label for="municipalityEdmonton">
+                <input id="municipalityEdmonton"
+                  type="radio"
+                  name="municipalityLocation"
+                  value="1"
+                  checked="checked"
+                  class="radio-list">
+                <span>Edmonton</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="municipalityOther">
+                <input id="municipalityOther"
+                  type="radio"
+                  name="municipalityLocation"
+                  value="2"
+                  class="radio-list">
+                <span>Other</span>
+              </label>
+            </div>
+            <div class="field-container">
+              <label for="cityUnavailable">
+                <span class="field-label-large">Parkadoo isn't available in your city yet :(</span>
+                <span class="field-hint">Let me know what city you want added next:</span>
+              </label>
+              <input id="newCityRequest"
+                type="text"
+                name="newCityRequest">
+              <span class="field-example">e.g. Toronto</span>
+            </div>
+          </fieldset>
+        </section>
+        <!--A Student or Employee of Issuer Radio Buttons-->
+        <section id="university-student-employee" class="section-container">
+          <fieldset class="fieldset-radio">
+            <legend>
+              <h1 class="question-primary">Are you an employee or student at the institution that issued the ticket?</h1>
+            </legend>
+            <div class="field-radioButton">
+              <label for="employeeOrStudentYes">
+                <input id="employeeOrStudentYes"
+                  type="radio"
+                  name="ynEmployeeOrStudent"
+                  value="1"
+                  checked="checked"
+                  class="radio-list">
+                <span>Yes</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="employeeOrStudentNo">
+                <input id="employeeOrStudentNo"
+                  type="radio"
+                  name="ynEmployeeOrStudent"
+                  value="2"
+                  class="radio-list">
+                <span>No</span>
+              </label>
+            </div>
+          </fieldset>
+        </section>
+        <!--Ticket Number Text Field-->
+        <section id="ticket-number" class="section-container">
+          <div class="field-container">
+            <label for="ticketNumber">
+              <span class="field-label-large">What is the ticket number?</span>
+            </label>
+            <input id="ticketNumber"
+              type="text"
+              name="descriptionTicketNumber">
+            <span class="field-example">e.g. AB34DL83DN6</span>
+          </div>
+        </section>
+        <!--Ticket Errors-->
+        <section id="ticket-accuracy" class="section-container">
+          <fieldset class="fieldset-radio">
+            <legend>
+              <h1 class="question-primary">Are there any errors in the ticket details?</h1>
+              <span class="field-hint">Check your ticket for mistakes such as incorrect dates or license plate numbers.</span>
+            </legend>
+            <div class="field-radioButton">
+              <label for="ticketAccuracyYes">
+                <input id="ticketAccuracyYes"
+                  type="radio"
+                  name="ynticketAccuracy"
+                  value="1"
+                  checked="checked"
+                  class="radio-list">
+                <span>Yes</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketAccuracyNo">
+                <input id="ticketAccuracyNo"
+                  type="radio"
+                  name="ynticketAccuracy"
+                  value="2"
+                  class="radio-list">
+                <span>No</span>
+              </label>
+            </div>
+            <div class="field-container">
+              <label for="ticketError">
+                <span class="field-label-large">Please describe the ticket error:</span>
+              </label>
+              <textarea id="abstract"
+                name="descriptionTicketError">
+              </textarea>
+              <span class="field-abstract-example">e.g. The ticket lists the offending vehicle license plate as F4R 3N4. However, my license plate is E4R EM4.</span>
+            </div>
+          </fieldset>
+        </section>
+        <!--Ticket Reason Radio Buttons-->
+        <section id="ticket-reason-radio" class="section-container">
+          <fieldset class="fieldset-radio">
+            <legend>
+              <h1 class="question-primary">Which of the following best describes the parking offence on your ticket?</h1>
+              <span class="field-hint">Put on your reading glasses, there's a lot of reasons you can get a ticket...</span>
+            </legend>
+            <div class="field-radioButton">
+              <label for="ticketReason1">
+                <input id="ticketReason1"
+                  type="radio"
+                  name="ticketReason"
+                  value="1"
+                  checked="checked"
+                  class="radio-list">
+                <span>Insufficient payment</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason2">
+                <input id="ticketReason2"
+                  type="radio"
+                  name="ticketReason"
+                  value="2"
+                  class="radio-list">
+                <span>Overstayed posted time limit</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason3">
+                <input id="ticketReason3"
+                  type="radio"
+                  name="ticketReason"
+                  value="3"
+                  class="radio-list">
+                <span>Not within metered space</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason4">
+                <input id="ticketReason4"
+                  type="radio"
+                  name="ticketReason"
+                  value="4"
+                  class="radio-list">
+                <span>In a closed pay and display zone</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason5">
+                <input id="ticketReason5"
+                  type="radio"
+                  name="ticketReason"
+                  value="5"
+                  class="radio-list">
+                <span>In a space with a hooded meter</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason6">
+                <input id="ticketReason6"
+                  type="radio"
+                  name="ticketReason"
+                  value="6"
+                  class="radio-list">
+                <span>Too close to stop/yield sign</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason7">
+                <input id="ticketReason7"
+                  type="radio"
+                  name="ticketReason"
+                  value="7"
+                  class="radio-list">
+                <span>Too close to crosswalk</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason8">
+                <input id="ticketReason8"
+                  type="radio"
+                  name="ticketReason"
+                  value="8"
+                  class="radio-list">
+                <span>Too close to fire hydrant</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason9">
+                <input id="ticketReason9"
+                  type="radio"
+                  name="ticketReason"
+                  value="9"
+                  class="radio-list">
+                <span>Too close to intersection</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason10">
+                <input id="ticketReason10"
+                  type="radio"
+                  name="ticketReason"
+                  value="10"
+                  class="radio-list">
+                <span>Within 3 meters of centre line</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason11">
+                <input id="ticketReason11"
+                  type="radio"
+                  name="ticketReason"
+                  value="11"
+                  class="radio-list">
+                <span>Parallel parked more than 500mm from curb</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason12">
+                <input id="ticketReason12"
+                  type="radio"
+                  name="ticketReason"
+                  value="12"
+                  class="radio-list">
+                <span>On a sidewalk or boulevard</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason13">
+                <input id="ticketReason13"
+                  type="radio"
+                  name="ticketReason"
+                  value="13"
+                  class="radio-list">
+                <span>Caused an obstruction</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason14">
+                <input id="ticketReason14"
+                  type="radio"
+                  name="ticketReason"
+                  value="14"
+                  class="radio-list">
+                <span>In a bus zone</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason15">
+                <input id="ticketReason15"
+                  type="radio"
+                  name="ticketReason"
+                  value="15"
+                  class="radio-list">
+                <span>On an emergency route</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason16">
+                <input id="ticketReason16"
+                  type="radio"
+                  name="ticketReason"
+                  value="16"
+                  class="radio-list">
+                <span>On a snow route</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason17">
+                <input id="ticketReason17"
+                  type="radio"
+                  name="ticketReason"
+                  value="17"
+                  class="radio-list">
+                <span>Residential zone without permit</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason18">
+                <input id="ticketReason18"
+                  type="radio"
+                  name="ticketReason"
+                  value="18"
+                  class="radio-list">
+                <span>Disabled zone</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason19">
+                <input id="ticketReason19"
+                  type="radio"
+                  name="ticketReason"
+                  value="19"
+                  class="radio-list">
+                <span>No stopping zone</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason20">
+                <input id="ticketReason20"
+                  type="radio"
+                  name="ticketReason"
+                  value="20"
+                  class="radio-list">
+                <span>No parking zone</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason21">
+                <input id="ticketReason21"
+                  type="radio"
+                  name="ticketReason"
+                  value="21"
+                  class="radio-list">
+                <span>Commercial loading zone</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason22">
+                <input id="ticketReason22"
+                  type="radio"
+                  name="ticketReason"
+                  value="22"
+                  class="radio-list">
+                <span>Passenger loading zone</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason23">
+                <input id="ticketReason23"
+                  type="radio"
+                  name="ticketReason"
+                  value="23"
+                  class="radio-list">
+                <span>Marked space</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason24">
+                <input id="ticketReason24"
+                  type="radio"
+                  name="ticketReason"
+                  value="24"
+                  class="radio-list">
+                <span>Angle parked incorrectly</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason25">
+                <input id="ticketReason25"
+                  type="radio"
+                  name="ticketReason"
+                  value="25"
+                  class="radio-list">
+                <span>Weight limit violation</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason26">
+                <input id="ticketReason26"
+                  type="radio"
+                  name="ticketReason"
+                  value="26"
+                  class="radio-list">
+                <span>Length limit violation</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason27">
+                <input id="ticketReason27"
+                  type="radio"
+                  name="ticketReason"
+                  value="27"
+                  class="radio-list">
+                <span>Abandoned vehicle</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason28">
+                <input id="ticketReason28"
+                  type="radio"
+                  name="ticketReason"
+                  value="28"
+                  class="radio-list">
+                <span>Recreational vehicle</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason29">
+                <input id="ticketReason29"
+                  type="radio"
+                  name="ticketReason"
+                  value="29"
+                  class="radio-list">
+                <span>Alley parking</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason30">
+                <input id="ticketReason30"
+                  type="radio"
+                  name="ticketReason"
+                  value="30"
+                  class="radio-list">
+                <span>Double parking</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason31">
+                <input id="ticketReason31"
+                  type="radio"
+                  name="ticketReason"
+                  value="31"
+                  class="radio-list">
+                <span>Prohibited bridge/tunnel parking </span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason32">
+                <input id="ticketReason32"
+                  type="radio"
+                  name="ticketReason"
+                  value="32"
+                  class="radio-list">
+                <span>Unattached trailer</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason33">
+                <input id="ticketReason33"
+                  type="radio"
+                  name="ticketReason"
+                  value="33"
+                  class="radio-list">
+                <span>Propane vehicle</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketReason34">
+                <input id="ticketReason34"
+                  type="radio"
+                  name="ticketReason"
+                  value="34"
+                  class="radio-list">
+                <span>None of the above</span>
+              </label>
+            </div>
+            <!-- Conditional "other" text field -->
+            <div class="field-container">
+              <label for="ticketReasonOther">
+                <span class="field-label-large">How would you describe the ticket reason:</span>
+                <span class="field-hint">I recommend reading <a href="https://www.edmonton.ca/transportation/Bylaws/C5590.pdf" target="_blank">Bylaw 5590</a> to see if this is valid ticketing reason.</span>
+              </label>
+              <input id="ticketReasonOther"
+                type="text"
+                name="textTicketReasonOther">
+              <span class="field-example">e.g. Failing to park within marked space.</span>
+            </div>
+          </fieldset>
+        </section>
+        <!--Dispute Ticket Reason YN-->
+        <section id="ticket-reason-dispute" class="section-container">
+          <p>Bylaw 5590 describes <ticket reason> in situations where <bylaw explanation></p>
+          <fieldset class="fieldset-radio">
+            <legend>
+              <h1 class="question-primary">Do you want to appeal the parking offence description?</h1>
+            </legend>
+            <div class="field-radioButton">
+              <label for="isTicketValidYes">
+                <input id="isTicketValidYes"
+                  type="radio"
+                  name="ynTicketValid"
+                  value="1"
+                  checked="checked"
+                  class="radio-list">
+                <span>Yes</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="isTicketValidNo">
+                <input id="isTicketValidNo"
+                  type="radio"
+                  name="ynTicketValid"
+                  value="2"
+                  class="radio-list">
+                <span>No</span>
+              </label>
+            </div>
+            <!-- Conditional reason text field -->
+            <div class="field-container">
+              <label for="ticketWrongDescription">
+                <span class="field-label-large">Why was the violation incorrectly applied to you?</span>
+              </label>
+              <input id="ticketWrongDescription"
+                type="text"
+                name="textTicketWrongDescription">
+              <span class="field-example">e.g. I was parallel parked less than 500mm away from the curb.</span>
+            </div>
+          </fieldset>
+        </section>
+        <!--Upload Photos YN-->
+        <section id="photo-upload" class="section-container">
+          <fieldset class="fieldset-radio">
+            <legend>
+              <h1 class="question-primary">Would you like to attach any photos to your appeal letter?</h1>
+              <span class="field-hint">A photo can help provide evidence, particularly if you are claiming a ticket writing error.</span>
+            </legend>
+            <div class="field-radioButton">
+              <label for="attachPhotoYes">
+                <input id="attachPhotoYes"
+                  type="radio"
+                  name="ynUploadPhoto"
+                  value="1"
+                  class="radio-list">
+                <span>Yes</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="attachPhotoNo">
+                <input id="attachPhotoNo"
+                  type="radio"
+                  name="ynUploadPhoto"
+                  value="2"
+                  checked="checked"
+                  class="radio-list">
+                <span>No</span>
+              </label>
+            </div>
+            <!-- Conditional upload photo -->
+            <div class="field-container">
+              <p>https://stackoverflow.com/questions/3891831/a-html5-web-app-for-mobile-safari-to-upload-images-from-the-photos-app/40529202#40529202</p>
+            </div>
+          </fieldset>
+        </section>
+        <!-- Contact Info -->
+        <section id="contact-details" class="section-container">
+          <div class="field-container">
+            <h1 class="question-primary">W</h1>
+            <label for="email">
+              <span class="field-label-large">What is your email?</span>
+              <span class="field-hint">Must contain 8+ characters</span>
+            </label>
+            <input id="email"
+              type="email"
+              name="email">
+            <span class="field-example">e.g. jsmith@gmail.com</span>
+          </div>
+        </section>
+
         <!--Question-->
         <section class="section-container">
           <!--Password Field-->
