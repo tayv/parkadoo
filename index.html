@@ -537,7 +537,7 @@
                   name="ticketReason"
                   value="31"
                   class="radio-list">
-                <span>Prohibited bridge/tunnel parking </span>
+                <span>Prohibited bridge/tunnel parking</span>
               </label>
             </div>
             <div class="field-radioButton">
@@ -657,85 +657,53 @@
             </div>
           </fieldset>
         </section>
-        <!-- Contact Info -->
+        <!--Name-->
+        <section class="section-container">
+          <div class="field-container">
+            <label for="person-name">
+              <span class="field-label-large">What is your first and last name?</span>
+            </label>
+            <input id="text"
+              type="text"
+              name="text">
+            <span class="field-example">e.g. Rupert Pupkin</span>
+          </div>
+        </section>
+        <!-- Email -->
         <section id="contact-details" class="section-container">
           <div class="field-container">
-            <h1 class="question-primary">W</h1>
+            <h1 class="question-primary">What is your email?</h1>
             <label for="email">
-              <span class="field-label-large">What is your email?</span>
-              <span class="field-hint">Must contain 8+ characters</span>
+              <span class="field-hint">Your email is included so parking appeal officers can contact you. I'll also use it to send you a copy of your appeal letter.</span>
             </label>
             <input id="email"
               type="email"
               name="email">
             <span class="field-example">e.g. jsmith@gmail.com</span>
+          </div>
+        </section>
+        <!--Mailing address-->
+        <section class="section-container">
+          <div class="field-container">
+            <label for="mailing-address">
+              <span class="field-label-large">What is your mailing address?</span>
+              <span class="field-hint">This is needed for your appeal letter so use the.</span>
+            </label>
+            <textarea id="abstract"
+              name="mailing-address"
+              placeholder="Street Address&#10;City, Province  Postal Code">
+            </textarea>
+            <span class="field-abstract-example">Street Address<br>City, Province  Postal Code </span>
           </div>
         </section>
 
-        <!--Question-->
-        <section class="section-container">
-          <!--Password Field-->
-          <div class="field-container">
-            <label for="password">
-              <span class="field-label-large">What is your password?</span>
-              <span class="field-hint">Must contain 8+ characters</span>
-            </label>
-            <input id="password"
-              type="password"
-              name="password">
-          </div>
-        </section>
-        <!--Question-->
-        <section class="section-container">
-          <!--Generic Text Field-->
-          <div class="field-container">
-            <label for="text">
-              <span class="field-label-large">Where did you park?</span>
-            </label>
-            <input id="text"
-              type="text"
-              name="text">
-            <span class="field-example">e.g. Impark, JetSet, etc.</span>
-          </div>
-        </section>
-        <!--Address Field (repurposed generic field)-->
-        <section class="section-container">
-          <div class="field-container">
-            <label for="text">
-              <span class="field-label-large">What is your home address?</span>
-            </label>
-            <input id="text"
-              type="text"
-              name="text">
-            <span class="field-example">e.g. Street, City, Province, Postal Code</span>
-          </div>
-        </section>
-        <!--Large input field-->
-        <section class="section-container">
-          <div class="field-container">
-            <label for="abstract">
-              <span class="field-label-large">Large input field</span>
-            </label>
-            <textarea id="abstract"
-              name="abstract">
-            </textarea>
-            <span class="field-abstract-example">Describe your talk in 500 words or less </span>
-          </div>
-        </section>
-        <!--Email Field-->
-        <section class="section-container">
-          <div class="field-container">
-            <label for="email">
-              <span class="field-label-large">What is your email?</span>
-            </label>
-            <input id="email"
-              type="email"
-              name="email">
-            <span class="field-example">e.g. jsmith@gmail.com</span>
-          </div>
-        </section>
-      <!-- Yes/No Radio Buttons -->
-      <section id="yn-hooman" class="section-container">
+
+
+
+
+
+        <!-- Yes/No Radio Buttons -->
+        <section id="yn-hooman" class="section-container">
         <fieldset class="fieldset-radio">
           <legend>
             <h1 class="question-primary">Are you hooman?</h1>
@@ -760,108 +728,10 @@
             </label>
           </div>
         </section>
-      <!--Generic Radio Buttons-->
-      <section id="parking-violation-radio" class="section-container">
-        <fieldset class="fieldset-radio">
-          <legend>
-            <h1 class="question-primary">Parking Violation</h1>
-          </legend>
-          <div class="field-radioButton">
-            <label for="violation1">
-              <input id="violation1"
-                type="radio"
-                name="violationType"
-                value="1"
-                checked="checked"
-                class="test-class">
-              <span>Over time limit</span>
-            </label>
-          </div>
-          <div class="field-radioButton">
-            <label for="violation2">
-              <input id="violation2"
-                type="radio"
-                name="violationType"
-                value="2"
-                class="test-class">
-              <span>In bus zone</span>
-            </label>
-          </div>
-          <div class="field-radioButton">
-            <label for="violation3">
-              <input id="violation3"
-                type="radio"
-                name="violationType"
-                value="3"
-                class="test-class">
-              <span>Too close to fire hydrant</span>
-            </label>
-          </div>
-          <div class="field-radioButton">
-            <label for="violation4">
-              <input id="violation4"
-                type="radio"
-                name="violationType"
-                value="4"
-                class="test-class">
-              <span>Too close to stop sign</span>
-            </label>
-          </div>
-        </fieldset>
-      </section>
-      <!--Dates-->
-      <section id="ticket-date" class="section-container">
-        <div class="field-date">
-          <h1 class="question-primary">When did you receive the ticket?</h1>
-          <div class="date-container">
-            <div class="container-month">
-              <label for="date-month">
-                <span class="field-label-small">Month</span>
-              </label>
-              <select id="ticket-month" name="ticket-month">
-                <option value="Jan">January</option>
-                <option value="Feb">February</option>
-                <option value="Mar">March</option>
-                <option value="Apr">April</option>
-                <option value="May">May</option>
-                <option value="Jun">June</option>
-                <option value="Jul">July</option>
-                <option value="Aug">August</option>
-                <option value="Sep">September</option>
-                <option value="Oct">October</option>
-                <option value="Nov">November</option>
-                <option value="Dec">December</option>
-              </select>
-            </div>
-            <div class="container-day">
-              <label for="date-day">
-                <span class="field-label-small">Day</span>
-              </label>
-              <input id="date-number"
-                type="number"
-                name="ticket-day"
-                value="1"
-                min="1"
-                max="31">
-              <span class="field-example">e.g. 10</span>
-            </div>
-            <div class="container-year">
-              <label for="date-year">
-                <span class="field-label-small">Year</span>
-              </label>
-              <!--Pattern used to trigger numeric keyboard on ios-->
-              <input id="date-text"
-                type="text"
-                pattern="[0-9]*"
-                name="ticket-year"
-                value="2018">
-              <span class="field-example">e.g. 2019</span>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!--Checkbox-->
-      <section id="checkbox-container" class="section-container">
+
+
+        <!--Checkbox-->
+        <section id="checkbox-container" class="section-container">
         <div class="field-checkbox">
           <label for="newsletterSignUp">
             <input id="newsletterSignUp"
@@ -871,9 +741,11 @@
             <span>I want to receive promotional emails</span>
           </label>
         </div>
-      </section>
+        </section>
+
+
       <section id="finished-section-container">
-        <p>You are done!!!!! aasdlfkjas;dlf a;lskdfja;lskdjf alksdjflaksjdflk aslkdfjlaksjdf
+        <p>You are done!!!!! Insert a success image/animation here. aasdlfkjas;dlf a;lskdfja;lskdjf alksdjflaksjdflk aslkdfjlaksjdf
         sampasdfasdf asdf asdf a dfasdf  afdsasdf as afds asdf as dfas dfna asdfa
         asdfasdf aasdf asdf asdfasdf asadf asdf
         aasdlfkjas;dlf a;lskdfja;lskdjf alksdjflaksjdflk aslkdfjlaksjdf
@@ -883,7 +755,7 @@
       <section class="whitespace-section">
         <div id="output">
           <span class="genericOutput">
-            This is the start of the generic letter text
+            City of Edmonton, Bylaw Ticket Administration <br> PO Box 2024 <br> Edmonton, AB T5J 4M6 <br>
           </span>
           <span id="insert-text-here">
           </span>

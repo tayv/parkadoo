@@ -3,9 +3,9 @@
 // TO LOAD DEFAULT VISIBILITY CONDITIONS (works)
 window.onload = function setDefaultAnswerState() {
   // for newsletter checkbox
-  newsletterCheckbox.checked = false;
+//    newsletterCheckbox.checked = false;
   // for parking violation radios
-  hoomanYesRadio.checked = true
+//  hoomanYesRadio.checked = true
 
   // to display only first step until next button clicked
   buttonVisibility();
@@ -13,6 +13,7 @@ window.onload = function setDefaultAnswerState() {
 
 // To set default answers/visibility. To be used on page load.
 
+/*
 // Variable list
 const checkboxSection = document.getElementById("checkbox-container"); // used in parkingViolationRadioAnswer()
 
@@ -49,7 +50,7 @@ const hoomanYNRadioAnswer = (function() {
       }
     }
 }());
-
+*/
 
 // To insert text into final output based on selections. May need to change to more specific if statement
 function insertText(answerOption) {
@@ -123,7 +124,7 @@ const buttonVisibility = function() {
     if (count < stepsQuestionnaire.length - 1) {
       count++;
       stepMakeVisible(hideTheseAnswersArray);
-      applyActiveVisibilityConditions();
+    //  applyActiveVisibilityConditions();
       stepsQuestionnaire[count].scrollIntoView(true);
       stepsQuestionnaire[count].style.opacity="1";
       stepsQuestionnaire[count-1].style.opacity="0.2"; // reduce opacity of a completed step so user focus is on current step
@@ -173,7 +174,7 @@ function updateHideTheseAnswersArray(addItem, subtractItem) { //use undefined wh
   }
   subtractFromHideTheseAnswersArray(subtractItem);
 }
-
+/*
 function applyActiveVisibilityConditions() {
   if (hideTheseAnswersArray.includes(ticketDate)) {
     ticketDate.style.display = "none";
@@ -220,7 +221,7 @@ const parkingViolationMULTIRadioAnswer = (function checkRadioAnswer() {
 
   }
 }());
-
+*/
 // To add whitespace to the end of the document so each section div will scroll to the top of the window when Next button selected
 const setWhiteSpaceAtEndOfDocument = (function calcAndSetWhiteSpace() {
   var lastDivHeight = finishedSectionDiv.offsetHeight;
