@@ -7,17 +7,17 @@ window.onload = function setDefaultAnswerState() {
   // for parking violation radios
 //  hoomanYesRadio.checked = true
 
-
   // to display only first step until next button clicked
   buttonVisibility();
 };
 
-// LIST OF VARIABLES
-const parkingProblemSection = document.getElementById("parking-problem-section");
-const parkingTicketIssuer = document.getElementById("parking-issuer-radio");
+// To set default answers/visibility. To be used on page load.
+
 
 /*
-// To set default answers/visibility. To be used on page load.
+// Variable list
+const checkboxSection = document.getElementById("checkbox-container"); OLD used in parkingViolationRadioAnswer()
+
 // CB VISIBILITY CONDITION (works)
 const newsletterCheckbox = document.getElementById("newsletterSignUp");
 // element to be hidden
@@ -148,8 +148,9 @@ const buttonVisibility = function() {
   };
 };
 
-
-// Multi line radio visibilities
+// MULTI RADIO BUTTON VISIBILITY CONDITION
+// From Stack Overflow (works when class added to radio buttons)
+const inputs = document.querySelectorAll(".test-class");
 
 const hideTheseAnswersArray = [];
 
@@ -174,11 +175,11 @@ function updateHideTheseAnswersArray(addItem, subtractItem) { //use undefined wh
   }
   subtractFromHideTheseAnswersArray(subtractItem);
 }
-
+/*
 function applyActiveVisibilityConditions() {
-  if (hideTheseAnswersArray.includes(parkingTicketIssuer)) {
-    parkingTicketIssuer.style.display = "none";
-    console.log("I found parkingTicketIssuer in the array and will hide the step");
+  if (hideTheseAnswersArray.includes(ticketDate)) {
+    ticketDate.style.display = "none";
+    console.log("I found ticketDate in the array and will hide the step");
   }
   if (hideTheseAnswersArray.includes(checkboxSection)) {
     checkboxSection.style.display = "none";
@@ -186,38 +187,42 @@ function applyActiveVisibilityConditions() {
   }
 }
 
-// MULTI RADIO BUTTON SECTION VISIBILITY CONDITION (works when a class is added to each individual radio button input)
+const parkingViolationMULTIRadioAnswer = (function checkRadioAnswer() {
 
-const parkingProblemRadioSelection = (function checkRadioAnswer() {
-  const parkingProblemRadioInputs = document.querySelectorAll(".parking-problem-radio-class");
-  for(let i = 0; i < parkingProblemRadioInputs.length; i++) {
-      parkingProblemRadioInputs[i].addEventListener("click", checkRadioAnswer, false);
+  for(let i = 0; i < inputs.length; i++) {
+      inputs[i].addEventListener("click", checkRadioAnswer, false);
   }
-  for (let i = 0, length = parkingProblemRadioInputs.length; i < length; i++) {
-    if (parkingProblemRadioInputs[i].checked) {
-      if (parkingProblemRadioInputs[i].value === "1") {
-        updateHideTheseAnswersArray(undefined, parkingTicketIssuer);
-        applyActiveVisibilityConditions();
+
+  var radios = document.getElementsByName("violationType")
+
+  for (let i = 0, length = radios.length; i < length; i++) {
+    if (radios[i].checked) {
+      if (radios[i].value === "1") {
+        ticketDate.style.display = "none";
         insertText("1");
         return; // to stop from going through entire loop
       }
-      else if (parkingProblemRadioInputs[i].value === "2") {
-        updateHideTheseAnswersArray(parkingTicketIssuer, undefined); // call for each step you need to hide
-        applyActiveVisibilityConditions();
+      else if (radios[i].value === "2") {
+        updateHideTheseAnswersArray(ticketDate, undefined);
+        updateHideTheseAnswersArray(checkboxSection, undefined);
         insertText("2");
         return;
       }
-      else if (parkingProblemRadioInputs[i].value === "3") {
-        updateHideTheseAnswersArray(parkingTicketIssuer, undefined);
-        applyActiveVisibilityConditions();
+      else if (radios[i].value === "3") {
+        updateHideTheseAnswersArray(ticketDate, checkboxSection);
         insertText("3");
+        return;
+      }
+      else if (radios[i].value === "4") {
+        updateHideTheseAnswersArray(checkboxSection, ticketDate);
+        insertText("4");
         return;
       }
     }
 
   }
 }());
-
+*/
 // To add whitespace to the end of the document so each section div will scroll to the top of the window when Next button selected
 const setWhiteSpaceAtEndOfDocument = (function calcAndSetWhiteSpace() {
   var lastDivHeight = finishedSectionDiv.offsetHeight;

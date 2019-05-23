@@ -26,7 +26,7 @@
           </div>
         </section>
         <!--Type of Parking Problem Radio Buttons-->
-        <section id="parking-issue-radio" class="section-container">
+        <section id="parking-problem-section" class="section-container">
           <fieldset class="fieldset-radio">
             <legend>
               <h1 class="question-primary">What is your parking problem?</h1>
@@ -38,7 +38,7 @@
                   name="chooseParkingIssue"
                   value="1"
                   checked="checked"
-                  class="radio-list">
+                  class="parking-problem-radio-class">
                 <span>I want to appeal a parking ticket</span>
               </label>
             </div>
@@ -48,8 +48,8 @@
                   type="radio"
                   name="chooseParkingIssue"
                   value="2"
-                  class="radio-list">
-                <span>I want to report a car that has been parked for more than 72 hrs in my neighbourhood</span>
+                  class="parking-problem-radio-class">
+                <span>I want to report a vehicle that's been parked for 72+ hrs in my neighbourhood</span>
               </label>
             </div>
             <div class="field-radioButton">
@@ -58,14 +58,14 @@
                   type="radio"
                   name="chooseParkingIssue"
                   value="3"
-                  class="radio-list">
-                <span>I want to check if my current parking situation is likely to result in a parking ticket</span>
+                  class="parking-problem-radio-class">
+                <span>I want to check if my current parking situation is likely to result in a ticket</span>
               </label>
             </div>
           </fieldset>
         </section>
         <!--Ticket Issuer Radio Buttons-->
-        <section id="parking-issue-radio" class="section-container">
+        <section id="parking-issuer-radio" class="section-container">
           <fieldset class="fieldset-radio">
             <legend>
               <h1 class="question-primary">Who issued your ticket?</h1>
@@ -82,23 +82,23 @@
               </label>
             </div>
             <div class="field-radioButton">
-              <label for="ticketIssuerUniversity">
-                <input id="ticketIssuerUniversity"
-                  type="radio"
-                  name="ticketIssuer"
-                  value="2"
-                  class="radio-list">
-                <span>Hospital, university, or other institution</span>
-              </label>
-            </div>
-            <div class="field-radioButton">
               <label for="ticketIssuerPrivate">
                 <input id="ticketIssuerPrivate"
                   type="radio"
                   name="ticketIssuer"
-                  value="3"
+                  value="2"
                   class="radio-list">
                 <span>Private lot operator (e.g. Impark)</span>
+              </label>
+            </div>
+            <div class="field-radioButton">
+              <label for="ticketIssuerUniversity">
+                <input id="ticketIssuerUniversity"
+                  type="radio"
+                  name="ticketIssuer"
+                  value="3"
+                  class="radio-list">
+                <span>Hospital, university, or other institution</span>
               </label>
             </div>
           </fieldset>
@@ -700,48 +700,6 @@
 
 
 
-
-
-        <!-- Yes/No Radio Buttons -->
-        <section id="yn-hooman" class="section-container">
-        <fieldset class="fieldset-radio">
-          <legend>
-            <h1 class="question-primary">Are you hooman?</h1>
-          </legend>
-          <div class="field-radioButton">
-            <label for="yes-hooman">
-              <input id="yes-hooman"
-                type="radio"
-                name="ynHooman"
-                value="1"
-                checked="checked">
-              <span>Yes</span>
-            </label>
-          </div>
-          <div class="field-radioButton">
-            <label for="no-hooman">
-              <input id="no-hooman"
-                type="radio"
-                name="ynHooman"
-                value="2">
-              <span>No</span>
-            </label>
-          </div>
-        </section>
-
-
-        <!--Checkbox-->
-        <section id="checkbox-container" class="section-container">
-        <div class="field-checkbox">
-          <label for="newsletterSignUp">
-            <input id="newsletterSignUp"
-              type="checkbox"
-              name="newsletterGrantPermission"
-              value="yes">
-            <span>I want to receive promotional emails</span>
-          </label>
-        </div>
-        </section>
 
 
       <section id="finished-section-container">
