@@ -13,9 +13,13 @@ window.onload = function setDefaultAnswerState() {
 };
 
 // LIST OF VARIABLES
+  // Sections
 const parkingProblemSection = document.getElementById("parking-problem-section");
-const parkingTicketIssuer = document.getElementById("parking-issuer-radio");
-
+const parkingTicketIssuerSection = document.getElementById("parking-issuer-radio");
+const municipalitySection = document.getElementById("municipality-radio");
+  // Output
+let cityOutputTemplate = "";
+let city = "";
 /*
 // To set default answers/visibility. To be used on page load.
 // CB VISIBILITY CONDITION (works)
@@ -52,22 +56,6 @@ const hoomanYNRadioAnswer = (function() {
     }
 }());
 */
-
-// To insert text into final output based on selections. May need to change to more specific if statement
-function insertText(answerOption) {
-  if (answerOption === "1") {
-    document.getElementById("insert-text-here").innerHTML = "-insert answer 1 text here-";
-  }
-  else if (answerOption === "2") {
-    document.getElementById("insert-text-here").innerHTML = "-insert answer 2 text here-";
-  }
-  else if (answerOption === "3") {
-    document.getElementById("insert-text-here").innerHTML = "-insert answer 3 text here-";
-  }
-  else if (answerOption === "4") {
-    document.getElementById("insert-text-here").innerHTML = "-insert answer 4 text here-"; // for output letter
-  }
-};
 
 
 
@@ -149,7 +137,7 @@ const buttonVisibility = function() {
 };
 
 
-// Multi line radio visibilities
+// ARRAY THAT STORES WHICH SECTIONS TO HIDE
 
 const hideTheseAnswersArray = [];
 
@@ -176,47 +164,110 @@ function updateHideTheseAnswersArray(addItem, subtractItem) { //use undefined wh
 }
 
 function applyActiveVisibilityConditions() {
-  if (hideTheseAnswersArray.includes(parkingTicketIssuer)) {
-    parkingTicketIssuer.style.display = "none";
-    console.log("I found parkingTicketIssuer in the array and will hide the step");
-  }
-  if (hideTheseAnswersArray.includes(checkboxSection)) {
-    checkboxSection.style.display = "none";
-    console.log("I found checkboxSection in the array and will hide the step");
+  if (hideTheseAnswersArray.includes(parkingTicketIssuerSection)) {
+    parkingTicketIssuerSection.style.display = "none";
+    console.log("I found parkingTicketIssuerSection in the array and will hide the step"); // can add another if statement if need multiple visibility conditions
   }
 }
 
 // MULTI RADIO BUTTON SECTION VISIBILITY CONDITION (works when a class is added to each individual radio button input)
-
-const parkingProblemRadioSelection = (function checkRadioAnswer() {
+// GENERIC STEP 1
+const parkingProblemRadioSelection = (function updateParkingProblemConditionals() {
   const parkingProblemRadioInputs = document.querySelectorAll(".parking-problem-radio-class");
   for(let i = 0; i < parkingProblemRadioInputs.length; i++) {
-      parkingProblemRadioInputs[i].addEventListener("click", checkRadioAnswer, false);
+      parkingProblemRadioInputs[i].addEventListener("click", updateParkingProblemConditionals, false);
   }
   for (let i = 0, length = parkingProblemRadioInputs.length; i < length; i++) {
     if (parkingProblemRadioInputs[i].checked) {
       if (parkingProblemRadioInputs[i].value === "1") {
-        updateHideTheseAnswersArray(undefined, parkingTicketIssuer);
+        updateHideTheseAnswersArray(undefined, parkingTicketIssuerSection);
         applyActiveVisibilityConditions();
-        insertText("1");
-        return; // to stop from going through entire loop
+        outputTemplateText("city");
+        return;
       }
       else if (parkingProblemRadioInputs[i].value === "2") {
-        updateHideTheseAnswersArray(parkingTicketIssuer, undefined); // call for each step you need to hide
+        updateHideTheseAnswersArray(parkingTicketIssuerSection, undefined); // call for each step you need to hide
         applyActiveVisibilityConditions();
-        insertText("2");
+        outputTemplateText("report abandoned vehicle");
         return;
       }
       else if (parkingProblemRadioInputs[i].value === "3") {
-        updateHideTheseAnswersArray(parkingTicketIssuer, undefined);
+        updateHideTheseAnswersArray(parkingTicketIssuerSection, undefined);
         applyActiveVisibilityConditions();
-        insertText("3");
+        outputTemplateText("check bylaws");
         return;
       }
     }
-
   }
 }());
+// APPEAL CITY TICKET STEP 2
+const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
+  const ticketIssuerRadioInputs = document.querySelectorAll(".ticket-issuer-radio-class");
+  for(let i = 0; i < ticketIssuerRadioInputs.length; i++) {
+      ticketIssuerRadioInputs[i].addEventListener("click", updateticketIssuerConditionals, false);
+  }
+  for (let i = 0, length = ticketIssuerRadioInputs.length; i < length; i++) {
+    if (ticketIssuerRadioInputs[i].checked) {
+      if (ticketIssuerRadioInputs[i].value === "1") {
+        updateHideTheseAnswersArray(undefined, municipalitySection);
+        applyActiveVisibilityConditions();
+        outputTextTicketIssuer("1");
+        return;
+      }
+      else if (ticketIssuerRadioInputs[i].value === "2") {
+        updateHideTheseAnswersArray(municipalitySection, undefined); // call for each step you need to hide
+        applyActiveVisibilityConditions();
+        outputTextTicketIssuer("2");
+        return;
+      }
+      else if (ticketIssuerRadioInputs[i].value === "3") {
+        updateHideTheseAnswersArray(municipalitySection, undefined);
+        applyActiveVisibilityConditions();
+        outputTextTicketIssuer("3");
+        return;
+      }
+    }
+  }
+}());
+
+// APPEAL LETTER TEXT OUTPUT
+// IF CITY ISSUED TICKET TEMPLATE
+function outputTemplateText(answerValue) {
+  if (answerValue === "city") {
+    cityOutputTemplate = // could move this to a separate file and reference in variable section at top of page
+      "*name*<br>" +
+      "*mailing address*<br><br>" +
+      "*Today’s date*<br><br>" +
+      "RE: Appealing Parking Ticket *ticket number*<br><br>" +
+      "To Whom it May Concern, <br><br>" +
+      "<p>I received a parking ticket on *ticket date* for *ticket reason*. While I appreciate that public streets are a shared resource and the " + city + " works hard to keep our roads safe, I am appealing the ticket for the following reasons:</p><br>" +
+      "<p>*The ticket has incorrect details. *Ticket error description*.*</p>" +
+      "<p>*I believe the violation description does not apply because *reason violation does not apply*.*</p><br>" +
+      "<p>Thank you for considering my appeal. If you wish to discuss the issue further please contact me at *email*.</p><br>" +
+      "Sincerely,<br><br>" +
+      "*Name*<br>" +
+      "*Photos enclosed* ";
+    document.getElementById("insert-output-text-here").innerHTML = cityOutputTemplate;
+  }
+  else if (answerValue === "report abandoned vehicle") {
+    document.getElementById("insert-output-text-here").innerHTML = "-insert answer 2 text here-";
+  }
+  else if (answerValue === "check bylaws") {
+    document.getElementById("insert-output-text-here").innerHTML = "-insert answer 3 text here-";
+  }
+};
+// MUNICIPALITY SECTION - .municipality-radio
+function outputTextTicketIssuer(answerValue) {
+  if (answerValue === "1") {
+    city = "City of Edmonton";
+    outputTemplateText("city"); // need to run outputTemplate() each time to update output text with new variable value
+  }
+  else if (answerValue === "2") {
+    city = "Other";
+    outputTemplateText("city");
+  }
+};
+
 
 // To add whitespace to the end of the document so each section div will scroll to the top of the window when Next button selected
 const setWhiteSpaceAtEndOfDocument = (function calcAndSetWhiteSpace() {
