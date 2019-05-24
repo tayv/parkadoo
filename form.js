@@ -15,8 +15,12 @@ window.onload = function setDefaultAnswerState() {
 // LIST OF VARIABLES
   // Sections
 const parkingProblemSection = document.getElementById("parking-problem-section");
-const parkingTicketIssuerSection = document.getElementById("parking-issuer-radio");
-const municipalitySection = document.getElementById("municipality-radio");
+    // If appealing ticket
+const parkingTicketIssuerSection = document.getElementById("ticket-issuer-section");
+    // If appealing city ticket
+const municipalitySection = document.getElementById("municipality-section");
+const newCityRequestSubsection = document.getElementById("new-city-request-subsection")
+
   // Output
 let cityOutputTemplate = "";
 let city = "";
@@ -59,7 +63,7 @@ const hoomanYNRadioAnswer = (function() {
 
 
 
-// Previous/Next/Submit button visiblity and to scroll to next div/step. Needs to be initialized before question specific visibility conditions
+// GENERIC FUNCTIONALITY - Previous/Next/Submit button visiblity and to scroll to next div/step. Needs to be initialized before question specific visibility conditions
 const stepsQuestionnaire = document.getElementsByClassName("section-container");
 const finishedSectionDiv = document.getElementById("finished-section-container");
 const buttonVisibility = function() {
@@ -113,7 +117,7 @@ const buttonVisibility = function() {
     if (count < stepsQuestionnaire.length - 1) {
       count++;
       stepMakeVisible(hideTheseAnswersArray);
-    //  applyActiveVisibilityConditions();
+      applyActiveVisibilityConditions();
       stepsQuestionnaire[count].scrollIntoView(true);
       stepsQuestionnaire[count].style.opacity="1";
       stepsQuestionnaire[count-1].style.opacity="0.2"; // reduce opacity of a completed step so user focus is on current step
@@ -137,8 +141,7 @@ const buttonVisibility = function() {
 };
 
 
-// ARRAY THAT STORES WHICH SECTIONS TO HIDE
-
+// GENERIC FUNCTIONALITY: DETERMINE WHICH SECTIONS TO HIDE BY STORING THEM IN ARRAY
 const hideTheseAnswersArray = [];
 
 function updateHideTheseAnswersArray(addItem, subtractItem) { //use undefined when passing the unused parameter. Note that parameters must represent section IDs for stepMakeVisible() to work. Call it x times if need to hide multiple steps.
@@ -182,7 +185,6 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
       if (parkingProblemRadioInputs[i].value === "1") {
         updateHideTheseAnswersArray(undefined, parkingTicketIssuerSection);
         applyActiveVisibilityConditions();
-        outputTemplateText("city");
         return;
       }
       else if (parkingProblemRadioInputs[i].value === "2") {
@@ -200,7 +202,8 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
     }
   }
 }());
-// APPEAL CITY TICKET STEP 2
+// .ticket-issuer-section - Who issued your ticket?
+  // Update dependant visibiilty conditions
 const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
   const ticketIssuerRadioInputs = document.querySelectorAll(".ticket-issuer-radio-class");
   for(let i = 0; i < ticketIssuerRadioInputs.length; i++) {
@@ -211,27 +214,24 @@ const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
       if (ticketIssuerRadioInputs[i].value === "1") {
         updateHideTheseAnswersArray(undefined, municipalitySection);
         applyActiveVisibilityConditions();
-        outputTextTicketIssuer("1");
+        outputTemplateText("city");
         return;
       }
       else if (ticketIssuerRadioInputs[i].value === "2") {
         updateHideTheseAnswersArray(municipalitySection, undefined); // call for each step you need to hide
         applyActiveVisibilityConditions();
-        outputTextTicketIssuer("2");
         return;
       }
       else if (ticketIssuerRadioInputs[i].value === "3") {
         updateHideTheseAnswersArray(municipalitySection, undefined);
         applyActiveVisibilityConditions();
-        outputTextTicketIssuer("3");
         return;
       }
     }
   }
 }());
-
-// APPEAL LETTER TEXT OUTPUT
-// IF CITY ISSUED TICKET TEMPLATE
+// .ticket-issuer-section - Who issued your ticket?
+  // define function to update output text - if city selected
 function outputTemplateText(answerValue) {
   if (answerValue === "city") {
     cityOutputTemplate = // could move this to a separate file and reference in variable section at top of page
@@ -256,14 +256,36 @@ function outputTemplateText(answerValue) {
     document.getElementById("insert-output-text-here").innerHTML = "-insert answer 3 text here-";
   }
 };
-// MUNICIPALITY SECTION - .municipality-radio
-function outputTextTicketIssuer(answerValue) {
-  if (answerValue === "1") {
+// .municipality-section
+  // update visibility conditions
+const municipalityRadioSelection = (function updateMunicipalityConditionals() {
+  const municipalityRadioInputs = document.querySelectorAll(".municipality-radio-class");
+  for(let i = 0; i < municipalityRadioInputs.length; i++) {
+      municipalityRadioInputs[i].addEventListener("click", updateMunicipalityConditionals, false);
+  }
+  for (let i = 0, length = municipalityRadioInputs.length; i < length; i++) {
+    if (municipalityRadioInputs[i].checked) {
+      if (municipalityRadioInputs[i].value === "1") {
+        newCityRequestSubsection.style.display = "none";
+        outputTextCity("1");
+        return;
+      }
+      else if (municipalityRadioInputs[i].value === "2") {
+        newCityRequestSubsection.style.display = "block";
+        outputTextCity("2");
+        return;
+      }
+    }
+  }
+}());
+  // update output text
+function outputTextCity(answerValue) {
+  if (answerValue === "1") { //problem might be here
     city = "City of Edmonton";
     outputTemplateText("city"); // need to run outputTemplate() each time to update output text with new variable value
   }
   else if (answerValue === "2") {
-    city = "Other";
+    city = document.getElementById("new-city-request-textfield").value;
     outputTemplateText("city");
   }
 };
