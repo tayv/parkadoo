@@ -117,7 +117,7 @@ const buttonVisibility = function() {
   document.getElementById("button-next").onclick = function() {
     if (count < stepsQuestionnaire.length - 1) {
       count++;
-      stepMakeVisible(hideTheseAnswersArray);
+      stepMakeVisible(hideTheseSectionsArray);
       applyActiveVisibilityConditions();
       stepsQuestionnaire[count].scrollIntoView(true);
       stepsQuestionnaire[count].style.opacity="1";
@@ -146,7 +146,7 @@ const buttonVisibility = function() {
   function skipPastNextHiddenSections() {
       while (stepsQuestionnaire[count].style.display === "none"){
         count++;
-        stepMakeVisible(hideTheseAnswersArray);
+        stepMakeVisible(hideTheseSectionsArray);
         applyActiveVisibilityConditions();
         stepsQuestionnaire[count].scrollIntoView(true);
         stepsQuestionnaire[count].style.opacity="1";
@@ -161,7 +161,7 @@ const buttonVisibility = function() {
   function skipPastPreviousHiddenSections() {
        while (stepsQuestionnaire[count].style.display === "none"){
          count--;
-         stepMakeVisible(hideTheseAnswersArray);
+         stepMakeVisible(hideTheseSectionsArray);
          stepsQuestionnaire[count].scrollIntoView(true);
          stepsQuestionnaire[count].style.opacity="1";
          stepsQuestionnaire[count-1].style.opacity="0.2";
@@ -176,38 +176,39 @@ const buttonVisibility = function() {
 
 
 // GENERIC FUNCTIONALITY: DETERMINE WHICH SECTIONS TO HIDE BY STORING THEM IN ARRAY
-const hideTheseAnswersArray = [];
+const hideTheseSectionsArray = [];
 
-function updateHideTheseAnswersArray(addItem, subtractItem) { //use undefined when passing the unused parameter. Note that parameters must represent section IDs for stepMakeVisible() to work. Call it x times if need to hide multiple steps.
-  function addToHideTheseAnswersArray(addItem) {
-    if (hideTheseAnswersArray.indexOf(addItem) === -1 && typeof addItem !== "undefined") { // Need to exclude undefined because one parameter (either addItem or subtractItem) is likely left blank in the original function call
-      hideTheseAnswersArray.push(addItem);
+function updatehideTheseSectionsArray(addItem, subtractItem) { //use undefined when passing the unused parameter. Note that parameters must represent section IDs for stepMakeVisible() to work. Call it x times if need to hide multiple steps.
+  function addTohideTheseSectionsArray(addItem) {
+    if (hideTheseSectionsArray.indexOf(addItem) === -1 && typeof addItem !== "undefined") { // Need to exclude undefined because one parameter (either addItem or subtractItem) is likely left blank in the original function call
+      hideTheseSectionsArray.push(addItem);
       console.log("add an item: ", addItem);
     } else {
         console.log("There's already an ", addItem, " here. Don't do anything");
     }
   }
-  addToHideTheseAnswersArray(addItem);
+  addTohideTheseSectionsArray(addItem);
 
-  function subtractFromHideTheseAnswersArray(subtractItem) {
-    if (hideTheseAnswersArray.indexOf(subtractItem) > -1 && typeof subtractItem !== "undefined") {
-      var arrayIndex = hideTheseAnswersArray.indexOf(subtractItem);
-      hideTheseAnswersArray.splice(arrayIndex, 1);
+  function subtractFromhideTheseSectionsArray(subtractItem) {
+    if (hideTheseSectionsArray.indexOf(subtractItem) > -1 && typeof subtractItem !== "undefined") {
+      var arrayIndex = hideTheseSectionsArray.indexOf(subtractItem);
+      hideTheseSectionsArray.splice(arrayIndex, 1);
       console.log("subtract:" + subtractItem);
       console.log(subtractItem);
       }
   }
-  subtractFromHideTheseAnswersArray(subtractItem);
+  subtractFromhideTheseSectionsArray(subtractItem);
 }
 
+// Hide any sections present in hideTheseSectionsArray
 function applyActiveVisibilityConditions() {
-  if (hideTheseAnswersArray.includes(parkingTicketIssuerSection)) {
-    parkingTicketIssuerSection.style.display = "none";
-    console.log("I found " + parkingTicketIssuerSection + " in the array and will hide the step"); // can add another if statement if need multiple visibility conditions
-  }
-  if (hideTheseAnswersArray.includes(studentOrEmployee)) {
-    studentOrEmployee.style.display = "none";
-    console.log("I found " + studentOrEmployee + " in the array and will hide the step");
+  if (hideTheseSectionsArray.length > 0) {
+    for (let i = 0; i <= hideTheseSectionsArray.length; i++) {
+      let hideThisSectionPlease = hideTheseSectionsArray[i];
+      if (hideThisSectionPlease !== undefined) {
+        hideThisSectionPlease.style.display = "none";
+      }
+    }
   }
 };
 
@@ -222,18 +223,18 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
   for (let i = 0, length = parkingProblemRadioInputs.length; i < length; i++) {
     if (parkingProblemRadioInputs[i].checked) {
       if (parkingProblemRadioInputs[i].value === "1") {
-        updateHideTheseAnswersArray(undefined, parkingTicketIssuerSection);
+        updatehideTheseSectionsArray(undefined, parkingTicketIssuerSection);
         applyActiveVisibilityConditions();
         return;
       }
       else if (parkingProblemRadioInputs[i].value === "2") {
-        updateHideTheseAnswersArray(parkingTicketIssuerSection, undefined); // call for each step you need to hide
+        updatehideTheseSectionsArray(parkingTicketIssuerSection, undefined); // call for each step you need to hide
         applyActiveVisibilityConditions();
         outputTemplateText("report abandoned vehicle");
         return;
       }
       else if (parkingProblemRadioInputs[i].value === "3") {
-        updateHideTheseAnswersArray(parkingTicketIssuerSection, undefined);
+        updatehideTheseSectionsArray(parkingTicketIssuerSection, undefined);
         applyActiveVisibilityConditions();
         outputTemplateText("check bylaws");
         return;
@@ -251,21 +252,21 @@ const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
   for (let i = 0, length = ticketIssuerRadioInputs.length; i < length; i++) {
     if (ticketIssuerRadioInputs[i].checked) {
       if (ticketIssuerRadioInputs[i].value === "1") {
-        updateHideTheseAnswersArray(undefined, municipalitySection);
-        updateHideTheseAnswersArray(studentOrEmployee, undefined);
+        updatehideTheseSectionsArray(undefined, municipalitySection);
+        updatehideTheseSectionsArray(studentOrEmployee, undefined);
         applyActiveVisibilityConditions();
         outputTemplateText("city");
         return;
       }
       else if (ticketIssuerRadioInputs[i].value === "2") {
-        updateHideTheseAnswersArray(municipalitySection, undefined); // call for each step you need to hide
-        updateHideTheseAnswersArray(studentOrEmployee, undefined);
+        updatehideTheseSectionsArray(municipalitySection, undefined); // call for each step you need to hide
+        updatehideTheseSectionsArray(studentOrEmployee, undefined);
         applyActiveVisibilityConditions();
         return;
       }
       else if (ticketIssuerRadioInputs[i].value === "3") {
-        updateHideTheseAnswersArray(municipalitySection, undefined);
-        updateHideTheseAnswersArray(undefined, studentOrEmployee);
+        updatehideTheseSectionsArray(municipalitySection, undefined);
+        updatehideTheseSectionsArray(undefined, studentOrEmployee);
         applyActiveVisibilityConditions();
         return;
       }
@@ -299,7 +300,7 @@ function outputTemplateText(answerValue) {
 };
 
 // .municipality-section
-  // update visibility conditions
+  // update sub-section visibility conditions
 const municipalityRadioSelection = (function updateMunicipalityConditionals() {
   const municipalityRadioInputs = document.querySelectorAll(".municipality-radio-class");
   for(let i = 0; i < municipalityRadioInputs.length; i++) {
