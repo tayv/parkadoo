@@ -117,16 +117,14 @@ const buttonVisibility = function() {
   document.getElementById("button-next").onclick = function() {
     if (count < stepsQuestionnaire.length - 1) {
       count++;
-      console.log("LOOK HERE: ", stepsQuestionnaire[count]);
       stepMakeVisible(hideTheseAnswersArray);
       applyActiveVisibilityConditions();
       stepsQuestionnaire[count].scrollIntoView(true);
       stepsQuestionnaire[count].style.opacity="1";
       stepsQuestionnaire[count-1].style.opacity="0.2"; // reduce opacity of a completed step so user focus is on current step
       checkButtonStep();
-      testThisOut();
+      skipPastNextHiddenSections();
     } else {
-        console.log("ANOTHER HERE: ", stepsQuestionnaire[count]);
         checkButtonStep();
     } return count;
   };
@@ -140,27 +138,40 @@ const buttonVisibility = function() {
         stepsQuestionnaire[count+1].style.opacity="0.2";
         stepsQuestionnaire[count].scrollIntoView(true);
         checkButtonStep();
+        skipPastPreviousHiddenSections();
     } return count;
   };
 
-  function testThisOut() { // Appears to work for handling multiple steps with visibility conditions. Need to add it to count-- as currently only works on next button
+  // Added skipPast...HiddenSections() to prevent next/previous button onclick functions from trying to display hidden sections and requiring multiple clicks
+  function skipPastNextHiddenSections() {
       while (stepsQuestionnaire[count].style.display === "none"){
-        console.log(count);
         count++;
         stepMakeVisible(hideTheseAnswersArray);
         applyActiveVisibilityConditions();
-        console.log(stepsQuestionnaire[count].style.display === "none");
         stepsQuestionnaire[count].scrollIntoView(true);
         stepsQuestionnaire[count].style.opacity="1";
-        stepsQuestionnaire[count-1].style.opacity="0.2"; // reduce opacity of a completed step so user focus is on current step
+        stepsQuestionnaire[count-1].style.opacity="0.2";
         checkButtonStep();
         if (stepsQuestionnaire[count].style.display === "block") {
-
         break;
       }
     }
   }
-  testThisOut();
+
+  function skipPastPreviousHiddenSections() {
+       while (stepsQuestionnaire[count].style.display === "none"){
+         count--;
+         stepMakeVisible(hideTheseAnswersArray);
+         stepsQuestionnaire[count].scrollIntoView(true);
+         stepsQuestionnaire[count].style.opacity="1";
+         stepsQuestionnaire[count-1].style.opacity="0.2";
+         checkButtonStep();
+         if (stepsQuestionnaire[count].style.display === "block") {
+         break;
+       }
+     }
+   }
+
 };
 
 
