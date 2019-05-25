@@ -20,6 +20,8 @@ const parkingTicketIssuerSection = document.getElementById("ticket-issuer-sectio
     // If appealing city ticket
 const municipalitySection = document.getElementById("municipality-section");
 const newCityRequestSubsection = document.getElementById("new-city-request-subsection")
+    // If appealing university ticket
+const studentOrEmployee = document.getElementById("university-student-employee");
 
   // Output
 let cityOutputTemplate = "";
@@ -62,7 +64,6 @@ const hoomanYNRadioAnswer = (function() {
 */
 
 
-
 // GENERIC FUNCTIONALITY - Previous/Next/Submit button visiblity and to scroll to next div/step. Needs to be initialized before question specific visibility conditions
 const stepsQuestionnaire = document.getElementsByClassName("section-container");
 const finishedSectionDiv = document.getElementById("finished-section-container");
@@ -85,15 +86,15 @@ const buttonVisibility = function() {
   checkButtonStep();
 
   // To hide all steps other than first and last section by default
-  const stepHideByDefault = function() {
+  const hideUnseenStepsByDefault = function() {
     for (var i = 1; i < stepsQuestionnaire.length; i++) {
       stepsQuestionnaire[i].style.display="none";
     }
   };
-  stepHideByDefault();
+  hideUnseenStepsByDefault();
 
   // To display and hide steps depending on visibility conditions
-    const stepMakeVisible = function(...stepToHide) { // Keeping ... in parameter. Removing it causes a bug where the for loop doesn't fire
+  const stepMakeVisible = function(...stepToHide) { // Keeping ... in parameter. Removing it causes a bug where the for loop doesn't fire
       console.log("stepMakeVisible triggered. The parameter = ", stepToHide);
       for (let i = 0; i < stepToHide.length; i++) {
         console.log("i: ", i);
@@ -102,12 +103,12 @@ const buttonVisibility = function() {
           if (stepsQuestionnaire[count+1] > stepsQuestionnaire.length) {
             finishedSectionDiv.scrollIntoView(true);
           } else {
-              stepsQuestionnaire[count+1].style.display="block";
+              stepsQuestionnaire[count+1].style.display = "block";
               stepsQuestionnaire[count+1].scrollIntoView(true);
               console.log("hide a step");
           }
         } else {
-          stepsQuestionnaire[count].style.display="block";
+          stepsQuestionnaire[count].style.display = "block";
           console.log("no step to hide. continue as usual");
         }
       }
@@ -116,13 +117,16 @@ const buttonVisibility = function() {
   document.getElementById("button-next").onclick = function() {
     if (count < stepsQuestionnaire.length - 1) {
       count++;
+      console.log("LOOK HERE: ", stepsQuestionnaire[count]);
       stepMakeVisible(hideTheseAnswersArray);
       applyActiveVisibilityConditions();
       stepsQuestionnaire[count].scrollIntoView(true);
       stepsQuestionnaire[count].style.opacity="1";
       stepsQuestionnaire[count-1].style.opacity="0.2"; // reduce opacity of a completed step so user focus is on current step
       checkButtonStep();
+      testThisOut();
     } else {
+        console.log("ANOTHER HERE: ", stepsQuestionnaire[count]);
         checkButtonStep();
     } return count;
   };
@@ -138,6 +142,25 @@ const buttonVisibility = function() {
         checkButtonStep();
     } return count;
   };
+
+  function testThisOut() { // Appears to work for handling multiple steps with visibility conditions. Need to add it to count-- as currently only works on next button
+      while (stepsQuestionnaire[count].style.display === "none"){
+        console.log(count);
+        count++;
+        stepMakeVisible(hideTheseAnswersArray);
+        applyActiveVisibilityConditions();
+        console.log(stepsQuestionnaire[count].style.display === "none");
+        stepsQuestionnaire[count].scrollIntoView(true);
+        stepsQuestionnaire[count].style.opacity="1";
+        stepsQuestionnaire[count-1].style.opacity="0.2"; // reduce opacity of a completed step so user focus is on current step
+        checkButtonStep();
+        if (stepsQuestionnaire[count].style.display === "block") {
+
+        break;
+      }
+    }
+  }
+  testThisOut();
 };
 
 
@@ -169,12 +192,17 @@ function updateHideTheseAnswersArray(addItem, subtractItem) { //use undefined wh
 function applyActiveVisibilityConditions() {
   if (hideTheseAnswersArray.includes(parkingTicketIssuerSection)) {
     parkingTicketIssuerSection.style.display = "none";
-    console.log("I found parkingTicketIssuerSection in the array and will hide the step"); // can add another if statement if need multiple visibility conditions
+    console.log("I found " + parkingTicketIssuerSection + " in the array and will hide the step"); // can add another if statement if need multiple visibility conditions
   }
-}
+  if (hideTheseAnswersArray.includes(studentOrEmployee)) {
+    studentOrEmployee.style.display = "none";
+    console.log("I found " + studentOrEmployee + " in the array and will hide the step");
+  }
+};
 
-// MULTI RADIO BUTTON SECTION VISIBILITY CONDITION (works when a class is added to each individual radio button input)
-// GENERIC STEP 1
+// QUESTIONNAIRE SECTIONS
+// Generic step 1 - What is your parking problem?
+  // update visibiilty conditions
 const parkingProblemRadioSelection = (function updateParkingProblemConditionals() {
   const parkingProblemRadioInputs = document.querySelectorAll(".parking-problem-radio-class");
   for(let i = 0; i < parkingProblemRadioInputs.length; i++) {
@@ -213,25 +241,27 @@ const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
     if (ticketIssuerRadioInputs[i].checked) {
       if (ticketIssuerRadioInputs[i].value === "1") {
         updateHideTheseAnswersArray(undefined, municipalitySection);
+        updateHideTheseAnswersArray(studentOrEmployee, undefined);
         applyActiveVisibilityConditions();
         outputTemplateText("city");
         return;
       }
       else if (ticketIssuerRadioInputs[i].value === "2") {
         updateHideTheseAnswersArray(municipalitySection, undefined); // call for each step you need to hide
+        updateHideTheseAnswersArray(studentOrEmployee, undefined);
         applyActiveVisibilityConditions();
         return;
       }
       else if (ticketIssuerRadioInputs[i].value === "3") {
         updateHideTheseAnswersArray(municipalitySection, undefined);
+        updateHideTheseAnswersArray(undefined, studentOrEmployee);
         applyActiveVisibilityConditions();
         return;
       }
     }
   }
 }());
-// .ticket-issuer-section - Who issued your ticket?
-  // define function to update output text - if city selected
+  // update output text - if city selected
 function outputTemplateText(answerValue) {
   if (answerValue === "city") {
     cityOutputTemplate = // could move this to a separate file and reference in variable section at top of page
@@ -256,6 +286,7 @@ function outputTemplateText(answerValue) {
     document.getElementById("insert-output-text-here").innerHTML = "-insert answer 3 text here-";
   }
 };
+
 // .municipality-section
   // update visibility conditions
 const municipalityRadioSelection = (function updateMunicipalityConditionals() {
