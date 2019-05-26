@@ -21,10 +21,12 @@ const parkingTicketIssuerSection = document.getElementById("ticket-issuer-sectio
 const municipalitySection = document.getElementById("municipality-section");
 const newCityRequestSubsection = document.getElementById("new-city-request-subsection")
     // If appealing university ticket
-const studentOrEmployee = document.getElementById("university-student-employee");
+const studentOrEmployee = document.getElementById("student-or-employee-section");
 
   // Output
 let cityOutputTemplate = "";
+let abandonedVehicleOutputTemplate = "";
+let checkBylawsOutputTemplate = "";
 let city = "";
 /*
 // To set default answers/visibility. To be used on page load.
@@ -212,28 +214,42 @@ function applyActiveVisibilityConditions() {
   }
 };
 
-// QUESTIONNAIRE SECTIONS
+// GENERIC FUNCTIONALITY: Add event listener to radio buttons within visibility condition function
+function addRadioEventListener(radioClassName, updateConditionalsFunctionName) {
+  for(let i = 0; i < radioClassName.length; i++) {
+    radioClassName[i].addEventListener("click", updateConditionalsFunctionName, false);
+  }
+};
+
+// GENERIC FUNCTIONALITY - To add whitespace to the end of the document so each section div will scroll to the top of the window when Next button selected
+const setWhiteSpaceAtEndOfDocument = (function calcAndSetWhiteSpace() {
+  var lastDivHeight = finishedSectionDiv.offsetHeight;
+  var headerHeight = document.getElementById("header-main").offsetHeight;
+  var footerHeight = document.getElementById("footer-main").offsetHeight;
+  var newPadding = (window.innerHeight - lastDivHeight - headerHeight - footerHeight);
+  var setNewPadding = document.getElementById("output").style.paddingBottom = newPadding + "px";
+}());
+
+// QUESTIONNAIRE SECTIONS - Should this be moved into own file?
 // Generic step 1 - What is your parking problem?
   // update visibiilty conditions
 const parkingProblemRadioSelection = (function updateParkingProblemConditionals() {
-  const parkingProblemRadioInputs = document.querySelectorAll(".parking-problem-radio-class");
-  for(let i = 0; i < parkingProblemRadioInputs.length; i++) {
-      parkingProblemRadioInputs[i].addEventListener("click", updateParkingProblemConditionals, false);
-  }
-  for (let i = 0, length = parkingProblemRadioInputs.length; i < length; i++) {
-    if (parkingProblemRadioInputs[i].checked) {
-      if (parkingProblemRadioInputs[i].value === "1") {
+  const parkingProblemRadioOptions = document.querySelectorAll(".parking-problem-radio-class");
+  addRadioEventListener(parkingProblemRadioOptions, updateParkingProblemConditionals);
+  for (let i = 0, length = parkingProblemRadioOptions.length; i < length; i++) {
+    if (parkingProblemRadioOptions[i].checked) {
+      if (parkingProblemRadioOptions[i].value === "1") {
         updatehideTheseSectionsArray(undefined, parkingTicketIssuerSection);
         applyActiveVisibilityConditions();
         return;
       }
-      else if (parkingProblemRadioInputs[i].value === "2") {
+      else if (parkingProblemRadioOptions[i].value === "2") {
         updatehideTheseSectionsArray(parkingTicketIssuerSection, undefined); // call for each step you need to hide
         applyActiveVisibilityConditions();
         outputTemplateText("report abandoned vehicle");
         return;
       }
-      else if (parkingProblemRadioInputs[i].value === "3") {
+      else if (parkingProblemRadioOptions[i].value === "3") {
         updatehideTheseSectionsArray(parkingTicketIssuerSection, undefined);
         applyActiveVisibilityConditions();
         outputTemplateText("check bylaws");
@@ -245,26 +261,24 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
 // .ticket-issuer-section - Who issued your ticket?
   // Update dependant visibiilty conditions
 const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
-  const ticketIssuerRadioInputs = document.querySelectorAll(".ticket-issuer-radio-class");
-  for(let i = 0; i < ticketIssuerRadioInputs.length; i++) {
-      ticketIssuerRadioInputs[i].addEventListener("click", updateticketIssuerConditionals, false);
-  }
-  for (let i = 0, length = ticketIssuerRadioInputs.length; i < length; i++) {
-    if (ticketIssuerRadioInputs[i].checked) {
-      if (ticketIssuerRadioInputs[i].value === "1") {
+  const ticketIssuerRadioOptions = document.querySelectorAll(".ticket-issuer-radio-class");
+  addRadioEventListener(ticketIssuerRadioOptions, updateticketIssuerConditionals);
+  for (let i = 0, length = ticketIssuerRadioOptions.length; i < length; i++) {
+    if (ticketIssuerRadioOptions[i].checked) {
+      if (ticketIssuerRadioOptions[i].value === "1") {
         updatehideTheseSectionsArray(undefined, municipalitySection);
         updatehideTheseSectionsArray(studentOrEmployee, undefined);
         applyActiveVisibilityConditions();
         outputTemplateText("city");
         return;
       }
-      else if (ticketIssuerRadioInputs[i].value === "2") {
+      else if (ticketIssuerRadioOptions[i].value === "2") {
         updatehideTheseSectionsArray(municipalitySection, undefined); // call for each step you need to hide
         updatehideTheseSectionsArray(studentOrEmployee, undefined);
         applyActiveVisibilityConditions();
         return;
       }
-      else if (ticketIssuerRadioInputs[i].value === "3") {
+      else if (ticketIssuerRadioOptions[i].value === "3") {
         updatehideTheseSectionsArray(municipalitySection, undefined);
         updatehideTheseSectionsArray(undefined, studentOrEmployee);
         applyActiveVisibilityConditions();
@@ -273,7 +287,7 @@ const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
     }
   }
 }());
-  // update output text - if city selected
+  // update output text based on questionnaire selection
 function outputTemplateText(answerValue) {
   if (answerValue === "city") {
     cityOutputTemplate = // could move this to a separate file and reference in variable section at top of page
@@ -292,28 +306,39 @@ function outputTemplateText(answerValue) {
     document.getElementById("insert-output-text-here").innerHTML = cityOutputTemplate;
   }
   else if (answerValue === "report abandoned vehicle") {
-    document.getElementById("insert-output-text-here").innerHTML = "-insert answer 2 text here-";
+    abandonedVehicleOutputTemplate =
+    "*Neighbour's mailing address*<br><br>" +
+    "*Today’s date*<br><br>" +
+    "RE: Abandoned Vehicle<br><br>" +
+    "Dear Neighbour, <br><br>" +
+    "<p>It appears that a vehicle that belongs to a resident of this home has been parked for an extended period in the neighbourhood. Our strees are a shared public resource so if this vehicle belongs to you or someone you know it would be appreciated if you could take action in moving the vehicle as *city bylaw 5590* considers vehicles parked for over 72hrs without moving to be abandoned.</p><br>" +
+    "<p>Thank you for understanding. If you have any questions about parking bylaws you can call the city at #311.</p>" +
+    "Sincerely,<br><br>" +
+    "A friendly neighbour";
+    document.getElementById("insert-output-text-here").innerHTML = abandonedVehicleOutputTemplate;
   }
   else if (answerValue === "check bylaws") {
-    document.getElementById("insert-output-text-here").innerHTML = "-insert answer 3 text here-";
+    checkBylawsOutputTemplate =
+    "I took a look at " + city + "&#39;s bylaws and this is how I interpreted them: " +
+    "*Insert bylaw interpretation*" +
+    "However, please remember that I'm not a lawyer and don't guarantee this info is correct. Please check out *link to bylaw* yourself to be sure. :)"
+    document.getElementById("insert-output-text-here").innerHTML = checkBylawsOutputTemplate;
   }
 };
 
 // .municipality-section
   // update sub-section visibility conditions
 const municipalityRadioSelection = (function updateMunicipalityConditionals() {
-  const municipalityRadioInputs = document.querySelectorAll(".municipality-radio-class");
-  for(let i = 0; i < municipalityRadioInputs.length; i++) {
-      municipalityRadioInputs[i].addEventListener("click", updateMunicipalityConditionals, false);
-  }
-  for (let i = 0, length = municipalityRadioInputs.length; i < length; i++) {
-    if (municipalityRadioInputs[i].checked) {
-      if (municipalityRadioInputs[i].value === "1") {
-        newCityRequestSubsection.style.display = "none";
+  const municipalityRadioOptions = document.querySelectorAll(".municipality-radio-class");
+  addRadioEventListener(municipalityRadioOptions, updateMunicipalityConditionals);
+  for (let i = 0, length = municipalityRadioOptions.length; i < length; i++) {
+    if (municipalityRadioOptions[i].checked) {
+      if (municipalityRadioOptions[i].value === "1") {
+        newCityRequestSubsection.style.display = "none"; // Sub-sections need individual visibility conditions as don't use hideTheseSectionsArray
         outputTextCity("1");
         return;
       }
-      else if (municipalityRadioInputs[i].value === "2") {
+      else if (municipalityRadioOptions[i].value === "2") {
         newCityRequestSubsection.style.display = "block";
         outputTextCity("2");
         return;
@@ -333,12 +358,23 @@ function outputTextCity(answerValue) {
   }
 };
 
-
-// To add whitespace to the end of the document so each section div will scroll to the top of the window when Next button selected
-const setWhiteSpaceAtEndOfDocument = (function calcAndSetWhiteSpace() {
-  var lastDivHeight = finishedSectionDiv.offsetHeight;
-  var headerHeight = document.getElementById("header-main").offsetHeight;
-  var footerHeight = document.getElementById("footer-main").offsetHeight;
-  var newPadding = (window.innerHeight - lastDivHeight - headerHeight - footerHeight);
-  var setNewPadding = document.getElementById("output").style.paddingBottom = newPadding + "px";
+// .student-or-employee-section
+  // update sub-section visibility conditions
+const studentOrEmployeeRadioSelection = (function updateStudentOrEmployeeConditionals() {
+  const studentOrEmployeeRadioOptions = document.querySelectorAll(".student-or-employee-class");
+  addRadioEventListener(studentOrEmployeeRadioOptions, updateStudentOrEmployeeConditionals);
+  for (let i = 0, length = studentOrEmployeeRadioOptions.length; i < length; i++) {
+    if (studentOrEmployeeRadioOptions[i].checked) {
+      if (studentOrEmployeeRadioOptions[i].value === "1") {
+        newCityRequestSubsection.style.display = "none"; // Sub-sections need individual visibility conditions as don't use hideTheseSectionsArray
+        outputTextCity("1");
+        return;
+      }
+      else if (studentOrEmployeeRadioOptions[i].value === "2") {
+        newCityRequestSubsection.style.display = "block";
+        outputTextCity("2");
+        return;
+      }
+    }
+  }
 }());
