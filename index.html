@@ -16,7 +16,7 @@
     <main id="parking-form">
       <form class="questionnaire-container" action="letter.html" method="post">
         <!--Intro Message-->
-        <section class="section-container">
+        <section class="section-container" id="welcome-section">
           <!--Message Field-->
           <div class="field-container">
               <span class="field-label-large">Welcome to Parkadoo :-)</span>
@@ -172,7 +172,7 @@
           </fieldset>
         </section>
         <!--Ticket Number Text Field-->
-        <section id="ticket-number" class="section-container">
+        <section id="ticket-number-section" class="section-container">
           <div class="field-container">
             <label for="ticketNumber">
               <span class="field-label-large">What is the ticket number?</span>
@@ -184,7 +184,7 @@
           </div>
         </section>
         <!--Ticket Errors-->
-        <section id="ticket-accuracy" class="section-container">
+        <section id="ticket-accuracy-section" class="section-container">
           <fieldset class="fieldset-radio">
             <legend>
               <h1 class="question-primary">Are there any errors in the ticket details?</h1>
@@ -211,7 +211,7 @@
                 <span>No</span>
               </label>
             </div>
-            <div class="field-container">
+            <div class="field-container" id="ticket-error-description-subsection">
               <label for="ticketError">
                 <span class="field-label-large">Please describe the ticket error:</span>
               </label>
@@ -223,7 +223,7 @@
           </fieldset>
         </section>
         <!--Ticket Reason Radio Buttons-->
-        <section id="ticket-reason-radio" class="section-container">
+        <section id="ticket-reason-section" class="section-container">
           <fieldset class="fieldset-radio">
             <legend>
               <h1 class="question-primary">Which of the following best describes the parking offence on your ticket?</h1>
@@ -571,7 +571,7 @@
               </label>
             </div>
             <!-- Conditional "other" text field -->
-            <div class="field-container">
+            <div class="field-container" id="ticket-reason-other-subsection">
               <label for="ticketReasonOther">
                 <span class="field-label-large">How would you describe the ticket reason:</span>
                 <span class="field-hint">I recommend reading <a href="https://www.edmonton.ca/transportation/Bylaws/C5590.pdf" target="_blank">Bylaw 5590</a> to see if this is valid ticketing reason.</span>
@@ -584,7 +584,7 @@
           </fieldset>
         </section>
         <!--Dispute Ticket Reason YN-->
-        <section id="ticket-reason-dispute" class="section-container">
+        <section id="ticket-appeal-description-section" class="section-container">
           <p>Bylaw 5590 describes <ticket reason> in situations where <bylaw explanation></p>
           <fieldset class="fieldset-radio">
             <legend>
@@ -612,7 +612,7 @@
               </label>
             </div>
             <!-- Conditional reason text field -->
-            <div class="field-container">
+            <div class="field-container" id="ticket-appeal-describe-subsection">
               <label for="ticketWrongDescription">
                 <span class="field-label-large">Why was the violation incorrectly applied to you?</span>
               </label>
@@ -624,7 +624,7 @@
           </fieldset>
         </section>
         <!--Upload Photos YN-->
-        <section id="photo-upload" class="section-container">
+        <section id="photo-upload-section" class="section-container">
           <fieldset class="fieldset-radio">
             <legend>
               <h1 class="question-primary">Would you like to attach any photos to your appeal letter?</h1>
@@ -652,13 +652,13 @@
               </label>
             </div>
             <!-- Conditional upload photo -->
-            <div class="field-container">
+            <div class="field-container" id="photo-upload-prompt-subsection">
               <p>https://stackoverflow.com/questions/3891831/a-html5-web-app-for-mobile-safari-to-upload-images-from-the-photos-app/40529202#40529202</p>
             </div>
           </fieldset>
         </section>
         <!--Name-->
-        <section class="section-container">
+        <section class="section-container" id="name-section">
           <div class="field-container">
             <label for="person-name">
               <span class="field-label-large">What is your first and last name?</span>
@@ -670,7 +670,7 @@
           </div>
         </section>
         <!-- Email -->
-        <section id="contact-details" class="section-container">
+        <section id="contact-details-section" class="section-container">
           <div class="field-container">
             <h1 class="question-primary">What is your email?</h1>
             <label for="email">
@@ -683,7 +683,7 @@
           </div>
         </section>
         <!--Mailing address-->
-        <section class="section-container">
+        <section id="mailing-address-section" class="section-container">
           <div class="field-container">
             <label for="mailing-address">
               <span class="field-label-large">What is your mailing address?</span>
