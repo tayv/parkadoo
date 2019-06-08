@@ -136,27 +136,6 @@ const buttonVisibility = function() {
       }
     };
 
-  //testing
-  /*
-  const stepMakeVisibleTest = function(...stepToHide) { // Keeping ... in parameter. Removing it causes a bug where the for loop doesn't fire
-      console.log("stepMakeVisible triggered. The parameter = ", stepToHide);
-      for (let i = 0; i < stepToHide.length; i++) {
-        console.log("i: ", i);
-        console.log("stepToHide: ", stepToHide[i]);
-        if (stepsQuestionnaire[count] === stepToHide[0][i]) { // adding [0] necessary because ...stepToHide makes an array within an array
-          if (stepsQuestionnaire[count-1] === 0) {
-            welcomeSection.scrollIntoView(true);
-          } else {
-              stepsQuestionnaire[count-1].style.display = "block";
-              stepsQuestionnaire[count-1].scrollIntoView(true);
-              console.log("hide a step");
-          }
-        } else {
-          stepsQuestionnaire[count].style.display = "block";
-          console.log("no step to hide. continue as usual");
-        }
-      }
-    }; */
 
   document.getElementById("button-next").onclick = function() {
     if (count < stepsQuestionnaire.length - 1) {
@@ -224,8 +203,10 @@ const buttonVisibility = function() {
 // GENERIC FUNCTIONALITY: DETERMINE WHICH SECTIONS TO HIDE BY STORING THEM IN ARRAY
 let hideTheseSectionsArray = [];
 
-function updatehideTheseSectionsArray(addItem, subtractItem) { //use undefined when passing the unused parameter. Note that parameters must represent section IDs for stepMakeVisible() to work. Call it x times if need to hide multiple steps.
-  function addTohideTheseSectionsArray(addItem) {
+// Call whenever you want to hide sections
+function hideSections(...addSections) {
+  // Adds one section to hideTheseSectionsArray
+  function addToHideTheseSectionsArray(addItem) {
     if (hideTheseSectionsArray.indexOf(addItem) === -1 && typeof addItem !== "undefined") { // Need to exclude undefined because one parameter (either addItem or subtractItem) is likely left blank in the original function call
       hideTheseSectionsArray.push(addItem);
       console.log("add an item: ", addItem);
@@ -233,28 +214,29 @@ function updatehideTheseSectionsArray(addItem, subtractItem) { //use undefined w
         console.log("There's already an ", addItem, " here. Don't do anything");
     }
   }
-  addTohideTheseSectionsArray(addItem);
-  subtractFromhideTheseSectionsArray(subtractItem);
-}
-
-// testing
-function addTohideTheseSectionsArrayTest(addItem) {
-  if (hideTheseSectionsArray.indexOf(addItem) === -1 && typeof addItem !== "undefined") { // Need to exclude undefined because one parameter (either addItem or subtractItem) is likely left blank in the original function call
-    hideTheseSectionsArray.push(addItem);
-    console.log("add an item: ", addItem);
-  } else {
-      console.log("There's already an ", addItem, " here. Don't do anything");
-  }
-}
-
-function subtractFromhideTheseSectionsArray(subtractItem) {
-  if (hideTheseSectionsArray.indexOf(subtractItem) > -1 && typeof subtractItem !== "undefined") {
-    var arrayIndex = hideTheseSectionsArray.indexOf(subtractItem);
-    hideTheseSectionsArray.splice(arrayIndex);
-    console.log("subtract:" + subtractItem);
-    console.log(subtractItem);
+  // Loop allows one or more sections to be passed as parameters in hideSections()
+    for (let i = 0; i < addSections.length; i++) {
+      addToHideTheseSectionsArray(addSections[i]);
     }
 }
+
+// Call whenever you want to unhide or make sure a section displays
+function unhideSections(...subtractSections) {
+  // Subtracts one section from hideTheseSectionsArray
+  function subtractFromHideTheseSectionsArray(subtractItem) {
+    if (hideTheseSectionsArray.indexOf(subtractItem) > -1 && typeof subtractItem !== "undefined") {
+      var arrayIndex = hideTheseSectionsArray.indexOf(subtractItem);
+      hideTheseSectionsArray.splice(arrayIndex);
+      console.log("subtract:" + subtractItem);
+      console.log(subtractItem);
+      }
+  }
+  // Loop allows one or more sections to be passed as parameters to unhideSections()
+    for (let i = 0; i < subtractSections.length; i++) {
+      subtractFromHideTheseSectionsArray(subtractSections[i]);
+    }
+}
+
 // Hide any sections present in hideTheseSectionsArray
 function applyActiveVisibilityConditions() {
   if (hideTheseSectionsArray.length > 0) {
@@ -287,9 +269,8 @@ const setWhiteSpaceAtEndOfDocument = (function calcAndSetWhiteSpace() {
 // function to bulk hide steps based on which questionnaire path the user chooses
 function hideSectionsNotInPath(path) {
   if (path === "city") {
-    addTohideTheseSectionsArrayTest(studentOrEmployeeSection);
-    // hideTheseSectionsArray.add(studentOrEmployeeSection);
-    subtractFromhideTheseSectionsArray(
+    hideSections(studentOrEmployeeSection);
+    unhideSections(
       parkingTicketIssuerSection,
       municipalitySection,
       ticketNumberSection,
@@ -302,39 +283,29 @@ function hideSectionsNotInPath(path) {
     applyActiveVisibilityConditions();
     outputTemplateText("city");
   } else if (path === "private operator") {
-      addTohideTheseSectionsArrayTest(municipalitySection);
-      addTohideTheseSectionsArrayTest(studentOrEmployeeSection);
-      addTohideTheseSectionsArrayTest(ticketReasonSection);
-      addTohideTheseSectionsArrayTest(ticketAppealDescriptionSection);
-      addTohideTheseSectionsArrayTest(municipalitySection);
-      subtractFromhideTheseSectionsArray(parkingTicketIssuerSection);
-      subtractFromhideTheseSectionsArray(ticketNumberSection);
-      subtractFromhideTheseSectionsArray(ticketAccuracySection);
-      subtractFromhideTheseSectionsArray(ticketReasonSection);
-      subtractFromhideTheseSectionsArray(ticketAppealDescriptionSection);
-      subtractFromhideTheseSectionsArray(nameSection);
-      subtractFromhideTheseSectionsArray(contactDetailsSection);
-      subtractFromhideTheseSectionsArray(mailingAddressSection);
+      hideSections(
+        municipalitySection,
+        studentOrEmployeeSection,
+        ticketReasonSection,
+        ticketAppealDescriptionSection,
+        municipalitySection);
+      unhideSections(
+        parkingTicketIssuerSection,
+        ticketNumberSection,
+        ticketAccuracySection,
+        ticketReasonSection,
+        ticketAppealDescriptionSection,
+        nameSection,
+        contactDetailsSection,
+        mailingAddressSection);
       applyActiveVisibilityConditions();
       outputTemplateText("private operator");
   } else if (path === "private institution") {
-      addTohideTheseSectionsArrayTest(municipalitySection);
-      addTohideTheseSectionsArrayTest(ticketReasonSection);
-      addTohideTheseSectionsArrayTest(ticketAppealDescriptionSection);
-      subtractFromhideTheseSectionsArray(parkingTicketIssuerSection);
-      subtractFromhideTheseSectionsArray(studentOrEmployeeSection);
-      subtractFromhideTheseSectionsArray(ticketNumberSection);
-      subtractFromhideTheseSectionsArray(ticketAccuracySection);
-      subtractFromhideTheseSectionsArray(ticketReasonSection);
-      subtractFromhideTheseSectionsArray(ticketAppealDescriptionSection);
-      subtractFromhideTheseSectionsArray(nameSection);
-      subtractFromhideTheseSectionsArray(contactDetailsSection);
-      subtractFromhideTheseSectionsArray(mailingAddressSection);
-    /*  hideTheseSectionsArray.push(
+      hideSections(
         municipalitySection,
         ticketReasonSection,
         ticketAppealDescriptionSection);
-      subtractFromhideTheseSectionsArray(
+      unhideSections(
         parkingTicketIssuerSection,
         studentOrEmployeeSection,
         ticketNumberSection,
@@ -343,57 +314,37 @@ function hideSectionsNotInPath(path) {
         ticketAppealDescriptionSection,
         nameSection,
         contactDetailsSection,
-        mailingAddressSection); */
+        mailingAddressSection);
       applyActiveVisibilityConditions();
       outputTemplateText("private institution");
   } else if (path === "report abandoned vehicle") {
-      addTohideTheseSectionsArrayTest(parkingTicketIssuerSection);
-      addTohideTheseSectionsArrayTest(municipalitySection);
-      addTohideTheseSectionsArrayTest(studentOrEmployeeSection);
-      addTohideTheseSectionsArrayTest(ticketAppealDescriptionSection);
-      addTohideTheseSectionsArrayTest(ticketNumberSection);
-      addTohideTheseSectionsArrayTest(ticketAccuracySection);
-      addTohideTheseSectionsArrayTest(ticketReasonSection);
-      addTohideTheseSectionsArrayTest(ticketAppealDescriptionSection);
-      addTohideTheseSectionsArrayTest(nameSection);
-      addTohideTheseSectionsArrayTest(contactDetailsSection);
-      addTohideTheseSectionsArrayTest(mailingAddressSection);
-    /*  hideTheseSectionsArray.push(
+      hideSections(
         parkingTicketIssuerSection,
-        studentOrEmployeeSection,
         municipalitySection,
+        studentOrEmployeeSection,
+        ticketAppealDescriptionSection,
         ticketNumberSection,
         ticketAccuracySection,
         ticketReasonSection,
         ticketAppealDescriptionSection,
         nameSection,
         contactDetailsSection,
-        mailingAddressSection); */
+        mailingAddressSection);
       applyActiveVisibilityConditions();
       outputTemplateText("report abandoned vehicle");
   } else if (path === "check bylaws") {
-      addTohideTheseSectionsArrayTest(parkingTicketIssuerSection);
-      addTohideTheseSectionsArrayTest(municipalitySection);
-      addTohideTheseSectionsArrayTest(studentOrEmployeeSection);
-      addTohideTheseSectionsArrayTest(ticketAppealDescriptionSection);
-      addTohideTheseSectionsArrayTest(ticketNumberSection);
-      addTohideTheseSectionsArrayTest(ticketAccuracySection);
-      addTohideTheseSectionsArrayTest(ticketReasonSection);
-      addTohideTheseSectionsArrayTest(ticketAppealDescriptionSection);
-      addTohideTheseSectionsArrayTest(nameSection);
-      addTohideTheseSectionsArrayTest(contactDetailsSection);
-      addTohideTheseSectionsArrayTest(mailingAddressSection);
-    /*  hideTheseSectionsArray.push(
+      hideSections(
         parkingTicketIssuerSection,
-        studentOrEmployeeSection,
         municipalitySection,
+        studentOrEmployeeSection,
+        ticketAppealDescriptionSection,
         ticketNumberSection,
         ticketAccuracySection,
         ticketReasonSection,
         ticketAppealDescriptionSection,
         nameSection,
         contactDetailsSection,
-        mailingAddressSection); */
+        mailingAddressSection);
       applyActiveVisibilityConditions();
       outputTemplateText("check bylaws");
     }
