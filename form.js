@@ -137,6 +137,7 @@ const buttonVisibility = function() {
     };
 
   //testing
+  /*
   const stepMakeVisibleTest = function(...stepToHide) { // Keeping ... in parameter. Removing it causes a bug where the for loop doesn't fire
       console.log("stepMakeVisible triggered. The parameter = ", stepToHide);
       for (let i = 0; i < stepToHide.length; i++) {
@@ -151,11 +152,11 @@ const buttonVisibility = function() {
               console.log("hide a step");
           }
         } else {
-          stepsQuestionnaire[count-1].style.display = "block";
+          stepsQuestionnaire[count].style.display = "block";
           console.log("no step to hide. continue as usual");
         }
       }
-    };
+    }; */
 
   document.getElementById("button-next").onclick = function() {
     if (count < stepsQuestionnaire.length - 1) {
@@ -177,8 +178,8 @@ const buttonVisibility = function() {
       checkButtonStep();
     } else if (count >= 1) {
         count--;
-        stepMakeVisibleTest(hideTheseSectionsArray); // don't think this is necessary
-        applyActiveVisibilityConditions(); // don't think this is necessary 
+    //    stepMakeVisibleTest(hideTheseSectionsArray); // might not be necessary
+    //    applyActiveVisibilityConditions(); // might not be necessary
         stepsQuestionnaire[count].style.opacity="1";
         stepsQuestionnaire[count+1].style.opacity="0.2";
         stepsQuestionnaire[count].scrollIntoView(true);
@@ -210,7 +211,7 @@ const buttonVisibility = function() {
          applyActiveVisibilityConditions();
          stepsQuestionnaire[count].scrollIntoView(true);
          stepsQuestionnaire[count].style.opacity="1";
-         stepsQuestionnaire[count-1].style.opacity="0.2";
+         stepsQuestionnaire[count+1].style.opacity="0.2";
          checkButtonStep();
        if (stepsQuestionnaire[count].style.display === "block") {
          break;
@@ -221,9 +222,7 @@ const buttonVisibility = function() {
 
 
 // GENERIC FUNCTIONALITY: DETERMINE WHICH SECTIONS TO HIDE BY STORING THEM IN ARRAY
-// let mySet = new Set();
-// let hideTheseSectionsArray = Array.from(mySet); // so that we can add to the array without creating duplicate items
-var hideTheseSectionsArray = [];
+let hideTheseSectionsArray = [];
 
 function updatehideTheseSectionsArray(addItem, subtractItem) { //use undefined when passing the unused parameter. Note that parameters must represent section IDs for stepMakeVisible() to work. Call it x times if need to hide multiple steps.
   function addTohideTheseSectionsArray(addItem) {
