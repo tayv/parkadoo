@@ -2,14 +2,9 @@
 
 // TO LOAD DEFAULT VISIBILITY CONDITIONS (works)
 window.onload = function setDefaultAnswerState() {
-  // for newsletter checkbox
-//    newsletterCheckbox.checked = false;
-  // for parking violation radios
-//  hoomanYesRadio.checked = true
-
-
-  // to display only first step until next button clicked
-  buttonVisibility();
+  document.getElementById("parking-form-content").reset();
+  welcomeSection.scrollIntoView(true);
+  buttonVisibility(); // to display proper button
 };
 
 // LIST OF VARIABLES
@@ -26,8 +21,8 @@ const ticketAccuracySection = document.getElementById("ticket-accuracy-section")
 const ticketErrorDescriptionSubSection = document.getElementById("ticket-error-description-subsection"); // also private operator
 const ticketReasonSection = document.getElementById("ticket-reason-section");
 const ticketReasonOtherSubSection = document.getElementById("ticket-reason-other-subsection");
-const ticketAppealDescriptionSection = document.getElementById("ticket-appeal-description-section");
-const ticketAppealDescribeSubSection = document.getElementById("ticket-appeal-describe-subsection");
+const ticketAppealBylawSection = document.getElementById("ticket-appeal-bylaw-section");
+const ticketAppealSubSection = document.getElementById("ticket-appeal-bylaw-subsection");
 const photoUploadSection = document.getElementById("photo-upload-section"); // also private operator
 const photoUploadPromptSubSection = document.getElementById("photo-upload-prompt-subsection"); // also private operator
 const nameSection = document.getElementById("name-section"); // also private operator
@@ -253,6 +248,7 @@ function applyActiveVisibilityConditions() {
 function addRadioEventListener(radioClassName, updateConditionalsFunctionName) {
   for(let i = 0; i < radioClassName.length; i++) {
     radioClassName[i].addEventListener("change", updateConditionalsFunctionName, false);
+    console.log("radio event added", radioClassName);
   }
 };
 
@@ -276,7 +272,7 @@ function hideSectionsNotInPath(path) {
       ticketNumberSection,
       ticketAccuracySection,
       ticketReasonSection,
-      ticketAppealDescriptionSection,
+      ticketAppealBylawSection,
       nameSection,
       contactDetailsSection,
       mailingAddressSection);
@@ -287,14 +283,14 @@ function hideSectionsNotInPath(path) {
         municipalitySection,
         studentOrEmployeeSection,
         ticketReasonSection,
-        ticketAppealDescriptionSection,
+        ticketAppealBylawSection,
         municipalitySection);
       unhideSections(
         parkingTicketIssuerSection,
         ticketNumberSection,
         ticketAccuracySection,
         ticketReasonSection,
-        ticketAppealDescriptionSection,
+        ticketAppealBylawSection,
         nameSection,
         contactDetailsSection,
         mailingAddressSection);
@@ -304,14 +300,14 @@ function hideSectionsNotInPath(path) {
       hideSections(
         municipalitySection,
         ticketReasonSection,
-        ticketAppealDescriptionSection);
+        ticketAppealBylawSection);
       unhideSections(
         parkingTicketIssuerSection,
         studentOrEmployeeSection,
         ticketNumberSection,
         ticketAccuracySection,
         ticketReasonSection,
-        ticketAppealDescriptionSection,
+        ticketAppealBylawSection,
         nameSection,
         contactDetailsSection,
         mailingAddressSection);
@@ -322,11 +318,11 @@ function hideSectionsNotInPath(path) {
         parkingTicketIssuerSection,
         municipalitySection,
         studentOrEmployeeSection,
-        ticketAppealDescriptionSection,
+        ticketAppealBylawSection,
         ticketNumberSection,
         ticketAccuracySection,
         ticketReasonSection,
-        ticketAppealDescriptionSection,
+        ticketAppealBylawSection,
         nameSection,
         contactDetailsSection,
         mailingAddressSection);
@@ -337,11 +333,11 @@ function hideSectionsNotInPath(path) {
         parkingTicketIssuerSection,
         municipalitySection,
         studentOrEmployeeSection,
-        ticketAppealDescriptionSection,
+        ticketAppealBylawSection,
         ticketNumberSection,
         ticketAccuracySection,
         ticketReasonSection,
-        ticketAppealDescriptionSection,
+        ticketAppealBylawSection,
         nameSection,
         contactDetailsSection,
         mailingAddressSection);
@@ -357,7 +353,7 @@ function hideSectionsNotInPath(path) {
 const parkingProblemRadioSelection = (function updateParkingProblemConditionals() {
   const parkingProblemRadioOptions = document.querySelectorAll(".parking-problem-radio-class");
   addRadioEventListener(parkingProblemRadioOptions, updateParkingProblemConditionals);
-  for (let i = 0, length = parkingProblemRadioOptions.length; i < length; i++) {
+  for (let i = 0; i < parkingProblemRadioOptions.length; i++) {
     if (parkingProblemRadioOptions[i].checked) {
       if (parkingProblemRadioOptions[i].value === "1") {
         hideSectionsNotInPath("city");
@@ -379,7 +375,7 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
 const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
   const ticketIssuerRadioOptions = document.querySelectorAll(".ticket-issuer-radio-class");
   addRadioEventListener(ticketIssuerRadioOptions, updateticketIssuerConditionals);
-  for (let i = 0, length = ticketIssuerRadioOptions.length; i < length; i++) {
+  for (let i = 0; i < ticketIssuerRadioOptions.length; i++) {
     if (ticketIssuerRadioOptions[i].checked) {
       if (ticketIssuerRadioOptions[i].value === "1") {
         hideSectionsNotInPath("city");
@@ -450,17 +446,17 @@ function outputTemplateText(answerValue) {
     "institution letter goes here";
     document.getElementById("insert-output-text-here").innerHTML = institutionOutputTemplate;
   }
-};
+}
 
 // .municipality-section
   // update sub-section visibility conditions
 const municipalityRadioSelection = (function updateMunicipalityConditionals() {
   const municipalityRadioOptions = document.querySelectorAll(".municipality-radio-class");
   addRadioEventListener(municipalityRadioOptions, updateMunicipalityConditionals);
-  for (let i = 0, length = municipalityRadioOptions.length; i < length; i++) {
+  for (let i = 0; i < municipalityRadioOptions.length; i++) {
     if (municipalityRadioOptions[i].checked) {
       if (municipalityRadioOptions[i].value === "1") {
-        newCityRequestSubsection.style.display = "none"; // Sub-sections need individual visibility conditions as don't use hideTheseSectionsArray
+        newCityRequestSubsection.style.display = "none"; // Sub-sections need individual visibility conditions since they don't use hideTheseSectionsArray
         outputTextCity("1");
         return;
       }
@@ -482,7 +478,7 @@ function outputTextCity(answerValue) {
     city = document.getElementById("new-city-request-textfield").value;
     outputTemplateText("city");
   }
-};
+}
 
 
 // .student-or-employee-section
@@ -490,10 +486,9 @@ function outputTextCity(answerValue) {
 const studentOrEmployeeRadioSelection = (function updateStudentOrEmployeeConditionals() {
   const studentOrEmployeeRadioOptions = document.querySelectorAll(".student-or-employee-class");
   addRadioEventListener(studentOrEmployeeRadioOptions, updateStudentOrEmployeeConditionals);
-  for (let i = 0, length = studentOrEmployeeRadioOptions.length; i < length; i++) {
+  for (let i = 0; i < studentOrEmployeeRadioOptions.length; i++) {
     if (studentOrEmployeeRadioOptions[i].checked) {
       if (studentOrEmployeeRadioOptions[i].value === "1") {
-        newCityRequestSubsection.style.display = "none"; // Sub-sections need individual visibility conditions as don't use hideTheseSectionsArray
         outputTextStudentOrEmployee("1");
         return;
       }
@@ -508,5 +503,64 @@ function outputTextStudentOrEmployee(answerValue) {
   if (answerValue === "1") {
     yesStudentOrEmployee = "Note: As a student or employee of the issuer, be aware that although they can't force you to pay, the institution could withhold class credits or use other negative tactics against you if the vehicle is registered in your name and you refuse to pay the ticket.";
     outputTemplateText("private institution");
+  } else if (answerValue === "2") {
+    yesStudentOrEmployee = "";
+    outputTemplateText("private institution")
   }
-};
+}
+
+// .ticket-number-section
+  // Setup variables for this section
+let ticketNumberAnswer = "";
+  // function to update output text
+function updateTicketNumberAnswer() {
+  ticketNumberAnswer = document.getElementById("ticket-number-text-field").value; // works but not sure how to update output yet. Probably need an addEventListener. Also may want this to be a global var so can access it whenever
+}
+updateTicketNumberAnswer();
+
+// .ticket-accuracy-section
+  // Setup variables for this section
+let ticketErrorDescriptionAnswer = "";
+  // gatekeeper function for displaying subsection
+const ticketAccuracyRadioSelection = (function updateTicketAccuracyConditionals() {
+  const ticketAccuracyRadioOptions = document.querySelectorAll(".ticket-accuracy-radio-class");
+  addRadioEventListener(ticketAccuracyRadioOptions, updateTicketAccuracyConditionals);
+  for (let i = 0; i < ticketAccuracyRadioOptions.length; i++) {
+    if (ticketAccuracyRadioOptions[i].checked) {
+      if (ticketAccuracyRadioOptions[i].value === "1") {
+        ticketErrorDescriptionSubSection.style.display = "block";
+        ticketErrorDescriptionAnswer = document.getElementById("ticket-error-description-text-field").value;
+        return;
+      } else if (ticketAccuracyRadioOptions[i].value === "2") {
+          ticketErrorDescriptionSubSection.style.display = "none";
+          return;
+      }
+    }
+  }
+}());
+
+// .ticket-reason-section
+  // Setup variables for this section
+let ticketReason = "";
+  // Will need to switch html to dropdown
+
+// .ticket-appeal-bylaw-section
+  // Setup variables for this section
+let ticketAppealBylawAnswer = "";
+  // gatekeeper function for displaying subsection
+const ticketAppealBylawRadioSelection = (function updateTicketBylawAppealConditionals() {
+const ticketAppealBylawRadioOptions = document.querySelectorAll(".yn-ticket-valid-class");
+addRadioEventListener(ticketAppealBylawRadioOptions, updateTicketBylawAppealConditionals);
+for (let i = 0; i < ticketAppealBylawRadioOptions.length; i++) {
+  if (ticketAppealBylawRadioOptions[i].checked) {
+    if (ticketAppealBylawRadioOptions[i].value === "1") {
+      ticketAppealSubSection.style.display = "none";
+      return;
+    } else if (ticketAppealBylawRadioOptions[i].value === "2") {
+        ticketAppealSubSection.style.display = "block";
+        ticketAppealBylawAnswer = document.getElementById("incorrect-bylaw-text-field").value;
+        return;
+    }
+  }
+}
+}());

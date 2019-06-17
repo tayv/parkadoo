@@ -131,7 +131,7 @@ body {
 /* Standard & large input field widths */
 .section-container,
 .field-container,
-.field-container #abstract,
+.field-container .abstract,
 .field-abstract-example,
 .field-checkbox,
 .field-date,
@@ -148,7 +148,7 @@ body {
 .field-container input[type="text"],
 .field-container input[type="email"],
 .field-container input[type="password"],
-.field-container #abstract,
+.field-container .abstract,
 .field-date input[type="number"],
 .field-date input[type="text"] {
   background-color: hsl(210, 17%, 93%);
@@ -163,7 +163,7 @@ body {
 .field-container input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus,
-.field-container #abstract:focus,
+.field-container .abstract:focus,
 .field-date input[type="number"]:focus,
 .field-date input[type="text"]:focus {
   background-color: #FFF;
