@@ -511,10 +511,10 @@ function outputTextStudentOrEmployee(answerValue) {
 
 // .ticket-number-section
   // Setup variables for this section
-let ticketNumberAnswer = "";
+let ticketNumberAnswer = ""; // could potentially just set this to .value and just update the output at the end
   // function to update output text
 function updateTicketNumberAnswer() {
-  ticketNumberAnswer = document.getElementById("ticket-number-text-field").value; // works but not sure how to update output yet. Probably need an addEventListener. Also may want this to be a global var so can access it whenever
+  ticketNumberAnswer = document.getElementById("ticket-number-text-field").value; // this does not update after first time unless the page is refreshed
 }
 updateTicketNumberAnswer();
 
@@ -542,25 +542,189 @@ const ticketAccuracyRadioSelection = (function updateTicketAccuracyConditionals(
 // .ticket-reason-section
   // Setup variables for this section
 let ticketReason = "";
-  // Will need to switch html to dropdown
+  // Function for setting the correct ticket reason text
+const ticketReasonRadioSelection = (function updateTicketReasonConditionals() {
+  const ticketReasonRadioOptions = document.querySelectorAll(".ticket-reason-radio-class");
+  addRadioEventListener(ticketReasonRadioOptions, updateTicketReasonConditionals);
+  for (let i = 0; i < ticketReasonRadioOptions.length; i++) {
+    if (ticketReasonRadioOptions[i].checked) {
+      switch (i) {
+        case 0:
+          ticketReason = "This is ticket reason 1";
+          break;
+        case 1:
+          ticketReason = "This is ticket reason 2";
+          break;
+        case 2:
+          ticketReason = "";
+          break;
+        case 3:
+          ticketReason = "";
+          break;
+        case 4:
+          ticketReason = "";
+          break;
+        case 5:
+          ticketReason = "";
+          break;
+        case 6:
+          ticketReason = "";
+          break;
+        case 7:
+          ticketReason = "";
+          break;
+        case 8:
+          ticketReason = "";
+          break;
+        case 9:
+          ticketReason = "";
+          break;
+        case 10:
+          ticketReason = "";
+          break;
+        case 11:
+          ticketReason = "";
+          break;
+        case 12:
+          ticketReason = "";
+          break;
+        case 13:
+          ticketReason = "";
+          break;
+        case 14:
+          ticketReason = "";
+          break;
+        case 15:
+          ticketReason = "";
+          break;
+        case 16:
+          ticketReason = "";
+          break;
+        case 17:
+          ticketReason = "";
+          break;
+        case 18:
+          ticketReason = "";
+          break;
+        case 19:
+          ticketReason = "";
+          break;
+        case 20:
+          ticketReason = "";
+          break;
+        case 21:
+          ticketReason = "";
+          break;
+        case 22:
+          ticketReason = "";
+          break;
+        case 23:
+          ticketReason = "";
+          break;
+        case 24:
+          ticketReason = "";
+          break;
+        case 25:
+          ticketReason = "";
+          break;
+        case 26:
+          ticketReason = "";
+          break;
+        case 27:
+          ticketReason = "";
+          break;
+        case 28:
+          ticketReason = "";
+          break;
+        case 29:
+          ticketReason = "";
+          break;
+        case 30:
+          ticketReason = "";
+          break;
+        case 31:
+          ticketReason = "";
+          break;
+        case 32:
+          ticketReason = "";
+          break;
+        case 33:
+          ticketReason = "";
+          break;
+        case 34:
+          ticketReason = "";
+          break;
+        default:
+          ticketReason = "";
+      }
+    }
+  }
+}());
 
 // .ticket-appeal-bylaw-section
   // Setup variables for this section
 let ticketAppealBylawAnswer = "";
   // gatekeeper function for displaying subsection
 const ticketAppealBylawRadioSelection = (function updateTicketBylawAppealConditionals() {
-const ticketAppealBylawRadioOptions = document.querySelectorAll(".yn-ticket-valid-class");
-addRadioEventListener(ticketAppealBylawRadioOptions, updateTicketBylawAppealConditionals);
-for (let i = 0; i < ticketAppealBylawRadioOptions.length; i++) {
-  if (ticketAppealBylawRadioOptions[i].checked) {
-    if (ticketAppealBylawRadioOptions[i].value === "1") {
-      ticketAppealSubSection.style.display = "none";
-      return;
-    } else if (ticketAppealBylawRadioOptions[i].value === "2") {
-        ticketAppealSubSection.style.display = "block";
-        ticketAppealBylawAnswer = document.getElementById("incorrect-bylaw-text-field").value;
+  const ticketAppealBylawRadioOptions = document.querySelectorAll(".yn-ticket-valid-class");
+  addRadioEventListener(ticketAppealBylawRadioOptions, updateTicketBylawAppealConditionals);
+  for (let i = 0; i < ticketAppealBylawRadioOptions.length; i++) {
+    if (ticketAppealBylawRadioOptions[i].checked) {
+      if (ticketAppealBylawRadioOptions[i].value === "1") {
+        ticketAppealSubSection.style.display = "none";
         return;
+      } else if (ticketAppealBylawRadioOptions[i].value === "2") {
+          ticketAppealSubSection.style.display = "block";
+          ticketAppealBylawAnswer = document.getElementById("incorrect-bylaw-text-field").value;
+          return;
+      }
     }
   }
-}
 }());
+
+// .photo-upload-section
+  // Setup variables for this section
+let photoOfTicket = "";
+  // Trigger photo Upload
+const photoUploadRadioSelection = (function updatePhotoUploadConditionals() {
+  const photoUploadRadioOptions = document.querySelectorAll(".yn-upload-photo-class");
+  addRadioEventListener(photoUploadRadioOptions, updatePhotoUploadConditionals);
+  for (let i = 0; i < photoUploadRadioOptions.length; i++) {
+    if (photoUploadRadioOptions[i].checked) {
+      if (photoUploadRadioOptions[i].value === "1") {
+        photoOfTicket = prompt("Please choose a photo to upload");
+        return photoOfTicket;
+      } else if (photoUploadRadioOptions[i].value === "2") {
+        photoOfTicket = "";
+        return photoOfTicket;
+      }
+    }
+  }
+}());
+
+// .name-section
+  // Setup variables for this section
+let nameAnswer = "";
+  // functions to update nameAnswer
+function updateNameAnswer() {
+  return nameAnswer = document.getElementById("person-name-text-field").value;
+}
+updateNameAnswer();
+
+// .contact-details-section
+  // Setup variables for this section
+let emailAnswer = "";
+  // Functions to update emailAnswer
+function updateEmailAnswer() {
+  return emailAnswer = document.getElementById("email-field").value;
+}
+updateEmailAnswer();
+
+// .mailing-address-section
+  // Setup variables for this section
+let mailAddressAnswer = "";
+  // function to update mailAddressAnswer
+function updateMailAddressAnswer() {
+  return mailAddressAnswer = document.getElementById("mailing-address-text-field").value;
+}
+updateMailAddressAnswer();
