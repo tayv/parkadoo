@@ -237,7 +237,7 @@
                   value="1"
                   checked="checked"
                   class="ticket-reason-radio-class">
-                <span>Insufficient payment</span>
+                <span>Expired meter or insufficent payment</span>
               </label>
             </div>
             <div class="field-radio-button">
@@ -397,7 +397,7 @@
                   name="ticket-reason-radio"
                   value="17"
                   class="ticket-reason-radio-class">
-                <span>Residential zone without permit</span>
+                <span>Residential or other zone that required a permit</span>
               </label>
             </div>
             <div class="field-radio-button">
@@ -477,7 +477,7 @@
                   name="ticket-reason-radio"
                   value="25"
                   class="ticket-reason-radio-class">
-                <span>Weight limit violation</span>
+                <span>Vehicle left on a jack</span>
               </label>
             </div>
             <div class="field-radio-button">
@@ -557,7 +557,7 @@
                   name="ticket-reason-radio"
                   value="33"
                   class="ticket-reason-radio-class">
-                <span>Propane vehicle</span>
+                <span>Pay and go zone violation</span>
               </label>
             </div>
             <div class="field-radio-button">
@@ -567,18 +567,28 @@
                   name="ticket-reason-radio"
                   value="34"
                   class="ticket-reason-radio-class">
+                <span>EPark zone violation</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <label for="ticketReason35">
+                <input id="ticketReason35"
+                  type="radio"
+                  name="ticket-reason-radio"
+                  value="35"
+                  class="ticket-reason-radio-class">
                 <span>None of the above</span>
               </label>
             </div>
             <!-- Conditional "other" text field -->
             <div class="field-container" id="ticket-reason-other-subsection">
-              <label for="ticketReasonOther">
+              <label for="ticket-reason-other-text-field">
                 <span class="field-label-large">How would you describe the ticket reason:</span>
                 <span class="field-hint">I recommend reading <a href="https://www.edmonton.ca/transportation/Bylaws/C5590.pdf" target="_blank">Bylaw 5590</a> to see if this is valid ticketing reason.</span>
               </label>
-              <input id="ticketReasonOther"
+              <input id="ticket-reason-other-text-field"
                 type="text"
-                name="textTicketReasonOther">
+                name="text-ticket-reason-other">
               <span class="field-example">e.g. Failing to park within marked space.</span>
             </div>
           </fieldset>
