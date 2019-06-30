@@ -44,15 +44,27 @@ let yesStudentOrEmployee = "";
  // default array for sections to hide
 var hidePushThisArray = [];
 
- // variables for specific answers
+// variables for specific answers
+ // .ticket-number-section
+let ticketNumberAnswer = "";
   // .ticket-reason-section
 let ticketReason = "";
 let ticketBylawExplanation = "";
+  // .ticket-appeal-bylaw-section
+let ticketAppealBylawAnswer = "";
+// .ticket-accuracy-section
+let ticketErrorDescriptionAnswer = "";
   // .ticket-date-section
 let ticketDay = document.getElementById("ticket-day-number").value;
 let ticketMonth = document.getElementById("ticket-month").value;
 let ticketYear = document.getElementById("ticket-year-text").value;
 let ticketDate = ticketMonth + " " + ticketDay + ", "+ ticketYear;
+// .contact-details-section
+let emailAnswer = "";
+// .name-section
+let nameAnswer = "";
+// .mailing-address-section
+let mailAddressAnswer = "";
 
 /*
 // To set default answers/visibility. To be used on page load.
@@ -153,6 +165,7 @@ const buttonVisibility = function() {
       stepsQuestionnaire[count-1].style.opacity="0.2"; // reduce opacity of a completed step so user focus is on current step
       checkButtonStep();
       skipPastNextHiddenSections();
+      outputTemplateText(templateType);
     } else {
         checkButtonStep();
     } return count;
@@ -170,6 +183,7 @@ const buttonVisibility = function() {
         stepsQuestionnaire[count].scrollIntoView(true);
         checkButtonStep();
         skipPastPreviousHiddenSections();
+        outputTemplateText(templateType);
     } return count;
   };
 
@@ -381,6 +395,7 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
     }
   }
 }());
+var templateType = ""; // to be used as parameter for outputTemplateText() to update the output on button click
 // .ticket-issuer-section - Who issued your ticket?
   // Update dependant visibiilty conditions
 const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
@@ -391,20 +406,21 @@ const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
       if (ticketIssuerRadioOptions[i].value === "1") {
         hideSectionsNotInPath("city");
         applyActiveVisibilityConditions();
-        outputTemplateText("city");
-        return;
+    //  outputTemplateText("city");
+        return templateType = "city";
+
       }
       else if (ticketIssuerRadioOptions[i].value === "2") {
         hideSectionsNotInPath("private operator");
         applyActiveVisibilityConditions();
-        outputTemplateText("private operator");
-        return;
+    //  outputTemplateText("private operator");
+        return templateType = "private operator";;
       }
       else if (ticketIssuerRadioOptions[i].value === "3") {
         hideSectionsNotInPath("private institution");
         applyActiveVisibilityConditions();
-        outputTemplateText("private institution");
-        return;
+    //  outputTemplateText("private institution");
+        return templateType = "private institution";;
       }
     }
   }
@@ -413,18 +429,17 @@ const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
 function outputTemplateText(answerValue) {
   if (answerValue === "city") {
     cityOutputTemplate = // could move this to a separate file and reference in variable section at top of page
-      "*name*\n" +
-      "*mailing address*\n\n" +
-      "*Today’s date*\n\n" +
-      "RE: Appealing Parking Ticket *ticket number*\n\n" +
-      "To Whom it May Concern, \n\n" +
-      "<p>I received a parking ticket on " + ticketDate + " " + ticketReason + ". While I appreciate that public streets are a shared resource and the " + city + " works hard to keep our roads safe, I am appealing the ticket for the following reasons:</p><br>" +
-      "<p>*The ticket has incorrect details. *Ticket error description*.*</p>" +
-      "<p>*I believe the violation description does not apply because *reason violation does not apply*.*</p><br>" +
-      "<p>Thank you for considering my appeal. If you wish to discuss the issue further please contact me at *email*.</p>\n" +
-      "Sincerely,\n\n" +
-      "*Name*\n" +
-      "*Photos enclosed* ";
+      nameAnswer + "<br>" +
+      mailAddressAnswer + "<br><br>" +
+      "*Today’s date* <br>" +
+      "RE: Appealing Parking Ticket: " + ticketNumberAnswer + "<br><br>" +
+      "To Whom it May Concern, <br><br>" +
+      "I received a parking ticket on " + ticketDate + " for " + ticketReason + ". While I appreciate that public streets are a shared resource and the " + city + " works hard to keep our roads safe, I am appealing the ticket for the following reasons:<br>" +
+      ticketErrorDescriptionAnswer +
+      ticketAppealBylawAnswer +
+      "Thank you for considering my appeal. If you wish to discuss the issue further please contact me at " + emailAnswer + ".<br>" +
+      "Sincerely,<br>" +
+      nameAnswer;
     document.getElementById("insert-output-text-here").innerHTML = cityOutputTemplate;
   }
   else if (answerValue === "report abandoned vehicle") {
@@ -521,17 +536,13 @@ function outputTextStudentOrEmployee(answerValue) {
 }
 
 // .ticket-number-section
-  // Setup variables for this section
-let ticketNumberAnswer = ""; // could potentially just set this to .value and just update the output at the end
   // function to update output text
 function updateTicketNumberAnswer() {
-  ticketNumberAnswer = document.getElementById("ticket-number-text-field").value; // this does not update after first time unless the page is refreshed
+  ticketNumberAnswer = document.getElementById("ticket-number-text-field").value;
 }
 updateTicketNumberAnswer();
 
 // .ticket-accuracy-section
-  // Setup variables for this section
-let ticketErrorDescriptionAnswer = "";
   // gatekeeper function for displaying subsection
 const ticketAccuracyRadioSelection = (function updateTicketAccuracyConditionals() {
   const ticketAccuracyRadioOptions = document.querySelectorAll(".ticket-accuracy-radio-class");
@@ -540,10 +551,11 @@ const ticketAccuracyRadioSelection = (function updateTicketAccuracyConditionals(
     if (ticketAccuracyRadioOptions[i].checked) {
       if (ticketAccuracyRadioOptions[i].value === "1") {
         ticketErrorDescriptionSubSection.style.display = "block";
-        ticketErrorDescriptionAnswer = document.getElementById("ticket-error-description-text-field").value;
+        ticketErrorDescriptionAnswer = "The ticket has incorrect details. " + document.getElementById("ticket-error-description-text-field").value + ".<br>";
         return;
       } else if (ticketAccuracyRadioOptions[i].value === "2") {
           ticketErrorDescriptionSubSection.style.display = "none";
+          ticketErrorDescriptionAnswer = "";
           return;
       }
     }
@@ -743,8 +755,6 @@ const ticketReasonRadioSelection = (function updateTicketReasonConditionals() {
 }());
 
 // .ticket-appeal-bylaw-section
-  // Setup variables for this section
-let ticketAppealBylawAnswer = "";
   // gatekeeper function for displaying subsection
 const ticketAppealBylawRadioSelection = (function updateTicketBylawAppealConditionals() {
   const ticketAppealBylawRadioOptions = document.querySelectorAll(".yn-ticket-valid-class");
@@ -753,10 +763,11 @@ const ticketAppealBylawRadioSelection = (function updateTicketBylawAppealConditi
     if (ticketAppealBylawRadioOptions[i].checked) {
       if (ticketAppealBylawRadioOptions[i].value === "1") {
         ticketAppealSubSection.style.display = "none";
+        ticketAppealBylawAnswer = "";
         return;
       } else if (ticketAppealBylawRadioOptions[i].value === "2") {
           ticketAppealSubSection.style.display = "block";
-          ticketAppealBylawAnswer = document.getElementById("incorrect-bylaw-text-field").value;
+          ticketAppealBylawAnswer = "I don't believe the bylaw should apply because " + document.getElementById("incorrect-bylaw-text-field").value + ".<br>";
           return;
       }
     }
@@ -784,8 +795,6 @@ const photoUploadRadioSelection = (function updatePhotoUploadConditionals() {
 }());
 
 // .name-section
-  // Setup variables for this section
-let nameAnswer = "";
   // functions to update nameAnswer
 function updateNameAnswer() {
   return nameAnswer = document.getElementById("person-name-text-field").value;
@@ -793,8 +802,6 @@ function updateNameAnswer() {
 updateNameAnswer();
 
 // .contact-details-section
-  // Setup variables for this section
-let emailAnswer = "";
   // Functions to update emailAnswer
 function updateEmailAnswer() {
   return emailAnswer = document.getElementById("email-field").value;
@@ -802,8 +809,6 @@ function updateEmailAnswer() {
 updateEmailAnswer();
 
 // .mailing-address-section
-  // Setup variables for this section
-let mailAddressAnswer = "";
   // function to update mailAddressAnswer
 function updateMailAddressAnswer() {
   return mailAddressAnswer = document.getElementById("mailing-address-text-field").value;
