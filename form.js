@@ -25,6 +25,7 @@ const ticketAppealBylawSection = document.getElementById("ticket-appeal-bylaw-se
 const ticketAppealSubSection = document.getElementById("ticket-appeal-bylaw-subsection");
 const photoUploadSection = document.getElementById("photo-upload-section"); // also private operator
 const photoUploadPromptSubSection = document.getElementById("photo-upload-prompt-subsection"); // also private operator
+const ticketDateSection = document.getElementById("ticket-date-section");
 const nameSection = document.getElementById("name-section"); // also private operator
 const contactDetailsSection = document.getElementById("contact-details-section"); // also private operator
 const mailingAddressSection = document.getElementById("mailing-address-section"); // possibly also private operator
@@ -41,22 +42,32 @@ let city = "";
 let yesStudentOrEmployee = "";
 
  // default array for sections to hide
- var hidePushThisArray = [];
+var hidePushThisArray = [];
+
+ // variables for specific answers
+  // .ticket-reason-section
+let ticketReason = "";
+let ticketBylawExplanation = "";
+  // .ticket-date-section
+let ticketDay = document.getElementById("ticket-day-number").value;
+let ticketMonth = document.getElementById("ticket-month").value;
+let ticketYear = document.getElementById("ticket-year-text").value;
+let ticketDate = ticketMonth + " " + ticketDay + ", "+ ticketYear;
 
 /*
 // To set default answers/visibility. To be used on page load.
 // CB VISIBILITY CONDITION (works)
 const newsletterCheckbox = document.getElementById("newsletterSignUp");
 // element to be hidden
-const ticketDate = document.getElementById("ticket-date");
+const ticketDateOld = document.getElementById("ticket-date");
 // run checkbox visibility function
 const newsletterCheckboxVisiblity = (function() {
 newsletterCheckbox.addEventListener("click", checkboxChanged);
 function checkboxChanged() {
   if (newsletterCheckbox.checked === true) {
-    ticketDate.style.display = "block";
+    ticketDateOld.style.display = "block";
   } else {
-    ticketDate.style.display = "none";
+    ticketDateOld.style.display = "none";
     }
   }
 }());
@@ -407,7 +418,7 @@ function outputTemplateText(answerValue) {
       "*Today’s date*\n\n" +
       "RE: Appealing Parking Ticket *ticket number*\n\n" +
       "To Whom it May Concern, \n\n" +
-      "<p>I received a parking ticket on *ticket date* for *ticket reason*. While I appreciate that public streets are a shared resource and the " + city + " works hard to keep our roads safe, I am appealing the ticket for the following reasons:</p><br>" +
+      "<p>I received a parking ticket on " + ticketDate + " " + ticketReason + ". While I appreciate that public streets are a shared resource and the " + city + " works hard to keep our roads safe, I am appealing the ticket for the following reasons:</p><br>" +
       "<p>*The ticket has incorrect details. *Ticket error description*.*</p>" +
       "<p>*I believe the violation description does not apply because *reason violation does not apply*.*</p><br>" +
       "<p>Thank you for considering my appeal. If you wish to discuss the issue further please contact me at *email*.</p>\n" +
@@ -540,9 +551,6 @@ const ticketAccuracyRadioSelection = (function updateTicketAccuracyConditionals(
 }());
 
 // .ticket-reason-section
-  // Setup variables for this section
-let ticketReason = "";
-let ticketBylawExplanation = "";
   // Function for setting the correct ticket reason text
 const ticketReasonRadioSelection = (function updateTicketReasonConditionals() {
   const ticketReasonRadioOptions = document.querySelectorAll(".ticket-reason-radio-class");
@@ -551,138 +559,172 @@ const ticketReasonRadioSelection = (function updateTicketReasonConditionals() {
     if (ticketReasonRadioOptions[i].checked) {
       switch (i) {
         case 0:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "parking in an expired meter zone";
           ticketBylawExplanation = "s(42) (1) A vehicle shall not be parked on a highway in any space governed by a parking meter unless there is unexpired time remaining on themeter. \n(2) This section is only in effect on the days and during the times a parking meter is identified as being in effect. \n(3) This section does not apply to a vehicle displaying a valid andsubsisting permit issued by the City for metered space parking so long as all conditions of the permit are satisfied.";
           break;
         case 1:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "being parked in excess of posted limit in a time restricted zone";
           ticketBylawExplanation = "s(38) A vehicle shall not be parked on a highway in any location identified as a time limited zone for a period of time in excess of the time limit.";
           break;
         case 2:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "parking outside a metered space";
           ticketBylawExplanation = "s(43) A vehicle parked on a highway in any space governed by a parking meter shall: \n(a) be parked completely within the metered space; and \n(b) if the metered space is parallel to the edge of the roadway, be parked so that: \n(i) the front of the vehicle is as close as possible to the parking meter if the meter is situated at the front of the space; or \n(ii) the rear of the vehicle is  as close as possible to theparking meter if the meter is situated at  the rear ofthe space; or \n(iii) if the metered space is at an angle to the edge of the roadway, be parked so that the front of the vehicle is as close as possible to the parking meter.";
           break;
         case 3:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "parking in a closed pay and go zone";
           ticketBylawExplanation = "s(46) A vehicle shall not be parked on a highway in any space identifiedas a pay and display zone when that zone is closed.";
           break;
         case 4:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "parking in a space with a hooded meter";
           ticketBylawExplanation = "s(44) A vehicle shall not be parked on a highway in any space governed by a parking meter on which a hood or cover has been placed.";
           break;
         case 5:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "parking too close to a stop or yield sign";
           ticketBylawExplanation = "s(6) Unless a traffic control device permits or requires, a vehicle shallnot be parked in the case of an approach to a stop sign or yield signwithin 5 metres of the stop sign or yield sign.";
           break;
         case 6:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "parking too close to a crosswalk";
           ticketBylawExplanation = "s(5) Unless a traffic control device permits or requires, a vehicle shallnot be parked: \n(a) on a crosswalk or any part of a crosswalk; or \n(b) within 5 metres of the near side of a marked crosswalk.";
           break;
         case 7:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "parking too close to a fire hydrant";
           ticketBylawExplanation = "s(8) (1) Except as permitted in this section a vehicle shall not be stopped on a highway within 5 metres of a fire hydrant or, when the hydrant is not located at the curb, within 5 metres from the point on the curb nearest the fire hydrant. \n(2) A taxi may stop within 5 metres of a hydrant identified as a taxi zone only if: \n(i) the operator remains in the vehicle at all times; and \n(ii) the operator immediately removes the vehicle from the taxi zone upon the direction of a peace officer or a member of the City’s Fire Rescue Service.";
           break;
         case 8:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "parking too close to an intersection";
           ticketBylawExplanation = "7 Unless a traffic control device permits or requires, a vehicle shall not be parked: \n(a) at an intersection within 5 metres of the projection of the curb or edge of the roadway; \n(b) within an intersection other than immediately next to the curb or edge of the roadway in a  “T” intersection; or \n(c) within 1.5 metres of an access to a garage, private road ordriveway or a vehicle crossway over a sidewalk";
           break;
         case 9:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "parking too close to a centre line";
           ticketBylawExplanation = "s(16) A vehicle shall not be parked within 3 metres of the centre line of the roadway on a highway where the roadway portion is 12 metres or more in width. ";
           break;
         case 10:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "parallel parking more than 500mm from the curb";
           ticketBylawExplanation = "s(22) (1) A vehicle parked on a highway shall be parked: \n(a) with: \n(i) the sides of the vehicle parallel to the curb or edge of the roadway, and \n(ii) the right wheels of the vehicle not more than 500millimetres from the right curb or edge of the roadway, or \n(b) in the case of a  one-way highway where parking on either side is permitted, with: \n(i) the sides of the vehicle parallel to the curb or edge of the roadway, \n(ii) the wheels that are the closest to a curb or edge of the roadway not more than 500 millimetres from that curb or edge, and \n(iii) the vehicle facing in the direction of travel authorized for the highway;";
           break;
         case 11:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "parking on a sidewalk or boulevard";
           ticketBylawExplanation = "s(4) Unless a traffic control device permits or requires, a vehicle shall not be parked on a sidewalk or boulevard or any part of a sidewalk or boulevard.";
           break;
         case 12:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "parking in a way that caused an obstruction";
           ticketBylawExplanation = "A vehicle shall not be parked on a highway in a manner that blocks or obstructs: \n(a) the movement of traffic on the highway; \n(b) a doorway to a building; or \n(c) the approach to any fire station, police station, hospital or other place where emergency vehicles require regular access.";
           break;
         case 13:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "parking in a bus zone";
           ticketBylawExplanation = "s(35) (1) Except as permitted in this section a vehicle shall not be stopped on a highway in any location identified as a bus zone unless the vehicle is a bus.(2) A taxi may stop in the forward 6 metres of any bus zone while inthe process of actually loading or unloading passengers.";
           break;
         case 14:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "parking in an emergency access zone";
           ticketBylawExplanation = "s(33) A vehicle shall not be parked on a highway in any location identified as a fire lane, an emergency access zone or otherwise being for the use of emergency vehicles.";
           break;
         case 15:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "parking on a seasonal parking route while a ban was in effect";
           ticketBylawExplanation = "36  (1) A vehicle shall not be parked on a highway in any location identified as a seasonal parking ban route. \n(2) This section only applies when the location identified as a seasonal parking ban route has been designated in effect by the City Manager. \n(3) A vehicle parked on a highway in a location identified as a seasonal parking ban route must be removed from the location identified as a seasonal parking ban route within 8 hours of a seasonal parking route ban having been declared in effect.";
           break;
         case 16:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "parking in a permit zone without a proper permit";
           ticketBylawExplanation = "s(37) A vehicle shall not be parked on a highway in any location where a permit to park is required unless a valid and subsisting permit is clearly displayed on the vehicle.";
           break;
         case 17:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "parking in a disabled zone without a permit";
           ticketBylawExplanation = "s(34) A vehicle shall not be parked on a highway in any location identified as being for the use of persons with disabilities unless the vehicle: \n(a)displays a valid disabled placard or license plate issued or recognized by the Registrar; and \n(b) is being used for the transportation of a person with a disability.";
           break;
         case 18:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "parking in a no stopping zone";
           ticketBylawExplanation = "s(31) A vehicle shall not be stopped on a highway in any location identified as a zone where stopping is prohibited.";
           break;
         case 19:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "parking in a no parking zone";
           ticketBylawExplanation = "s(30) A vehicle shall not be parked on a highway in any location identified as a zone where parking is prohibited.";
           break;
         case 20:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "parking in a commercial loading zone";
           ticketBylawExplanation = "s(28) (1) A vehicle shall not be parked on a highway in any location identified as a commercial loading zone unless the vehicle is a commercial vehicle. \n(2) A vehicle shall not be parked on a highway in any location identified as a commercial loading zone for a period of time longer than that permitted.";
           break;
         case 21:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "parking in a passenger loading zone";
           ticketBylawExplanation = "s(27) A vehicle shall not be parked on a highway in any location identified as a passenger loading zone for a period of time longer than that permitted.";
           break;
         case 22:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "parking outside a marked space";
           ticketBylawExplanation = "s(14) A vehicle parked on a highway in a location marked by lines or otherwise shall be parked entirely within the markings.";
           break;
         case 23:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "incorrect angle parking";
           ticketBylawExplanation = "s(23) (1) When: \n(a) a sign indicates that angle parking is permitted or required, and \n(b) parking guide lines are visible on the roadway, a vehicle shall be parked with the vehicle’s sides between and parallel to any two of the guide lines, and \n(c) in the case of a  vehicle other than a motor cycle, with one front wheel not more than 500 millimetres from the curb or edge of the roadway, or \n";
           break;
         case 24:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "leaving my vehicle unattended while on a jack";
           ticketBylawExplanation = "s(25) A vehicle shall not be parked and left unattended on a highway if: \n(a) the vehicle is on a jack or a similar device, and \n(b) one or more wheels have been removed from the vehicle or part of the vehicle is raised.";
           break;
         case 25:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "parking a vehicle that was more than 12.5 metres long";
           ticketBylawExplanation = "s(17) (1) A vehicle, or a  vehicle with a  trailer attached, with a total length exceeding 12.5 metres shall not be parked on a highway: \n(a) in a location adjoining residential property at any time; or \n(b) in a location not adjoining residential property at anytime after 7:00 p.m. and before 7:00 a.m. \n(2) This section does not apply if the vehicle: \n(a) is a recreational vehicle; or \n(b) is a commercial vehicle with the hazard warning lamps alight and in the process of loading or unloading goods.";
           break;
         case 26:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "parking a vehicle in the same location for more than 72 hrs";
           ticketBylawExplanation = "s(26) (1) A vehicle shall not be abandoned on a highway. \n(2) Without restricting the generality of subsection (1) a vehicle that is left standing in one location on a highway for more than 72 consecutive hours is deemed to have been abandoned at  that location.";
           break;
         case 27:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "incorrectly parking a recreational vehicle on a public road";
           ticketBylawExplanation = "s(19) (1) A recreational vehicle shall not be parked on a highway unless it is parked in a location completely adjoining the recreational vehicle owner’s residence as shown in the records of the Motor Vehicle Registry. \n(2) A recreational vehicle parked pursuant to this section: (a) shall not be parked for more than 72 consecutive hours; and(b)shall be removed to an off-highway location for at least 48 consecutive hours before it may be parked again on a highway.";
           break;
         case 28:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "parking in an alley";
           ticketBylawExplanation = "s(12) (1) A vehicle shall not be parked in an alley unless: \n(a) a traffic control device permits such parking; or \n(b) the vehicle is a commercial vehicle with hazard warning lights alight and in the process of loading or unloading goods. \n(2) Notwithstanding subsection (1)(b) a commercial vehicle shall not be parked in an alley for more than 30 minutes. \n(3) Nothing in this section permits a person to park a vehicle in an alley in a manner that blocks or obstructs the movement of traffic.";
           break;
         case 29:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "double parking next to another vehicle";
           ticketBylawExplanation = "s(10) Unless a traffic control device permits or requires, a vehicle shall not be parked on the roadway side of a vehicle that is parked at the curb or edge of the roadway.";
           break;
         case 30:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "parking in a bridge or tunnel";
           ticketBylawExplanation = "s(9) Unless a  traffic control device permits or requires, a vehicle shall not be parked on any bridge or in any tunnel or on any approach to either of them.";
           break;
         case 31:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "parking an unattached trailer";
           ticketBylawExplanation = "s(20) Notwithstanding any other provision of this bylaw, a trailer shall not be parked on a highway unless the trailer is attached to a vehicle by which it may be drawn.";
           break;
         case 32:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "pay and go zone violation";
           ticketBylawExplanation = "s(45) (1) A vehicle shall not be parked on a highway in any space identified as a pay and display zone unless there is unexpired time remaining on a ticket issued by a pay and display machine. \n(2) A vehicle shall not be parked on a highway in any space identifiedas a pay and display zone unless there is a ticket issued by a payand display machine displayed face up in a clearly visible locationon the dashboard of the vehicle. \n(3) This section is only in effect on the days and during the times a pay and display zone is identified as being in effect. \n(4) This section does not apply to a vehicle displaying a valid permit issued by the City for pay and display zone parking so long as all conditions of the permit are satisfied.";
           break;
         case 33:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "EPark zone violation";
           ticketBylawExplanation = "s(38.1) (1) A vehicle shall not be parked in an EPark zone: \n(a) for a period of time in excess of the time limit indicated on a traffic control device; \n(b) unless the full amount of the required payment for that EPark zone has been made in accordance with the instructions on a traffic control device; or \n(c) contrary to any other restriction on a traffic control device. \n(2) In a prosecution under this section, where a certified copy of a record of the City containing licence plate and payment information for an EPark zone from the time of the alleged offence is tendered: \n(a) the Court may conclude that, in the absence of licence plate information being found in the record, the required payment has not been made in relation to the vehicle to which that licence plate corresponds; and \n(b) where the licence plate information of a vehicle is absent from the record, the onus of proving a person has made the required payment in relation to that vehicle shall be on the person alleging the required payment has been made on a balance of probabilities";
           break;
@@ -692,6 +734,7 @@ const ticketReasonRadioSelection = (function updateTicketReasonConditionals() {
           ticketBylawExplanation = "";
           break;
         default:
+          ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "";
           ticketBylawExplanation = "";
       }

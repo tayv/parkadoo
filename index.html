@@ -667,6 +667,57 @@
             </div>
           </fieldset>
         </section>
+        <!--Ticket Date-->
+        <section id="ticket-date-section" class="section-container">
+        <div class="field-date">
+          <h1 class="question-primary">When did you receive the ticket?</h1>
+          <div class="date-container">
+            <div class="container-month">
+              <label for="date-month">
+                <span class="field-label-small">Month</span>
+              </label>
+              <select id="ticket-month" name="ticket-month">
+                <option value="Jan">January</option>
+                <option value="Feb">February</option>
+                <option value="Mar">March</option>
+                <option value="Apr">April</option>
+                <option value="May">May</option>
+                <option value="Jun">June</option>
+                <option value="Jul">July</option>
+                <option value="Aug">August</option>
+                <option value="Sep">September</option>
+                <option value="Oct">October</option>
+                <option value="Nov">November</option>
+                <option value="Dec">December</option>
+              </select>
+            </div>
+            <div class="container-day">
+              <label for="date-day">
+                <span class="field-label-small">Day</span>
+              </label>
+              <input id="ticket-day-number"
+                type="number"
+                name="ticket-day"
+                value="1"
+                min="1"
+                max="31">
+              <span class="field-example">e.g. 10</span>
+            </div>
+            <div class="container-year">
+              <label for="date-year">
+                <span class="field-label-small">Year</span>
+              </label>
+              <!--Pattern used to trigger numeric keyboard on ios-->
+              <input id="ticket-year-text"
+                type="text"
+                pattern="[0-9]*"
+                name="ticket-year"
+                value="2019">
+              <span class="field-example">e.g. 2019</span>
+            </div>
+          </div>
+        </div>
+        </section>
         <!--Name-->
         <section class="section-container" id="name-section">
           <div class="field-container">
