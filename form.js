@@ -385,12 +385,27 @@ function formatCurrentDate(currentDateUnformatted) {
 }
 
 // Generic functions to upper or lowercase first letter in string
-function upperCaseFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+function upperCaseFirstLetter(sentence) {
+  return sentence.charAt(0).toUpperCase() + sentence.slice(1);
 }
 
-function lowerCaseFirstLetter(string) {
-    return string.charAt(0).toLowerCase() + string.slice(1);
+function lowerCaseFirstLetter(sentence) {
+  return sentence.charAt(0).toLowerCase() + sentence.slice(1);
+}
+
+// Generic function to prevent double . at end of sentence
+function formatSentenceEnding(sentence) {
+  if (sentence.endsWith(".")) {
+    return sentence;
+  } else if (sentence.endsWith(". ") || sentence.endsWith("  ")) {
+    sentence = sentence.slice(0, -2);
+    return sentence += ".";
+  } else if (sentence.endsWith(" ")) {
+    sentence = sentence.slice(0, -1);
+    return sentence += ".";
+  } else {
+    return sentence += ".";
+  }
 }
 
 // QUESTIONNAIRE SECTIONS - Should this be moved into own file?
@@ -450,16 +465,19 @@ const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
 function outputTemplateText(answerValue) {
   if (answerValue === "city") {
     cityOutputTemplate = // could move this to a separate file and reference in variable section at top of page
-      "<br>" + nameAnswer + "<br>" +
-      mailAddressAnswer + "<br>" +
-      currentDateFormatted + "<br><br>" +
-      "RE: Appealing Parking Ticket: " + ticketNumberAnswer + "<br><br>" +
-      "To Whom it May Concern, <br><br>" +
-      "I received a parking ticket on " + ticketDate + " for " + ticketReason + ". While I appreciate that public streets are a shared resource and the " + city + " works hard to keep our roads safe, I am appealing the ticket for the following reasons:<br>" +
-      ticketErrorDescriptionAnswer +
-      ticketAppealBylawAnswer +
-      "Thank you for considering my appeal. If you wish to discuss the issue further please contact me at " + emailAnswer + ".<br>" +
-      "<br>Sincerely,<br><br>" +
+      "City of Edmonton, Bylaw Ticket Administration" +
+      "<br>PO Box 2024" +
+      "<br>Edmonton, AB  T5J 4M6" +
+      "<br>" + nameAnswer +
+      "<br>" + mailAddressAnswer +
+      "<br>" + currentDateFormatted +
+      "<br><br>RE: Appealing Parking Ticket: " + ticketNumberAnswer +
+      "<br><br>To Whom It May Concern," +
+      "<br><br>I received a parking ticket on " + ticketDate + " for " + ticketReason + ". While I appreciate that public streets are a shared resource and the " + city + " works hard to keep our roads safe, I am appealing the ticket for the following reasons:" +
+      "<br><br>" + ticketErrorDescriptionAnswer +
+      "<br>" + ticketAppealBylawAnswer +
+      "<br><br>Thank you for considering my appeal. If you wish to discuss the issue further please contact me at " + emailAnswer + "." +
+      "<br><br>Sincerely,<br><br><br>" +
       nameAnswer;
     document.getElementById("insert-output-text-here").innerHTML = cityOutputTemplate;
   }
@@ -572,7 +590,7 @@ const ticketAccuracyRadioSelection = (function updateTicketAccuracyConditionals(
     if (ticketAccuracyRadioOptions[i].checked) {
       if (ticketAccuracyRadioOptions[i].value === "1") {
         ticketErrorDescriptionSubSection.style.display = "block";
-        ticketErrorDescriptionAnswer = "The ticket has incorrect details. " + document.getElementById("ticket-error-description-text-field").value + ".<br>";
+        ticketErrorDescriptionAnswer = "The ticket has incorrect details.</li> " + formatSentenceEnding(upperCaseFirstLetter(document.getElementById("ticket-error-description-text-field").value));
         return;
       } else if (ticketAccuracyRadioOptions[i].value === "2") {
           ticketErrorDescriptionSubSection.style.display = "none";
@@ -788,7 +806,7 @@ const ticketAppealBylawRadioSelection = (function updateTicketBylawAppealConditi
         return;
       } else if (ticketAppealBylawRadioOptions[i].value === "2") {
           ticketAppealSubSection.style.display = "block";
-          ticketAppealBylawAnswer = "I don't believe the bylaw should apply because " + lowercaseFirstLetter(document.getElementById("incorrect-bylaw-text-field").value) + ".<br>";
+          ticketAppealBylawAnswer = "I don't believe the bylaw should apply because " + formatSentenceEnding(lowerCaseFirstLetter(document.getElementById("incorrect-bylaw-text-field").value));
           return;
       }
     }
