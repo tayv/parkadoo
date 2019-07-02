@@ -371,6 +371,27 @@ function hideSectionsNotInPath(path) {
     }
 };
 
+// Generic function to grab current date and format it for letter
+let currentDateUnformatted = new Date();
+let currentDateFormatted = formatCurrentDate(currentDateUnformatted);
+
+function formatCurrentDate(currentDateUnformatted) {
+  let day = currentDateUnformatted.getDate();
+//  let month = currentDateUnformatted.getMonth() + 1;
+  let year = currentDateUnformatted.getFullYear();
+  let monthArray = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"); // not available in Date object
+  let month = monthArray[currentDateUnformatted.getMonth()];
+  return month + " " + day.toString() + ", " + year.toString();
+}
+
+// Generic functions to upper or lowercase first letter in string
+function upperCaseFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function lowerCaseFirstLetter(string) {
+    return string.charAt(0).toLowerCase() + string.slice(1);
+}
 
 // QUESTIONNAIRE SECTIONS - Should this be moved into own file?
 // Generic step 1 - What is your parking problem?
@@ -429,16 +450,16 @@ const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
 function outputTemplateText(answerValue) {
   if (answerValue === "city") {
     cityOutputTemplate = // could move this to a separate file and reference in variable section at top of page
-      nameAnswer + "<br>" +
-      mailAddressAnswer + "<br><br>" +
-      "*Today’s date* <br>" +
+      "<br>" + nameAnswer + "<br>" +
+      mailAddressAnswer + "<br>" +
+      currentDateFormatted + "<br><br>" +
       "RE: Appealing Parking Ticket: " + ticketNumberAnswer + "<br><br>" +
       "To Whom it May Concern, <br><br>" +
       "I received a parking ticket on " + ticketDate + " for " + ticketReason + ". While I appreciate that public streets are a shared resource and the " + city + " works hard to keep our roads safe, I am appealing the ticket for the following reasons:<br>" +
       ticketErrorDescriptionAnswer +
       ticketAppealBylawAnswer +
       "Thank you for considering my appeal. If you wish to discuss the issue further please contact me at " + emailAnswer + ".<br>" +
-      "Sincerely,<br>" +
+      "<br>Sincerely,<br><br>" +
       nameAnswer;
     document.getElementById("insert-output-text-here").innerHTML = cityOutputTemplate;
   }
@@ -767,7 +788,7 @@ const ticketAppealBylawRadioSelection = (function updateTicketBylawAppealConditi
         return;
       } else if (ticketAppealBylawRadioOptions[i].value === "2") {
           ticketAppealSubSection.style.display = "block";
-          ticketAppealBylawAnswer = "I don't believe the bylaw should apply because " + document.getElementById("incorrect-bylaw-text-field").value + ".<br>";
+          ticketAppealBylawAnswer = "I don't believe the bylaw should apply because " + lowercaseFirstLetter(document.getElementById("incorrect-bylaw-text-field").value) + ".<br>";
           return;
       }
     }
@@ -797,20 +818,32 @@ const photoUploadRadioSelection = (function updatePhotoUploadConditionals() {
 // .name-section
   // functions to update nameAnswer
 function updateNameAnswer() {
-  return nameAnswer = document.getElementById("person-name-text-field").value;
+  if (document.getElementById("person-name-text-field").value) {
+    return nameAnswer = document.getElementById("person-name-text-field").value;
+  } else {
+    return nameAnswer = "_______________";
+  }
 }
 updateNameAnswer();
 
 // .contact-details-section
   // Functions to update emailAnswer
 function updateEmailAnswer() {
-  return emailAnswer = document.getElementById("email-field").value;
+  if (document.getElementById("email-field").value) {
+    return emailAnswer = document.getElementById("email-field").value;
+  } else {
+    return emailAnswer = "_______________";
+  }
 }
 updateEmailAnswer();
 
 // .mailing-address-section
   // function to update mailAddressAnswer
 function updateMailAddressAnswer() {
-  return mailAddressAnswer = document.getElementById("mailing-address-text-field").value;
+  if (document.getElementById("mailing-address-text-field").value) {
+    return mailAddressAnswer = document.getElementById("mailing-address-text-field").value;
+  } else {
+    return mailAddressAnswer = "_______________\n_______________";
+  }
 }
 updateMailAddressAnswer();
