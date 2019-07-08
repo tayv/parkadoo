@@ -243,7 +243,7 @@ input[type="password"]:focus,
 
 /* To style the date dropdown */
 .container-month select {
-  background-color: #EAEDF0;
+  background-color: hsla(210, 17%, 93%, 1);
   border: 3px solid hsla(180, 100%, 13%, 1);
   border-radius: 7px;
   width: 100%;
@@ -253,7 +253,34 @@ input[type="password"]:focus,
 }
 
 .container-month select:focus {
-  background-color: #fff
+  background-color: hsla(0, 100%, 100%, 1);
+}
+
+/* Bylaw info box styling */
+#check-bylaw-info-section {
+  padding: 0px;
+}
+.info-box-div {
+  background-color: hsla(0, 0%, 81%, 1);
+  margin-top: 4%;
+  padding: 5%;
+  font-size: 15px;
+}
+
+.info-box-disclaimer-text {
+  font-size: 12px;
+}
+
+/* For spacing legislation subsections */
+ul {
+  margin-left: 8px;
+}
+
+li {
+  list-style-type: none;
+  margin-left: 28px;
+  margin-bottom: 12px;
+  text-indent: -24px;
 }
 
 /* Spacing for last section */

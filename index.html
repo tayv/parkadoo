@@ -64,6 +64,15 @@
             </div>
           </fieldset>
         </section>
+        <!--Bylaw info box if just preemptively checking for potential ticket-->
+        <section id="check-bylaw-info-section" class="section-container">
+          <h1 class="question-primary" id="check-bylaw-primary-question-insert-here"></h1>
+          <span class="field-hint" id="bylaw-plain-language-hint-insert-here"></span>
+          <div class="info-box-div">
+            <p id="insert-check-bylaw-info-box-text-here"></p>
+            <p class="info-box-disclaimer-text"> *** Please remember I'm not a lawyer and don't guarantee this info is correct. You should check out <a href="" id="city-bylaw-link" target="_blank"><span id="city-bylaw-name"></span></a> yourself to be sure :)</p>
+          </div>
+        </section>
         <!--Ticket Issuer Radio Buttons-->
         <section id="ticket-issuer-section" class="section-container">
           <fieldset class="fieldset-radio">
@@ -595,10 +604,10 @@
         </section>
         <!--Dispute Ticket Reason YN-->
         <section id="ticket-appeal-bylaw-section" class="section-container">
-          <p>Bylaw 5590 describes <ticket reason> in situations where <bylaw explanation></p>
           <fieldset class="fieldset-radio">
             <legend>
               <h1 class="question-primary">Do you believe this bylaw was correctly applied to you?</h1>
+                <span class="field-hint">Refer to the bylaw snippet below.</span>
             </legend>
             <div class="field-radio-button">
               <label for="ticket-valid-yes">
@@ -621,6 +630,7 @@
                 <span>No</span>
               </label>
             </div>
+          </fieldset>
             <!-- Conditional reason text field -->
             <div class="field-container" id="ticket-appeal-bylaw-subsection">
               <label for="incorrect-bylaw-text-field">
@@ -631,7 +641,28 @@
                 name="incorrect-bylaw-description">
               <span class="field-example">e.g. I was parallel parked less than 500mm away from the curb.</span>
             </div>
-          </fieldset>
+            <!-- Bylaw info box -->
+            <div id="infobox-container">
+              <h1 class="question-primary" id="check-bylaw-correct-primary-question-2-insert-here"></h1>
+              <span class="field-hint" id="bylaw-plain-language-hint-2-insert-here"></span>
+              <div class="info-box-div">
+                <p id="insert-bylaw-correct-info-box-text-here"></p>
+                <p class="info-box-disclaimer-text"> *** Please remember I'm not a lawyer and don't guarantee this info is correct. You should check out <a href="" id="city-bylaw-link-2" target="_blank"><span id="city-bylaw-name-2"></span></a> yourself to be sure :)</p>
+              </div>
+            </div>
+        </section>
+        <!-- Private operator additional appeal reason text field -->
+        <section id="private-ticket-appeal-section" class="section-container">
+          <div class="field-container">
+            <label for="private-ticket-appeal-text-field">
+              <span class="field-label-large">Why are you appealing the ticket?</span>
+              <span class="field-hint">Describe in full sentences why you think your ticket should be cancelled. You can give multiple reasons.</span>
+            </label>
+            <input id="private-ticket-appeal-text-field"
+              type="text"
+              name="private-ticket-appeal-description">
+            <span class="field-example">e.g. I paid for parking but the receipt slipped off my vehicle's dash.</span>
+          </div>
         </section>
         <!--Upload Photos YN-->
         <section id="photo-upload-section" class="section-container">
@@ -760,12 +791,7 @@
         </section>
       <!--Last Section -->
       <section id="finished-section-container">
-        <p>You are done!!!!! Insert a success image/animation here. aasdlfkjas;dlf a;lskdfja;lskdjf alksdjflaksjdflk aslkdfjlaksjdf
-        sampasdfasdf asdf asdf a dfasdf  afdsasdf as afds asdf as dfas dfna asdfa
-        asdfasdf aasdf asdf asdfasdf asadf asdf
-        aasdlfkjas;dlf a;lskdfja;lskdjf alksdjflaksjdflk aslkdfjlaksjdf
-        sampasdfasdf asdf asdf a dfasdf  afdsasdf as afds asdf as dfas dfna asdfa
-        asdfasdf aasdf asdf asdfasdf asadf asdf </p>
+        <p>All done! See that wasn't so bad. Are you ready to view your appeal letter?</p>
       </section>
       <section class="whitespace-section">
         <div id="output">
