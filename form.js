@@ -33,6 +33,7 @@ const mailingAddressSection = document.getElementById("mailing-address-section")
   // If appealing university ticket
 const studentOrEmployeeSection = document.getElementById("student-or-employee-section");
   // If checking bylaws
+const potentialIssueSection = document.getElementById("potential-issue-section");
 const checkBylawsSection = document.getElementById("check-bylaw-info-section");
 
   // Output
@@ -306,6 +307,7 @@ function hideSectionsNotInPath(path) {
   if (path === "city") {
     hideSections(
       studentOrEmployeeSection,
+      potentialIssueSection,
       checkBylawsSection,
       privateTicketAppealReason);
     unhideSections(
@@ -322,6 +324,7 @@ function hideSectionsNotInPath(path) {
     outputTemplateText("city");
   } else if (path === "private operator") {
       hideSections(
+        potentialIssueSection,
         checkBylawsSection,
         municipalitySection,
         studentOrEmployeeSection,
@@ -340,6 +343,7 @@ function hideSectionsNotInPath(path) {
       outputTemplateText("private operator");
   } else if (path === "private institution") {
       hideSections(
+        potentialIssueSection,
         checkBylawsSection,
         municipalitySection,
         ticketReasonSection,
@@ -357,6 +361,7 @@ function hideSectionsNotInPath(path) {
       outputTemplateText("private institution");
   } else if (path === "report abandoned vehicle") {
       hideSections(
+        potentialIssueSection,
         checkBylawsSection,
         parkingTicketIssuerSection,
         municipalitySection,
@@ -390,7 +395,9 @@ function hideSectionsNotInPath(path) {
         contactDetailsSection,
         mailingAddressSection,
         photoUploadSection);
-      unhideSections(checkBylawsSection);
+      unhideSections(
+        potentialIssueSection,
+        checkBylawsSection);
       applyActiveVisibilityConditions();
       outputTemplateText("check bylaws");
     }
@@ -661,7 +668,7 @@ const ticketReasonRadioSelection = (function updateTicketReasonConditionals() {
         case 0:
           ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "parking in an expired meter zone";
-          checkBylawsPlainLanguageHint = "Looks like you should not get a ticket if you still have time on the meter, have a permit displayed, or park during the meter's off-hours.";
+          checkBylawsPlainLanguageHint = "Looks like you shouldn't get a ticket if you still have time on the meter, have a permit displayed, or park during the meter's off-hours.";
           ticketBylawExplanation = "<ul>s(42)<li>(1) A vehicle shall not be parked on a highway in any space governed by a parking meter unless there is unexpired time remaining on the meter.</li><li>(2) This section is only in effect on the days and during the times a parking meter is identified as being in effect.</li><li>(3) This section does not apply to a vehicle displaying a valid and subsisting permit issued by the City for metered space parking so long as all conditions of the permit are satisfied.</li></ul>";
           break;
         case 1:
