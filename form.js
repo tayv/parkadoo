@@ -93,7 +93,7 @@ let bylawTextObj = {
   checkBylawsPlainLanguageHint3: "Looks like in order to avoid a ticket you need to have been parked within the metered space. You should also park as close as possible to the meter.",
   ticketBylawExplanation3: "<ul>s(43) <li>A vehicle parked on a highway in any space governed by a parking meter shall: <br>(a) be parked completely within the metered space; and </li><li>(b) if the metered space is parallel to the edge of the roadway, be parked so that: <br>(i) the front of the vehicle is as close as possible to the parking meter if the meter is situated at the front of the space; or <br>(ii) the rear of the vehicle is  as close as possible to the parking meter if the meter is situated at the rear of the space; or <br>(iii) if the metered space is at an angle to the edge of the roadway, be parked so that the front of the vehicle is as close as possible to the parking meter.</li></ul>",
 
-  ticketReason4: "parking in a closed pay and go zone",
+  ticketReason4: "parking in a closed pay and display zone",
   checkBylawsPlainLanguageHint4: "You can't park in a closed pay and display zone.",
   ticketBylawExplanation4: "<ul>s(46) <li>A vehicle shall not be parked on a highway in any space identified as a pay and display zone when that zone is closed.</li></ul>",
 
@@ -190,7 +190,7 @@ let bylawTextObj = {
   ticketBylawExplanation28: "<ul>s(26) <li>(1) A vehicle shall not be abandoned on a highway.</li><li>(2) Without restricting the generality of subsection (1) a vehicle that is left standing in one location on a highway for more than 72 consecutive hours is deemed to have been abandoned at that location.</li></ul>",
 
   ticketReason28: "incorrectly parking a recreational vehicle on a public road",
-  checkBylawsPlainLanguageHint28: "You can't park a recreational vehicle on the road unless it's completely next to the owner's residence and isn't left for more than 72 hrs. You also need to wait at least 48hrs before re-parking in the same spot.",
+  checkBylawsPlainLanguageHint28: "You can't park a recreational vehicle on the road unless it's completely adjoining the owner's residence (aka is parked next to your property only) and isn't left for more than 72 hrs. You also need to wait at least 48hrs before re-parking in the same spot.",
   ticketBylawExplanation28: "<ul>s(19) <li>(1) A recreational vehicle shall not be parked on a highway unless it is parked in a location completely adjoining the recreational vehicle owner’s residence as shown in the records of the Motor Vehicle Registry.</li><li>(2) A recreational vehicle parked pursuant to this section: <br><br>(a) shall not be parked for more than 72 consecutive hours; and <br><br>(b) shall be removed to an off-highway location for at least 48 consecutive hours before it may be parked again on a highway.</li></ul>",
 
   ticketReason29: "parking in an alley",
@@ -674,14 +674,6 @@ function outputTemplateText(answerValue) {
     "<br><br>A neighbour";
     document.getElementById("insert-output-text-here").innerHTML = abandonedVehicleOutputTemplate;
   }
-  else if (answerValue === "check bylaws") {
-    checkBylawsIntroParagraph = "Hey, I found this in the " + city + "&#39;s bylaws:";
-    document.getElementById("check-bylaw-primary-question-insert-here").innerHTML = checkBylawsIntroParagraph;
-    document.getElementById("bylaw-plain-language-hint-insert-here").innerHTML = checkBylawsPlainLanguageHint;
-    checkBylawsOutputTemplate = ticketBylawExplanation;
-    document.getElementById("city-bylaw-name").innerHTML = cityBylawName;
-    document.getElementById("insert-check-bylaw-info-box-text-here").innerHTML = checkBylawsOutputTemplate;
-  }
   else if (answerValue === "private operator") {
     privateOperatorOutputTemplate =
     currentDateFormatted +
@@ -694,8 +686,7 @@ function outputTemplateText(answerValue) {
     "<br><br>Sincerely,<br><br><br>" +
     nameAnswer;
     document.getElementById("insert-output-text-here").innerHTML = privateOperatorOutputTemplate;
-  }
-  else if (answerValue === "private institution") { // not working // may want this to be apart of additional info section and not the output
+  } else if (answerValue === "private institution") { // not working // may want this to be apart of additional info section and not the output
     institutionOutputTemplate =
     currentDateFormatted +
     "<br><br>RE: Appealing Parking Ticket: " + ticketNumberAnswer +
@@ -1109,3 +1100,241 @@ function updateMailAddressAnswer() {
   }
 }
 updateMailAddressAnswer();
+
+// #potential-issue-section
+  // Function for displaying bylaw text in the form
+function displayPotentialTicketContent () {
+  checkBylawsIntroParagraph = "Hey, I found this in the " + city + "&#39;s bylaws:";
+  document.getElementById("check-bylaw-primary-question-insert-here").innerHTML = checkBylawsIntroParagraph;
+  document.getElementById("bylaw-plain-language-hint-insert-here").innerHTML = checkBylawsPlainLanguageHint;
+  checkBylawsOutputTemplate = ticketBylawExplanation;
+  document.getElementById("city-bylaw-name").innerHTML = cityBylawName;
+  document.getElementById("insert-check-bylaw-info-box-text-here").innerHTML = checkBylawsOutputTemplate;
+}
+
+  // Function for setting the correct parking bylaw text
+const potentialTicketRadioSelection = (function updatePotentialTicketConditionals() {
+  const potentialTicketRadioOptions = document.querySelectorAll(".potential-ticket-radio-class");
+  addRadioEventListener(potentialTicketRadioOptions, updatePotentialTicketConditionals);
+  for (let i = 0; i < potentialTicketRadioOptions.length; i++) {
+    if (potentialTicketRadioOptions[i].checked) {
+      switch (i) {
+        case 0:
+          ticketReason = bylawTextObj.ticketReason6;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint6;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation6;
+          displayPotentialTicketContent();
+          break;
+        case 1:
+          ticketReason = bylawTextObj.ticketReason7;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint7;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation7;
+          displayPotentialTicketContent();
+          break;
+        case 2:
+          ticketReason = bylawTextObj.ticketReason8;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint8;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation8;
+          displayPotentialTicketContent();
+          break;
+        case 3:
+          ticketReason = bylawTextObj.ticketReason9;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint9;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation9;
+          displayPotentialTicketContent();
+          break;
+        case 4:
+          ticketReason = bylawTextObj.ticketReason24;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint24;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation;
+          displayPotentialTicketContent();
+          break;
+        case 5:
+          ticketReason = bylawTextObj.ticketReason26;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint26;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation26;
+          displayPotentialTicketContent();
+          break;
+        case 6:
+          ticketReason = bylawTextObj.ticketReason32;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint32;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation32;
+          displayPotentialTicketContent();
+          break;
+        case 7:
+          ticketReason = bylawTextObj.ticketReason28;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint28;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation28;
+          displayPotentialTicketContent();
+          break;
+        case 8:
+          ticketReason = bylawTextObj.ticketReason10;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint10;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation10;
+          displayPotentialTicketContent();
+          break;
+        case 9:
+          ticketReason = bylawTextObj.ticketReason11;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint11;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation11;
+          displayPotentialTicketContent();
+          break;
+        case 10:
+          ticketReason = bylawTextObj.ticketReason4;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint4;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation4;
+          displayPotentialTicketContent();
+          break;
+        case 11:
+          ticketReason = bylawTextObj.ticketReason5;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint5;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation5;
+          displayPotentialTicketContent();
+          break;
+        case 12:
+          ticketReason = bylawTextObj.ticketReason12;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint12;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation12;
+          displayPotentialTicketContent();
+          break;
+        case 13:
+          ticketReason = bylawTextObj.ticketReason13;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint13;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation13;
+          displayPotentialTicketContent();
+          break;
+        case 14:
+          ticketReason = bylawTextObj.ticketReason14;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint14;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation14;
+          displayPotentialTicketContent();
+          break;
+        case 15:
+          ticketReason = bylawTextObj.ticketReason15;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint15;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation15;
+          displayPotentialTicketContent();
+          break;
+        case 16:
+          ticketReason = bylawTextObj.ticketReason16;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint16;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation16;
+          displayPotentialTicketContent();
+          break;
+        case 17:
+          ticketReason = bylawTextObj.ticketReason17;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint17;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation17;
+          displayPotentialTicketContent();
+          break;
+        case 18:
+          ticketReason = bylawTextObj.ticketReason18;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint18;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation18;
+          displayPotentialTicketContent();
+          break;
+        case 19:
+          ticketReason = bylawTextObj.ticketReason19;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint19;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation19;
+          displayPotentialTicketContent();
+          break;
+        case 20:
+          ticketReason = bylawTextObj.ticketReason21;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint21;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation21;
+          displayPotentialTicketContent();
+          break;
+        case 21:
+          ticketReason = bylawTextObj.ticketReason22;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint22;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation22;
+          displayPotentialTicketContent();
+          break;
+        case 22:
+          ticketReason = bylawTextObj.ticketReason23;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint23;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation23;
+          displayPotentialTicketContent();
+          break;
+        case 23:
+          ticketReason = bylawTextObj.ticketReason25;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint25;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation25;
+          displayPotentialTicketContent();
+          break;
+        case 24:
+          ticketReason = bylawTextObj.ticketReason27;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint27;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation27;
+          displayPotentialTicketContent();
+          break;
+        case 25:
+          ticketReason = bylawTextObj.ticketReason29;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint29;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation29;
+          displayPotentialTicketContent();
+          break;
+        case 26:
+          ticketReason = bylawTextObj.ticketReason30;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint30;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation30;
+          displayPotentialTicketContent();
+          break;
+        case 27:
+          ticketReason = bylawTextObj.ticketReason31;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint31;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation31;
+          displayPotentialTicketContent();
+          break;
+        case 28:
+          ticketReason = bylawTextObj.ticketReason33;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint33;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation33;
+          displayPotentialTicketContent();
+          break;
+        case 29:
+          ticketReason = bylawTextObj.ticketReason34;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint34;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation34;
+          displayPotentialTicketContent();
+          break;
+        case 30:
+          ticketReason = bylawTextObj.ticketReason3;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint3;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation3;
+          displayPotentialTicketContent();
+          break;
+        case 31:
+          ticketReason = bylawTextObj.ticketReason2;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint2;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation2;
+          displayPotentialTicketContent();
+          break;
+        case 32:
+          ticketReason = bylawTextObj.ticketReason1;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint1;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation1;
+          displayPotentialTicketContent();
+          break;
+        case 33:
+          ticketReason = bylawTextObj.ticketReason20;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint20;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation20;
+          displayPotentialTicketContent();
+          break;
+        case 34:
+          ticketReason = bylawTextObj.ticketReason35;
+          checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint35;
+          ticketBylawExplanation = bylawTextObj.ticketBylawExplanation35;
+          displayPotentialTicketContent();
+          break;
+        default:
+          ticketReason = "";
+          checkBylawsPlainLanguageHint = "";
+          ticketBylawExplanation = "";
+          displayPotentialTicketContent();
+      }
+    }
+  }
+}());
