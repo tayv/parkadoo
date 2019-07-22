@@ -73,6 +73,7 @@ body {
 .questionnaire-container {
   background-color: hsla(220, 16%, 97%, 1);
   max-width: 500px;
+  flex-shrink: 0; /* To fix safari bug of container not filling full height */
 }
 
 .section-container {
