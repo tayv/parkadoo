@@ -1,17 +1,21 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 body {
   display: -webkit-box;
-  display: -moz-box;
   display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 
   max-height: 100vh;
   color: hsla(0, 0%, 0%);
@@ -27,12 +31,14 @@ body {
 /* Primary header */
 #header-main {
   display: -webkit-box;
-  display: -moz-box;
   display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 
   background-color: hsla(0, 0%, 0%);
   height: 80px;
@@ -53,12 +59,15 @@ body {
 .cta-sticky,
 .finished-section-container {
   display: -webkit-box;
-  display: -moz-box;
   display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .questionnaire-container {
@@ -98,12 +107,15 @@ body {
 .field-checkbox,
 .fieldset-radio {
   display: -webkit-box;
-  display: -moz-box;
   display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 
   padding: 0;
   margin: 0;
@@ -113,11 +125,12 @@ body {
 .cta-sticky-container,
 .date-container {
   display: -webkit-box;
-  display: -moz-box;
   display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
-  flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
 
 /* Margin to next question */
@@ -302,6 +315,7 @@ li {
 
 /* CTA sticky*/
 .cta-sticky {
+  position: -webkit-sticky;
   position: sticky;
   bottom: 0;
 
@@ -316,7 +330,8 @@ li {
   font: inherit;
   border: none;
   border-radius: 3px;
-  appearance: none;
+  -moz-appearance: none;
+       appearance: none;
   -webkit-appearance:none;
   padding:10px 20px;
   background-color: hsl(200, 50%, 80%);
@@ -327,7 +342,8 @@ li {
   font: inherit;
   border: none;
   border-radius: 3px;
-  appearance: none;
+  -moz-appearance: none;
+       appearance: none;
   -webkit-appearance:none;
   padding:10px 20px;
   background-color: hsla(136, 100%, 70%, 1);
@@ -336,12 +352,14 @@ li {
 /* Main footer */
 #footer-main {
   display: -webkit-box;
-  display: -moz-box;
   display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 
   background-color: hsla(0, 0%, 0%);
   height: 80px;
