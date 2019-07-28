@@ -73,7 +73,8 @@ body {
 .questionnaire-container {
   background-color: hsla(220, 16%, 97%, 1);
   max-width: 500px;
-  flex-shrink: 0; /* To fix safari bug of container not filling full height */
+  -ms-flex-negative: 0;
+      flex-shrink: 0; /* To fix safari bug of container not filling full height */
 }
 
 .section-container {
@@ -225,9 +226,61 @@ input[type="password"]:focus,
   padding-bottom: 2px;
 }
 
-/* To remove radio button fieldset default border */
+/* Radio Button Styling */
+  /* To hide default rb selector styling */
+input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+}
+  /* To remove radio button fieldset default border */
 .fieldset-radio {
   border-style: none;
+}
+
+
+
+.field-radio-button label {
+  position: relative;
+  cursor: pointer;
+  text-indent: -30px; /* To prevent second line wrapping under rb selector */
+  margin-top: 5px; /* space between button options */
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 40px;
+  padding-right: 5px;
+  background-color: hsla(0, 0%, 90%);
+  display: inline-block;
+  width: 100%;
+
+}
+.field-radio-button label:hover {
+  background-color: green;
+}
+
+.field-radio-button input:checked ~ label {
+  background-color: red;
+  color: white;
+}
+  /* Custom radio button styling */
+.customRB {
+  display: inline-block;
+  height: 17px;
+  width: 17px;
+  background-color: #eee;
+  border-radius: 50%;
+
+  /* to vertically center */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.answerTextRB {
+  padding-left: 30px;
+}
+
+input:checked ~ label .customRB {
+  background-color: yellow;
 }
 
 /* Styling of date fields */
