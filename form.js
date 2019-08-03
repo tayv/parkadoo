@@ -222,44 +222,6 @@ let bylawTextObj = {
   ticketBylawExplanation35: "Sorry, I couldn't find the bylaw for this situation :("
 };
 
-/*
-// To set default answers/visibility. To be used on page load.
-// CB VISIBILITY CONDITION (works)
-const newsletterCheckbox = document.getElementById("newsletterSignUp");
-// element to be hidden
-const ticketDateOld = document.getElementById("ticket-date");
-// run checkbox visibility function
-const newsletterCheckboxVisiblity = (function() {
-newsletterCheckbox.addEventListener("click", checkboxChanged);
-function checkboxChanged() {
-  if (newsletterCheckbox.checked === true) {
-    ticketDateOld.style.display = "block";
-  } else {
-    ticketDateOld.style.display = "none";
-    }
-  }
-}());
-
-// YN RADIO BUTTON VISIBILITY CONDITION (works)
-const ifAHoomanYNRadio = document.getElementById("yn-hooman");
-const hoomanYesRadio = document.getElementById("yes-hooman");
-const hoomanNoRadio = document.getElementById("no-hooman");
-// element to be hidden
-const typeOfViolation = document.getElementById("parking-violation-radio");
-// run y/n radio button visibility function
-const hoomanYNRadioAnswer = (function() {
-  ifAHoomanYNRadio.addEventListener("click", radioChangedYN);
-  function radioChangedYN() {
-    if (hoomanYesRadio.checked === true) {
-      typeOfViolation.style.display = "block";
-    } else {
-      typeOfViolation.style.display = "none";
-      }
-    }
-}());
-*/
-
-
 // GENERIC FUNCTIONALITY - Previous/Next/Submit button visiblity and to scroll to next div/step. Needs to be initialized before question specific visibility conditions
 const stepsQuestionnaire = document.getElementsByClassName("section-container");
 const finishedSectionDiv = document.getElementById("finished-section-container");
