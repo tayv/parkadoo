@@ -19,7 +19,7 @@
         <section class="section-container" id="welcome-section">
           <!--Message Field-->
           <div class="field-container">
-              <span class="field-label-large">Welcome to Parkadoo :-)</span>
+              <h1 class="field-label-large">Welcome to Parkadoo :-)</h1>
               <p>I'm a free app that helps you avoid and appeal parking tickets.
               All you have to do is answer some questions and leave the rest to me.
               Are you ready to get started?</p>
@@ -631,8 +631,9 @@
                 <span class="field-label-large">Please describe the ticket error:</span>
               </label>
               <textarea class="abstract" id="ticket-error-description-text-field"
-                name="ticket-error-description">
-              </textarea>
+                name="ticket-error-description"
+                rows="5"
+                cols="33"></textarea>
               <span class="field-abstract-example">e.g. The ticket lists the offending vehicle license plate as F4R 3N4. However, my license plate is E4R EM4.</span>
             </div>
           </fieldset>
@@ -1079,9 +1080,10 @@
               <label for="incorrect-bylaw-text-field">
                 <span class="field-label-large">Why was the violation incorrectly applied to you?</span>
               </label>
-              <input id="incorrect-bylaw-text-field"
-                type="text"
-                name="incorrect-bylaw-description">
+              <textarea id="incorrect-bylaw-text-field" class="abstract"
+                name="incorrect-bylaw-description"
+                rows="5"
+                cols="33"></textarea>
               <span class="field-example">e.g. I was parallel parked less than 500mm away from the curb.</span>
             </div>
             <!-- Bylaw info box -->
@@ -1229,8 +1231,9 @@
             </label>
             <textarea class="abstract" id="mailing-address-text-field"
               name="mailing-address-description"
-              placeholder="Street Address&#10;City, Province  Postal Code">
-            </textarea>
+              rows="5"
+              cols="33"
+              placeholder="Street Address&#10;City, Province  Postal Code"></textarea>
             <span class="field-abstract-example">Street Address<br>City, Province  Postal Code </span>
           </div>
         </section>
