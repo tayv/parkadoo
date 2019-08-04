@@ -356,7 +356,6 @@ body {
 /* RADIO BUTTON STYLING */
   /* To hide default rb selector styling */
 input[type="radio"] {
-  position: absolute;
   opacity: 0;
 }
   /* To remove radio button fieldset default border */
@@ -364,11 +363,14 @@ input[type="radio"] {
   border-style: none;
 }
 
+.field-radio-button {
+  margin: -12px;
+}
+
 .field-radio-button label {
   position: relative;
   cursor: pointer;
   text-indent: -30px; /* To prevent second line wrapping under rb selector */
-  margin-top: 5px; /* space between button options */
   padding-top: 7px;
   padding-bottom: 7px;
   padding-left: 40px;
