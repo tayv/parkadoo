@@ -5,6 +5,153 @@
           box-sizing: border-box;
 }
 
+/* COLOR SECTION */
+  /* Generic questionnaire colors */
+:root {
+  --primary-color-900: hsla(218, 22%, 7%, 1);
+  --primary-color-700: hsla(218, 22%, 12%, 1);
+  --primary-color-500: hsla(218, 12%, 18%, 1); /* dark greyish blue */
+  --primary-color-300: hsla(218, 12%, 26%, 1);
+  --primary-color-100: hsla(218, 17%, 33%, 1);
+
+  --neutral-color-900: hsla(211, 10%, 53%, 1);
+  --neutral-color-700: hsla(211, 13%, 65%, 1);
+  --neutral-color-500: hsla(210, 16%, 82%, 1); /* grey */
+  --neutral-color-300: hsla(214, 15%, 91%, 1);
+  --neutral-color-100: hsla(216, 33%, 97%, 1);
+
+  --accent-color1-900: hsla(153, 92%, 30%, 1);
+  --accent-color1-700: hsla(153, 93%, 42%, 1);
+  --accent-color1-500: hsla(153, 100%, 53%, 1); /* green */
+  --accent-color1-300: hsla(153, 100%, 69%, 1);
+  --accent-color1-100: hsla(153, 100%, 79%, 1);
+
+  --accent-color2-900: hsla(44, 92%, 63%, 1);
+  --accent-color2-700: hsla(48, 94%, 68%, 1);
+  --accent-color2-500: hsla(48, 95%, 76%, 1); /* yellow */
+  --accent-color2-300: hsla(48, 100%, 88%, 1);
+  --accent-color2-100: hsla(49, 100%, 96%, 1);
+
+  --color-white: hsla(0, 0%, 100%, 1); /* full white */
+  --color-black: hsla(210, 50%, 1%, 1); /* rich black */
+}
+
+body {
+  background-color: hsla(0, 0%, 13%, 1); /* fallback for IE11 */
+  background-color: var(--primary-color-900);
+  color: hsla(0, 0%, 100%, 1);
+  color: var(--color-white);
+  text-shadow: 0px 1px 1px hsla(0, 0%, 0%, 1);
+}
+
+#header-main {
+  background-color: hsla(218, 22%, 12%, 1);
+  background-color: var(--primary-color-700);
+  border-bottom: 1px solid hsla(0, 0%, 0%, 1);
+  box-shadow: 0 0 1px hsla(0, 0%, 0%, 1);
+}
+
+.questionnaire-container {
+  background-color: hsla(218, 12%, 18%, 1);
+  background-color: var(--primary-color-500);
+}
+
+.section-container-highlight { /* Not currently being used */
+  background-color: hsla(153, 100%, 53%, 1);
+  background-color: var(--accent-color1-500);
+}
+
+/* Unselected text field */
+.field-container input[type="text"],
+.field-container input[type="email"],
+.field-container input[type="password"],
+.field-container .abstract,
+.field-date input[type="number"],
+.field-date input[type="text"] {
+  background-color: hsla(216, 33%, 97%, 1);
+  background-color: var(--neutral-color-100);
+  border-color: hsla(48, 95%, 76%, 1);
+  border-color: var(--accent-color2-500);
+}
+
+/* Selected text field */
+.field-container input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+.field-container .abstract:focus,
+.field-date input[type="number"]:focus,
+.field-date input[type="text"]:focus {
+  background-color: hsla(0, 0%, 100%, 1);
+  background-color: var(--color-white);
+  border-color: hsla(48, 95%, 76%, 1);
+  border-color: var(--accent-color2-500);
+}
+
+.cta-sticky {
+  background-color: hsla(218, 12%, 18%, 1);
+  background-color: var(--primary-color-500);
+  box-shadow: 1 1 1px hsla(0, 0%, 0%, 1);
+}
+
+#button-previous,
+#button-next {
+  background-color: hsla(210, 16%, 82%, 1);
+  background-color: var(--neutral-color-500);
+}
+
+#button-submit {
+  background-color: hsla(48, 95%, 76%, 1);
+  background-color: var(--accent-color2-500);
+}
+
+#footer-main {
+  background-color: hsla(218, 22%, 12%, 1);
+  background-color: var(--primary-color-700);
+  border-top: 1px solid hsla(227, 12%, 30%, 1);
+
+}
+
+  /* Radio buttons */
+.field-radio-button label,
+.customRB::after { /* rb center dot. should match label background color */
+  color: hsla(210, 16%, 82%, 1);
+  color: var(--neutral-color-500);
+}
+
+.field-radio-button label:hover {
+  background-color: hsla(218, 12%, 26%, 1);
+  background-color: var(--primary-color-300);
+  color: hsla(0, 0%, 100%, 1);
+  color: var(--color-white);
+}
+
+input:checked ~ label .customRB {
+  border-color: hsla(153, 100%, 53%, 1);
+  border-color: var(--accent-color1-500);
+}
+
+input:checked ~ label .customRB::after {
+  background-color: hsla(153, 100%, 53%, 1);
+  background-color: var(--accent-color1-500);
+}
+
+.field-radio-button input:checked ~ label {
+  color: hsla(153, 100%, 53%, 1);
+  color: var(--accent-color1-500);
+  border-color: hsla(153, 100%, 53%, 1);
+  border-color: var(--accent-color1-500);
+  background-color: hsla(218, 12%, 26%, 1);
+  background-color: var(--primary-color-300);
+}
+  /* Info Box */
+.info-box-div {
+  background-color: hsla(210, 16%, 82%, 1);
+  background-color: var(--neutral-color-500);
+  color: hsla(210, 50%, 1%, 1);
+  color: var(--color-black);
+}
+
+/* GENERIC STYLES */
 body {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -18,8 +165,6 @@ body {
           align-items: center;
 
   max-height: 100vh;
-  color: hsla(0, 0%, 0%);
-  background-color: hsla(360, 4%, 94%, 1);
   font-family: -apple-system, BlinkMacSystemFont,
     “Segoe UI”, “Roboto”, “Oxygen”, “Ubuntu”, “Cantarell”,
     “Fira Sans”, “Droid Sans”, “Helvetica Neue”, sans-serif;
@@ -40,7 +185,6 @@ body {
       -ms-flex-align: center;
           align-items: center;
 
-  background-color: hsla(0, 0%, 0%);
   height: 80px;
   width: 100vw;
 }
@@ -71,9 +215,9 @@ body {
 }
 
 .questionnaire-container {
-  background-color: hsla(220, 16%, 97%, 1);
   max-width: 500px;
-  flex-shrink: 0; /* To fix safari bug of container not filling full height */
+  -ms-flex-negative: 0;
+      flex-shrink: 0; /* To fix safari bug of container not filling full height */
 }
 
 .section-container {
@@ -82,7 +226,7 @@ body {
   display: block; /* To fix Chrome/Safari issue with first section divs overlapping */
 }
 
-/* For testing */
+/* For testing
 .questionnaire-container,
 .section-container,
 .field-container,
@@ -154,10 +298,6 @@ body {
   width: 100%; /* of .questionnaire-container */
 }
 
-.section-container-highlight {
-  background-color: red;
-}
-
 /* Unselected field styling */
 .field-container input[type="text"],
 .field-container input[type="email"],
@@ -165,23 +305,11 @@ body {
 .field-container .abstract,
 .field-date input[type="number"],
 .field-date input[type="text"] {
-  background-color: hsl(210, 17%, 93%);
-  border: 3px solid hsla(180, 100%, 13%, 1);
+  border: 3px solid;
   border-radius: 4px;
   width: 100%;
   padding: 7px;
   font-size: 14px;
-}
-
-/* Styling when select a field */
-.field-container input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="password"]:focus,
-.field-container .abstract:focus,
-.field-date input[type="number"]:focus,
-.field-date input[type="text"]:focus {
-  background-color: #FFF;
-  border-color: hsl(208, 100%, 45%);
 }
 
 /* h1 styling for questions without standard primary label */
@@ -225,9 +353,78 @@ input[type="password"]:focus,
   padding-bottom: 2px;
 }
 
-/* To remove radio button fieldset default border */
+/* RADIO BUTTON STYLING */
+  /* To hide default rb selector styling */
+input[type="radio"] {
+  opacity: 0;
+}
+  /* To remove radio button fieldset default border */
 .fieldset-radio {
   border-style: none;
+}
+
+.field-radio-button {
+  margin: -12px -12px 0px -12px;
+}
+
+.field-radio-button label {
+  position: relative;
+  cursor: pointer;
+  text-indent: -30px; /* To prevent second line wrapping under rb selector */
+  padding: 7px 5px 7px 40px;
+  display: inline-block;
+  width: 100%;
+}
+
+.field-radio-button label:hover {
+  border-radius: 25px;
+}
+
+.field-radio-button input:checked ~ label {
+  text-shadow: none;
+  padding-left: 40px; /* to fix chrome alignment bug */
+  border-radius: 25px;
+}
+
+  /* Custom radio button styling */
+.customRB {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  border: 3px solid;
+  border-radius: 50%;
+
+  /* to vertically center */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Small interior rb circle */
+.customRB::after {
+  display: inline-block;
+  position: absolute;
+	content: '';
+  border-radius: 100%;
+  height: 8px;
+  width: 8px;
+  left: 22%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+input:checked ~ label .customRB {
+ transition: border .25s linear;
+  -webkit-transition: border 0.25s linear;
+}
+
+input:checked ~ label .customRB::after {
+  transition: background 0.25s linear;
+    -webkit-transition: background 0.25s linear;
+}
+
+.answerTextRB {
+  padding-left: 30px;
 }
 
 /* Styling of date fields */
@@ -236,21 +433,17 @@ input[type="password"]:focus,
  display: block;
 }
 
-.container-day #date-number {
+.container-day {
   -webkit-appearance: none; /* To remove stepper */
   -moz-appearance: textfield; /* To remove stepper in FF */
-}
-
-.container-day,
-.container-day #date-number {
   max-width: 50px;
   width: 100%;
   margin-right: 10px;
   display: block;
 }
 
-.container-year #date-text {
-  max-width: 60px;
+.container-year {
+  max-width: 70px;
   width: 100%;
   display: block;
 }
@@ -275,10 +468,11 @@ input[type="password"]:focus,
   padding: 0px;
 }
 .info-box-div {
-  background-color: hsla(0, 0%, 81%, 1);
   margin-top: 4%;
   padding: 5%;
   font-size: 15px;
+  border-radius: 4px;
+  text-shadow: none;
 }
 
 .info-box-disclaimer-text {
@@ -320,7 +514,6 @@ li {
   position: sticky;
   bottom: 0;
 
-  background-color: hsla(0, 0%, 0%);
   width: 100%;
   padding: 15px;
 }
@@ -335,7 +528,6 @@ li {
        appearance: none;
   -webkit-appearance:none;
   padding:10px 20px;
-  background-color: hsl(200, 50%, 80%);
 }
 
 #button-submit {
@@ -347,7 +539,6 @@ li {
        appearance: none;
   -webkit-appearance:none;
   padding:10px 20px;
-  background-color: hsla(136, 100%, 70%, 1);
 }
 
 /* Main footer */
@@ -362,10 +553,8 @@ li {
       -ms-flex-align: center;
           align-items: center;
 
-  background-color: hsla(0, 0%, 0%);
   height: 80px;
   width: 100vw;
-
   margin-top: auto; /* Uses flex to stay fixed to bottom of content without jumping out of document flow like fixed position */
 }
 
