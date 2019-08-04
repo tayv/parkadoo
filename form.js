@@ -238,6 +238,7 @@ const buttonVisibility = function() {
         document.getElementById("button-previous").style.display="none";
         document.getElementById("button-next").style.display="none";
         document.getElementById("button-submit").style.display="block";
+        console.trace;
     }
   };
 
