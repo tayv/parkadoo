@@ -15,7 +15,7 @@ const parkingProblemSection = document.getElementById("parking-problem-section")
 const parkingTicketIssuerSection = document.getElementById("ticket-issuer-section");
     // If appealing city ticket
 const municipalitySection = document.getElementById("municipality-section");
-const newCityRequestSubsection = document.getElementById("new-city-request-subsection")
+const cityUnavailableSection = document.getElementById("city-unavailable-section")
 const ticketNumberSection = document.getElementById("ticket-number-section"); // also private operator
 const ticketAccuracySection = document.getElementById("ticket-accuracy-section"); // also private operator
 const ticketErrorDescriptionSubSection = document.getElementById("ticket-error-description-subsection"); // also private operator
@@ -410,6 +410,7 @@ const setWhiteSpaceAtEndOfDocument = (function calcAndSetWhiteSpace() {
 function hideSectionsNotInPath(path) {
   if (path === "city") {
     hideSections(
+      cityUnavailableSection,
       studentOrEmployeeSection,
       potentialIssueSection,
       checkBylawsSection,
@@ -426,11 +427,32 @@ function hideSectionsNotInPath(path) {
       mailingAddressSection);
     applyActiveVisibilityConditions();
     outputTemplateText("city");
-  } else if (path === "private operator") {
+  } else if (path === "city-unavailable") {
+    hideSections(
+      studentOrEmployeeSection,
+      potentialIssueSection,
+      checkBylawsSection,
+      privateTicketAppealReason,
+      parkingTicketIssuerSection,
+      ticketNumberSection,
+      ticketAccuracySection,
+      ticketReasonSection,
+      ticketAppealBylawSection,
+      nameSection,
+      ticketDateSection,
+      contactDetailsSection,
+      mailingAddressSection,
+      photoUploadSection);
+    unhideSections(
+      cityUnavailableSection);
+    applyActiveVisibilityConditions();
+//    outputTemplateText("city");
+    } else if (path === "private operator") {
       hideSections(
         potentialIssueSection,
         checkBylawsSection,
         municipalitySection,
+        cityUnavailableSection,
         studentOrEmployeeSection,
         ticketReasonSection,
         ticketAppealBylawSection,
@@ -450,6 +472,7 @@ function hideSectionsNotInPath(path) {
         potentialIssueSection,
         checkBylawsSection,
         municipalitySection,
+        cityUnavailableSection,
         ticketReasonSection,
         ticketAppealBylawSection);
       unhideSections(
@@ -469,6 +492,7 @@ function hideSectionsNotInPath(path) {
         checkBylawsSection,
         parkingTicketIssuerSection,
         municipalitySection,
+        cityUnavailableSection,
         studentOrEmployeeSection,
         ticketAppealBylawSection,
         ticketNumberSection,
@@ -487,6 +511,7 @@ function hideSectionsNotInPath(path) {
       hideSections(
         parkingTicketIssuerSection,
         municipalitySection,
+        cityUnavailableSection,
         studentOrEmployeeSection,
         ticketAppealBylawSection,
         ticketNumberSection,
@@ -672,13 +697,15 @@ const municipalityRadioSelection = (function updateMunicipalityConditionals() {
   for (let i = 0; i < municipalityRadioOptions.length; i++) {
     if (municipalityRadioOptions[i].checked) {
       if (municipalityRadioOptions[i].value === "1") {
-        newCityRequestSubsection.style.display = "none"; // Sub-sections need individual visibility conditions since they don't use hideTheseSectionsArray
-        outputTextCity("1");
+        hideSectionsNotInPath("city");
+      //  newCityRequestSubsection.style.display = "none"; // Sub-sections need individual visibility conditions since they don't use hideTheseSectionsArray
+      //  outputTextCity("1");
         return;
       }
       else if (municipalityRadioOptions[i].value === "2") {
-        newCityRequestSubsection.style.display = "block";
-        outputTextCity("2");
+      //  newCityRequestSubsection.style.display = "block";
+        hideSectionsNotInPath("city-unavailable");
+      //  outputTextCity("2");
         return;
       }
     }

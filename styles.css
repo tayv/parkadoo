@@ -306,7 +306,7 @@ body {
 .field-date input[type="number"],
 .field-date input[type="text"] {
   border: 2px solid;
-  border-radius: 3px;
+  border-radius: 5px;
   width: 100%;
   padding: 7px;
   font-size: 14px;
@@ -435,7 +435,6 @@ input:checked ~ label .customRB::after {
 
 .container-day {
   -webkit-appearance: none; /* To remove stepper */
-  -moz-appearance: textfield; /* To remove stepper in FF */
   max-width: 50px;
   width: 100%;
   margin-right: 10px;
