@@ -254,21 +254,16 @@ const buttonVisibility = function() {
 
   // To display and hide steps depending on visibility conditions
   const stepMakeVisible = function(...stepToHide) { // Keeping ... in parameter. Removing it causes a bug where the for loop doesn't fire
-      console.log("stepMakeVisible triggered. The parameter = ", stepToHide);
       for (let i = 0; i < stepToHide.length; i++) {
-        console.log("i: ", i);
-        console.log("stepToHide: ", stepToHide[i]);
         if (stepsQuestionnaire[count] === stepToHide[0][i]) { // adding [0] necessary because ...stepToHide makes an array within an array
           if (stepsQuestionnaire[count+1] > stepsQuestionnaire.length) {
             finishedSectionDiv.scrollIntoView(true);
           } else {
               stepsQuestionnaire[count+1].style.display = "block";
               stepsQuestionnaire[count+1].scrollIntoView(true);
-              console.log("hide a step");
           }
         } else {
           stepsQuestionnaire[count].style.display = "block";
-          console.log("no step to hide. continue as usual");
         }
       }
     };
@@ -348,7 +343,7 @@ function hideSections(...addSections) {
   function addToHideTheseSectionsArray(addItem) {
     if (hideTheseSectionsArray.indexOf(addItem) === -1 && typeof addItem !== "undefined") { // Need to exclude undefined because one parameter (either addItem or subtractItem) is likely left blank in the original function call
       hideTheseSectionsArray.push(addItem);
-      console.log("add an item: ", addItem);
+      console.log("add to hideTheseSectionsArray so section will be hidden: ", addItem);
     } else {
         console.log("There's already an ", addItem, " here. Don't do anything");
     }
@@ -366,8 +361,7 @@ function unhideSections(...subtractSections) {
     if (hideTheseSectionsArray.indexOf(subtractItem) > -1 && typeof subtractItem !== "undefined") {
       var arrayIndex = hideTheseSectionsArray.indexOf(subtractItem);
       hideTheseSectionsArray.splice(arrayIndex);
-      console.log("subtract:" + subtractItem);
-      console.log(subtractItem);
+      console.log("subtract from hideTheseSectionsArray so section will display: ", subtractItem);
       }
   }
   // Loop allows one or more sections to be passed as parameters to unhideSections()
@@ -378,6 +372,7 @@ function unhideSections(...subtractSections) {
 
 // Hide any sections present in hideTheseSectionsArray
 function applyActiveVisibilityConditions() {
+  console.log("applyActiveVisibilityConditions() runs on line 375. These are the steps to hide. Should not be blank.", hideTheseSectionsArray);
   if (hideTheseSectionsArray.length > 0) {
     for (let i = 0; i <= hideTheseSectionsArray.length; i++) {
       let hideThisSectionPlease = hideTheseSectionsArray[i];
@@ -392,7 +387,6 @@ function applyActiveVisibilityConditions() {
 function addRadioEventListener(radioClassName, updateConditionalsFunctionName) {
   for(let i = 0; i < radioClassName.length; i++) {
     radioClassName[i].addEventListener("change", updateConditionalsFunctionName, false);
-    console.log("radio event added", radioClassName);
   }
 };
 
@@ -425,9 +419,10 @@ function hideSectionsNotInPath(path) {
       nameSection,
       contactDetailsSection,
       mailingAddressSection);
+      console.log("hideTheseSectionsArray WORKS HERE:", hideTheseSectionsArray);
     applyActiveVisibilityConditions();
     outputTemplateText("city");
-  } else if (path === "city-unavailable") {
+  } else if (path === "city unavailable") {
     hideSections(
       studentOrEmployeeSection,
       potentialIssueSection,
@@ -443,10 +438,14 @@ function hideSectionsNotInPath(path) {
       contactDetailsSection,
       mailingAddressSection,
       photoUploadSection);
+    console.log("STILL WORKING HERE. hideTheseSectionsArray holds: ", hideTheseSectionsArray);
     unhideSections(
+      parkingProblemSection,
+      municipalitySection,
       cityUnavailableSection);
-    applyActiveVisibilityConditions();
-//    outputTemplateText("city");
+      console.log("PROBLEM HAPPENS HERE: hideTheseSectionsArray should hold everything passed to hideSections()", hideTheseSectionsArray);
+      applyActiveVisibilityConditions();
+  // outputTemplateText("city");
     } else if (path === "private operator") {
       hideSections(
         potentialIssueSection,
@@ -698,13 +697,15 @@ const municipalityRadioSelection = (function updateMunicipalityConditionals() {
     if (municipalityRadioOptions[i].checked) {
       if (municipalityRadioOptions[i].value === "1") {
         hideSectionsNotInPath("city");
+        applyActiveVisibilityConditions();
       //  newCityRequestSubsection.style.display = "none"; // Sub-sections need individual visibility conditions since they don't use hideTheseSectionsArray
       //  outputTextCity("1");
         return;
       }
       else if (municipalityRadioOptions[i].value === "2") {
       //  newCityRequestSubsection.style.display = "block";
-        hideSectionsNotInPath("city-unavailable");
+        hideSectionsNotInPath("city unavailable");
+        applyActiveVisibilityConditions();
       //  outputTextCity("2");
         return;
       }
