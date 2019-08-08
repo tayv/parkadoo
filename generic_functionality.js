@@ -20,7 +20,7 @@ const parkingProblemSection = document.getElementById("parking-problem-section")
 const parkingTicketIssuerSection = document.getElementById("ticket-issuer-section");
   // If appealing city ticket
 const municipalitySection = document.getElementById("municipality-section");
-const cityUnavailableSection = document.getElementById("city-unavailable-section")
+const cityUnavailableSection = document.getElementById("city-unavailable-section");
 const ticketNumberSection = document.getElementById("ticket-number-section"); // also private operator
 const ticketAccuracySection = document.getElementById("ticket-accuracy-section"); // also private operator
 const ticketErrorDescriptionSubSection = document.getElementById("ticket-error-description-subsection"); // also private operator
@@ -77,6 +77,7 @@ const buttonVisibility = function() {
       stepsQuestionnaire[i].style.display="none";
     }
   };
+
   hideUnseenStepsByDefault();
 
   // To display and hide steps depending on visibility conditions
