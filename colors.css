@@ -1,0 +1,145 @@
+/* COLOR SECTION */
+  /* Generic questionnaire colors */
+:root {
+  --primary-color-900: hsla(218, 22%, 7%, 1);
+  --primary-color-700: hsla(218, 22%, 12%, 1);
+  --primary-color-500: hsla(218, 12%, 18%, 1); /* dark greyish blue */
+  --primary-color-300: hsla(218, 12%, 26%, 1);
+  --primary-color-100: hsla(218, 17%, 33%, 1);
+
+  --neutral-color-900: hsla(211, 10%, 53%, 1);
+  --neutral-color-700: hsla(211, 13%, 65%, 1);
+  --neutral-color-500: hsla(210, 16%, 82%, 1); /* grey */
+  --neutral-color-300: hsla(214, 15%, 91%, 1);
+  --neutral-color-100: hsla(216, 33%, 97%, 1);
+
+  --accent-color1-900: hsla(153, 92%, 30%, 1);
+  --accent-color1-700: hsla(153, 93%, 42%, 1);
+  --accent-color1-500: hsla(153, 100%, 53%, 1); /* green */
+  --accent-color1-300: hsla(153, 100%, 69%, 1);
+  --accent-color1-100: hsla(153, 100%, 79%, 1);
+
+  --accent-color2-900: hsla(44, 92%, 63%, 1);
+  --accent-color2-700: hsla(48, 94%, 68%, 1);
+  --accent-color2-500: hsla(48, 95%, 76%, 1); /* yellow */
+  --accent-color2-300: hsla(48, 100%, 88%, 1);
+  --accent-color2-100: hsla(49, 100%, 96%, 1);
+
+  --color-white: hsla(0, 0%, 100%, 1); /* full white */
+  --color-black: hsla(210, 50%, 1%, 1); /* rich black */
+}
+
+body {
+  background-color: hsla(0, 0%, 13%, 1); /* fallback for IE11 */
+  background-color: var(--primary-color-900);
+  color: hsla(0, 0%, 100%, 1);
+  color: var(--color-white);
+  text-shadow: 0px 1px 1px hsla(0, 0%, 0%, 1);
+}
+
+#header-main {
+  background-color: hsla(218, 22%, 12%, 1);
+  background-color: var(--primary-color-700);
+  border-bottom: 1px solid hsla(0, 0%, 0%, 1);
+  box-shadow: 0 0 1px hsla(0, 0%, 0%, 1);
+}
+
+.questionnaire-container {
+  background-color: hsla(218, 12%, 18%, 1);
+  background-color: var(--primary-color-500);
+}
+
+.section-container-highlight { /* Not currently being used */
+  background-color: hsla(153, 100%, 53%, 1);
+  background-color: var(--accent-color1-500);
+}
+
+/* Unselected text field */
+.field-container input[type="text"],
+.field-container input[type="email"],
+.field-container input[type="password"],
+.field-container .abstract,
+.field-date input[type="number"],
+.field-date input[type="text"] {
+  background-color: hsla(216, 33%, 97%, 1);
+  background-color: var(--neutral-color-100);
+  border-color: hsla(48, 95%, 76%, 1);
+  border-color: var(--accent-color2-500);
+}
+
+/* Selected text field */
+.field-container input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+.field-container .abstract:focus,
+.field-date input[type="number"]:focus,
+.field-date input[type="text"]:focus {
+  background-color: hsla(0, 0%, 100%, 1);
+  background-color: var(--color-white);
+  border-color: hsla(48, 95%, 76%, 1);
+  border-color: var(--accent-color2-500);
+}
+
+.cta-sticky {
+  background-color: hsla(218, 12%, 18%, 1);
+  background-color: var(--primary-color-500);
+  box-shadow: 1 1 1px hsla(0, 0%, 0%, 1);
+}
+
+#button-previous,
+#button-next {
+  background-color: hsla(210, 16%, 82%, 1);
+  background-color: var(--neutral-color-500);
+}
+
+#button-submit {
+  background-color: hsla(48, 95%, 76%, 1);
+  background-color: var(--accent-color2-500);
+}
+
+#footer-main {
+  background-color: hsla(218, 22%, 12%, 1);
+  background-color: var(--primary-color-700);
+  border-top: 1px solid hsla(227, 12%, 30%, 1);
+
+}
+
+  /* Radio buttons */
+.field-radio-button label,
+.customRB::after { /* rb center dot. should match label background color */
+  color: hsla(210, 16%, 82%, 1);
+  color: var(--neutral-color-500);
+}
+
+.field-radio-button label:hover {
+  background-color: hsla(218, 12%, 26%, 1);
+  background-color: var(--primary-color-300);
+  color: hsla(0, 0%, 100%, 1);
+  color: var(--color-white);
+}
+
+input:checked ~ label .customRB {
+  border-color: hsla(153, 100%, 53%, 1);
+  border-color: var(--accent-color1-500);
+}
+
+input:checked ~ label .customRB::after {
+  background-color: hsla(153, 100%, 53%, 1);
+  background-color: var(--accent-color1-500);
+}
+
+.field-radio-button input:checked ~ label {
+  color: hsla(153, 100%, 53%, 1);
+  color: var(--accent-color1-500);
+  border-color: hsla(153, 100%, 53%, 1);
+  border-color: var(--accent-color1-500);
+  background-color: hsla(218, 12%, 26%, 1);
+  background-color: var(--primary-color-300);
+}
+  /* Info Box */
+.info-box-div {
+  background-color: hsla(210, 16%, 82%, 1);
+  background-color: var(--neutral-color-500);
+  color: hsla(210, 50%, 1%, 1);
+  color: var(--color-black);
+}
