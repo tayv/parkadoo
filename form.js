@@ -60,20 +60,20 @@ const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
     if (ticketIssuerRadioOptions[i].checked) {
       if (ticketIssuerRadioOptions[i].value === "1") {
         hideSectionsNotInPath("city");
-        applyActiveVisibilityConditions();
+        applyActiveVisibilityConditions(hideTheseSectionsArray);
     //  outputTemplateText("city");
         return templateType = "city";
 
       }
       else if (ticketIssuerRadioOptions[i].value === "2") {
         hideSectionsNotInPath("private operator");
-        applyActiveVisibilityConditions();
+        applyActiveVisibilityConditions(hideTheseSectionsArray);
     //  outputTemplateText("private operator");
         return templateType = "private operator";;
       }
       else if (ticketIssuerRadioOptions[i].value === "3") {
         hideSectionsNotInPath("private institution");
-        applyActiveVisibilityConditions();
+        applyActiveVisibilityConditions(hideTheseSectionsArray);
     //  outputTemplateText("private institution");
         return templateType = "private institution";;
       }
@@ -90,7 +90,7 @@ const municipalityRadioSelection = (function updateMunicipalityConditionals() {
     if (municipalityRadioOptions[i].checked) {
       if (municipalityRadioOptions[i].value === "1") {
         hideSectionsNotInPath("city");
-        applyActiveVisibilityConditions();
+
       //  newCityRequestSubsection.style.display = "none"; // Sub-sections need individual visibility conditions since they don't use hideTheseSectionsArray
       //  outputTextCity("1");
         return;
@@ -98,7 +98,7 @@ const municipalityRadioSelection = (function updateMunicipalityConditionals() {
       else if (municipalityRadioOptions[i].value === "2") {
       //  newCityRequestSubsection.style.display = "block";
         hideSectionsNotInPath("city unavailable");
-        applyActiveVisibilityConditions();
+
       //  outputTextCity("2");
         return;
       }

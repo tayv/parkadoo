@@ -67,7 +67,7 @@ const buttonVisibility = function() {
         document.getElementById("button-submit").style.display="block";
         console.trace;
     }
-  };
+  }
 
   checkButtonStep();
 
