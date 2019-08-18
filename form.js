@@ -35,15 +35,32 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
   for (let i = 0; i < parkingProblemRadioOptions.length; i++) {
     if (parkingProblemRadioOptions[i].checked) {
       if (parkingProblemRadioOptions[i].value === "1") {
-        hideSectionsNotInPath("city");
+        // // hideSectionsNotInPath("city");
+        hideTheseSectionsArray = [cityUnavailableSection,
+          studentOrEmployeeSection,
+          potentialIssueSection,
+          checkBylawsSection,
+          privateTicketAppealReason];
+        hideSections(hideTheseSectionsArray);
+        showTheseSectionsArray = [
+          parkingTicketIssuerSection,
+          municipalitySection,
+          ticketNumberSection,
+          ticketAccuracySection,
+          ticketReasonSection,
+          ticketAppealBylawSection,
+          nameSection,
+          contactDetailsSection,
+          mailingAddressSection];
+        showSections(showTheseSectionsArray);
         return;
       }
       else if (parkingProblemRadioOptions[i].value === "2") {
-        hideSectionsNotInPath("report abandoned vehicle");
+        // // hideSectionsNotInPath("report abandoned vehicle");
         return;
       }
       else if (parkingProblemRadioOptions[i].value === "3") {
-        hideSectionsNotInPath("check bylaws");
+      //  // hideSectionsNotInPath("check bylaws");
         outputTemplateText("check bylaws");
         return;
       }
@@ -59,23 +76,38 @@ const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
   for (let i = 0; i < ticketIssuerRadioOptions.length; i++) {
     if (ticketIssuerRadioOptions[i].checked) {
       if (ticketIssuerRadioOptions[i].value === "1") {
+<<<<<<< Updated upstream
         hideSectionsNotInPath("city");
         applyActiveVisibilityConditions(hideTheseSectionsArray);
+=======
+      //  // hideSectionsNotInPath("city");
+        hideSections(hideTheseSectionsArray);
+>>>>>>> Stashed changes
     //  outputTemplateText("city");
-        return templateType = "city";
+        return //templateType = "city";
 
       }
       else if (ticketIssuerRadioOptions[i].value === "2") {
+<<<<<<< Updated upstream
         hideSectionsNotInPath("private operator");
         applyActiveVisibilityConditions(hideTheseSectionsArray);
+=======
+      //  // hideSectionsNotInPath("private operator");
+        hideSections(hideTheseSectionsArray);
+>>>>>>> Stashed changes
     //  outputTemplateText("private operator");
-        return templateType = "private operator";;
+        return //templateType = "private operator";;
       }
       else if (ticketIssuerRadioOptions[i].value === "3") {
+<<<<<<< Updated upstream
         hideSectionsNotInPath("private institution");
         applyActiveVisibilityConditions(hideTheseSectionsArray);
+=======
+      //  // hideSectionsNotInPath("private institution");
+        hideSections(hideTheseSectionsArray);
+>>>>>>> Stashed changes
     //  outputTemplateText("private institution");
-        return templateType = "private institution";;
+        return // templateType = "private institution";;
       }
     }
   }
@@ -89,16 +121,26 @@ const municipalityRadioSelection = (function updateMunicipalityConditionals() {
   for (let i = 0; i < municipalityRadioOptions.length; i++) {
     if (municipalityRadioOptions[i].checked) {
       if (municipalityRadioOptions[i].value === "1") {
+<<<<<<< Updated upstream
         hideSectionsNotInPath("city");
 
+=======
+        // hideSectionsNotInPath("city");
+        hideSections(hideTheseSectionsArray);
+>>>>>>> Stashed changes
       //  newCityRequestSubsection.style.display = "none"; // Sub-sections need individual visibility conditions since they don't use hideTheseSectionsArray
       //  outputTextCity("1");
         return;
       }
       else if (municipalityRadioOptions[i].value === "2") {
       //  newCityRequestSubsection.style.display = "block";
+<<<<<<< Updated upstream
         hideSectionsNotInPath("city unavailable");
 
+=======
+        // hideSectionsNotInPath("city unavailable");
+        hideSections(hideTheseSectionsArray);
+>>>>>>> Stashed changes
       //  outputTextCity("2");
         return;
       }
@@ -148,7 +190,7 @@ function outputTextStudentOrEmployee(answerValue) {
 
 // #ticket-number-section
   // To update output text
-  ticketNumberAnswer = document.getElementById("ticket-number-text-field").value;
+ticketNumberAnswer = document.getElementById("ticket-number-text-field").value;
 
 // #ticket-accuracy-section
   // gatekeeper function for displaying subsection
