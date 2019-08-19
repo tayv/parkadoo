@@ -165,37 +165,27 @@ const buttonVisibility = function() {
 
 
 
-// Call whenever you want to hide sections
-function hideSections(addSections) {
-  // Adds one section to hideTheseSectionsArray
-  function addToHideTheseSectionsArray(addItem) {
-    if (hideTheseSectionsArray.indexOf(addItem) === -1 && typeof addItem !== "undefined") { // Need to exclude undefined because one parameter (either addItem or subtractItem) is likely left blank in the original function call
-      hideTheseSectionsArray.push(addItem);
-      console.log("add to hideTheseSectionsArray so section will be hidden: ", addItem);
+// Call whenever you want to add a section to hideTheseSectionsArray
+function addHiddenSection(addItem) {
+  // Loop through and add each section to hideTheseSectionsArray.
+  for (let i = 0; i < addItem.length; i++) {
+    if (hideTheseSectionsArray.indexOf(addItem[i]) === -1 && typeof addItem[i] !== "undefined") { // Need to exclude undefined because one parameter (either addItem or subtractItem) is likely left blank in the original function call
+      hideTheseSectionsArray.push(addItem[i]);
+      console.log("add to hideTheseSectionsArray so section will be hidden: ", addItem[i]);
     } else {
-        console.log("There's already an ", addItem, " here. Don't do anything");
+        console.log("There's already an ", addItem[i], " here. Don't do anything");
     }
   }
-  // Loop allows one or more sections to be passed as parameters in hideSections(hideTheseSectionsArray);
-    for (let i = 0; i < addSections.length; i++) {
-      addToHideTheseSectionsArray(addSections[i]);
-    }
 }
 
-// Call whenever you want to unhide or make sure a section displays
-function unhideSections(subtractSections) {
-  // Subtracts one section from hideTheseSectionsArray
-  function subtractFromHideTheseSectionsArray(subtractItem) {
-    if (hideTheseSectionsArray.indexOf(subtractItem) > -1 && typeof subtractItem !== "undefined") {
-      var arrayIndex = hideTheseSectionsArray.indexOf(subtractItem);
-      hideTheseSectionsArray.splice(arrayIndex);
-      console.log("subtract from hideTheseSectionsArray so section will display: ", subtractItem);
-      }
+// Call whenever you want to remove a section from hideTheseSectionsArray
+function subtractSections(subtractItem) {
+  // Subtracts one section from hideTheseSectionsArray. Loop allows one or more sections to be passed as parameters
+  if (hideTheseSectionsArray.indexOf(subtractItem[i]) > -1 && typeof subtractItem[i] !== "undefined") {
+    var arrayIndex = hideTheseSectionsArray.indexOf(subtractItem[i]);
+    hideTheseSectionsArray.splice(arrayIndex);
+    console.log("subtract from hideTheseSectionsArray so section will display: ", subtractItem[i]);
   }
-  // Loop allows one or more sections to be passed as parameters to unhideSections(hideTheseSectionsArray);
-    for (let i = 0; i < subtractSections.length; i++) {
-      subtractFromHideTheseSectionsArray(subtractSections[i]);
-    }
 }
 
 // Hide any sections present in hideTheseSectionsArray
@@ -247,7 +237,7 @@ function hideSectionsNotInPath(path) {
       potentialIssueSection,
       checkBylawsSection,
       privateTicketAppealReason]);
-    unhideSections(
+    subtractSections(
       [parkingTicketIssuerSection,
       municipalitySection,
       ticketNumberSection,
@@ -277,7 +267,7 @@ function hideSectionsNotInPath(path) {
       mailingAddressSection,
       photoUploadSection]);
     console.log("STILL WORKING HERE. hideTheseSectionsArray holds: ", hideTheseSectionsArray);
-    unhideSections(
+    subtractSections(
       [parkingProblemSection,
       municipalitySection,
       cityUnavailableSection]);
@@ -295,7 +285,7 @@ function hideSectionsNotInPath(path) {
         ticketAppealBylawSection,
         municipalitySection,
         mailingAddressSection);
-      unhideSections(
+      subtractSections(
         parkingTicketIssuerSection,
         ticketNumberSection,
         ticketAccuracySection,
@@ -312,7 +302,7 @@ function hideSectionsNotInPath(path) {
         cityUnavailableSection,
         ticketReasonSection,
         ticketAppealBylawSection);
-      unhideSections(
+      subtractSections(
         parkingTicketIssuerSection,
         studentOrEmployeeSection,
         ticketNumberSection,
@@ -361,7 +351,7 @@ function hideSectionsNotInPath(path) {
         contactDetailsSection,
         mailingAddressSection,
         photoUploadSection);
-      unhideSections(
+      subtractSections(
         potentialIssueSection,
         checkBylawsSection);
       hideSections(hideTheseSectionsArray);;
@@ -678,7 +668,6 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
           checkBylawsSection,
           privateTicketAppealReason];
         hideSections(hideTheseSectionsArray);
-        console.log("THIS IS TH EONE E E ", hideTheseSectionsArray);
         showTheseSectionsArray = [
           parkingTicketIssuerSection,
           municipalitySection,
@@ -713,9 +702,7 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
           mailingAddressSection,
           photoUploadSection];
         hideSections(hideTheseSectionsArray);
-        showTheseSectionsArray = [
-
-        ];
+        showTheseSectionsArray = [];
         showSections(showTheseSectionsArray);
         outputTemplateText("report abandoned vehicle");
         return;
@@ -759,22 +746,23 @@ const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
     if (ticketIssuerRadioOptions[i].checked) {
       if (ticketIssuerRadioOptions[i].value === "1") {
       //  // hideSectionsNotInPath("city");
+
         hideSections(hideTheseSectionsArray);
     //  outputTemplateText("city");
-        return //templateType = "city";
+        return templateType = "city";
 
       }
       else if (ticketIssuerRadioOptions[i].value === "2") {
       //  // hideSectionsNotInPath("private operator");
         hideSections(hideTheseSectionsArray);
     //  outputTemplateText("private operator");
-        return //templateType = "private operator";;
+        return templateType = "private operator";;
       }
       else if (ticketIssuerRadioOptions[i].value === "3") {
       //  // hideSectionsNotInPath("private institution");
         hideSections(hideTheseSectionsArray);
     //  outputTemplateText("private institution");
-        return // templateType = "private institution";;
+        return templateType = "private institution";;
       }
     }
   }
