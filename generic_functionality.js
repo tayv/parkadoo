@@ -23,22 +23,23 @@ const parkingTicketIssuerSection = document.getElementById("ticket-issuer-sectio
   // If appealing city ticket
 const municipalitySection = document.getElementById("municipality-section");
 const cityUnavailableSection = document.getElementById("city-unavailable-section");
-const ticketNumberSection = document.getElementById("ticket-number-section"); // also private operator
-const ticketAccuracySection = document.getElementById("ticket-accuracy-section"); // also private operator
-const ticketErrorDescriptionSubSection = document.getElementById("ticket-error-description-subsection"); // also private operator
+const ticketNumberSection = document.getElementById("ticket-number-section");
+const ticketAccuracySection = document.getElementById("ticket-accuracy-section");
+const ticketErrorDescriptionSubSection = document.getElementById("ticket-error-description-subsection");
 const ticketReasonSection = document.getElementById("ticket-reason-section");
 const ticketReasonOtherSubSection = document.getElementById("ticket-reason-other-subsection");
 const ticketAppealBylawSection = document.getElementById("ticket-appeal-bylaw-section");
 const ticketAppealSubSection = document.getElementById("ticket-appeal-bylaw-subsection");
-const privateTicketAppealReason = document.getElementById("private-ticket-appeal-section"); // private operator and institution only
-const photoUploadSection = document.getElementById("photo-upload-section"); // also private operator
-const photoUploadPromptSubSection = document.getElementById("photo-upload-prompt-subsection"); // also private operator
+const photoUploadSection = document.getElementById("photo-upload-section");
+const photoUploadPromptSubSection = document.getElementById("photo-upload-prompt-subsection");
 const ticketDateSection = document.getElementById("ticket-date-section");
-const nameSection = document.getElementById("name-section"); // also private operator
-const contactDetailsSection = document.getElementById("contact-details-section"); // also private operator
-const mailingAddressSection = document.getElementById("mailing-address-section"); // possibly also private operator
+const nameSection = document.getElementById("name-section");
+const contactDetailsSection = document.getElementById("contact-details-section");
+const mailingAddressSection = document.getElementById("mailing-address-section");
 // If appealing university ticket
 const studentOrEmployeeSection = document.getElementById("student-or-employee-section");
+// private operator and institution
+const privateTicketAppealReason = document.getElementById("private-ticket-appeal-section");
 // If checking bylaws
 const potentialIssueSection = document.getElementById("potential-issue-section");
 const checkBylawsSection = document.getElementById("check-bylaw-info-section");
@@ -69,18 +70,18 @@ const buttonVisibility = function() {
         document.getElementById("button-submit").style.display="block";
         console.trace;
     }
-  }
-
+  };
   checkButtonStep();
 
-  // To hide all steps other than first and last section by default
+  // To hide all steps other than initial welcome section by default
   const hideUnseenStepsByDefault = function() {
     for (var i = 1; i < stepsQuestionnaire.length; i++) {
       stepsQuestionnaire[i].style.display="none";
     }
+    finishedSectionDiv.style.display="none";
   };
 
-  hideUnseenStepsByDefault();
+
 
   // To display and hide steps depending on visibility conditions
   const stepMakeVisible = function() {
@@ -294,7 +295,7 @@ function hideSectionsNotInPath(path) {
         contactDetailsSection);
       hideSections(hideTheseSectionsArray);;
       outputTemplateText("private operator");
-  } else if (path === "private institution") {
+  } else if (path === "institution") {
       hideSections(
         potentialIssueSection,
         checkBylawsSection,
@@ -312,7 +313,7 @@ function hideSectionsNotInPath(path) {
         contactDetailsSection,
         mailingAddressSection);
       hideSections(hideTheseSectionsArray);;
-      outputTemplateText("private institution");
+      outputTemplateText("institution");
   } else if (path === "report abandoned vehicle") {
       hideSections(
         potentialIssueSection,
@@ -446,7 +447,7 @@ function outputTemplateText(answerValue) {
       "<br><br>Sincerely,<br><br><br>" +
       nameAnswer;
       document.getElementById("insert-output-text-here").innerHTML = privateOperatorOutputTemplate;
-  } else if (answerValue === "private institution") { // not working // may want this to be apart of additional info section and not the output
+  } else if (answerValue === "institution") { // not working // may want this to be apart of additional info section and not the output
       institutionOutputTemplate =
       currentDateFormatted +
       "<br><br>RE: Appealing Parking Ticket: " + ticketNumberAnswer +
@@ -745,24 +746,64 @@ const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
   for (let i = 0; i < ticketIssuerRadioOptions.length; i++) {
     if (ticketIssuerRadioOptions[i].checked) {
       if (ticketIssuerRadioOptions[i].value === "1") {
-      //  // hideSectionsNotInPath("city");
-
+        hideTheseSectionsArray = [studentOrEmployeeSection];
         hideSections(hideTheseSectionsArray);
-    //  outputTemplateText("city");
+        showTheseSectionsArray = [
+          parkingProblemSection,
+          parkingTicketIssuerSection,
+          municipalitySection,
+          ticketNumberSection,
+          ticketAccuracySection,
+          ticketReasonSection,
+          ticketAppealBylawSection,
+          privateTicketAppealReason,
+          photoUploadSection,
+          ticketDateSection,
+          nameSection,
+          contactDetailsSection,
+          mailingAddressSection
+        ];
+        showSections(showTheseSectionsArray);
         return templateType = "city";
 
       }
       else if (ticketIssuerRadioOptions[i].value === "2") {
-      //  // hideSectionsNotInPath("private operator");
+        hideTheseSectionsArray = [municipalitySection];
         hideSections(hideTheseSectionsArray);
-    //  outputTemplateText("private operator");
-        return templateType = "private operator";;
+        showTheseSectionsArray = [
+          parkingProblemSection,
+          parkingTicketIssuerSection,
+          ticketNumberSection,
+          ticketAccuracySection,
+          ticketReasonSection,
+          privateTicketAppealReason,
+          photoUploadSection,
+          ticketDateSection,
+          nameSection,
+          contactDetailsSection,
+          mailingAddressSection
+        ];
+        showSections(showTheseSectionsArray);
+        return templateType = "private operator";
       }
       else if (ticketIssuerRadioOptions[i].value === "3") {
-      //  // hideSectionsNotInPath("private institution");
+        hideTheseSectionsArray = [municipalitySection];
         hideSections(hideTheseSectionsArray);
-    //  outputTemplateText("private institution");
-        return templateType = "private institution";;
+        showTheseSectionsArray = [
+          parkingProblemSection,
+          parkingTicketIssuerSection,
+          ticketNumberSection,
+          ticketAccuracySection,
+          ticketReasonSection,
+          privateTicketAppealReason,
+          photoUploadSection,
+          ticketDateSection,
+          nameSection,
+          contactDetailsSection,
+          mailingAddressSection
+        ];
+        showSections(showTheseSectionsArray);
+        return templateType = "institution";
       }
     }
   }
@@ -776,22 +817,52 @@ const municipalityRadioSelection = (function updateMunicipalityConditionals() {
   for (let i = 0; i < municipalityRadioOptions.length; i++) {
     if (municipalityRadioOptions[i].checked) {
       if (municipalityRadioOptions[i].value === "1") {
-        // hideSectionsNotInPath("city");
+        hideTheseSectionsArray = [cityUnavailableSection];
         hideSections(hideTheseSectionsArray);
-      //  newCityRequestSubsection.style.display = "none"; // Sub-sections need individual visibility conditions since they don't use hideTheseSectionsArray
-      //  outputTextCity("1");
-        return;
+        showTheseSectionsArray = [
+          parkingProblemSection,
+          parkingTicketIssuerSection,
+          municipalitySection,
+          ticketNumberSection,
+          ticketAccuracySection,
+          ticketReasonSection,
+          ticketAppealBylawSection,
+          privateTicketAppealReason,
+          photoUploadSection,
+          ticketDateSection,
+          nameSection,
+          contactDetailsSection,
+          mailingAddressSection
+        ];
+        showSections(showTheseSectionsArray);
+        return city = "City of Edmonton";
       }
       else if (municipalityRadioOptions[i].value === "2") {
-      //  newCityRequestSubsection.style.display = "block";
-        // hideSectionsNotInPath("city unavailable");
-        hideSections(hideTheseSectionsArray);
-      //  outputTextCity("2");
-        return;
+      //  hideTheseSectionsArray = [];
+      //  hideSections(hideTheseSectionsArray);
+        showTheseSectionsArray = [
+          parkingProblemSection,
+          parkingTicketIssuerSection,
+          municipalitySection,
+          cityUnavailableSection,
+          ticketNumberSection,
+          ticketAccuracySection,
+          ticketReasonSection,
+          ticketAppealBylawSection,
+          privateTicketAppealReason,
+          photoUploadSection,
+          ticketDateSection,
+          nameSection,
+          contactDetailsSection,
+          mailingAddressSection
+        ];
+        showSections(showTheseSectionsArray);
+        return city = document.getElementById("new-city-request-textfield").value;;
       }
     }
   }
 }());
+/*
   // function to update output text
 function outputTextCity(answerValue) {
   if (answerValue === "1") {
@@ -803,7 +874,7 @@ function outputTextCity(answerValue) {
     outputTemplateText("city");
   }
 }
-
+*/
 
 // #student-or-employee-section
   // update sub-section visibility conditions
@@ -826,10 +897,10 @@ const studentOrEmployeeRadioSelection = (function updateStudentOrEmployeeConditi
 function outputTextStudentOrEmployee(answerValue) {
   if (answerValue === "1") {
     yesStudentOrEmployee = "Note: As a student or employee of the issuer, be aware that although they can't force you to pay, the institution could withhold class credits or use other negative tactics against you if the vehicle is registered in your name and you refuse to pay the ticket.";
-    outputTemplateText("private institution");
+    outputTemplateText("institution");
   } else if (answerValue === "2") {
     yesStudentOrEmployee = "";
-    outputTemplateText("private institution")
+    outputTemplateText("institution")
   }
 }
 
