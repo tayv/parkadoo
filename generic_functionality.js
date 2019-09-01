@@ -4,14 +4,16 @@
 window.onload = function setDefaultAnswerState() {
   document.getElementById("parking-form-content").reset();
   welcomeSection.scrollIntoView(true);
+
   buttonVisibility(); // to display proper button
+  hideAllSteps();
 };
 
 // LIST OF VARIABLES
   // Array that will hold sections to hide
 let hideTheseSectionsArray = [];
   // Array that will hold section to display
-let showTheseSectionsArray = [];
+//let showTheseSectionsArray = [];
   // Holds the total number of sections
 const stepsQuestionnaire = document.getElementsByClassName("section-container");
 
@@ -54,61 +56,56 @@ let institutionOutputTemplate = "";
 let city = "";
 let yesStudentOrEmployee = "";
 
+// To hide all steps other than initial welcome section by default
+const hideAllSteps = function() {
+  for (var i = 1; i < stepsQuestionnaire.length; i++) {
+    stepsQuestionnaire[i].style.display="none";
+  }
+  finishedSectionDiv.style.display="none";
+};
+let showTheseSectionsArray = [parkingProblemSection];
 // GENERIC FUNCTIONALITY - Previous/Next/Submit button visiblity and to scroll to next div/step. Needs to be initialized before question specific visibility conditions
+
+
 const buttonVisibility = function() {
+
   var count = 0;
   function checkButtonStep() {
     if (count === 0) {
       document.getElementById("button-previous").style.display="none";
       document.getElementById("button-submit").style.display="none";
-    } else if (count > 0 && count < stepsQuestionnaire.length - 1) {
+    } else if (count > 0 && count < showTheseSectionsArray.length - 1) {
         document.getElementById("button-previous").style.display="inline";
         document.getElementById("button-submit").style.display="none";
-    } else if (count >= stepsQuestionnaire.length - 1) {
+    } else if (count >= showTheseSectionsArray.length - 1) {
         document.getElementById("button-previous").style.display="none";
         document.getElementById("button-next").style.display="none";
         document.getElementById("button-submit").style.display="block";
-        console.trace;
     }
   };
   checkButtonStep();
 
-  // To hide all steps other than initial welcome section by default
-  const hideUnseenStepsByDefault = function() {
-    for (var i = 1; i < stepsQuestionnaire.length; i++) {
-      stepsQuestionnaire[i].style.display="none";
-    }
-    finishedSectionDiv.style.display="none";
-  };
-
-
-
-  // To display and hide steps depending on visibility conditions
+/*
+  // To display and hide steps depending on visibility conditions. Seems to work without this
   const stepMakeVisible = function() {
-      for (let i = 0; i < hideTheseSectionsArray.length; i++) {
-        if (stepsQuestionnaire[count] === hideTheseSectionsArray[i]) {
-          if (stepsQuestionnaire[count+1] > stepsQuestionnaire.length) {
-            finishedSectionDiv.scrollIntoView(true);
-          } else {
-              stepsQuestionnaire[count+1].style.display = "block";
-              stepsQuestionnaire[count+1].scrollIntoView(true);
-          }
-        } else {
-          stepsQuestionnaire[count].style.display = "block";
-        }
+    if (showTheseSectionsArray[count] == undefined || showTheseSectionsArray[count+1] > showTheseSectionsArray.length) {
+      finishedSectionDiv.scrollIntoView(true);
+    } else {
+        showTheseSectionsArray[count+1].style.display = "block";
+        showTheseSectionsArray[count+1].scrollIntoView(true);
       }
-    };
+  }; */
 
 
   document.getElementById("button-next").onclick = function() {
-    if (count < stepsQuestionnaire.length - 1) {
+    if (count < showTheseSectionsArray.length - 1) {
       count++;
-      stepMakeVisible();
+  //    stepMakeVisible();
       hideSections(hideTheseSectionsArray);
       showSections(showTheseSectionsArray);
-      stepsQuestionnaire[count].scrollIntoView(true);
-      stepsQuestionnaire[count].style.opacity="1";
-      stepsQuestionnaire[count-1].style.opacity="0.2"; // reduce opacity of a completed step so user focus is on current step
+      showTheseSectionsArray[count].scrollIntoView(true);
+      showTheseSectionsArray[count].style.opacity="1";
+      showTheseSectionsArray[count-1].style.opacity="0.2"; // reduce opacity of a completed step so user focus is on current step
       checkButtonStep();
     //  skipPastNextHiddenSections();
       outputTemplateText(templateType);
@@ -125,54 +122,54 @@ const buttonVisibility = function() {
     //    stepMakeVisibleTest(hideTheseSectionsArray); // might not be necessary
         hideSections(hideTheseSectionsArray);
         showSections(showTheseSectionsArray);
-        stepsQuestionnaire[count].style.opacity="1";
-        stepsQuestionnaire[count+1].style.opacity="0.2";
-        stepsQuestionnaire[count].scrollIntoView(true);
+        showTheseSectionsArray[count].style.opacity="1";
+        showTheseSectionsArray[count+1].style.opacity="0.2";
+        showTheseSectionsArray[count].scrollIntoView(true);
         checkButtonStep();
-        skipPastPreviousHiddenSections();
+        // skipPastPreviousHiddenSections();
         outputTemplateText(templateType);
     } return count;
   };
 
+/*
   // Added skipPast...HiddenSections() to prevent next/previous button onclick functions from trying to display hidden sections and requiring multiple clicks
   function skipPastNextHiddenSections() {
-      while (stepsQuestionnaire[count].style.display === "none"){
+      while (showTheseSectionsArray[count].style.display === "none"){
         count++;
         stepMakeVisible(hideTheseSectionsArray);
         hideSections(hideTheseSectionsArray);;
-        stepsQuestionnaire[count].scrollIntoView(true);
-        stepsQuestionnaire[count].style.opacity="1";
-        stepsQuestionnaire[count-1].style.opacity="0.2";
+        showTheseSectionsArray[count].scrollIntoView(true);
+        showTheseSectionsArray[count].style.opacity="1";
+        showTheseSectionsArray[count-1].style.opacity="0.2";
         checkButtonStep();
-      if (stepsQuestionnaire[count].style.display === "block") {
+      if (showTheseSectionsArray[count].style.display === "block") {
           break;
       }
     }
   }
 
-  function skipPastPreviousHiddenSections() {
-       while (stepsQuestionnaire[count].style.display === "none"){
+  function  skipPastPreviousHiddenSections() {
+       while (showTheseSectionsArray[count].style.display === "none"){
          count--;
          stepMakeVisible(hideTheseSectionsArray);
          hideSections(hideTheseSectionsArray);;
-         stepsQuestionnaire[count].scrollIntoView(true);
-         stepsQuestionnaire[count].style.opacity="1";
-         stepsQuestionnaire[count+1].style.opacity="0.2";
+         showTheseSectionsArray[count].scrollIntoView(true);
+         showTheseSectionsArray[count].style.opacity="1";
+         showTheseSectionsArray[count+1].style.opacity="0.2";
          checkButtonStep();
-       if (stepsQuestionnaire[count].style.display === "block") {
+       if (showTheseSectionsArray[count].style.display === "block") {
          break;
        }
      }
-   }
+   } */
 };
-
 
 
 // Call whenever you want to add a section to hideTheseSectionsArray
 function addHiddenSection(addItem) {
   // Loop through and add each section to hideTheseSectionsArray.
   for (let i = 0; i < addItem.length; i++) {
-    if (hideTheseSectionsArray.indexOf(addItem[i]) === -1 && typeof addItem[i] !== "undefined") { // Need to exclude undefined because one parameter (either addItem or subtractItem) is likely left blank in the original function call
+    if (hideTheseSectionsArray.indexOf(addItem[i]) === -1 && typeof addItem[i] !== undefined) { // Need to exclude undefined because one parameter (either addItem or subtractItem) is likely left blank in the original function call
       hideTheseSectionsArray.push(addItem[i]);
       console.log("add to hideTheseSectionsArray so section will be hidden: ", addItem[i]);
     } else {
@@ -184,7 +181,7 @@ function addHiddenSection(addItem) {
 // Call whenever you want to remove a section from hideTheseSectionsArray
 function subtractSections(subtractItem) {
   // Subtracts one section from hideTheseSectionsArray. Loop allows one or more sections to be passed as parameters
-  if (hideTheseSectionsArray.indexOf(subtractItem[i]) > -1 && typeof subtractItem[i] !== "undefined") {
+  if (hideTheseSectionsArray.indexOf(subtractItem[i]) > -1 && typeof subtractItem[i] !== undefined) {
     var arrayIndex = hideTheseSectionsArray.indexOf(subtractItem[i]);
     hideTheseSectionsArray.splice(arrayIndex);
     console.log("subtract from hideTheseSectionsArray so section will display: ", subtractItem[i]);
@@ -672,6 +669,7 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
           privateTicketAppealReason];
       //  hideSections(hideTheseSectionsArray);
         showTheseSectionsArray = [
+          parkingProblemSection,
           parkingTicketIssuerSection,
           municipalitySection,
           ticketNumberSection,
