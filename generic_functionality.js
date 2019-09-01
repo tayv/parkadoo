@@ -105,6 +105,7 @@ const buttonVisibility = function() {
       count++;
       stepMakeVisible();
       hideSections(hideTheseSectionsArray);
+      showSections(showTheseSectionsArray);
       stepsQuestionnaire[count].scrollIntoView(true);
       stepsQuestionnaire[count].style.opacity="1";
       stepsQuestionnaire[count-1].style.opacity="0.2"; // reduce opacity of a completed step so user focus is on current step
@@ -122,7 +123,8 @@ const buttonVisibility = function() {
     } else if (count >= 1) {
         count--;
     //    stepMakeVisibleTest(hideTheseSectionsArray); // might not be necessary
-    //    hideSections(hideTheseSectionsArray);; // might not be necessary
+        hideSections(hideTheseSectionsArray);
+        showSections(showTheseSectionsArray);
         stepsQuestionnaire[count].style.opacity="1";
         stepsQuestionnaire[count+1].style.opacity="0.2";
         stepsQuestionnaire[count].scrollIntoView(true);
@@ -668,7 +670,7 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
           potentialIssueSection,
           checkBylawsSection,
           privateTicketAppealReason];
-        hideSections(hideTheseSectionsArray);
+      //  hideSections(hideTheseSectionsArray);
         showTheseSectionsArray = [
           parkingTicketIssuerSection,
           municipalitySection,
@@ -679,7 +681,7 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
           nameSection,
           contactDetailsSection,
           mailingAddressSection];
-        showSections(showTheseSectionsArray);
+    //    showSections(showTheseSectionsArray);
         return;
       }
       else if (parkingProblemRadioOptions[i].value === "2") {
@@ -702,9 +704,9 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
           contactDetailsSection,
           mailingAddressSection,
           photoUploadSection];
-        hideSections(hideTheseSectionsArray);
+    //    hideSections(hideTheseSectionsArray);
         showTheseSectionsArray = [];
-        showSections(showTheseSectionsArray);
+    //    showSections(showTheseSectionsArray);
         outputTemplateText("report abandoned vehicle");
         return;
       }
@@ -726,11 +728,11 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
           contactDetailsSection,
           mailingAddressSection,
           photoUploadSection];
-        hideSections(hideTheseSectionsArray);
+    //    hideSections(hideTheseSectionsArray);
         showTheseSectionsArray = [
           potentialIssueSection,
           checkBylawsSection];
-        showSections(showTheseSectionsArray);
+    //    showSections(showTheseSectionsArray);
         outputTemplateText("check bylaws");
         return;
       }
@@ -747,7 +749,7 @@ const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
     if (ticketIssuerRadioOptions[i].checked) {
       if (ticketIssuerRadioOptions[i].value === "1") {
         hideTheseSectionsArray = [studentOrEmployeeSection];
-        hideSections(hideTheseSectionsArray);
+      //  hideSections(hideTheseSectionsArray);
         showTheseSectionsArray = [
           parkingProblemSection,
           parkingTicketIssuerSection,
@@ -763,13 +765,13 @@ const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
           contactDetailsSection,
           mailingAddressSection
         ];
-        showSections(showTheseSectionsArray);
+      //  showSections(showTheseSectionsArray);
         return templateType = "city";
 
       }
       else if (ticketIssuerRadioOptions[i].value === "2") {
         hideTheseSectionsArray = [municipalitySection];
-        hideSections(hideTheseSectionsArray);
+    //    hideSections(hideTheseSectionsArray);
         showTheseSectionsArray = [
           parkingProblemSection,
           parkingTicketIssuerSection,
@@ -783,12 +785,12 @@ const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
           contactDetailsSection,
           mailingAddressSection
         ];
-        showSections(showTheseSectionsArray);
+    //    showSections(showTheseSectionsArray);
         return templateType = "private operator";
       }
       else if (ticketIssuerRadioOptions[i].value === "3") {
         hideTheseSectionsArray = [municipalitySection];
-        hideSections(hideTheseSectionsArray);
+      //  hideSections(hideTheseSectionsArray);
         showTheseSectionsArray = [
           parkingProblemSection,
           parkingTicketIssuerSection,
@@ -802,7 +804,7 @@ const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
           contactDetailsSection,
           mailingAddressSection
         ];
-        showSections(showTheseSectionsArray);
+      //  showSections(showTheseSectionsArray);
         return templateType = "institution";
       }
     }
@@ -818,7 +820,7 @@ const municipalityRadioSelection = (function updateMunicipalityConditionals() {
     if (municipalityRadioOptions[i].checked) {
       if (municipalityRadioOptions[i].value === "1") {
         hideTheseSectionsArray = [cityUnavailableSection];
-        hideSections(hideTheseSectionsArray);
+    //    hideSections(hideTheseSectionsArray);
         showTheseSectionsArray = [
           parkingProblemSection,
           parkingTicketIssuerSection,
@@ -834,7 +836,7 @@ const municipalityRadioSelection = (function updateMunicipalityConditionals() {
           contactDetailsSection,
           mailingAddressSection
         ];
-        showSections(showTheseSectionsArray);
+      //  showSections(showTheseSectionsArray);
         return city = "City of Edmonton";
       }
       else if (municipalityRadioOptions[i].value === "2") {
@@ -856,7 +858,7 @@ const municipalityRadioSelection = (function updateMunicipalityConditionals() {
           contactDetailsSection,
           mailingAddressSection
         ];
-        showSections(showTheseSectionsArray);
+      //  showSections(showTheseSectionsArray);
         return city = document.getElementById("new-city-request-textfield").value;;
       }
     }
@@ -884,25 +886,22 @@ const studentOrEmployeeRadioSelection = (function updateStudentOrEmployeeConditi
   for (let i = 0; i < studentOrEmployeeRadioOptions.length; i++) {
     if (studentOrEmployeeRadioOptions[i].checked) {
       if (studentOrEmployeeRadioOptions[i].value === "1") {
-        outputTextStudentOrEmployee("1");
+        // No change to hideTheseSectionsArray or showTheseSectionsArray
+        // Update output
+        yesStudentOrEmployee = "Note: As a student or employee of the issuer, be aware that although they can't force you to pay, the institution could withhold class credits or use other negative tactics against you if the vehicle is registered in your name and you refuse to pay the ticket.";
+        outputTemplateText("institution");
         return;
       }
       else if (studentOrEmployeeRadioOptions[i].value === "2") {
+        // Update output
+        yesStudentOrEmployee = "";
+        outputTemplateText("institution")
         return;
       }
     }
   }
 }());
-  // function to update output text
-function outputTextStudentOrEmployee(answerValue) {
-  if (answerValue === "1") {
-    yesStudentOrEmployee = "Note: As a student or employee of the issuer, be aware that although they can't force you to pay, the institution could withhold class credits or use other negative tactics against you if the vehicle is registered in your name and you refuse to pay the ticket.";
-    outputTemplateText("institution");
-  } else if (answerValue === "2") {
-    yesStudentOrEmployee = "";
-    outputTemplateText("institution")
-  }
-}
+
 
 // #ticket-number-section
   // To update output text
