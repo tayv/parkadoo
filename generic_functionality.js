@@ -13,7 +13,7 @@ window.onload = function setDefaultAnswerState() {
   // Array that will hold sections to hide
 let hideTheseSectionsArray = [];
   // Array that will hold section to display
-//let showTheseSectionsArray = [];
+let showTheseSectionsArray = [];
   // Holds the total number of sections
 const stepsQuestionnaire = document.getElementsByClassName("section-container");
 
@@ -63,7 +63,7 @@ const hideAllSteps = function() {
   }
   finishedSectionDiv.style.display="none";
 };
-let showTheseSectionsArray = [parkingProblemSection];
+
 // GENERIC FUNCTIONALITY - Previous/Next/Submit button visiblity and to scroll to next div/step. Needs to be initialized before question specific visibility conditions
 
 
@@ -131,6 +131,11 @@ const buttonVisibility = function() {
     } return count;
   };
 
+  function showSections(showTheseSectionsArray) {
+    if (showTheseSectionsArray.length > 0 && showTheseSectionsArray[count] !== undefined) {
+          showTheseSectionsArray[count].style.display = "block";
+    }
+  };
 /*
   // Added skipPast...HiddenSections() to prevent next/previous button onclick functions from trying to display hidden sections and requiring multiple clicks
   function skipPastNextHiddenSections() {
@@ -164,7 +169,7 @@ const buttonVisibility = function() {
    } */
 };
 
-
+/*
 // Call whenever you want to add a section to hideTheseSectionsArray
 function addHiddenSection(addItem) {
   // Loop through and add each section to hideTheseSectionsArray.
@@ -187,7 +192,7 @@ function subtractSections(subtractItem) {
     console.log("subtract from hideTheseSectionsArray so section will display: ", subtractItem[i]);
   }
 }
-
+*/
 // Hide any sections present in hideTheseSectionsArray
 function hideSections(hideTheseSectionsArray) {
   console.log("hideSections(hideTheseSectionsArray); runs on line 203. These are the steps to hide. Should not be blank.", hideTheseSectionsArray);
@@ -201,7 +206,7 @@ function hideSections(hideTheseSectionsArray) {
 };
 
 // Hide any sections present in hideTheseSectionsArray
-function showSections(showTheseSectionsArray) {
+/* function showSections(showTheseSectionsArray) {
   if (showTheseSectionsArray.length > 0) {
     for (let i = 0; i <= showTheseSectionsArray.length; i++) {
       if (showTheseSectionsArray[i] !== undefined) {
@@ -209,7 +214,9 @@ function showSections(showTheseSectionsArray) {
       }
     }
   }
-};
+}; */
+
+
 
 // GENERIC FUNCTIONALITY: Add event listener to radio buttons within visibility condition function
 function addRadioEventListener(radioClassName, updateConditionalsFunctionName) {
@@ -669,6 +676,7 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
           privateTicketAppealReason];
       //  hideSections(hideTheseSectionsArray);
         showTheseSectionsArray = [
+          welcomeSection,
           parkingProblemSection,
           parkingTicketIssuerSection,
           municipalitySection,
@@ -749,6 +757,7 @@ const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
         hideTheseSectionsArray = [studentOrEmployeeSection];
       //  hideSections(hideTheseSectionsArray);
         showTheseSectionsArray = [
+          welcomeSection,
           parkingProblemSection,
           parkingTicketIssuerSection,
           municipalitySection,
@@ -790,6 +799,7 @@ const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
         hideTheseSectionsArray = [municipalitySection];
       //  hideSections(hideTheseSectionsArray);
         showTheseSectionsArray = [
+          welcomeSection,
           parkingProblemSection,
           parkingTicketIssuerSection,
           ticketNumberSection,
@@ -820,6 +830,7 @@ const municipalityRadioSelection = (function updateMunicipalityConditionals() {
         hideTheseSectionsArray = [cityUnavailableSection];
     //    hideSections(hideTheseSectionsArray);
         showTheseSectionsArray = [
+          welcomeSection,
           parkingProblemSection,
           parkingTicketIssuerSection,
           municipalitySection,
@@ -841,6 +852,7 @@ const municipalityRadioSelection = (function updateMunicipalityConditionals() {
       //  hideTheseSectionsArray = [];
       //  hideSections(hideTheseSectionsArray);
         showTheseSectionsArray = [
+          welcomeSection,
           parkingProblemSection,
           parkingTicketIssuerSection,
           municipalitySection,
