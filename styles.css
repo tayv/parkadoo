@@ -44,14 +44,14 @@ body {
 }
 
 /* Main form and footer content container */
-#parking-form {
+#parking-form-main {
   width: 100%;
   overflow-y: scroll; /* Scroll window for main content so header stays fixed */
   height: 100vh; /* To push footer to bottom of page */
 }
 
 /* Main content containers */
-#parking-form,
+#parking-form-main,
 .questionnaire-container,
 .section-container,
 .cta-sticky,

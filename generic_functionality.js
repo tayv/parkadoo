@@ -4,8 +4,7 @@
 window.onload = function setDefaultAnswerState() {
   document.getElementById("parking-form-content").reset();
   welcomeSection.scrollIntoView(true);
-
-  checkButtonStep(); // to display proper button
+  checkButtonStep(); // to display proper button at page load
   hideAllSteps(); // to start with all the steps hidden
 };
 
@@ -66,7 +65,7 @@ const hideAllSteps = function() {
 
 // GENERIC FUNCTIONALITY - Previous/Next/Submit button visiblity and to scroll to next div/step.
   // Needs to be initialized before question specific visibility conditions
-var countStep = 0;
+let countStep = 0;
 function checkButtonStep() {
   if (countStep === 0) {
     document.getElementById("button-previous").style.display="none";
@@ -81,7 +80,7 @@ function checkButtonStep() {
   }
 };
 
-// show/hideSections() based on prev/next button onclick
+  // show/hideSections() based on prev/next button onclick
 function showSections(showTheseSectionsArray) {
   if (showTheseSectionsArray.length > 0 && showTheseSectionsArray[countStep] !== undefined) {
     showTheseSectionsArray[countStep].style.display = "block";
@@ -95,7 +94,7 @@ function hideSections(hideTheseSectionsArray) {
   }
 }
 
-// functionality for displaying steps on prev/next button click
+  // functionality for displaying steps on prev/next button click
 document.getElementById("button-next").onclick = function() {
   if (countStep < showTheseSectionsArray.length - 1) {
     countStep++;
@@ -244,10 +243,6 @@ function outputTemplateText(answerValue) {
       document.getElementById("insert-output-text-here").innerHTML = institutionOutputTemplate;
   }
 }
-
-
-
-
 
 
 //VARIABLES
@@ -401,11 +396,6 @@ ticketReason35: "parking bylaw not found",
 checkBylawsPlainLanguageHint35: "",
 ticketBylawExplanation35: "Sorry, I couldn't find the bylaw for this situation :("
 };
-
-
-
-
-
 
 
 
@@ -642,19 +632,6 @@ const municipalityRadioSelection = (function updateMunicipalityConditionals() {
     }
   }
 }());
-/*
-  // function to update output text
-function outputTextCity(answerValue) {
-  if (answerValue === "1") {
-    city = "City of Edmonton";
-    outputTemplateText("city"); // need to run outputTemplate() each time to update output text with new variable value
-  }
-  else if (answerValue === "2") {
-    city = document.getElementById("new-city-request-textfield").value;
-    outputTemplateText("city");
-  }
-}
-*/
 
 // #student-or-employee-section
   // update sub-section visibility conditions
@@ -969,7 +946,7 @@ function updateNameAnswer() {
     return nameAnswer = "_______________";
   }
 }
-updateNameAnswer();
+//updateNameAnswer();
 
 // #contact-details-section
   // Functions to update emailAnswer
@@ -980,7 +957,7 @@ function updateEmailAnswer() {
     return emailAnswer = "_______________";
   }
 }
-updateEmailAnswer();
+//updateEmailAnswer();
 
 // #mailing-address-section
   // function to update mailAddressAnswer
@@ -991,7 +968,7 @@ function updateMailAddressAnswer() {
     return mailAddressAnswer = "_______________<br>_______________";
   }
 }
-updateMailAddressAnswer();
+//updateMailAddressAnswer();
 
 // #potential-issue-section
   // Function for displaying bylaw text in the form
