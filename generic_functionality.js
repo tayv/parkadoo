@@ -5,8 +5,8 @@ window.onload = function setDefaultAnswerState() {
   document.getElementById("parking-form-content").reset();
   welcomeSection.scrollIntoView(true);
 
-  buttonVisibility(); // to display proper button
-  hideAllSteps();
+  checkButtonStep(); // to display proper button
+  hideAllSteps(); // to start with all the steps hidden
 };
 
 // LIST OF VARIABLES
@@ -64,78 +64,66 @@ const hideAllSteps = function() {
   finishedSectionDiv.style.display="none";
 };
 
-// GENERIC FUNCTIONALITY - Previous/Next/Submit button visiblity and to scroll to next div/step. Needs to be initialized before question specific visibility conditions
-
-
-const buttonVisibility = function() {
-
-  var count = 0;
-  function checkButtonStep() {
-    if (count === 0) {
-      document.getElementById("button-previous").style.display="none";
+// GENERIC FUNCTIONALITY - Previous/Next/Submit button visiblity and to scroll to next div/step.
+  // Needs to be initialized before question specific visibility conditions
+var countStep = 0;
+function checkButtonStep() {
+  if (countStep === 0) {
+    document.getElementById("button-previous").style.display="none";
+    document.getElementById("button-submit").style.display="none";
+  } else if (countStep > 0 && countStep < showTheseSectionsArray.length - 1) {
+      document.getElementById("button-previous").style.display="inline";
       document.getElementById("button-submit").style.display="none";
-    } else if (count > 0 && count < showTheseSectionsArray.length - 1) {
-        document.getElementById("button-previous").style.display="inline";
-        document.getElementById("button-submit").style.display="none";
-    } else if (count >= showTheseSectionsArray.length - 1) {
-        document.getElementById("button-previous").style.display="none";
-        document.getElementById("button-next").style.display="none";
-        document.getElementById("button-submit").style.display="block";
-    }
-  };
-  checkButtonStep();
-
-  document.getElementById("button-next").onclick = function() {
-    if (count < showTheseSectionsArray.length - 1) {
-      count++;
-  //    stepMakeVisible();
-      hideSections(hideTheseSectionsArray);
-      showSections(showTheseSectionsArray);
-      showTheseSectionsArray[count].scrollIntoView(true);
-      showTheseSectionsArray[count].style.opacity="1";
-      showTheseSectionsArray[count-1].style.opacity="0.2"; // reduce opacity of a completed step so user focus is on current step
-      checkButtonStep();
-    //  skipPastNextHiddenSections();
-      outputTemplateText(templateType);
-    } else {
-        checkButtonStep();
-    } return count;
-  };
-
-  document.getElementById("button-previous").onclick = function() {
-    if (count < 1) {
-      checkButtonStep();
-    } else if (count >= 1) {
-        count--;
-    //    stepMakeVisibleTest(hideTheseSectionsArray); // might not be necessary
-        hideSections(hideTheseSectionsArray);
-        showSections(showTheseSectionsArray);
-        showTheseSectionsArray[count].style.opacity="1";
-        showTheseSectionsArray[count+1].style.opacity="0.2";
-        showTheseSectionsArray[count].scrollIntoView(true);
-        checkButtonStep();
-        // skipPastPreviousHiddenSections();
-        outputTemplateText(templateType);
-    } return count;
-  };
-
-  function showSections(showTheseSectionsArray) {
-    if (showTheseSectionsArray.length > 0 && showTheseSectionsArray[count] !== undefined) {
-          showTheseSectionsArray[count].style.display = "block";
-    }
+  } else if (countStep >= showTheseSectionsArray.length - 1) {
+      document.getElementById("button-previous").style.display="none";
+      document.getElementById("button-next").style.display="none";
+      document.getElementById("button-submit").style.display="block";
   }
 };
 
-// Hide any sections present in hideTheseSectionsArray
+// show/hideSections() based on prev/next button onclick
+function showSections(showTheseSectionsArray) {
+  if (showTheseSectionsArray.length > 0 && showTheseSectionsArray[countStep] !== undefined) {
+    showTheseSectionsArray[countStep].style.display = "block";
+  }
+}
 function hideSections(hideTheseSectionsArray) {
-  console.log("hideSections(hideTheseSectionsArray); runs on line 203. These are the steps to hide. Should not be blank.", hideTheseSectionsArray);
   if (hideTheseSectionsArray.length > 0) {
-    for (let i = 0; i <= hideTheseSectionsArray.length; i++) {
-      if (hideTheseSectionsArray[i] !== undefined) {
-        hideTheseSectionsArray[i].style.display = "none";
-      }
+    for (let i = 0; i <= hideTheseSectionsArray.length && hideTheseSectionsArray[i] !== undefined; i++) {
+      hideTheseSectionsArray[i].style.display = "none";
     }
   }
+}
+
+// functionality for displaying steps on prev/next button click
+document.getElementById("button-next").onclick = function() {
+  if (countStep < showTheseSectionsArray.length - 1) {
+    countStep++;
+    hideSections(hideTheseSectionsArray);
+    showSections(showTheseSectionsArray);
+    showTheseSectionsArray[countStep].scrollIntoView(true);
+    showTheseSectionsArray[countStep].style.opacity="1";
+    showTheseSectionsArray[countStep-1].style.opacity="0.2"; // reduce opacity of a completed step so user focus is on current step
+    checkButtonStep();
+    outputTemplateText(templateType);
+  } else {
+      checkButtonStep();
+  } return countStep;
+};
+
+document.getElementById("button-previous").onclick = function() {
+  if (countStep < 1) {
+    checkButtonStep();
+  } else if (countStep >= 1) {
+      countStep--;
+      hideSections(hideTheseSectionsArray);
+      showSections(showTheseSectionsArray);
+      showTheseSectionsArray[countStep].style.opacity="1";
+      showTheseSectionsArray[countStep+1].style.opacity="0.2";
+      showTheseSectionsArray[countStep].scrollIntoView(true);
+      checkButtonStep();
+      outputTemplateText(templateType);
+  } return countStep;
 };
 
 
@@ -473,7 +461,8 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
           ticketAppealBylawSection,
           nameSection,
           contactDetailsSection,
-          mailingAddressSection];
+          mailingAddressSection,
+          finishedSectionDiv];
         return;
       }
       else if (parkingProblemRadioOptions[i].value === "2") {
@@ -495,7 +484,11 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
           contactDetailsSection,
           mailingAddressSection,
           photoUploadSection];
-        showTheseSectionsArray = [];
+        showTheseSectionsArray = [
+          welcomeSection,
+          parkingProblemSection,
+          finishedSectionDiv
+        ];
         outputTemplateText("report abandoned vehicle");
         return;
       }
@@ -518,8 +511,10 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
           mailingAddressSection,
           photoUploadSection];
         showTheseSectionsArray = [
+          welcomeSection,
           potentialIssueSection,
-          checkBylawsSection];
+          checkBylawsSection,
+          finishedSectionDiv];
         outputTemplateText("check bylaws");
         return;
       }
@@ -550,7 +545,8 @@ const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
           ticketDateSection,
           nameSection,
           contactDetailsSection,
-          mailingAddressSection
+          mailingAddressSection,
+          finishedSectionDiv
         ];
         return templateType = "city";
 
@@ -568,8 +564,8 @@ const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
           ticketDateSection,
           nameSection,
           contactDetailsSection,
-          mailingAddressSection
-        ];
+          mailingAddressSection,
+          finishedSectionDiv];
         return templateType = "private operator";
       }
       else if (ticketIssuerRadioOptions[i].value === "3") {
@@ -578,6 +574,7 @@ const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
           welcomeSection,
           parkingProblemSection,
           parkingTicketIssuerSection,
+          studentOrEmployeeSection,
           ticketNumberSection,
           ticketAccuracySection,
           ticketReasonSection,
@@ -586,8 +583,8 @@ const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
           ticketDateSection,
           nameSection,
           contactDetailsSection,
-          mailingAddressSection
-        ];
+          mailingAddressSection,
+          finishedSectionDiv];
         return templateType = "institution";
       }
     }
@@ -617,8 +614,8 @@ const municipalityRadioSelection = (function updateMunicipalityConditionals() {
           ticketDateSection,
           nameSection,
           contactDetailsSection,
-          mailingAddressSection
-        ];
+          mailingAddressSection,
+          finishedSectionDiv];
         return city = "City of Edmonton";
       }
       else if (municipalityRadioOptions[i].value === "2") {
@@ -638,8 +635,8 @@ const municipalityRadioSelection = (function updateMunicipalityConditionals() {
           ticketDateSection,
           nameSection,
           contactDetailsSection,
-          mailingAddressSection
-        ];
+          mailingAddressSection,
+          finishedSectionDiv];
         return city = document.getElementById("new-city-request-textfield").value;;
       }
     }
