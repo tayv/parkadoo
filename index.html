@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="styles.css"/>
     <link rel="stylesheet" href="colors.css"/>
     <script defer src="generic_functionality.js"></script>
-    <script defer src="bylaw.js"></script>
-    <script defer src="form.js"></script>
+    <!-- <script defer src="bylaw.js"></script> -->
+    <!-- <script defer src="form.js"></script> -->
   </head>
   <body>
     <header>
@@ -16,7 +16,7 @@
         <img src="images/header.svg"/>
       </div>
     </header>
-    <main id="parking-form">
+    <main id="parking-form-main">
       <form class="questionnaire-container" id="parking-form-content" action="letter.html" method="post">
         <!--Intro Message-->
         <section class="section-container" id="welcome-section">
@@ -1192,10 +1192,9 @@
               <!--Pattern used to trigger numeric keyboard on ios-->
               <input id="ticket-year-text"
                 type="text"
-                pattern="[0–9]*"
                 name="ticket-year"
                 value="2019"
-                maxlength = "4">
+                maxlength="4">
               <span class="field-example">e.g. 2019</span>
             </div>
           </div>
@@ -1251,6 +1250,7 @@
           </span>
         </div>
       </section>
+      <!--CTAs-->
       <section class="cta-sticky">
         <div class-"cta-sticky-container">
           <span class="button-div">
