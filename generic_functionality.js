@@ -125,6 +125,22 @@ document.getElementById("button-previous").onclick = function() {
   } return countStep;
 };
 
+// Using sessionStorage to save user answers
+document.getElementById("button-submit").onclick= function() {
+  try {
+      var storage = window.sessionStorage || {};
+      outputTemplateText("city"); // set variables
+      // Store data
+      sessionStorage.setItem("city-output", JSON.stringify(cityOutputTemplate));
+
+      // Retrieve data
+      alert("Hi, " + sessionStorage.getItem("city-output"));
+  } catch (e) {
+      var storage = {};
+      alert("Sorry, we can't save and display your answers until you allow 3rd party cookies in your browser settings.");
+  }
+};
+
 
 // GENERIC FUNCTIONALITY: Add event listener to radio buttons within visibility condition function
 function addRadioEventListener(radioClassName, updateConditionalsFunctionName) {
@@ -141,7 +157,6 @@ const setWhiteSpaceAtEndOfDocument = (function calcAndSetWhiteSpace() {
   var newPadding = (window.innerHeight - lastDivHeight - headerHeight - footerHeight);
   var setNewPadding = document.getElementById("output").style.paddingBottom = newPadding + "px";
 }());
-
 
 // Generic function to grab current date and format it for letter
 let currentDateUnformatted = new Date();
@@ -660,8 +675,9 @@ const studentOrEmployeeRadioSelection = (function updateStudentOrEmployeeConditi
 
 // #ticket-number-section
   // To update output text
-ticketNumberAnswer = document.getElementById("ticket-number-text-field").value;
-
+document.getElementById("ticket-number-text-field").onchange = function() {
+  ticketNumberAnswer = document.getElementById("ticket-number-text-field").value;
+};
 // #ticket-accuracy-section
   // gatekeeper function for displaying subsection
 const ticketAccuracyRadioSelection = (function updateTicketAccuracyConditionals() {
@@ -931,48 +947,47 @@ const ticketAppealBylawRadioSelection = (function updateTicketBylawAppealConditi
 }());
 
 // #private-ticket-appeal-section
-if (document.getElementById("private-ticket-appeal-text-field").value) {
-   privateTicketAppealAnswer = document.getElementById("private-ticket-appeal-text-field").value;
-} else {
-   privateTicketAppealAnswer = "";
-}
+document.getElementById("private-ticket-appeal-text-field").onchange = function() {
+  if (document.getElementById("private-ticket-appeal-text-field").value) {
+     privateTicketAppealAnswer = document.getElementById("private-ticket-appeal-text-field").value;
+  } else {
+     privateTicketAppealAnswer = "";
+  }
+};
 
 // #name-section
   // functions to update nameAnswer
-function updateNameAnswer() {
+document.getElementById("person-name-text-field").onchange = function() {
   if (document.getElementById("person-name-text-field").value) {
     return nameAnswer = document.getElementById("person-name-text-field").value;
   } else {
     return nameAnswer = "_______________";
   }
 }
-//updateNameAnswer();
 
 // #contact-details-section
   // Functions to update emailAnswer
-function updateEmailAnswer() {
+document.getElementById("email-field").onchange = function updateEmailAnswer() {
   if (document.getElementById("email-field").value) {
     return emailAnswer = document.getElementById("email-field").value;
   } else {
     return emailAnswer = "_______________";
   }
 }
-//updateEmailAnswer();
 
 // #mailing-address-section
   // function to update mailAddressAnswer
-function updateMailAddressAnswer() {
+document.getElementById("mailing-address-text-field").onchange = function() {
   if (document.getElementById("mailing-address-text-field").value) {
     return mailAddressAnswer = document.getElementById("mailing-address-text-field").value;
   } else {
     return mailAddressAnswer = "_______________<br>_______________";
   }
 }
-//updateMailAddressAnswer();
 
 // #potential-issue-section
   // Function for displaying bylaw text in the form
-function displayPotentialTicketContent () {
+function displayPotentialTicketContent() {
   checkBylawsIntroParagraph = "Hey, I found this in the " + city + "&#39;s bylaws:";
   document.getElementById("check-bylaw-primary-question-insert-here").innerHTML = checkBylawsIntroParagraph;
   document.getElementById("bylaw-plain-language-hint-insert-here").innerHTML = checkBylawsPlainLanguageHint;
