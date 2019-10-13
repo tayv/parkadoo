@@ -1,15 +1,68 @@
 <!DOCTYPE html>
 <html lang='en'>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <meta charset='UTF-8'/>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
-    <title>Parkadoo</title>
-    <link rel='stylesheet' href='styles.css'/>
-    <script async src="form.js"></script>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>Parkadoo Appeal Letter</title>
+    <link rel="stylesheet" href="styles.css"/>
+    <link rel="stylesheet" href="colors.css"/>
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById("insert-letter-output-text-here").textContent = JSON.parse(sessionStorage.getItem("city-output"));
+        }, false);
+    </script>
+  <!--  <script defer src="generic_functionality.js"></script> -->
   </head>
-  <body>
-    <h1>The Letter Will Go Here</h1>
-    <div id="insert-text-here">
+<body>
+  <header>
+    <div id="header-main">
+      <a href="index.html"><img src="images/header.svg" alt="Parkadoo logo"/></a>
     </div>
-  </body>
+  </header>
+  <main id="parking-form-main">
+    <div class="questionnaire-container">
+      <!--Intro Message-->
+      <section class="section-container" id="welcome-section">
+        <!--Message Field-->
+        <div class="field-container">
+            <h1 class="field-label-large">Here's your parking appeal letter...</h1>
+            <p>You can copy and paste it using the button below. People usually email their letter but you can also paste it into a Word document to print.</p>
+        </div>
+      </section>
+    <!--Letter Section -->
+    <section class="whitespace-section">
+      <div id="letter-output">
+        <span id="insert-letter-output-text-here">
+        </span>
+      </div>
+    </section>
+    <!--CTAs-->
+    <section class="cta-sticky">
+      <div class-"cta-sticky-container">
+        <span class="button-div">
+          <input id="button-previous"
+            type="button"
+            name="previous"
+            value="Previous Question">
+        </span>
+        <span class="button-div">
+          <input id="button-next"
+            type="button"
+            name="next"
+            value="Next Question">
+        </span>
+      </div>
+    </section>
+  </div>
+  </main>
+  <footer>
+  <div id="footer-main">
+    <img src='images/sign-up.svg'/>
+    <img src='images/feature.svg'/>
+    <img src='images/content.svg'/>
+  </div>
+  </footer>
+</body>
 </html>

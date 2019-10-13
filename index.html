@@ -6,14 +6,16 @@
     <title>Parkadoo</title>
     <link rel="stylesheet" href="styles.css"/>
     <link rel="stylesheet" href="colors.css"/>
+  <!--  <script defer src="init_form.js"></script> -->
     <script defer src="generic_functionality.js"></script>
+    <script type="text/javascript" src="node_modules/dompurify/dist/purify.min.js"></script> 
     <!-- <script defer src="bylaw.js"></script> -->
     <!-- <script defer src="form.js"></script> -->
   </head>
   <body>
     <header>
       <div id="header-main">
-        <img src="images/header.svg"/>
+        <a href="index.html"><img src="images/header.svg" alt="Parkadoo logo"/></a>
       </div>
     </header>
     <main id="parking-form-main">
@@ -1245,10 +1247,12 @@
         <p>All done! See that wasn't so bad. Are you ready to view your appeal letter?</p>
       </section>
       <section class="whitespace-section">
+
         <div id="output">
           <span id="insert-output-text-here">
           </span>
         </div>
+
       </section>
       <!--CTAs-->
       <section class="cta-sticky">

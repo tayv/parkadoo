@@ -1,0 +1,22 @@
+{
+  "name": "parkadoo",
+  "version": "1.0.0",
+  "description": "Check parking bylaws and make an appeal letter to challenge unfair parking tickets.",
+  "main": "generic_functionality.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tayv/parkadoo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tayv/parkadoo/issues"
+  },
+  "homepage": "https://github.com/tayv/parkadoo#readme",
+  "dependencies": {
+    "dompurify": "^2.0.6"
+  }
+}
