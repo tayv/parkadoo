@@ -128,16 +128,22 @@ document.getElementById("button-previous").onclick = function() {
 // Using sessionStorage to save user answers
 document.getElementById("button-submit").onclick= function() {
   try {
-      var storage = window.sessionStorage || {};
+      let storage = window.sessionStorage || {};
       outputTemplateText("city"); // set variables
       // Store data
       sessionStorage.setItem("city-output", JSON.stringify(cityOutputTemplate));
-
       // Retrieve data
-      alert("Hi, " + sessionStorage.getItem("city-output"));
+      console.log(storage["city-output"]);
+  //    let outputData1 = sessionStorage.getItem("city-output");
+    //  console.log(outputData1);
+    //  let outputData = JSON.parse(outputData1);
+    //  console.log(outputData);
+    //document.getElementById("insert-letter-output-text-here").innerHTML = JSON.parse(sessionStorage.getItem("city-output"));
+    //  alert(JSON.parse(sessionStorage.getItem("city-output")));
   } catch (e) {
-      var storage = {};
-      alert("Sorry, we can't save and display your answers until you allow 3rd party cookies in your browser settings.");
+      console.log(e);
+      let storage = {};
+      alert(e.message, "Sorry, we can't save and display your answers unless your browser allows 3rd party cookies in your browser settings.");
   }
 };
 
