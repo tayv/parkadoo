@@ -129,11 +129,14 @@ document.getElementById("button-previous").onclick = function() {
 document.getElementById("button-submit").onclick= function() {
   try {
       let storage = window.sessionStorage || {};
-      outputTemplateText("city"); // set variables
+      outputTemplateText("city"); // set variables. Need to update this since it only shows city template
       // Store data
       sessionStorage.setItem("city-output", JSON.stringify(cityOutputTemplate));
       // Retrieve data
       console.log(storage["city-output"]);
+      let dirty = '<img src=x onerror=alert(1)//>'; // test
+      let clean = DOMPurify.sanitize(dirty);
+      alert(clean);
   //    let outputData1 = sessionStorage.getItem("city-output");
     //  console.log(outputData1);
     //  let outputData = JSON.parse(outputData1);
