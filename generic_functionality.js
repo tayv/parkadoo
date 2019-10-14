@@ -47,11 +47,8 @@ const checkBylawsSection = document.getElementById("check-bylaw-info-section");
 // last step
 const finishedSectionDiv = document.getElementById("finished-section-container");
 // Output
-var templateType = ""; // to be used as parameter for outputTemplateText() to update the output template on next step button click
-let cityOutputTemplate = "";
-let abandonedVehicleOutputTemplate = "";
-let privateOperatorOutputTemplate = "";
-let institutionOutputTemplate = "";
+var templateType = ""; // to be used as parameter for setLetterTemplate() to update the output template on next step button click
+let letterTemplate = "";
 let city = "";
 let yesStudentOrEmployee = "";
 
@@ -104,7 +101,7 @@ document.getElementById("button-next").onclick = function() {
     showTheseSectionsArray[countStep].style.opacity="1";
     showTheseSectionsArray[countStep-1].style.opacity="0.2"; // reduce opacity of a completed step so user focus is on current step
     checkButtonStep();
-    outputTemplateText(templateType);
+    setLetterTemplate(templateType);
   } else {
       checkButtonStep();
   } return countStep;
@@ -121,7 +118,7 @@ document.getElementById("button-previous").onclick = function() {
       showTheseSectionsArray[countStep+1].style.opacity="0.2";
       showTheseSectionsArray[countStep].scrollIntoView(true);
       checkButtonStep();
-      outputTemplateText(templateType);
+      setLetterTemplate(templateType);
   } return countStep;
 };
 
@@ -129,9 +126,9 @@ document.getElementById("button-previous").onclick = function() {
 document.getElementById("button-submit").onclick= function() {
   try {
       let storage = window.sessionStorage || {};
-      outputTemplateText("city"); // set variables. Need to update this since it only shows city template
+      let templateDataDirty = setLetterTemplate(templateType); // So that we display the correct letter with up to date variables in letter.html
       // Store data
-      sessionStorage.setItem("city-output", JSON.stringify(cityOutputTemplate));
+      sessionStorage.setItem("letter-output", JSON.stringify(templateDataDirty));
       // Retrieve data
       console.log(storage["city-output"]);
       let dirty = '<img src=x onerror=alert(1)//>'; // test
@@ -204,9 +201,9 @@ function formatSentenceEnding(sentence) {
   }
 }
 
-// outputTemplateText() updates output text based on questionnaire selections
-function outputTemplateText(answerValue) {
-  if (answerValue === "city") {
+// setLetterTemplate() updates output text based on questionnaire selections
+function setLetterTemplate(x) {
+  if (x === "city") {
     // Bylaw info box output
     checkBylawsIntroParagraph = "Here's the " + city + "&#39;s bylaw:";
     document.getElementById("check-bylaw-correct-primary-question-2-insert-here").innerHTML = checkBylawsIntroParagraph;
@@ -215,7 +212,7 @@ function outputTemplateText(answerValue) {
     document.getElementById("city-bylaw-name-2").innerHTML = cityBylawName;
     document.getElementById("insert-bylaw-correct-info-box-text-here").innerHTML = checkBylawsOutputTemplate;
     // Letter output
-    cityOutputTemplate = // could move this to a separate file and reference in variable section at top of page
+    letterTemplate = // could move this to a separate file and reference in variable section at top of page
       "City of Edmonton, Bylaw Ticket Administration" +
       "<br>PO Box 2024" +
       "<br>Edmonton, AB  T5J 4M6" +
@@ -230,9 +227,9 @@ function outputTemplateText(answerValue) {
       "<br><br>Thank you for considering my appeal. If you wish to discuss the issue further please contact me at " + emailAnswer + "." +
       "<br><br>Sincerely,<br><br><br>" +
       nameAnswer;
-    document.getElementById("insert-output-text-here").innerHTML = cityOutputTemplate;
-  } else if (answerValue === "report abandoned vehicle") {
-      abandonedVehicleOutputTemplate =
+    return letterTemplate;
+  } else if (x === "report abandoned vehicle") {
+      letterTemplate =
       currentDateFormatted +
       "<br><br>RE: Abandoned Vehicle" +
       "<br><br>Dear Neighbour," +
@@ -240,9 +237,9 @@ function outputTemplateText(answerValue) {
       "<br>Thank you for understanding. If you have any questions about parking bylaws you can call the city at #311." +
       "<br><br>Sincerely," +
       "<br><br>A neighbour";
-      document.getElementById("insert-output-text-here").innerHTML = abandonedVehicleOutputTemplate;
-  } else if (answerValue === "private operator") {
-      privateOperatorOutputTemplate =
+      return letterTemplate;
+  } else if (x === "private operator") {
+      letterTemplate =
       currentDateFormatted +
       "<br><br>RE: Appealing Parking Ticket: " + ticketNumberAnswer +
       "<br><br>To Whom It May Concern," +
@@ -252,9 +249,9 @@ function outputTemplateText(answerValue) {
       "<br><br>Thank you for taking my request seriously. If you wish to discuss the issue further please contact me at " + emailAnswer + "." +
       "<br><br>Sincerely,<br><br><br>" +
       nameAnswer;
-      document.getElementById("insert-output-text-here").innerHTML = privateOperatorOutputTemplate;
-  } else if (answerValue === "institution") { // not working // may want this to be apart of additional info section and not the output
-      institutionOutputTemplate =
+      return letterTemplate;
+  } else if (x === "institution") { // not working // may want this to be apart of additional info section and not the output
+      letterTemplate =
       currentDateFormatted +
       "<br><br>RE: Appealing Parking Ticket: " + ticketNumberAnswer +
       "<br><br>To Whom It May Concern," +
@@ -264,7 +261,7 @@ function outputTemplateText(answerValue) {
       "<br><br>Thank you for taking the time to consider my request. If you wish to discuss the issue further please contact me at " + emailAnswer + "." +
       "<br><br>Sincerely,<br><br><br>" +
       nameAnswer;
-      document.getElementById("insert-output-text-here").innerHTML = institutionOutputTemplate;
+      return letterTemplate;
   }
 }
 
@@ -503,7 +500,7 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
           parkingProblemSection,
           finishedSectionDiv
         ];
-        outputTemplateText("report abandoned vehicle");
+        setLetterTemplate("report abandoned vehicle");
         return;
       }
       else if (parkingProblemRadioOptions[i].value === "3") {
@@ -529,7 +526,7 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
           potentialIssueSection,
           checkBylawsSection,
           finishedSectionDiv];
-        outputTemplateText("check bylaws");
+        setLetterTemplate("check bylaws");
         return;
       }
     }
@@ -668,13 +665,13 @@ const studentOrEmployeeRadioSelection = (function updateStudentOrEmployeeConditi
         // No change to hideTheseSectionsArray or showTheseSectionsArray
         // Update output
         yesStudentOrEmployee = "Note: As a student or employee of the issuer, be aware that although they can't force you to pay, the institution could withhold class credits or use other negative tactics against you if the vehicle is registered in your name and you refuse to pay the ticket.";
-        outputTemplateText("institution");
+        setLetterTemplate("institution");
         return;
       }
       else if (studentOrEmployeeRadioOptions[i].value === "2") {
         // Update output
         yesStudentOrEmployee = "";
-        outputTemplateText("institution")
+        setLetterTemplate("institution")
         return;
       }
     }
