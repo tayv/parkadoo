@@ -47,7 +47,7 @@ const checkBylawsSection = document.getElementById("check-bylaw-info-section");
 // last step
 const finishedSectionDiv = document.getElementById("finished-section-container");
 // Output
-var templateType = ""; // to be used as parameter for setLetterTemplate() to update the output template on next step button click
+let templateType = ""; // to be used as parameter for setLetterTemplate() to update the output template on next step button click
 let letterTemplate = "";
 let city = "";
 let yesStudentOrEmployee = "";
@@ -101,7 +101,6 @@ document.getElementById("button-next").onclick = function() {
     showTheseSectionsArray[countStep].style.opacity="1";
     showTheseSectionsArray[countStep-1].style.opacity="0.2"; // reduce opacity of a completed step so user focus is on current step
     checkButtonStep();
-    setLetterTemplate(templateType);
   } else {
       checkButtonStep();
   } return countStep;
@@ -118,7 +117,6 @@ document.getElementById("button-previous").onclick = function() {
       showTheseSectionsArray[countStep+1].style.opacity="0.2";
       showTheseSectionsArray[countStep].scrollIntoView(true);
       checkButtonStep();
-      setLetterTemplate(templateType);
   } return countStep;
 };
 
@@ -204,13 +202,6 @@ function formatSentenceEnding(sentence) {
 // setLetterTemplate() updates output text based on questionnaire selections
 function setLetterTemplate(x) {
   if (x === "city") {
-    // Bylaw info box output
-    checkBylawsIntroParagraph = "Here's the " + city + "&#39;s bylaw:";
-    document.getElementById("check-bylaw-correct-primary-question-2-insert-here").innerHTML = checkBylawsIntroParagraph;
-    document.getElementById("bylaw-plain-language-hint-2-insert-here").innerHTML = checkBylawsPlainLanguageHint;
-    checkBylawsOutputTemplate = ticketBylawExplanation;
-    document.getElementById("city-bylaw-name-2").innerHTML = cityBylawName;
-    document.getElementById("insert-bylaw-correct-info-box-text-here").innerHTML = checkBylawsOutputTemplate;
     // Letter output
     letterTemplate = // could move this to a separate file and reference in variable section at top of page
       "City of Edmonton, Bylaw Ticket Administration" +
@@ -474,7 +465,7 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
           contactDetailsSection,
           mailingAddressSection,
           finishedSectionDiv];
-        return;
+        return templateType = "city";
       }
       else if (parkingProblemRadioOptions[i].value === "2") {
         hideTheseSectionsArray = [
@@ -500,8 +491,7 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
           parkingProblemSection,
           finishedSectionDiv
         ];
-        setLetterTemplate("report abandoned vehicle");
-        return;
+        return templateType = "report abandoned vehicle";
       }
       else if (parkingProblemRadioOptions[i].value === "3") {
       //  // hideSectionsNotInPath("check bylaws");
@@ -526,8 +516,7 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
           potentialIssueSection,
           checkBylawsSection,
           finishedSectionDiv];
-        setLetterTemplate("check bylaws");
-        return;
+        return templateType = "";
       }
     }
   }
@@ -665,13 +654,11 @@ const studentOrEmployeeRadioSelection = (function updateStudentOrEmployeeConditi
         // No change to hideTheseSectionsArray or showTheseSectionsArray
         // Update output
         yesStudentOrEmployee = "Note: As a student or employee of the issuer, be aware that although they can't force you to pay, the institution could withhold class credits or use other negative tactics against you if the vehicle is registered in your name and you refuse to pay the ticket.";
-        setLetterTemplate("institution");
         return;
       }
       else if (studentOrEmployeeRadioOptions[i].value === "2") {
         // Update output
         yesStudentOrEmployee = "";
-        setLetterTemplate("institution")
         return;
       }
     }
@@ -935,6 +922,15 @@ const ticketReasonRadioSelection = (function updateTicketReasonConditionals() {
 // #ticket-appeal-bylaw-section
   // gatekeeper function for displaying subsection
 const ticketAppealBylawRadioSelection = (function updateTicketBylawAppealConditionals() {
+
+  // Bylaw info box output
+  checkBylawsIntroParagraph = "Here's the " + city + "&#39;s bylaw:";
+  document.getElementById("check-bylaw-correct-primary-question-2-insert-here").innerHTML = checkBylawsIntroParagraph;
+  document.getElementById("bylaw-plain-language-hint-2-insert-here").innerHTML = checkBylawsPlainLanguageHint;
+  checkBylawsOutputTemplate = ticketBylawExplanation;
+  document.getElementById("city-bylaw-name-2").innerHTML = cityBylawName;
+  document.getElementById("insert-bylaw-correct-info-box-text-here").innerHTML = checkBylawsOutputTemplate;
+
   const ticketAppealBylawRadioOptions = document.querySelectorAll(".yn-ticket-valid-class");
   addRadioEventListener(ticketAppealBylawRadioOptions, updateTicketBylawAppealConditionals);
   for (let i = 0; i < ticketAppealBylawRadioOptions.length; i++) {
