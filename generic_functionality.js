@@ -132,6 +132,7 @@ document.getElementById("button-submit").onclick= function() {
       // Retrieving data done in letter.html header script on page load
   } catch (e) {
       let storage = {};
+      // Chrome doesn't allow sessStorage when 3rd party cookies are blocked.
       alert(e.message, "Sorry, looks like I'm blocked from saving and displaying your answers because your browser doesn't allow 3rd party cookies in your advanced browser settings.");
   }
 };
@@ -145,12 +146,12 @@ function addRadioEventListener(radioClassName, updateConditionalsFunctionName) {
 };
 
 // GENERIC FUNCTIONALITY - To add whitespace to the end of the document so each section div will scroll to the top of the window when Next button selected
-const setWhiteSpaceAtEndOfDocument = (function calcAndSetWhiteSpace() {
-  var lastDivHeight = finishedSectionDiv.offsetHeight;
-  var headerHeight = document.getElementById("header-main").offsetHeight;
-  var footerHeight = document.getElementById("footer-main").offsetHeight;
-  var newPadding = (window.innerHeight - lastDivHeight - headerHeight - footerHeight);
-  var setNewPadding = document.getElementById("output").style.paddingBottom = newPadding + "px";
+const calcAndSetWhiteSpace = (function() {
+  let headerHeight = document.getElementById("header-main").offsetHeight;
+  let footerHeight = document.getElementById("footer-main").offsetHeight;
+  let newPadding = (window.innerHeight - headerHeight - footerHeight);
+  let setNewPadding = document.getElementById("add-whitespace").style.paddingBottom = newPadding + "px";
+  return setNewPadding;
 }());
 
 // Generic function to grab current date and format it for letter

@@ -8,12 +8,12 @@
     <title>Parkadoo Appeal Letter</title>
     <link rel="stylesheet" href="styles.css"/>
     <link rel="stylesheet" href="colors.css"/>
+    <script type="text/javascript" src="node_modules/dompurify/dist/purify.min.js"></script>
     <script type="text/javascript">
       document.addEventListener('DOMContentLoaded', function() {
         document.getElementById("insert-letter-output-text-here").innerHTML = JSON.parse(sessionStorage.getItem("letter-output"));
         }, false);
     </script>
-  <!--  <script defer src="generic_functionality.js"></script> -->
   </head>
 <body>
   <header>
@@ -32,10 +32,12 @@
         </div>
       </section>
     <!--Letter Section -->
-    <section class="whitespace-section">
-      <div id="letter-output">
-        <span id="insert-letter-output-text-here">
-        </span>
+    <section class="section-container">
+      <div id="letter-preview-container">
+        <div id="letter-output">
+          <span id="insert-letter-output-text-here">
+          </span>
+        </div>
       </div>
     </section>
     <!--CTAs-->

@@ -143,3 +143,11 @@ input:checked ~ label .customRB::after {
   color: hsla(210, 50%, 1%, 1);
   color: var(--color-black);
 }
+
+/* Letter Preview Box */
+#letter-preview-container{
+  background-color: hsla(0, 0%, 100%, 1);
+  background-color: var(--color-white);
+  color: hsla(210, 50%, 1%, 1);
+  color: var(--color-black);
+}

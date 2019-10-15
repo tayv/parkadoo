@@ -320,7 +320,7 @@ input:checked ~ label .customRB::after {
 #check-bylaw-info-section {
   padding: 0px;
 }
-.info-box-div {
+.info-box-div, #letter-preview-container {
   margin-top: 4%;
   padding: 5%;
   font-size: 15px;
