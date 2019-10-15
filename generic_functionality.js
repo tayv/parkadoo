@@ -124,24 +124,15 @@ document.getElementById("button-previous").onclick = function() {
 document.getElementById("button-submit").onclick= function() {
   try {
       let storage = window.sessionStorage || {};
+      // Sanitize user input data
       let templateDataDirty = setLetterTemplate(templateType); // So that we display the correct letter with up to date variables in letter.html
+      let templateDataClean = DOMPurify.sanitize(templateDataDirty);
       // Store data
-      sessionStorage.setItem("letter-output", JSON.stringify(templateDataDirty));
-      // Retrieve data
-      console.log(storage["city-output"]);
-      let dirty = '<img src=x onerror=alert(1)//>'; // test
-      let clean = DOMPurify.sanitize(dirty);
-      alert(clean);
-  //    let outputData1 = sessionStorage.getItem("city-output");
-    //  console.log(outputData1);
-    //  let outputData = JSON.parse(outputData1);
-    //  console.log(outputData);
-    //document.getElementById("insert-letter-output-text-here").innerHTML = JSON.parse(sessionStorage.getItem("city-output"));
-    //  alert(JSON.parse(sessionStorage.getItem("city-output")));
+      sessionStorage.setItem("letter-output", JSON.stringify(templateDataClean));
+      // Retrieving data done in letter.html header script on page load
   } catch (e) {
-      console.log(e);
       let storage = {};
-      alert(e.message, "Sorry, we can't save and display your answers unless your browser allows 3rd party cookies in your browser settings.");
+      alert(e.message, "Sorry, looks like I'm blocked from saving and displaying your answers because your browser doesn't allow 3rd party cookies in your advanced browser settings.");
   }
 };
 
