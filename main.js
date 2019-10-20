@@ -50,7 +50,6 @@ const checkBylawsSection = document.getElementById("check-bylaw-info-section");
 const finishedSectionDiv = document.getElementById("finished-section-container");
 // Output
 let templateType = ""; // to be used as parameter for setLetterTemplate() to update the output template on next step button click
-let letterTemplate = "";
 let city = "";
 let yesStudentOrEmployee = "";
 

@@ -1,5 +1,6 @@
 "use strict";
 
+let letterTemplate = "";
 // setLetterTemplate() updates output text based on questionnaire selections
 function setLetterTemplate(x) {
   if (x === "city") {
@@ -57,4 +58,4 @@ function setLetterTemplate(x) {
   }
 }
 
-export {setLetterTemplate};
+export {setLetterTemplate, letterTemplate};
