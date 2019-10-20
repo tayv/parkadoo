@@ -1,6 +1,6 @@
 "use strict";
 
-import {setLetterTemplate} from "./letter.js";
+import {setLetterTemplate, letterTemplate} from "./letter.js";
 
 // TO LOAD DEFAULT VISIBILITY CONDITIONS (works)
 window.onload = function setDefaultAnswerState() {
