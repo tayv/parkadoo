@@ -6,6 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "scripts": {
+    "start": "http-server -c-1 -p 8081"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tayv/parkadoo.git"
@@ -18,5 +21,8 @@
   "homepage": "https://github.com/tayv/parkadoo#readme",
   "dependencies": {
     "dompurify": "^2.0.6"
+  },
+  "devDependencies": {
+    "http-server": "^0.11.1"
   }
 }
