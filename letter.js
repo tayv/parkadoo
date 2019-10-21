@@ -1,5 +1,8 @@
 "use strict";
 
+import {nameAnswer, mailAddressAnswer, currentDateFormatted, ticketNumberAnswer, ticketDate, ticketReason, emailAnswer, ticketAppealBylawAnswer, privateTicketAppealAnswer, ticketErrorDescriptionAnswer} from "/main.js";
+
+
 let letterTemplate = "";
 // setLetterTemplate() updates output text based on questionnaire selections
 function setLetterTemplate(x) {

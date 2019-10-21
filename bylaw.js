@@ -1,7 +1,6 @@
 "use strict";
 
-//VARIABLES
-  // Bylaw info box
+  // Bylaw info box variables
 let checkBylawsOutputTemplate = "";
 let cityBylawLink = document.getElementById("city-bylaw-link");
 cityBylawLink.href = "https://www.edmonton.ca/transportation/Bylaws/C5590.pdf"; // Can add links here as add more cities
@@ -151,3 +150,5 @@ ticketReason35: "parking bylaw not found",
 checkBylawsPlainLanguageHint35: "",
 ticketBylawExplanation35: "Sorry, I couldn't find the bylaw for this situation :("
 };
+
+export {checkBylawsOutputTemplate, cityBylawLink, cityBylawLink2, cityBylawName, bylawTextObj};
