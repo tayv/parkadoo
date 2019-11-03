@@ -225,7 +225,7 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
           formSections.finishedSectionDiv];
         return templateType = "";
       }
-  //  }
+//    }
 //  }
 }());
 
