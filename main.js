@@ -2,7 +2,7 @@
 
 import {setLetterTemplate, letterTemplate} from "/letter.js";
 import {checkBylawsOutputTemplate, cityBylawLink, cityBylawName, bylawTextObj} from "/bylaw.js";
-
+import {calcAndSetWhiteSpace, currentDateFormatted, upperCaseFirstLetter, lowerCaseFirstLetter, formatSentenceEnding} from "/helper-functions.js";
 // TO LOAD DEFAULT VISIBILITY CONDITIONS (works)
 window.onload = function setDefaultAnswerState() {
   document.getElementById("parking-form-content").reset();
@@ -43,7 +43,7 @@ const mailingAddressSection = document.getElementById("mailing-address-section")
 // If appealing university ticket
 const studentOrEmployeeSection = document.getElementById("student-or-employee-section");
 // private operator and institution
-const privateTicketAppealReason = document.getElementById("private-ticket-appeal-section");
+const privateTicketAppealSection = document.getElementById("private-ticket-appeal-section");
 // If checking bylaws
 const potentialIssueSection = document.getElementById("potential-issue-section");
 const checkBylawsSection = document.getElementById("check-bylaw-info-section");
@@ -142,57 +142,11 @@ document.getElementById("button-submit").onclick = function() {
 
 
 // GENERIC FUNCTIONALITY: Add event listener to radio buttons within visibility condition function
-function addRadioEventListener(radioClassName, updateConditionalsFunctionName) {
-  for(let i = 0; i < radioClassName.length; i++) {
-    radioClassName[i].addEventListener("change", updateConditionalsFunctionName, false);
+function addRadioEventListener(rbClassName, updateConditionalsFunction) {
+  for(let i = 0; i < rbClassName.length; i++) {
+    rbClassName[i].addEventListener("change", updateConditionalsFunction, false);
   }
 };
-
-// GENERIC FUNCTIONALITY - To add whitespace to the end of the document so each section div will scroll to the top of the window when Next button selected
-const calcAndSetWhiteSpace = (function() {
-  let headerHeight = document.getElementById("header-main").offsetHeight;
-  let footerHeight = document.getElementById("footer-main").offsetHeight;
-  let newPadding = (window.innerHeight - headerHeight - footerHeight);
-  let setNewPadding = document.getElementById("add-whitespace").style.paddingBottom = newPadding + "px";
-  return setNewPadding;
-}());
-
-// Generic function to grab current date and format it for letter
-let currentDateUnformatted = new Date();
-let currentDateFormatted = formatCurrentDate(currentDateUnformatted);
-
-function formatCurrentDate(currentDateUnformatted) {
-  let day = currentDateUnformatted.getDate();
-//  let month = currentDateUnformatted.getMonth() + 1;
-  let year = currentDateUnformatted.getFullYear();
-  let monthArray = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"); // not available in Date object
-  let month = monthArray[currentDateUnformatted.getMonth()];
-  return month + " " + day.toString() + ", " + year.toString();
-}
-
-// Generic functions to upper or lowercase first letter in string
-function upperCaseFirstLetter(sentence) {
-  return sentence.charAt(0).toUpperCase() + sentence.slice(1);
-}
-
-function lowerCaseFirstLetter(sentence) {
-  return sentence.charAt(0).toLowerCase() + sentence.slice(1);
-}
-
-// Generic function to prevent double . at end of sentence
-function formatSentenceEnding(sentence) {
-  if (sentence.endsWith(".")) {
-    return sentence;
-  } else if (sentence.endsWith(". ") || sentence.endsWith("  ")) {
-    sentence = sentence.slice(0, -2);
-    return sentence += ".";
-  } else if (sentence.endsWith(" ")) {
-    sentence = sentence.slice(0, -1);
-    return sentence += ".";
-  } else {
-    return sentence += ".";
-  }
-}
 
 // LIST OF VARIABLES FOR SPECIFIC ANSWERS
  // #ticket-number-section
@@ -226,14 +180,14 @@ let mailAddressAnswer = "";
 const parkingProblemRadioSelection = (function updateParkingProblemConditionals() {
   const parkingProblemRadioOptions = document.querySelectorAll(".parking-problem-radio-class");
   addRadioEventListener(parkingProblemRadioOptions, updateParkingProblemConditionals);
-  for (let i = 0; i < parkingProblemRadioOptions.length; i++) {
-    if (parkingProblemRadioOptions[i].checked) {
-      if (parkingProblemRadioOptions[i].value === "1") {
+//  for (let i = 0; i < parkingProblemRadioOptions.length; i++) {
+  //  if (parkingProblemRadioOptions[i].checked) {
+      if (parkingProblemRadioOptions.value === "1") {
         hideTheseSectionsArray = [cityUnavailableSection,
           studentOrEmployeeSection,
           potentialIssueSection,
           checkBylawsSection,
-          privateTicketAppealReason];
+          privateTicketAppealSection];
         showTheseSectionsArray = [
           welcomeSection,
           parkingProblemSection,
@@ -249,7 +203,7 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
           finishedSectionDiv];
         return templateType = "city";
       }
-      else if (parkingProblemRadioOptions[i].value === "2") {
+      else if (parkingProblemRadioOptions.value === "2") {
         hideTheseSectionsArray = [
           potentialIssueSection,
           checkBylawsSection,
@@ -262,7 +216,7 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
           ticketAccuracySection,
           ticketReasonSection,
           ticketAppealBylawSection,
-          privateTicketAppealReason,
+          privateTicketAppealSection,
           ticketDateSection,
           nameSection,
           contactDetailsSection,
@@ -275,7 +229,7 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
         ];
         return templateType = "report abandoned vehicle";
       }
-      else if (parkingProblemRadioOptions[i].value === "3") {
+      else if (parkingProblemRadioOptions.value === "3") {
       //  // hideSectionsNotInPath("check bylaws");
         hideTheseSectionsArray = [
           parkingTicketIssuerSection,
@@ -287,7 +241,7 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
           ticketAccuracySection,
           ticketReasonSection,
           ticketAppealBylawSection,
-          privateTicketAppealReason,
+          privateTicketAppealSection,
           ticketDateSection,
           nameSection,
           contactDetailsSection,
@@ -300,19 +254,19 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
           finishedSectionDiv];
         return templateType = "";
       }
-    }
-  }
+  //  }
+//  }
 }());
 
 // .ticket-issuer-section - Who issued your ticket?
   // Update dependant visibiilty conditions
-const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
+(function updateticketIssuerConditionals() {
   const ticketIssuerRadioOptions = document.querySelectorAll(".ticket-issuer-radio-class");
   addRadioEventListener(ticketIssuerRadioOptions, updateticketIssuerConditionals);
   for (let i = 0; i < ticketIssuerRadioOptions.length; i++) {
-    if (ticketIssuerRadioOptions[i].checked) {
       if (ticketIssuerRadioOptions[i].value === "1") {
-        hideTheseSectionsArray = [studentOrEmployeeSection];
+        hideTheseSectionsArray = [studentOrEmployeeSection,
+        privateTicketAppealSection];
         showTheseSectionsArray = [
           welcomeSection,
           parkingProblemSection,
@@ -322,7 +276,6 @@ const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
           ticketAccuracySection,
           ticketReasonSection,
           ticketAppealBylawSection,
-          privateTicketAppealReason,
           photoUploadSection,
           ticketDateSection,
           nameSection,
@@ -331,7 +284,6 @@ const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
           finishedSectionDiv
         ];
         return templateType = "city";
-
       }
       else if (ticketIssuerRadioOptions[i].value === "2") {
         hideTheseSectionsArray = [municipalitySection];
@@ -341,7 +293,7 @@ const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
           ticketNumberSection,
           ticketAccuracySection,
           ticketReasonSection,
-          privateTicketAppealReason,
+          privateTicketAppealSection,
           photoUploadSection,
           ticketDateSection,
           nameSection,
@@ -360,7 +312,7 @@ const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
           ticketNumberSection,
           ticketAccuracySection,
           ticketReasonSection,
-          privateTicketAppealReason,
+          privateTicketAppealSection,
           photoUploadSection,
           ticketDateSection,
           nameSection,
@@ -370,7 +322,6 @@ const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
         return templateType = "institution";
       }
     }
-  }
 }());
 
 // #municipality-section
@@ -391,7 +342,7 @@ const municipalityRadioSelection = (function updateMunicipalityConditionals() {
           ticketAccuracySection,
           ticketReasonSection,
           ticketAppealBylawSection,
-          privateTicketAppealReason,
+          privateTicketAppealSection,
           photoUploadSection,
           ticketDateSection,
           nameSection,
@@ -412,7 +363,7 @@ const municipalityRadioSelection = (function updateMunicipalityConditionals() {
           ticketAccuracySection,
           ticketReasonSection,
           ticketAppealBylawSection,
-          privateTicketAppealReason,
+          privateTicketAppealSection,
           photoUploadSection,
           ticketDateSection,
           nameSection,
@@ -462,12 +413,13 @@ const ticketAccuracyRadioSelection = (function updateTicketAccuracyConditionals(
     if (ticketAccuracyRadioOptions[i].checked) {
       if (ticketAccuracyRadioOptions[i].value === "1") {
         ticketErrorDescriptionSubSection.style.display = "block";
-        ticketErrorDescriptionAnswer = "The ticket has incorrect details.</li> " + formatSentenceEnding(upperCaseFirstLetter(document.getElementById("ticket-error-description-text-field").value));
-        return;
+        document.getElementById("ticket-error-description-text-field").onchange = function() {
+          return ticketErrorDescriptionAnswer = document.getElementById("ticket-error-description-text-field").value;
+        }
+        return "The ticket has incorrect details.</li> " + formatSentenceEnding(upperCaseFirstLetter(ticketErrorDescriptionAnswer));
       } else if (ticketAccuracyRadioOptions[i].value === "2") {
           ticketErrorDescriptionSubSection.style.display = "none";
-          ticketErrorDescriptionAnswer = "";
-          return;
+          return ticketErrorDescriptionAnswer = "";
       }
     }
   }
@@ -718,12 +670,14 @@ const ticketAppealBylawRadioSelection = (function updateTicketBylawAppealConditi
     if (ticketAppealBylawRadioOptions[i].checked) {
       if (ticketAppealBylawRadioOptions[i].value === "1") {
         ticketAppealSubSection.style.display = "none";
-        ticketAppealBylawAnswer = "";
-        return;
+        return ticketAppealBylawAnswer = "";
       } else if (ticketAppealBylawRadioOptions[i].value === "2") {
           ticketAppealSubSection.style.display = "block";
-          ticketAppealBylawAnswer = "I don't believe the bylaw should apply because " + formatSentenceEnding(lowerCaseFirstLetter(document.getElementById("incorrect-bylaw-text-field").value));
-          return;
+          document.getElementById("incorrect-bylaw-text-field").onchange = function() {
+               ticketAppealBylawAnswer = document.getElementById("incorrect-bylaw-text-field").value;
+               return ticketAppealBylawAnswer;
+          }
+          return "I don't believe the bylaw should apply because " + formatSentenceEnding(lowerCaseFirstLetter(ticketAppealBylawAnswer));
       }
     }
   }
@@ -732,9 +686,9 @@ const ticketAppealBylawRadioSelection = (function updateTicketBylawAppealConditi
 // #private-ticket-appeal-section
 document.getElementById("private-ticket-appeal-text-field").onchange = function() {
   if (document.getElementById("private-ticket-appeal-text-field").value) {
-     privateTicketAppealAnswer = document.getElementById("private-ticket-appeal-text-field").value;
+     return privateTicketAppealAnswer = document.getElementById("private-ticket-appeal-text-field").value;
   } else {
-     privateTicketAppealAnswer = "";
+     return privateTicketAppealAnswer = "";
   }
 };
 
