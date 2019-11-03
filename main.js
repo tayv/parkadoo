@@ -1,7 +1,7 @@
 "use strict";
 
 import {setLetterTemplate, letterTemplate} from "/letter.js";
-import {checkBylawsOutputTemplate, cityBylawLink, cityBylawLink2, cityBylawName, bylawTextObj} from "/bylaw.js";
+import {checkBylawsOutputTemplate, cityBylawLink, cityBylawName, bylawTextObj} from "/bylaw.js";
 
 // TO LOAD DEFAULT VISIBILITY CONDITIONS (works)
 window.onload = function setDefaultAnswerState() {
@@ -123,7 +123,7 @@ document.getElementById("button-previous").onclick = function() {
 };
 
 // Using sessionStorage to save user answers
-document.getElementById("button-submit").onclick= function() {
+document.getElementById("button-submit").onclick = function() {
   try {
       let storage = window.sessionStorage || {};
       // Sanitize user input data
@@ -132,6 +132,7 @@ document.getElementById("button-submit").onclick= function() {
       // Store data
       sessionStorage.setItem("letter-output", JSON.stringify(templateDataClean));
       // Retrieving data done in letter.html header script on page load
+
   } catch (e) {
       let storage = {};
       // Chrome doesn't allow sessStorage when 3rd party cookies are blocked.
@@ -1004,4 +1005,4 @@ const potentialTicketRadioSelection = (function updatePotentialTicketConditional
   }
 }());
 
-export {nameAnswer, mailAddressAnswer, currentDateFormatted, ticketNumberAnswer, ticketDate, ticketReason, emailAnswer, ticketAppealBylawAnswer, privateTicketAppealAnswer, ticketErrorDescriptionAnswer};
+export {templateType, city, nameAnswer, mailAddressAnswer, currentDateFormatted, ticketNumberAnswer, ticketDate, ticketReason, emailAnswer, ticketAppealBylawAnswer, privateTicketAppealAnswer, ticketErrorDescriptionAnswer};

@@ -2,12 +2,8 @@
 
   // Bylaw info box variables
 let checkBylawsOutputTemplate = "";
-let cityBylawLink = document.getElementById("city-bylaw-link");
-cityBylawLink.href = "https://www.edmonton.ca/transportation/Bylaws/C5590.pdf"; // Can add links here as add more cities
-let cityBylawLink2 = document.getElementById("city-bylaw-link-2");
-cityBylawLink2.href = "https://www.edmonton.ca/transportation/Bylaws/C5590.pdf";
+let cityBylawLink = document.getElementsByClassName("city-bylaw-link").href = "https://www.edmonton.ca/transportation/Bylaws/C5590.pdf"; // Can expand this functionality as add more cities
 let cityBylawName = "Bylaw 5590";
-
   // Edmonton bylaw object
 let bylawTextObj = {
 ticketReason1: "parking in an expired meter zone",
@@ -151,4 +147,4 @@ checkBylawsPlainLanguageHint35: "",
 ticketBylawExplanation35: "Sorry, I couldn't find the bylaw for this situation :("
 };
 
-export {checkBylawsOutputTemplate, cityBylawLink, cityBylawLink2, cityBylawName, bylawTextObj};
+export {checkBylawsOutputTemplate, cityBylawLink, cityBylawName, bylawTextObj};

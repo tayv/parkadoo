@@ -2,7 +2,7 @@
   "name": "parkadoo",
   "version": "1.0.0",
   "description": "Check parking bylaws and make an appeal letter to challenge unfair parking tickets.",
-  "main": "generic_functionality.js",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
