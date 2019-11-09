@@ -68,6 +68,8 @@ function hideSections(hideTheseSectionsArray) {
 document.getElementById("button-next").onclick = function() {
   if (countStep < showTheseSectionsArray.length - 1) {
     countStep++;
+    parkingProblemRadioSelection();
+    ticketIssuerSelection();
     hideSections(hideTheseSectionsArray);
     showSections(showTheseSectionsArray);
     showTheseSectionsArray[countStep].scrollIntoView(true);
@@ -148,17 +150,19 @@ let mailAddressAnswer = "";
 // QUESTIONNAIRE SECTIONS
 // Generic step 1 - What is your parking problem?
   // update visibiilty conditions
-const parkingProblemRadioSelection = (function updateParkingProblemConditionals() {
+const parkingProblemRadioSelection = function updateParkingProblemConditionals() {
   const parkingProblemRadioOptions = document.querySelectorAll(".parking-problem-radio-class");
   addRadioEventListener(parkingProblemRadioOptions, updateParkingProblemConditionals);
-//  for (let i = 0; i < parkingProblemRadioOptions.length; i++) {
-  //  if (parkingProblemRadioOptions[i].checked) {
-      if (parkingProblemRadioOptions.value === "1") {
-        hideTheseSectionsArray = [formSections.cityUnavailableSection,
+  for (let i = 0; i < parkingProblemRadioOptions.length; i++) {
+    if (parkingProblemRadioOptions[i].checked) {
+      if (parkingProblemRadioOptions[i].value === "1") {
+        hideTheseSectionsArray = [
+          formSections.cityUnavailableSection,
           formSections.studentOrEmployeeSection,
           formSections.potentialIssueSection,
           formSections.checkBylawsSection,
-          formSections.privateTicketAppealSection];
+          formSections.privateTicketAppealSection
+        ];
         showTheseSectionsArray = [
           formSections.welcomeSection,
           formSections.parkingProblemSection,
@@ -171,10 +175,11 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
           formSections.nameSection,
           formSections.contactDetailsSection,
           formSections.mailingAddressSection,
-          formSections.finishedSectionDiv];
+          formSections.finishedSectionDiv
+        ];
         return templateType = "city";
       }
-      else if (parkingProblemRadioOptions.value === "2") {
+      else if (parkingProblemRadioOptions[i].value === "2") {
         hideTheseSectionsArray = [
           formSections.potentialIssueSection,
           formSections.checkBylawsSection,
@@ -200,7 +205,7 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
         ];
         return templateType = "report abandoned vehicle";
       }
-      else if (parkingProblemRadioOptions.value === "3") {
+      else if (parkingProblemRadioOptions[i].value === "3") {
       //  // hideSectionsNotInPath("check bylaws");
         hideTheseSectionsArray = [
           formSections.parkingTicketIssuerSection,
@@ -222,22 +227,29 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
           formSections.welcomeSection,
           formSections.potentialIssueSection,
           formSections.checkBylawsSection,
-          formSections.finishedSectionDiv];
+          formSections.finishedSectionDiv
+        ];
+        console.log("three fired", hideTheseSectionsArray, showTheseSectionsArray);
         return templateType = "";
       }
-//    }
-//  }
-}());
+   }
+  }
+};
 
 // .ticket-issuer-section - Who issued your ticket?
   // Update dependant visibiilty conditions
-(function updateticketIssuerConditionals() {
+const ticketIssuerSelection = function updateticketIssuerConditionals() {
   const ticketIssuerRadioOptions = document.querySelectorAll(".ticket-issuer-radio-class");
   addRadioEventListener(ticketIssuerRadioOptions, updateticketIssuerConditionals);
   for (let i = 0; i < ticketIssuerRadioOptions.length; i++) {
+    console.log(i);
+    if (ticketIssuerRadioOptions[i].checked) {
       if (ticketIssuerRadioOptions[i].value === "1") {
-        hideTheseSectionsArray = [formSections.studentOrEmployeeSection,
-        formSections.privateTicketAppealSection];
+        console.log("answer one. hide:", hideTheseSectionsArray, "show: ", showTheseSectionsArray);
+        hideTheseSectionsArray = [
+          formSections.studentOrEmployeeSection,
+          formSections.privateTicketAppealSection
+        ];
         showTheseSectionsArray = [
           formSections.welcomeSection,
           formSections.parkingProblemSection,
@@ -257,7 +269,10 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
         return templateType = "city";
       }
       else if (ticketIssuerRadioOptions[i].value === "2") {
-        hideTheseSectionsArray = [formSections.municipalitySection];
+        console.log("answer two hide: ", hideTheseSectionsArray,"show: ", showTheseSectionsArray);
+        hideTheseSectionsArray = [
+          formSections.municipalitySection
+        ];
         showTheseSectionsArray = [
           formSections.parkingProblemSection,
           formSections.parkingTicketIssuerSection,
@@ -270,11 +285,15 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
           formSections.nameSection,
           formSections.contactDetailsSection,
           formSections.mailingAddressSection,
-          formSections.finishedSectionDiv];
+          formSections.finishedSectionDiv
+        ];
         return templateType = "private operator";
       }
       else if (ticketIssuerRadioOptions[i].value === "3") {
-        hideTheseSectionsArray = [formSections.municipalitySection];
+        console.log("answer three hide: ", hideTheseSectionsArray, "show: ", showTheseSectionsArray);
+        hideTheseSectionsArray = [
+          formSections.municipalitySection
+        ];
         showTheseSectionsArray = [
           formSections.welcomeSection,
           formSections.parkingProblemSection,
@@ -289,11 +308,13 @@ const parkingProblemRadioSelection = (function updateParkingProblemConditionals(
           formSections.nameSection,
           formSections.contactDetailsSection,
           formSections.mailingAddressSection,
-          formSections.finishedSectionDiv];
+          formSections.finishedSectionDiv
+        ];
         return templateType = "institution";
+        }
       }
     }
-}());
+};
 
 // #municipality-section
   // update sub-section visibility conditions
@@ -303,7 +324,9 @@ const municipalityRadioSelection = (function updateMunicipalityConditionals() {
   for (let i = 0; i < municipalityRadioOptions.length; i++) {
     if (municipalityRadioOptions[i].checked) {
       if (municipalityRadioOptions[i].value === "1") {
-        hideTheseSectionsArray = [formSections.cityUnavailableSection];
+        hideTheseSectionsArray = [
+          formSections.cityUnavailableSection
+        ];
         showTheseSectionsArray = [
           formSections.welcomeSection,
           formSections.parkingProblemSection,
@@ -319,11 +342,12 @@ const municipalityRadioSelection = (function updateMunicipalityConditionals() {
           formSections.nameSection,
           formSections.contactDetailsSection,
           formSections.mailingAddressSection,
-          formSections.finishedSectionDiv];
+          formSections.finishedSectionDiv
+        ];
         return city = "City of Edmonton";
       }
       else if (municipalityRadioOptions[i].value === "2") {
-      //  hideTheseSectionsArray = [];
+    //  hideTheseSectionsArray = [];
         showTheseSectionsArray = [
           formSections.welcomeSection,
           formSections.parkingProblemSection,
@@ -340,8 +364,9 @@ const municipalityRadioSelection = (function updateMunicipalityConditionals() {
           formSections.nameSection,
           formSections.contactDetailsSection,
           formSections.mailingAddressSection,
-          formSections.finishedSectionDiv];
-        return city = document.getElementById("new-city-request-textfield").value;;
+          formSections.finishedSectionDiv
+        ];
+        return city = document.getElementById("new-city-request-textfield").value;
       }
     }
   }
