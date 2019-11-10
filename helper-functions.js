@@ -10,7 +10,7 @@ const calcAndSetWhiteSpace = (function() {
 
 // Generic function to grab current date and format it for letter
 let currentDateUnformatted = new Date();
-let currentDateFormatted = formatCurrentDate(currentDateUnformatted);
+
 
 const formatCurrentDate = (currentDateUnformatted) => {
   let day = currentDateUnformatted.getDate();
@@ -20,6 +20,8 @@ const formatCurrentDate = (currentDateUnformatted) => {
   let month = monthArray[currentDateUnformatted.getMonth()];
   return month + " " + day.toString() + ", " + year.toString();
 };
+
+let currentDateFormatted = formatCurrentDate(currentDateUnformatted);
 
 // Generic functions to upper or lowercase first letter in string
 const upperCaseFirstLetter = (sentence) => {
