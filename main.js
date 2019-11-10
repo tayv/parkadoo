@@ -3,7 +3,12 @@
 import {setLetterTemplate, letterTemplate} from "/letter.js";
 import {checkBylawsOutputTemplate, cityBylawLink, cityBylawName, bylawTextObj} from "/bylaw.js";
 import {calcAndSetWhiteSpace, currentDateFormatted, upperCaseFirstLetter, lowerCaseFirstLetter, formatSentenceEnding} from "/helper-functions.js";
-import {formSections} from "/generic-form.js";
+import {
+  formSections, sectionsShowHideObj, hideAllSteps, checkButtonStep,
+  parkingProblemRadioOptions, ticketIssuerRadioOptions, municipalityRadioOptions, studentOrEmployeeRadioOptions,
+  ticketAccuracyRadioOptions, ticketReasonRadioOptions, ticketAppealBylawRadioOptions, potentialTicketRadioOptions,
+  setupRBEventListeners
+} from "/generic-form.js";
 
 // TO LOAD DEFAULT VISIBILITY CONDITIONS (works)
 window.onload = function setDefaultAnswerState() {
@@ -22,133 +27,10 @@ window.onload = function setDefaultAnswerState() {
   potentialTicketRadioSelection();
 };
 
-// LIST OF VARIABLES
-  // Array that will hold sections to hide
-let hideTheseSectionsArray = [];
-  // Array that will hold section to display
-let showTheseSectionsArray = [];
 
-
-// Output
+// LIST OF VARIABLES FOR LETTER OUTPUT
 let templateType = ""; // to be used as parameter for setLetterTemplate() to update the output template on next step button click
-let city = "";
-let yesStudentOrEmployee = "";
-
-// To hide all steps other than initial welcome section by default
-const hideAllSteps = () => {
-  for (var i = 1; i < formSections.allFormSections.length; i++) {
-    formSections.allFormSections[i].style.display="none";
-  }
-  formSections.finishedSectionDiv.style.display="none";
-};
-
-// GENERIC FUNCTIONALITY - Previous/Next/Submit button visiblity and to scroll to next div/step.
-  // Needs to be initialized before question specific visibility conditions
-let countStep = 0;
-const checkButtonStep = () => {
-  if (countStep === 0) {
-    document.getElementById("button-previous").style.display="none";
-    document.getElementById("button-submit").style.display="none";
-  } else if (countStep > 0 && countStep < showTheseSectionsArray.length - 1) {
-      document.getElementById("button-previous").style.display="inline";
-      document.getElementById("button-submit").style.display="none";
-  } else if (countStep >= showTheseSectionsArray.length - 1) {
-      document.getElementById("button-previous").style.display="none";
-      document.getElementById("button-next").style.display="none";
-      document.getElementById("button-submit").style.display="block";
-  }
-};
-
-  // show/hideSections() based on prev/next button onclick
-const showSections = (showTheseSectionsArray) => {
-  if (showTheseSectionsArray.length > 0 && showTheseSectionsArray[countStep] !== undefined) {
-    showTheseSectionsArray[countStep].style.display = "block";
-  }
-};
-const hideSections = (hideTheseSectionsArray) => {
-  if (hideTheseSectionsArray.length > 0) {
-    for (let i = 0; i <= hideTheseSectionsArray.length && hideTheseSectionsArray[i] !== undefined; i++) {
-      hideTheseSectionsArray[i].style.display = "none";
-    }
-  }
-};
-
-  // functionality for displaying steps on prev/next button click
-document.getElementById("button-next").onclick = () => {
-  if (countStep < showTheseSectionsArray.length - 1) {
-    countStep++;
-    hideSections(hideTheseSectionsArray);
-    showSections(showTheseSectionsArray);
-    showTheseSectionsArray[countStep].scrollIntoView(true);
-    showTheseSectionsArray[countStep].style.opacity="1";
-    showTheseSectionsArray[countStep-1].style.opacity="0.2"; // reduce opacity of a completed step so user focus is on current step
-    checkButtonStep();
-  } else {
-      checkButtonStep();
-  } return countStep;
-};
-
-document.getElementById("button-previous").onclick = () => {
-  if (countStep < 1) {
-    checkButtonStep();
-  } else if (countStep >= 1) {
-      countStep--;
-      hideSections(hideTheseSectionsArray);
-      showSections(showTheseSectionsArray);
-      showTheseSectionsArray[countStep].style.opacity="1";
-      showTheseSectionsArray[countStep+1].style.opacity="0.2";
-      showTheseSectionsArray[countStep].scrollIntoView(true);
-      checkButtonStep();
-  } return countStep;
-};
-
-// Using sessionStorage to save user answers
-document.getElementById("button-submit").onclick = () => {
-  try {
-      let storage = window.sessionStorage || {};
-      // Sanitize user input data
-      let templateDataDirty = setLetterTemplate(templateType); // So that we display the correct letter with up to date variables in letter.html
-      let templateDataClean = DOMPurify.sanitize(templateDataDirty);
-      // Store data
-      sessionStorage.setItem("letter-output", JSON.stringify(templateDataClean));
-      // Retrieving data done in letter.html header script on page load
-
-  } catch (e) {
-      let storage = {};
-      // Chrome doesn't allow sessStorage when 3rd party cookies are blocked.
-      alert(e.message, "Sorry, looks like I'm blocked from saving and displaying your answers because your browser doesn't allow 3rd party cookies in your advanced browser settings.");
-  }
-};
-
-
-// GENERIC FUNCTIONALITY: Add event listener to radio buttons within visibility condition function
-const addRadioEventListener = (rbClassName, updateConditionalsFunction) => {
-  for(let i = 0; i < rbClassName.length; i++) {
-    rbClassName[i].addEventListener("change", updateConditionalsFunction, false);
-  }
-};
-
-// experimental code
-const parkingProblemRadioOptions = document.querySelectorAll(".parking-problem-radio-class");
-const ticketIssuerRadioOptions = document.querySelectorAll(".ticket-issuer-radio-class");
-const municipalityRadioOptions = document.querySelectorAll(".municipality-radio-class");
-const studentOrEmployeeRadioOptions = document.querySelectorAll(".student-or-employee-class");
-const ticketAccuracyRadioOptions = document.querySelectorAll(".ticket-accuracy-radio-class");
-const ticketReasonRadioOptions = document.querySelectorAll(".ticket-reason-radio-class");
-const ticketAppealBylawRadioOptions = document.querySelectorAll(".yn-ticket-valid-class");
-const potentialTicketRadioOptions = document.querySelectorAll(".potential-ticket-radio-class");
-const setupRBEventListeners = () => {
-  addRadioEventListener(parkingProblemRadioOptions, parkingProblemRadioSelection);
-  addRadioEventListener(ticketIssuerRadioOptions, ticketIssuerSelection);
-  addRadioEventListener(municipalityRadioOptions, municipalityRadioSelection);
-  addRadioEventListener(studentOrEmployeeRadioOptions, studentOrEmployeeRadioSelection);
-  addRadioEventListener(ticketAccuracyRadioOptions, ticketAccuracyRadioSelection);
-  addRadioEventListener(ticketReasonRadioOptions, ticketReasonRadioSelection);
-  addRadioEventListener(ticketAppealBylawRadioOptions, ticketAppealBylawRadioSelection);
-  addRadioEventListener(potentialTicketRadioOptions, potentialTicketRadioSelection);
-} // Note this is being called at bottom of file to initialize rb event listeners
-
-
+let city = ""; // used for municipality section to set appropriate city name
 
 // LIST OF VARIABLES FOR SPECIFIC ANSWERS
  // #ticket-number-section
@@ -183,14 +65,14 @@ const parkingProblemRadioSelection = () => {
   for (let i = 0; i < parkingProblemRadioOptions.length; i++) {
     if (parkingProblemRadioOptions[i].checked) {
       if (parkingProblemRadioOptions[i].value === "1") {
-        hideTheseSectionsArray = [
+        sectionsShowHideObj.hideTheseSectionsArray = [
           formSections.cityUnavailableSection,
           formSections.studentOrEmployeeSection,
           formSections.potentialIssueSection,
           formSections.checkBylawsSection,
           formSections.privateTicketAppealSection
         ];
-        showTheseSectionsArray = [
+        sectionsShowHideObj.showTheseSectionsArray = [
           formSections.welcomeSection,
           formSections.parkingProblemSection,
           formSections.parkingTicketIssuerSection,
@@ -207,7 +89,7 @@ const parkingProblemRadioSelection = () => {
         return templateType = "city";
       }
       else if (parkingProblemRadioOptions[i].value === "2") {
-        hideTheseSectionsArray = [
+        sectionsShowHideObj.hideTheseSectionsArray = [
           formSections.potentialIssueSection,
           formSections.checkBylawsSection,
           formSections.parkingTicketIssuerSection,
@@ -225,7 +107,7 @@ const parkingProblemRadioSelection = () => {
           formSections.contactDetailsSection,
           formSections.mailingAddressSection,
           formSections.photoUploadSection];
-        showTheseSectionsArray = [
+        sectionsShowHideObj.showTheseSectionsArray = [
           formSections.welcomeSection,
           formSections.parkingProblemSection,
           formSections.finishedSectionDiv
@@ -233,7 +115,7 @@ const parkingProblemRadioSelection = () => {
         return templateType = "report abandoned vehicle";
       }
       else if (parkingProblemRadioOptions[i].value === "3") {
-        hideTheseSectionsArray = [
+        sectionsShowHideObj.hideTheseSectionsArray = [
           formSections.parkingTicketIssuerSection,
           formSections.municipalitySection,
           formSections.cityUnavailableSection,
@@ -249,7 +131,7 @@ const parkingProblemRadioSelection = () => {
           formSections.contactDetailsSection,
           formSections.mailingAddressSection,
           formSections.photoUploadSection];
-        showTheseSectionsArray = [
+        sectionsShowHideObj.showTheseSectionsArray = [
           formSections.welcomeSection,
           formSections.potentialIssueSection,
           formSections.checkBylawsSection,
@@ -267,11 +149,11 @@ const ticketIssuerSelection = () => {
   for (let i = 0; i < ticketIssuerRadioOptions.length; i++) {
     if (ticketIssuerRadioOptions[i].checked) {
       if (ticketIssuerRadioOptions[i].value === "1") {
-        hideTheseSectionsArray = [
+        sectionsShowHideObj.hideTheseSectionsArray = [
           formSections.studentOrEmployeeSection,
           formSections.privateTicketAppealSection
         ];
-        showTheseSectionsArray = [
+        sectionsShowHideObj.showTheseSectionsArray = [
           formSections.welcomeSection,
           formSections.parkingProblemSection,
           formSections.parkingTicketIssuerSection,
@@ -290,10 +172,10 @@ const ticketIssuerSelection = () => {
         return templateType = "city";
       }
       else if (ticketIssuerRadioOptions[i].value === "2") {
-        hideTheseSectionsArray = [
+        sectionsShowHideObj.hideTheseSectionsArray = [
           formSections.municipalitySection
         ];
-        showTheseSectionsArray = [
+        sectionsShowHideObj.showTheseSectionsArray = [
           formSections.welcomeSection,
           formSections.parkingProblemSection,
           formSections.parkingTicketIssuerSection,
@@ -311,10 +193,10 @@ const ticketIssuerSelection = () => {
         return templateType = "private operator";
       }
       else if (ticketIssuerRadioOptions[i].value === "3") {
-        hideTheseSectionsArray = [
+        sectionsShowHideObj.hideTheseSectionsArray = [
           formSections.municipalitySection
         ];
-        showTheseSectionsArray = [
+        sectionsShowHideObj.showTheseSectionsArray = [
           formSections.welcomeSection,
           formSections.parkingProblemSection,
           formSections.parkingTicketIssuerSection,
@@ -342,10 +224,10 @@ const municipalityRadioSelection = () => {
   for (let i = 0; i < municipalityRadioOptions.length; i++) {
     if (municipalityRadioOptions[i].checked) {
       if (municipalityRadioOptions[i].value === "1") {
-        hideTheseSectionsArray = [
+        sectionsShowHideObj.hideTheseSectionsArray = [
           formSections.cityUnavailableSection
         ];
-        showTheseSectionsArray = [
+        sectionsShowHideObj.showTheseSectionsArray = [
           formSections.welcomeSection,
           formSections.parkingProblemSection,
           formSections.parkingTicketIssuerSection,
@@ -365,8 +247,8 @@ const municipalityRadioSelection = () => {
         return city = "City of Edmonton";
       }
       else if (municipalityRadioOptions[i].value === "2") {
-    //  hideTheseSectionsArray = [];
-        showTheseSectionsArray = [
+    //  sectionsShowHideObj.hideTheseSectionsArray = [];
+        sectionsShowHideObj.showTheseSectionsArray = [
           formSections.welcomeSection,
           formSections.parkingProblemSection,
           formSections.parkingTicketIssuerSection,
@@ -396,7 +278,7 @@ const studentOrEmployeeRadioSelection = () => {
   for (let i = 0; i < studentOrEmployeeRadioOptions.length; i++) {
     if (studentOrEmployeeRadioOptions[i].checked) {
       if (studentOrEmployeeRadioOptions[i].value === "1") {
-        // No change to hideTheseSectionsArray or showTheseSectionsArray
+        // No change to sectionsShowHideObj.hideTheseSectionsArray or sectionsShowHideObj.showTheseSectionsArray
         document.getElementById("student-employee-tip").style.display = "block";
       }
       else if (studentOrEmployeeRadioOptions[i].value === "2") {
@@ -958,4 +840,9 @@ const potentialTicketRadioSelection = () => {
   }
 };
 setupRBEventListeners(); // To initialize rb event listeners after all conditions are loaded
-export {templateType, city, nameAnswer, mailAddressAnswer, currentDateFormatted, ticketNumberAnswer, ticketDate, ticketReason, emailAnswer, ticketAppealBylawAnswer, privateTicketAppealAnswer, ticketErrorDescriptionAnswer};
+export {
+  templateType, city, nameAnswer, mailAddressAnswer, currentDateFormatted, ticketNumberAnswer, ticketDate,
+  ticketReason, emailAnswer, ticketAppealBylawAnswer, privateTicketAppealAnswer, ticketErrorDescriptionAnswer,
+  parkingProblemRadioSelection, ticketIssuerSelection, municipalityRadioSelection, studentOrEmployeeRadioSelection,
+  ticketAccuracyRadioSelection, ticketReasonRadioSelection, ticketAppealBylawRadioSelection, potentialTicketRadioSelection
+};
