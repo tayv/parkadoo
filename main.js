@@ -11,8 +11,8 @@ window.onload = function setDefaultAnswerState() {
   formSections.welcomeSection.scrollIntoView(true);
   checkButtonStep(); // to display proper button at page load
   hideAllSteps(); // to start with all the steps hidden
-  // To set initial rb visibility condition
-  parkingProblemRadioSelection(); // without this won't display city output without a rb change
+  // To set initial rb visibility conditions
+  parkingProblemRadioSelection(); // without this won't display city output without rb event change
   ticketIssuerSelection();
   municipalityRadioSelection(); // BUG PATCH: No idea why this works but without it the next button functionality breaks
   studentOrEmployeeRadioSelection();
@@ -79,7 +79,6 @@ document.getElementById("button-next").onclick = function() {
     countStep++;
     hideSections(hideTheseSectionsArray);
     showSections(showTheseSectionsArray);
-
     showTheseSectionsArray[countStep].scrollIntoView(true);
     showTheseSectionsArray[countStep].style.opacity="1";
     showTheseSectionsArray[countStep-1].style.opacity="0.2"; // reduce opacity of a completed step so user focus is on current step
@@ -300,6 +299,7 @@ const ticketIssuerSelection = function updateticketIssuerConditionals() {
           formSections.municipalitySection
         ];
         showTheseSectionsArray = [
+          formSections.welcomeSection,
           formSections.parkingProblemSection,
           formSections.parkingTicketIssuerSection,
           formSections.ticketNumberSection,
