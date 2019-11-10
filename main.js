@@ -35,7 +35,7 @@ let city = "";
 let yesStudentOrEmployee = "";
 
 // To hide all steps other than initial welcome section by default
-const hideAllSteps = function() {
+const hideAllSteps = () => {
   for (var i = 1; i < formSections.allFormSections.length; i++) {
     formSections.allFormSections[i].style.display="none";
   }
@@ -45,7 +45,7 @@ const hideAllSteps = function() {
 // GENERIC FUNCTIONALITY - Previous/Next/Submit button visiblity and to scroll to next div/step.
   // Needs to be initialized before question specific visibility conditions
 let countStep = 0;
-function checkButtonStep() {
+const checkButtonStep = () => {
   if (countStep === 0) {
     document.getElementById("button-previous").style.display="none";
     document.getElementById("button-submit").style.display="none";
@@ -60,21 +60,21 @@ function checkButtonStep() {
 };
 
   // show/hideSections() based on prev/next button onclick
-function showSections(showTheseSectionsArray) {
+const showSections = (showTheseSectionsArray) => {
   if (showTheseSectionsArray.length > 0 && showTheseSectionsArray[countStep] !== undefined) {
     showTheseSectionsArray[countStep].style.display = "block";
   }
-}
-function hideSections(hideTheseSectionsArray) {
+};
+const hideSections = (hideTheseSectionsArray) => {
   if (hideTheseSectionsArray.length > 0) {
     for (let i = 0; i <= hideTheseSectionsArray.length && hideTheseSectionsArray[i] !== undefined; i++) {
       hideTheseSectionsArray[i].style.display = "none";
     }
   }
-}
+};
 
   // functionality for displaying steps on prev/next button click
-document.getElementById("button-next").onclick = function() {
+document.getElementById("button-next").onclick = () => {
   if (countStep < showTheseSectionsArray.length - 1) {
     countStep++;
     hideSections(hideTheseSectionsArray);
@@ -88,7 +88,7 @@ document.getElementById("button-next").onclick = function() {
   } return countStep;
 };
 
-document.getElementById("button-previous").onclick = function() {
+document.getElementById("button-previous").onclick = () => {
   if (countStep < 1) {
     checkButtonStep();
   } else if (countStep >= 1) {
@@ -103,7 +103,7 @@ document.getElementById("button-previous").onclick = function() {
 };
 
 // Using sessionStorage to save user answers
-document.getElementById("button-submit").onclick = function() {
+document.getElementById("button-submit").onclick = () => {
   try {
       let storage = window.sessionStorage || {};
       // Sanitize user input data
@@ -122,7 +122,7 @@ document.getElementById("button-submit").onclick = function() {
 
 
 // GENERIC FUNCTIONALITY: Add event listener to radio buttons within visibility condition function
-function addRadioEventListener(rbClassName, updateConditionalsFunction) {
+const addRadioEventListener = (rbClassName, updateConditionalsFunction) => {
   for(let i = 0; i < rbClassName.length; i++) {
     rbClassName[i].addEventListener("change", updateConditionalsFunction, false);
   }
@@ -146,7 +146,7 @@ const setupRBEventListeners = () => {
   addRadioEventListener(ticketReasonRadioOptions, ticketReasonRadioSelection);
   addRadioEventListener(ticketAppealBylawRadioOptions, ticketAppealBylawRadioSelection);
   addRadioEventListener(potentialTicketRadioOptions, potentialTicketRadioSelection);
-}
+} // Note this is being called at bottom of file to initialize rb event listeners
 
 
 
@@ -179,9 +179,7 @@ let mailAddressAnswer = "";
 // QUESTIONNAIRE SECTIONS
 // Generic step 1 - What is your parking problem?
   // update visibiilty conditions
-const parkingProblemRadioSelection = function updateParkingProblemConditionals() {
-  //const parkingProblemRadioOptions = document.querySelectorAll(".parking-problem-radio-class");
-  //addRadioEventListener(parkingProblemRadioOptions, updateParkingProblemConditionals);
+const parkingProblemRadioSelection = () => {
   for (let i = 0; i < parkingProblemRadioOptions.length; i++) {
     if (parkingProblemRadioOptions[i].checked) {
       if (parkingProblemRadioOptions[i].value === "1") {
@@ -235,7 +233,6 @@ const parkingProblemRadioSelection = function updateParkingProblemConditionals()
         return templateType = "report abandoned vehicle";
       }
       else if (parkingProblemRadioOptions[i].value === "3") {
-      //  // hideSectionsNotInPath("check bylaws");
         hideTheseSectionsArray = [
           formSections.parkingTicketIssuerSection,
           formSections.municipalitySection,
@@ -266,9 +263,7 @@ const parkingProblemRadioSelection = function updateParkingProblemConditionals()
 
 // .ticket-issuer-section - Who issued your ticket?
   // Update dependant visibiilty conditions
-const ticketIssuerSelection = function updateticketIssuerConditionals() {
-  //const ticketIssuerRadioOptions = document.querySelectorAll(".ticket-issuer-radio-class");
-  //addRadioEventListener(ticketIssuerRadioOptions, updateticketIssuerConditionals);
+const ticketIssuerSelection = () => {
   for (let i = 0; i < ticketIssuerRadioOptions.length; i++) {
     if (ticketIssuerRadioOptions[i].checked) {
       if (ticketIssuerRadioOptions[i].value === "1") {
@@ -343,9 +338,7 @@ const ticketIssuerSelection = function updateticketIssuerConditionals() {
 
 // #municipality-section
   // update sub-section visibility conditions
-const municipalityRadioSelection = function updateMunicipalityConditionals() {
-  //const municipalityRadioOptions = document.querySelectorAll(".municipality-radio-class");
-  //addRadioEventListener(municipalityRadioOptions, updateMunicipalityConditionals);
+const municipalityRadioSelection = () => {
   for (let i = 0; i < municipalityRadioOptions.length; i++) {
     if (municipalityRadioOptions[i].checked) {
       if (municipalityRadioOptions[i].value === "1") {
@@ -399,9 +392,7 @@ const municipalityRadioSelection = function updateMunicipalityConditionals() {
 
 // #student-or-employee-section
   // update sub-section visibility conditions
-const studentOrEmployeeRadioSelection = function updateStudentOrEmployeeConditionals() {
-  //const studentOrEmployeeRadioOptions = document.querySelectorAll(".student-or-employee-class");
-  //addRadioEventListener(studentOrEmployeeRadioOptions, updateStudentOrEmployeeConditionals);
+const studentOrEmployeeRadioSelection = () => {
   for (let i = 0; i < studentOrEmployeeRadioOptions.length; i++) {
     if (studentOrEmployeeRadioOptions[i].checked) {
       if (studentOrEmployeeRadioOptions[i].value === "1") {
@@ -418,19 +409,17 @@ const studentOrEmployeeRadioSelection = function updateStudentOrEmployeeConditio
 
 // #ticket-number-section
   // To update output text
-document.getElementById("ticket-number-text-field").onchange = function() {
+document.getElementById("ticket-number-text-field").onchange = () => {
   ticketNumberAnswer = document.getElementById("ticket-number-text-field").value;
 };
 // #ticket-accuracy-section
   // gatekeeper function for displaying subsection
-const ticketAccuracyRadioSelection = function updateTicketAccuracyConditionals() {
-  //const ticketAccuracyRadioOptions = document.querySelectorAll(".ticket-accuracy-radio-class");
-  //addRadioEventListener(ticketAccuracyRadioOptions, updateTicketAccuracyConditionals);
+const ticketAccuracyRadioSelection = () => {
   for (let i = 0; i < ticketAccuracyRadioOptions.length; i++) {
     if (ticketAccuracyRadioOptions[i].checked) {
       if (ticketAccuracyRadioOptions[i].value === "1") {
         formSections.ticketErrorDescriptionSubSection.style.display = "block";
-        document.getElementById("ticket-error-description-text-field").onchange = function() {
+        document.getElementById("ticket-error-description-text-field").onchange = () => {
           return ticketErrorDescriptionAnswer = document.getElementById("ticket-error-description-text-field").value;
         }
         return "The ticket has incorrect details.</li> " + formatSentenceEnding(upperCaseFirstLetter(ticketErrorDescriptionAnswer));
@@ -444,9 +433,7 @@ const ticketAccuracyRadioSelection = function updateTicketAccuracyConditionals()
 
 // #ticket-reason-section
   // Function for setting the correct ticket reason text
-const ticketReasonRadioSelection = function updateTicketReasonConditionals() {
-  //const ticketReasonRadioOptions = document.querySelectorAll(".ticket-reason-radio-class");
-  //addRadioEventListener(ticketReasonRadioOptions, updateTicketReasonConditionals);
+const ticketReasonRadioSelection = () => {
   for (let i = 0; i < ticketReasonRadioOptions.length; i++) {
     if (ticketReasonRadioOptions[i].checked) {
       switch (i) {
@@ -672,17 +659,14 @@ const ticketReasonRadioSelection = function updateTicketReasonConditionals() {
 
 // #ticket-appeal-bylaw-section
   // gatekeeper function for displaying subsection
-const ticketAppealBylawRadioSelection = function updateTicketBylawAppealConditionals() {
-
+const ticketAppealBylawRadioSelection = () => {
   // Bylaw info box output
   checkBylawsIntroParagraph = "Here's the " + city + "&#39;s bylaw:";
   document.getElementById("check-bylaw-correct-primary-question-2-insert-here").innerHTML = checkBylawsIntroParagraph;
   document.getElementById("bylaw-plain-language-hint-2-insert-here").innerHTML = checkBylawsPlainLanguageHint;
   document.getElementById("city-bylaw-name-2").innerHTML = cityBylawName;
   document.getElementById("insert-bylaw-correct-info-box-text-here").innerHTML = ticketBylawExplanation;
-
-  //const ticketAppealBylawRadioOptions = document.querySelectorAll(".yn-ticket-valid-class");
-  //addRadioEventListener(ticketAppealBylawRadioOptions, updateTicketBylawAppealConditionals);
+  // radio button conditions
   for (let i = 0; i < ticketAppealBylawRadioOptions.length; i++) {
     if (ticketAppealBylawRadioOptions[i].checked) {
       if (ticketAppealBylawRadioOptions[i].value === "1") {
@@ -690,10 +674,10 @@ const ticketAppealBylawRadioSelection = function updateTicketBylawAppealConditio
         return ticketAppealBylawAnswer = "";
       } else if (ticketAppealBylawRadioOptions[i].value === "2") {
           formSections.ticketAppealSubSection.style.display = "block";
-          document.getElementById("incorrect-bylaw-text-field").onchange = function() {
+          document.getElementById("incorrect-bylaw-text-field").onchange = () => {
                ticketAppealBylawAnswer = document.getElementById("incorrect-bylaw-text-field").value;
                return ticketAppealBylawAnswer;
-          }
+          };
           return "I don't believe the bylaw should apply because " + formatSentenceEnding(lowerCaseFirstLetter(ticketAppealBylawAnswer));
       }
     }
@@ -701,7 +685,7 @@ const ticketAppealBylawRadioSelection = function updateTicketBylawAppealConditio
 };
 
 // #private-ticket-appeal-section
-document.getElementById("private-ticket-appeal-text-field").onchange = function() {
+document.getElementById("private-ticket-appeal-text-field").onchange = () => {
   if (document.getElementById("private-ticket-appeal-text-field").value) {
      return privateTicketAppealAnswer = document.getElementById("private-ticket-appeal-text-field").value;
   } else {
@@ -711,48 +695,46 @@ document.getElementById("private-ticket-appeal-text-field").onchange = function(
 
 // #name-section
   // functions to update nameAnswer
-document.getElementById("person-name-text-field").onchange = function() {
+document.getElementById("person-name-text-field").onchange = () => {
   if (document.getElementById("person-name-text-field").value) {
     return nameAnswer = document.getElementById("person-name-text-field").value;
   } else {
     return nameAnswer = "_______________";
   }
-}
+};
 
 // #contact-details-section
   // Functions to update emailAnswer
-document.getElementById("email-field").onchange = function updateEmailAnswer() {
+document.getElementById("email-field").onchange = () => {
   if (document.getElementById("email-field").value) {
     return emailAnswer = document.getElementById("email-field").value;
   } else {
     return emailAnswer = "_______________";
   }
-}
+};
 
 // #mailing-address-section
   // function to update mailAddressAnswer
-document.getElementById("mailing-address-text-field").onchange = function() {
+document.getElementById("mailing-address-text-field").onchange = () => {
   if (document.getElementById("mailing-address-text-field").value) {
     return mailAddressAnswer = document.getElementById("mailing-address-text-field").value;
   } else {
     return mailAddressAnswer = "_______________<br>_______________";
   }
-}
+};
 
 // #potential-issue-section
   // Function for displaying bylaw text in the form
-function displayPotentialTicketContent() {
+const displayPotentialTicketContent = () => {
   checkBylawsIntroParagraph = "Hey, I found this in the " + city + "&#39;s bylaws:";
   document.getElementById("check-bylaw-primary-question-insert-here").innerHTML = checkBylawsIntroParagraph;
   document.getElementById("bylaw-plain-language-hint-insert-here").innerHTML = checkBylawsPlainLanguageHint;
   document.getElementById("city-bylaw-name").innerHTML = cityBylawName;
   document.getElementById("insert-check-bylaw-info-box-text-here").innerHTML = ticketBylawExplanation;
-}
+};
 
   // Function for setting the correct parking bylaw text
-const potentialTicketRadioSelection = function updatePotentialTicketConditionals() {
-  //const potentialTicketRadioOptions = document.querySelectorAll(".potential-ticket-radio-class");
-  //addRadioEventListener(potentialTicketRadioOptions, updatePotentialTicketConditionals);
+const potentialTicketRadioSelection = () => {
   for (let i = 0; i < potentialTicketRadioOptions.length; i++) {
     if (potentialTicketRadioOptions[i].checked) {
       switch (i) {
@@ -975,5 +957,5 @@ const potentialTicketRadioSelection = function updatePotentialTicketConditionals
     }
   }
 };
-setupRBEventListeners(); // testing
+setupRBEventListeners(); // To initialize rb event listeners after all conditions are loaded
 export {templateType, city, nameAnswer, mailAddressAnswer, currentDateFormatted, ticketNumberAnswer, ticketDate, ticketReason, emailAnswer, ticketAppealBylawAnswer, privateTicketAppealAnswer, ticketErrorDescriptionAnswer};

@@ -12,26 +12,26 @@ const calcAndSetWhiteSpace = (function() {
 let currentDateUnformatted = new Date();
 let currentDateFormatted = formatCurrentDate(currentDateUnformatted);
 
-function formatCurrentDate(currentDateUnformatted) {
+const formatCurrentDate = (currentDateUnformatted) => {
   let day = currentDateUnformatted.getDate();
 //  let month = currentDateUnformatted.getMonth() + 1;
   let year = currentDateUnformatted.getFullYear();
   let monthArray = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"); // not available in Date object
   let month = monthArray[currentDateUnformatted.getMonth()];
   return month + " " + day.toString() + ", " + year.toString();
-}
+};
 
 // Generic functions to upper or lowercase first letter in string
-function upperCaseFirstLetter(sentence) {
+const upperCaseFirstLetter = (sentence) => {
   return sentence.charAt(0).toUpperCase() + sentence.slice(1);
-}
+};
 
-function lowerCaseFirstLetter(sentence) {
+const lowerCaseFirstLetter = (sentence) => {
   return sentence.charAt(0).toLowerCase() + sentence.slice(1);
-}
+};
 
 // Generic function to prevent double . at end of sentence
-function formatSentenceEnding(sentence) {
+const formatSentenceEnding = (sentence) => {
   if (sentence.endsWith(".")) {
     return sentence;
   } else if (sentence.endsWith(". ") || sentence.endsWith("  ")) {
@@ -43,6 +43,6 @@ function formatSentenceEnding(sentence) {
   } else {
     return sentence += ".";
   }
-}
+};
 
 export {calcAndSetWhiteSpace, currentDateFormatted, upperCaseFirstLetter, lowerCaseFirstLetter, formatSentenceEnding};

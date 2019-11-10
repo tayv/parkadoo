@@ -5,7 +5,7 @@ import {templateType, city, nameAnswer, mailAddressAnswer, currentDateFormatted,
 
 let letterTemplate = "";
 // setLetterTemplate() updates output text based on questionnaire selections
-function setLetterTemplate(x) {
+const setLetterTemplate = (x) => {
   if (x === "city") {
     // Letter output
     letterTemplate = // could move this to a separate file and reference in variable section at top of page
