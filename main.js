@@ -11,7 +11,15 @@ window.onload = function setDefaultAnswerState() {
   formSections.welcomeSection.scrollIntoView(true);
   checkButtonStep(); // to display proper button at page load
   hideAllSteps(); // to start with all the steps hidden
+  // To set initial rb visibility condition
+  parkingProblemRadioSelection(); // without this won't display city output without a rb change
+  ticketIssuerSelection();
   municipalityRadioSelection(); // BUG PATCH: No idea why this works but without it the next button functionality breaks
+  studentOrEmployeeRadioSelection();
+  ticketAccuracyRadioSelection();
+  ticketReasonRadioSelection();
+  ticketAppealBylawRadioSelection();
+  potentialTicketRadioSelection();
 };
 
 // LIST OF VARIABLES
@@ -71,6 +79,7 @@ document.getElementById("button-next").onclick = function() {
     countStep++;
     hideSections(hideTheseSectionsArray);
     showSections(showTheseSectionsArray);
+
     showTheseSectionsArray[countStep].scrollIntoView(true);
     showTheseSectionsArray[countStep].style.opacity="1";
     showTheseSectionsArray[countStep-1].style.opacity="0.2"; // reduce opacity of a completed step so user focus is on current step
@@ -134,10 +143,10 @@ const setupRBEventListeners = () => {
   addRadioEventListener(ticketIssuerRadioOptions, ticketIssuerSelection);
   addRadioEventListener(municipalityRadioOptions, municipalityRadioSelection);
   addRadioEventListener(studentOrEmployeeRadioOptions, studentOrEmployeeRadioSelection);
-//  addRadioEventListener(ticketAccuracyRadioOptions, ticketAccuracyRadioSelection);
-//  addRadioEventListener(ticketReasonRadioOptions, ticketReasonRadioSelection);
-//  addRadioEventListener(ticketAppealBylawRadioOptions, ticketAppealBylawRadioSelection);
-  //addRadioEventListener(potentialTicketRadioOptions, potentialTicketRadioSelection);
+  addRadioEventListener(ticketAccuracyRadioOptions, ticketAccuracyRadioSelection);
+  addRadioEventListener(ticketReasonRadioOptions, ticketReasonRadioSelection);
+  addRadioEventListener(ticketAppealBylawRadioOptions, ticketAppealBylawRadioSelection);
+  addRadioEventListener(potentialTicketRadioOptions, potentialTicketRadioSelection);
 }
 
 
@@ -198,7 +207,6 @@ const parkingProblemRadioSelection = function updateParkingProblemConditionals()
           formSections.mailingAddressSection,
           formSections.finishedSectionDiv
         ];
-            console.log("one fired", hideTheseSectionsArray, showTheseSectionsArray);
         return templateType = "city";
       }
       else if (parkingProblemRadioOptions[i].value === "2") {
@@ -225,7 +233,6 @@ const parkingProblemRadioSelection = function updateParkingProblemConditionals()
           formSections.parkingProblemSection,
           formSections.finishedSectionDiv
         ];
-            console.log("two fired", hideTheseSectionsArray, showTheseSectionsArray);
         return templateType = "report abandoned vehicle";
       }
       else if (parkingProblemRadioOptions[i].value === "3") {
@@ -252,7 +259,6 @@ const parkingProblemRadioSelection = function updateParkingProblemConditionals()
           formSections.checkBylawsSection,
           formSections.finishedSectionDiv
         ];
-        console.log("three fired", hideTheseSectionsArray, showTheseSectionsArray);
         return templateType = "";
       }
    }
@@ -338,7 +344,6 @@ const ticketIssuerSelection = function updateticketIssuerConditionals() {
 // #municipality-section
   // update sub-section visibility conditions
 const municipalityRadioSelection = function updateMunicipalityConditionals() {
-  console.log("MUNICIPALITY TRIGGERED");
   //const municipalityRadioOptions = document.querySelectorAll(".municipality-radio-class");
   //addRadioEventListener(municipalityRadioOptions, updateMunicipalityConditionals);
   for (let i = 0; i < municipalityRadioOptions.length; i++) {
@@ -418,7 +423,7 @@ document.getElementById("ticket-number-text-field").onchange = function() {
 };
 // #ticket-accuracy-section
   // gatekeeper function for displaying subsection
-const ticketAccuracyRadioSelection = (function updateTicketAccuracyConditionals() {
+const ticketAccuracyRadioSelection = function updateTicketAccuracyConditionals() {
   //const ticketAccuracyRadioOptions = document.querySelectorAll(".ticket-accuracy-radio-class");
   //addRadioEventListener(ticketAccuracyRadioOptions, updateTicketAccuracyConditionals);
   for (let i = 0; i < ticketAccuracyRadioOptions.length; i++) {
@@ -435,11 +440,11 @@ const ticketAccuracyRadioSelection = (function updateTicketAccuracyConditionals(
       }
     }
   }
-}());
+};
 
 // #ticket-reason-section
   // Function for setting the correct ticket reason text
-const ticketReasonRadioSelection = (function updateTicketReasonConditionals() {
+const ticketReasonRadioSelection = function updateTicketReasonConditionals() {
   //const ticketReasonRadioOptions = document.querySelectorAll(".ticket-reason-radio-class");
   //addRadioEventListener(ticketReasonRadioOptions, updateTicketReasonConditionals);
   for (let i = 0; i < ticketReasonRadioOptions.length; i++) {
@@ -663,11 +668,11 @@ const ticketReasonRadioSelection = (function updateTicketReasonConditionals() {
       }
     }
   }
-}());
+};
 
 // #ticket-appeal-bylaw-section
   // gatekeeper function for displaying subsection
-const ticketAppealBylawRadioSelection = (function updateTicketBylawAppealConditionals() {
+const ticketAppealBylawRadioSelection = function updateTicketBylawAppealConditionals() {
 
   // Bylaw info box output
   checkBylawsIntroParagraph = "Here's the " + city + "&#39;s bylaw:";
@@ -693,7 +698,7 @@ const ticketAppealBylawRadioSelection = (function updateTicketBylawAppealConditi
       }
     }
   }
-}());
+};
 
 // #private-ticket-appeal-section
 document.getElementById("private-ticket-appeal-text-field").onchange = function() {
@@ -745,7 +750,7 @@ function displayPotentialTicketContent() {
 }
 
   // Function for setting the correct parking bylaw text
-const potentialTicketRadioSelection = (function updatePotentialTicketConditionals() {
+const potentialTicketRadioSelection = function updatePotentialTicketConditionals() {
   //const potentialTicketRadioOptions = document.querySelectorAll(".potential-ticket-radio-class");
   //addRadioEventListener(potentialTicketRadioOptions, updatePotentialTicketConditionals);
   for (let i = 0; i < potentialTicketRadioOptions.length; i++) {
@@ -969,6 +974,6 @@ const potentialTicketRadioSelection = (function updatePotentialTicketConditional
       }
     }
   }
-}());
+};
 setupRBEventListeners(); // testing
 export {templateType, city, nameAnswer, mailAddressAnswer, currentDateFormatted, ticketNumberAnswer, ticketDate, ticketReason, emailAnswer, ticketAppealBylawAnswer, privateTicketAppealAnswer, ticketErrorDescriptionAnswer};
