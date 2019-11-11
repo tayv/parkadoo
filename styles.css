@@ -121,7 +121,6 @@ body {
 }
 
 /* Fields that are aligned with flexbox using row */
-.cta-sticky-container,
 .date-container {
   display: -webkit-box;
   display: -ms-flexbox;

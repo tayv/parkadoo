@@ -6,11 +6,8 @@
     <title>Parkadoo</title>
     <link rel="stylesheet" href="styles.css"/>
     <link rel="stylesheet" href="colors.css"/>
-  <!--  <script defer src="init_form.js"></script> -->
-    <script defer src="generic_functionality.js"></script>
+    <script src="main.js" type="module"></script>
     <script type="text/javascript" src="node_modules/dompurify/dist/purify.min.js"></script>
-    <!-- <script defer src="bylaw.js"></script> -->
-    <!-- <script defer src="form.js"></script> -->
   </head>
   <body>
     <header>
@@ -19,7 +16,7 @@
       </div>
     </header>
     <main id="parking-form-main">
-      <form class="questionnaire-container" id="parking-form-content" action="letter.html" method="post">
+      <form class="questionnaire-container" id="parking-form-content" action="letter.html">
         <!--Intro Message-->
         <section class="section-container" id="welcome-section">
           <!--Message Field-->
@@ -472,7 +469,7 @@
           <span class="field-hint" id="bylaw-plain-language-hint-insert-here"></span>
           <div class="info-box-div">
             <p id="insert-check-bylaw-info-box-text-here"></p>
-            <p class="info-box-disclaimer-text"> *** Please remember I'm not a lawyer and don't guarantee this info is correct. You should check out <a href="" id="city-bylaw-link" target="_blank"><span id="city-bylaw-name"></span></a> yourself to be sure :)</p>
+            <p class="info-box-disclaimer-text"> *** Please remember I'm not a lawyer and don't guarantee this info is correct. You should check out <a href="" class="city-bylaw-link" target="_blank"><span id="city-bylaw-name"></span></a> yourself to be sure :)</p>
           </div>
         </section>
         <!--Ticket Issuer Radio Buttons-->
@@ -571,7 +568,6 @@
                 type="radio"
                 name="yn-employee-or-student"
                 value="1"
-                checked="checked"
                 class="student-or-employee-class">
               <label for="employee-or-student-yes">
                 <div class="customRB"></div>
@@ -583,11 +579,15 @@
                 type="radio"
                 name="yn-employee-or-student"
                 value="2"
+                checked="checked"
                 class="student-or-employee-class">
               <label for="employee-or-student-no">
                 <div class="customRB"></div>
                 <span class="answerTextRB">No</span>
               </label>
+            </div>
+            <div class="info-box-div" id="student-employee-tip">
+              <p>As a student or employee of the issuer, be aware that although they can't force you to pay, the institution could withhold class credits or use other negative tactics against you if the vehicle is registered in your name and you refuse to pay the ticket.</p>
             </div>
           </fieldset>
         </section>
@@ -1099,7 +1099,7 @@
               <span class="field-hint" id="bylaw-plain-language-hint-2-insert-here"></span>
               <div class="info-box-div">
                 <p id="insert-bylaw-correct-info-box-text-here"></p>
-                <p class="info-box-disclaimer-text"> *** Please remember I'm not a lawyer and don't guarantee this info is correct. You should check out <a href="" id="city-bylaw-link-2" target="_blank"><span id="city-bylaw-name-2"></span></a> yourself to be sure :)</p>
+                <p class="info-box-disclaimer-text"> *** Please remember I'm not a lawyer and don't guarantee this info is correct. You should check out <a href="" class="city-bylaw-link" target="_blank"><span id="city-bylaw-name-2"></span></a> yourself to be sure :)</p>
               </div>
             </div>
         </section>
@@ -1250,7 +1250,7 @@
       <div id="add-whitespace"></div>
       <!--CTAs-->
       <section class="cta-sticky">
-        <div class-"cta-sticky-container">
+        <div class="cta-sticky-container">
           <span class="button-div">
             <input id="button-previous"
               type="button"

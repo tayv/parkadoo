@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-<html lang='en'>
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8"/>
@@ -8,12 +6,8 @@
     <title>Parkadoo Appeal Letter</title>
     <link rel="stylesheet" href="styles.css"/>
     <link rel="stylesheet" href="colors.css"/>
+    <script src="print-letter.js" type="module"></script>
     <script type="text/javascript" src="node_modules/dompurify/dist/purify.min.js"></script>
-    <script type="text/javascript">
-      document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById("insert-letter-output-text-here").innerHTML = JSON.parse(sessionStorage.getItem("letter-output"));
-        }, false);
-    </script>
   </head>
 <body>
   <header>
@@ -42,7 +36,7 @@
     </section>
     <!--CTAs-->
     <section class="cta-sticky">
-      <div class-"cta-sticky-container">
+      <div class="cta-sticky-container">
         <span class="button-div">
           <input id="button-previous"
             type="button"
