@@ -19,14 +19,13 @@ window.onload = function setDefaultAnswerState() {
   // To set initial rb visibility conditions
   parkingProblemRadioSelection(); // without this won't display city output without rb event change
   ticketIssuerSelection();
-  municipalityRadioSelection(); // BUG PATCH: No idea why this works but without it the next button functionality breaks
+  municipalityRadioSelection(); 
   studentOrEmployeeRadioSelection();
   ticketAccuracyRadioSelection();
   ticketReasonRadioSelection();
   ticketAppealBylawRadioSelection();
   potentialTicketRadioSelection();
 };
-
 
 // LIST OF VARIABLES FOR LETTER OUTPUT
 let templateType = ""; // to be used as parameter for setLetterTemplate() to update the output template on next step button click
@@ -839,7 +838,7 @@ const potentialTicketRadioSelection = () => {
     }
   }
 };
-setupRBEventListeners(); // To initialize rb event listeners after all conditions are loaded
+setupRBEventListeners(); // To setup rb event listeners after all conditions are loaded
 export {
   templateType, city, nameAnswer, mailAddressAnswer, currentDateFormatted, ticketNumberAnswer, ticketDate,
   ticketReason, emailAnswer, ticketAppealBylawAnswer, privateTicketAppealAnswer, ticketErrorDescriptionAnswer,
