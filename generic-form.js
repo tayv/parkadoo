@@ -41,6 +41,49 @@ const formSections = {
   finishedSectionDiv: document.getElementById("finished-section-container")
 };
 
+// experimental
+var elements = document.querySelectorAll(".section-container");
+
+elements = Array.prototype.slice.call(elements);
+//let testArray = [document.getElementById("parking-problem-section"), document.getElementById("ticket-issuer-section")];
+
+const myFunction = () => {
+console.log("MyFunction fired");
+let visResult = isScrolledIntoView(sectionTest);
+if (visResult) {
+   console.log("TRUE fired");
+  document.getElementById("parking-problem-section").style.color = "red";
+} else {
+  //alert("Didn't fire");
+  document.getElementById("parking-problem-section").style.color = "green";
+}
+};
+
+
+let sectionTest = document.getElementById("parking-problem-section");
+function isScrolledIntoView(el) {
+    var rect = el.getBoundingClientRect();
+    var elemTop = rect.top;
+    var elemBottom = rect.bottom;
+
+    // Only completely visible elements return true:
+    var isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
+    // Partially visible elements return true:
+    //isVisible = elemTop < window.innerHeight && elemBottom >= 0;
+    console.log(isVisible);
+    return isVisible;
+}
+
+elements.forEach(function(element) {
+  window.addEventListener("scroll", myFunction, {
+    capture: true,
+    passive: true
+  });
+});
+
+
+
+
 // LIST OF VARIABLES
   // Used as index to track which step to show on button clicks
 let countStep = 0;
