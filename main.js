@@ -19,12 +19,13 @@ window.onload = function setDefaultAnswerState() {
   // To set initial rb visibility conditions
   parkingProblemRadioSelection(); // without this won't display city output without rb event change
   ticketIssuerSelection();
-  municipalityRadioSelection(); 
+  municipalityRadioSelection();
   studentOrEmployeeRadioSelection();
   ticketAccuracyRadioSelection();
   ticketReasonRadioSelection();
   ticketAppealBylawRadioSelection();
   potentialTicketRadioSelection();
+  //formSections.welcomeSection.setAttribute("id", "active-section"); //EXPERIMENTAL PART OF SCROLL TRIGGER (initialize step count)
 };
 
 // LIST OF VARIABLES FOR LETTER OUTPUT

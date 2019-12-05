@@ -48,6 +48,7 @@ body {
   width: 100%;
   overflow-y: scroll; /* Scroll window for main content so header stays fixed */
   height: 100vh; /* To push footer to bottom of page */
+  scroll-snap-type: block mandatory;
 }
 
 /* Main content containers */
@@ -78,6 +79,8 @@ body {
   padding-left: 5%;
   padding-right: 5%;
   display: block; /* To fix Chrome/Safari issue with first section divs overlapping */
+  scroll-snap-align: start;
+
 }
 
 /* For testing
