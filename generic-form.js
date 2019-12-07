@@ -52,9 +52,44 @@ let sectionsShowHideObj = {
   showTheseSectionsArray: []
 };
 
-// experimental
-const elements = document.querySelectorAll(".section-container");
-let activeSection; // to keep track of current step changes when scrolling 
+// EXPERIMENTAL
+let activeSection; // to keep track of current step when scrolling
+
+// INTERSECTION OBSERVER
+// init the observer
+const options = {
+	rootMargin: "0px 0px 0px -100px",
+	threshold: [0, 0.5, 1]
+}
+	// simple function to use for callback in the intersection observer
+const callbackIO = (entries, observer) => {
+	entries.forEach((entry) => {
+      console.log(entry.target.getAttribute("id"), "Is intersecting: ", entry.isIntersecting, "intersection ratio: ", entry.intersectionRatio, "root height: ", window.innerHeight,"target height", entry.target.clientHeight, "Target bigger than root: ", (window.innerHeight < entry.target.clientHeight));
+		// verify the element is intersecting
+		if((entry.isIntersecting && window.innerHeight < entry.target.clientHeight && entry.intersectionRatio > 0.3) || (entry.isIntersecting && window.innerHeight >= entry.target.clientHeight && entry.intersectionRatio > 0.99)){
+    	// remove previous active class
+      if(document.querySelector(".active")) {
+      	document.querySelector(".active").classList.remove("active");
+        }
+			// add active class
+			entry.target.classList.add("active");
+			// get id of the intersecting section
+			console.log("Active: ", entry.target.getAttribute('id'));
+		} else {
+    		entry.target.classList.remove('active');
+    }
+	});
+}
+
+const observer = new IntersectionObserver(callbackIO, options);
+
+// target the elements to be observed
+const targets = document.querySelectorAll(".section-container");
+targets.forEach((target) => {
+	observer.observe(target);
+});
+
+// END INTERSECTION OBSERVER
 
 const nextStepActionsScroll = () => {
     if (countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1) {
@@ -132,8 +167,8 @@ const nextStepActions = () => {
       hideSections(sectionsShowHideObj);
       showSections(sectionsShowHideObj);
       sectionsShowHideObj.showTheseSectionsArray[countStep].scrollIntoView(true);
-      sectionsShowHideObj.showTheseSectionsArray[countStep].style.opacity="1";
-      sectionsShowHideObj.showTheseSectionsArray[countStep-1].style.opacity="0.2"; // reduce opacity of a completed step so user focus is on current step
+    //  sectionsShowHideObj.showTheseSectionsArray[countStep].style.opacity="1";
+    //  sectionsShowHideObj.showTheseSectionsArray[countStep-1].style.opacity="0.2"; // reduce opacity of a completed step so user focus is on current step
       activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
       checkButtonStep();
     } else {
@@ -148,8 +183,8 @@ const prevStepActions = () => {
         countStep--;
         hideSections(sectionsShowHideObj);
         showSections(sectionsShowHideObj);
-        sectionsShowHideObj.showTheseSectionsArray[countStep].style.opacity="1";
-        sectionsShowHideObj.showTheseSectionsArray[countStep+1].style.opacity="0.2";
+    //    sectionsShowHideObj.showTheseSectionsArray[countStep].style.opacity="1";
+    //    sectionsShowHideObj.showTheseSectionsArray[countStep+1].style.opacity="0.2";
         sectionsShowHideObj.showTheseSectionsArray[countStep].scrollIntoView(true);
         checkButtonStep();
     } return countStep;
