@@ -64,19 +64,20 @@ const options = {
 	// simple function to use for callback in the intersection observer
 const callbackIO = (entries, observer) => {
 	entries.forEach((entry) => {
-      console.log(entry.target.getAttribute("id"), "Is intersecting: ", entry.isIntersecting, "intersection ratio: ", entry.intersectionRatio, "root height: ", window.innerHeight,"target height", entry.target.clientHeight, "Target bigger than root: ", (window.innerHeight < entry.target.clientHeight));
+    console.log(entry.target.getElementsByClassName(".active-section-container"));
+    //  console.log(entry.target.getAttribute("id"), "Is intersecting: ", entry.isIntersecting, "intersection ratio: ", entry.intersectionRatio, "root height: ", window.innerHeight,"target height", entry.target.clientHeight, "Target bigger than root: ", (window.innerHeight < entry.target.clientHeight));
 		// verify the element is intersecting
 		if((entry.isIntersecting && window.innerHeight < entry.target.clientHeight && entry.intersectionRatio > 0.3) || (entry.isIntersecting && window.innerHeight >= entry.target.clientHeight && entry.intersectionRatio > 0.99)){
-    	// remove previous active class
-      if(document.querySelector(".active")) {
-      	document.querySelector(".active").classList.remove("active");
+    	// remove previous active-section-container class
+      if(document.querySelector(".active-section-container")) {
+      	document.querySelector(".active-section-container").classList.remove("active-section-container");
         }
-			// add active class
-			entry.target.classList.add("active");
+			// add active-section-container class
+			entry.target.classList.add("active-section-container");
 			// get id of the intersecting section
-			console.log("Active: ", entry.target.getAttribute('id'));
+			console.log("active-section-container: ", entry.target.getAttribute('id'));
 		} else {
-    		entry.target.classList.remove('active');
+    		entry.target.classList.remove('active-section-container');
     }
 	});
 }
