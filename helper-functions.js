@@ -11,7 +11,6 @@ const calcAndSetWhiteSpace = (function() {
 // Generic function to grab current date and format it for letter
 let currentDateUnformatted = new Date();
 
-
 const formatCurrentDate = (currentDateUnformatted) => {
   let day = currentDateUnformatted.getDate();
 //  let month = currentDateUnformatted.getMonth() + 1;

@@ -54,6 +54,9 @@ let sectionsShowHideObj = {
 
 // EXPERIMENTAL
 let activeSection; // to keep track of current step when scrolling
+const headerHeight = document.getElementById("header-main").offsetHeight;
+const footerHeight = document.getElementById("footer-main").offsetHeight;
+const visibleWindowHeight = (window.innerHeight - headerHeight - footerHeight);
 
 // INTERSECTION OBSERVER
 // init the observer
@@ -64,10 +67,9 @@ const options = {
 	// simple function to use for callback in the intersection observer
 const callbackIO = (entries, observer) => {
 	entries.forEach((entry) => {
-    console.log(entry.target.getElementsByClassName(".active-section-container"));
-    //  console.log(entry.target.getAttribute("id"), "Is intersecting: ", entry.isIntersecting, "intersection ratio: ", entry.intersectionRatio, "root height: ", window.innerHeight,"target height", entry.target.clientHeight, "Target bigger than root: ", (window.innerHeight < entry.target.clientHeight));
+      console.log(entry.target.getAttribute("id"), "Is intersecting: ", entry.isIntersecting, "intersection ratio: ", entry.intersectionRatio, "root height: ", visibleWindowHeight,"target height", entry.target.clientHeight, "Target bigger than root: ", (visibleWindowHeight < entry.target.clientHeight));
 		// verify the element is intersecting
-		if((entry.isIntersecting && window.innerHeight < entry.target.clientHeight && entry.intersectionRatio > 0.3) || (entry.isIntersecting && window.innerHeight >= entry.target.clientHeight && entry.intersectionRatio > 0.99)){
+		if((entry.isIntersecting && visibleWindowHeight < entry.target.clientHeight && entry.intersectionRatio > 0.1) || (entry.isIntersecting && visibleWindowHeight >= entry.target.clientHeight && entry.intersectionRatio > 0.9)){
     	// remove previous active-section-container class
       if(document.querySelector(".active-section-container")) {
       	document.querySelector(".active-section-container").classList.remove("active-section-container");
