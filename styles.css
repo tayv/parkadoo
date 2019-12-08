@@ -28,13 +28,14 @@ body {
 }
 
 /* Primary header */
-#header-main {
+#header-main,
+#footer-main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -48,7 +49,7 @@ body {
   width: 100%;
   overflow-y: scroll; /* Scroll window for main content so header stays fixed */
   height: 100vh; /* To push footer to bottom of page */
-  scroll-snap-type: block mandatory;
+/*  scroll-snap-type: block mandatory;*/
 }
 
 /* Main content containers */
@@ -71,8 +72,8 @@ body {
 
 .questionnaire-container {
   max-width: 500px;
-  -ms-flex-negative: 0;
-      flex-shrink: 0; /* To fix safari bug of container not filling full height */
+ -ms-flex-negative: 0;
+      flex-shrink: 0;  /*To fix safari bug of container not filling full height */
 }
 
 .section-container {
@@ -86,6 +87,7 @@ body {
 /* experimental for IO API */
 .active-section-container{
   border: 3px red solid;
+  opacity: 1;
 }
 
 /* For testing
@@ -402,6 +404,7 @@ li {
 }
 
 /* Main footer */
+/*
 #footer-main {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -416,7 +419,7 @@ li {
   height: 80px;
   width: 100vw;
   margin-top: auto; /* Uses flex to stay fixed to bottom of content without jumping out of document flow like fixed position */
-}
+} */
 
 /* Mobile Styles */
 @media only screen and (max-width: 400px) {

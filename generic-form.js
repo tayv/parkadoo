@@ -61,15 +61,16 @@ const visibleWindowHeight = (window.innerHeight - headerHeight - footerHeight);
 // INTERSECTION OBSERVER
 // init the observer
 const options = {
-	rootMargin: "0px 0px 0px -100px",
-	threshold: [0, 0.5, 1]
+	rootMargin: "-80px",
+	threshold: [0.5, 1]
 }
 	// simple function to use for callback in the intersection observer
 const callbackIO = (entries, observer) => {
 	entries.forEach((entry) => {
       console.log(entry.target.getAttribute("id"), "Is intersecting: ", entry.isIntersecting, "intersection ratio: ", entry.intersectionRatio, "root height: ", visibleWindowHeight,"target height", entry.target.clientHeight, "Target bigger than root: ", (visibleWindowHeight < entry.target.clientHeight));
 		// verify the element is intersecting
-		if((entry.isIntersecting && visibleWindowHeight < entry.target.clientHeight && entry.intersectionRatio > 0.1) || (entry.isIntersecting && visibleWindowHeight >= entry.target.clientHeight && entry.intersectionRatio > 0.9)){
+      console.log("OFFSET HIEGIHT: ", entry.target.offsetHeight, "Within area? ", (entry.target.offsetHeight > headerHeight) && (entry.target.offsetHeight < 400));
+		if((entry.target.offsetHeight > headerHeight) && (entry.target.offsetHeight < 400) && ((entry.isIntersecting && visibleWindowHeight < entry.target.clientHeight && entry.intersectionRatio > 0.1) || (entry.isIntersecting && visibleWindowHeight >= entry.target.clientHeight && entry.intersectionRatio > 0.9))){
     	// remove previous active-section-container class
       if(document.querySelector(".active-section-container")) {
       	document.querySelector(".active-section-container").classList.remove("active-section-container");
