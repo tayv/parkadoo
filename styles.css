@@ -70,8 +70,10 @@ body {
           align-items: center;
 }
 
-.questionnaire-container {
+.questionnaire-container,
+.cta-sticky {
   max-width: 500px;
+  width: 100%; /* want cta sticky width to match questionnaire containers */
  -ms-flex-negative: 0;
       flex-shrink: 0;  /*To fix safari bug of container not filling full height */
 }
@@ -383,7 +385,6 @@ li {
         align-items: center;
   bottom: 0;
   height: 80px;
-  width: 100%;
   padding: 15px;
 }
 
