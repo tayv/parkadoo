@@ -61,26 +61,31 @@ const visibleWindowHeight = (window.innerHeight - headerHeight - footerHeight);
 // INTERSECTION OBSERVER
 // init the observer
 const options = {
-	rootMargin: "-80px",
-	threshold: [0.5, 1]
+	//rootMargin: "-80px",
+	threshold: [0.5, 0.75, 1]
 }
 	// simple function to use for callback in the intersection observer
 const callbackIO = (entries, observer) => {
+  let prevElIntersecting = false;
 	entries.forEach((entry) => {
-      console.log(entry.target.getAttribute("id"), "Is intersecting: ", entry.isIntersecting, "intersection ratio: ", entry.intersectionRatio, "root height: ", visibleWindowHeight,"target height", entry.target.clientHeight, "Target bigger than root: ", (visibleWindowHeight < entry.target.clientHeight));
-		// verify the element is intersecting
-      console.log("OFFSET HIEGIHT: ", entry.target.offsetHeight, "Within area? ", (entry.target.offsetHeight > headerHeight) && (entry.target.offsetHeight < 400));
-		if((entry.target.offsetHeight > headerHeight) && (entry.target.offsetHeight < 400) && ((entry.isIntersecting && visibleWindowHeight < entry.target.clientHeight && entry.intersectionRatio > 0.1) || (entry.isIntersecting && visibleWindowHeight >= entry.target.clientHeight && entry.intersectionRatio > 0.9))){
+    //  console.log(entry.target.getAttribute("id"), "Is intersecting: ", entry.isIntersecting, "intersection ratio: ", entry.intersectionRatio, "root height: ", visibleWindowHeight,"target height", entry.target.clientHeight, "Target bigger than root: ", (visibleWindowHeight < entry.target.clientHeight));
+    //  console.log("OFFSET HIEGIHT: ", entry.target.offsetHeight, "Within area? ", (entry.target.offsetHeight > headerHeight) && (entry.target.offsetHeight < 400));
+
+    // verify the element is intersecting
+    if((entry.target.offsetHeight > headerHeight) && (entry.target.offsetHeight < 400) && ((entry.isIntersecting && visibleWindowHeight < entry.target.clientHeight && entry.intersectionRatio > 0.1) || (entry.isIntersecting && visibleWindowHeight >= entry.target.clientHeight && entry.intersectionRatio > 0.9))){
     	// remove previous active-section-container class
       if(document.querySelector(".active-section-container")) {
       	document.querySelector(".active-section-container").classList.remove("active-section-container");
+        entry.target.classList.add("active-section-container");
         }
 			// add active-section-container class
-			entry.target.classList.add("active-section-container");
+			 entry.target.classList.add("active-section-container");
+
 			// get id of the intersecting section
-			console.log("active-section-container: ", entry.target.getAttribute('id'));
+			console.log("active-section-container: ", entry.target.getAttribute('id'), "ENTRY ITEM: ", entry);
 		} else {
-    		entry.target.classList.remove('active-section-container');
+    	//	entry.target.classList.remove('active-section-container');
+      //  entry.target.classList.add("active-section-container");
     }
 	});
 }
