@@ -45,7 +45,6 @@ const formSections = {
   // Used as index to track which step to show on button clicks
 let countStep = 0;
 let finishedQuestions; // Boolean to check if questionnaire is done
-let timeout; // stores timeout so can use debouncing with scroll events
   // Object of sections to show/hide. Needs to be object so can be mutated in main.js
 let sectionsShowHideObj = {
   hideTheseSectionsArray: [],
@@ -58,6 +57,162 @@ const headerHeight = document.getElementById("header-main").offsetHeight;
 const footerHeight = document.getElementById("footer-main").offsetHeight;
 const visibleWindowHeight = (window.innerHeight - headerHeight - footerHeight);
 
+// experimental
+const elements = document.querySelectorAll(".section-container");
+
+const lastScrollTop = 30;
+/*
+const testScroll = function(){
+   console.log("testScroll fired");
+   let scrollAmount = window.pageYOffset
+     if (scrollAmount > lastScrollTop){
+        // downscroll code
+        console.log("DOWNSCROLL fired: ", scrollAmount);
+     } else {
+        // upscroll code
+        console.log("UPSCROLL fired", scrollAmount);
+     }
+};
+*/
+
+// needs lodash throttle still
+window.addEventListener("scroll", function() {
+  isScrolledIntoView(activeSection);
+        }, {
+          capture: true,
+          passive: true
+        });
+
+const nextStepActionsScroll = () => {
+      // want to check that the questionnaire hasn't finished and that the next step scrolling to hasn't been scrolled to already
+    if ((countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1) && window.getComputedStyle(sectionsShowHideObj.showTheseSectionsArray[countStep+1]).display==="block")  {
+      removeActiveClass();
+      countStep++;
+      activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep]
+      sectionVisibility(sectionsShowHideObj);
+      activeSection.classList.add('active-section-container');
+      activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
+    } else {
+        checkButtonStep();
+    } return countStep;
+  };
+
+const prevStepActionsScroll = () => {
+    if (countStep < 1) {
+      checkButtonStep();
+    } else if (countStep >= 1) {
+        removeActiveClass();
+        countStep--;
+        activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
+        activeSection.classList.add('active-section-container');
+    }
+    return countStep;
+  };
+
+function isScrolledIntoView(el) {
+    let rect = el.getBoundingClientRect();
+    let activeElemTop = Math.round(rect.top);
+    let activeElemBottom = Math.round(rect.bottom);
+    let headerHeight = document.getElementById("header-main").offsetHeight;
+    let footerHeight = document.getElementById("footer-main").offsetHeight;
+    let ctaHeight = document.querySelector(".cta-sticky-container").offsetHeight;
+    let windowHeight = (window.innerHeight); // If don't use opacity header/footer styling then using parking form container instead of window could simplify math
+    let paddingHeight = windowHeight * 0.15; // for more natural transition of active-class when div leaves viewing area
+    let bottomHeight = Math.round(windowHeight - footerHeight - ctaHeight - paddingHeight);
+  // return true/false values to trigger correct conditions on scroll
+    let isTopHidden = (activeElemTop < headerHeight) && (activeElemBottom <= bottomHeight);
+    let isTopScrolledDown = (activeElemTop > headerHeight);
+    let test = document.getElementById("welcome-section");
+
+    if (activeElemTop >= bottomHeight) {
+      console.log("TOP IS BELOW THE FOOTER");
+      prevStepActionsScroll();
+    } else if (activeElemBottom <= headerHeight) {
+      console.log("BOTTOM IS ABOVE THE HEADER");
+      nextStepActionsScroll();
+    }
+}
+
+// To hide all steps other than initial welcome section by default
+const hideAllSteps = () => {
+  for (let i = 1; i < formSections.allFormSections.length; i++) {
+    formSections.allFormSections[i].style.display="none";
+  }
+  formSections.finishedSectionDiv.style.display="none";
+};
+
+// GENERIC FUNCTIONALITY - Previous/Next/Submit button visiblity and to scroll to next div/step.
+  // Needs to be initialized before question specific visibility conditions
+const checkButtonStep = () => {
+  if (countStep === 0) {
+    finishedQuestions = false;
+    document.getElementById("button-previous").style.display="none";
+    document.getElementById("button-submit").style.display="none";
+  } else if (countStep > 0 && countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1) {
+      document.getElementById("button-previous").style.display="inline";
+      document.getElementById("button-submit").style.display="none";
+  } else if (countStep >= sectionsShowHideObj.showTheseSectionsArray.length - 1) {
+      finishedQuestions = true;
+      document.getElementById("button-previous").style.display="none";
+      document.getElementById("button-next").style.display="none";
+      document.getElementById("button-submit").style.display="block";
+  }
+};
+
+  // show/hide questionnaire sections based on user's answers
+const sectionVisibility = (sectionsShowHideObj) => {
+  // Show sections
+  if (sectionsShowHideObj.showTheseSectionsArray.length > 0 && sectionsShowHideObj.showTheseSectionsArray[countStep] !== undefined) {
+    sectionsShowHideObj.showTheseSectionsArray[countStep].style.display = "block";
+  }
+  // hide sections
+  if (sectionsShowHideObj.hideTheseSectionsArray.length > 0) {
+    for (let i = 0; i <= sectionsShowHideObj.hideTheseSectionsArray.length && sectionsShowHideObj.hideTheseSectionsArray[i] !== undefined; i++) {
+      sectionsShowHideObj.hideTheseSectionsArray[i].style.display = "none";
+    }
+  }
+};
+
+  // TO REMOVE ACTIVE SECTION STYLES
+  const removeActiveClass = () => {
+    sectionsShowHideObj.showTheseSectionsArray.forEach(section => {
+      section.classList.remove('active-section-container');
+    });
+  }
+
+  // functionality for displaying steps on prev/next button click
+
+const nextStepActions = () => {
+   if (countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1) {
+        removeActiveClass();
+        countStep++;
+        activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
+        sectionVisibility(sectionsShowHideObj);
+        activeSection.classList.add('active-section-container');
+        activeSection.scrollIntoView(true);
+        checkButtonStep();
+        console.log(window.getComputedStyle(sectionsShowHideObj.showTheseSectionsArray[countStep]).display==="block");
+      } else {
+        checkButtonStep();
+    } return countStep;
+  };
+
+const prevStepActions = () => {
+    if (countStep < 1) {
+      checkButtonStep();
+    } else if (countStep >= 1) {
+        removeActiveClass();
+        activeSection.style.display="none";
+        countStep--;
+        activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
+        sectionVisibility(sectionsShowHideObj)
+        activeSection.classList.add('active-section-container');
+        activeSection.scrollIntoView(true);
+        checkButtonStep();
+    } return countStep;
+  };
+
+/*
 // INTERSECTION OBSERVER
 // init the observer
 const options = {
@@ -103,8 +258,7 @@ targets.forEach((target) => {
 const nextStepActionsScroll = () => {
     if (countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1) {
       countStep++;
-      hideSections(sectionsShowHideObj);
-      showSections(sectionsShowHideObj);
+      sectionVisibility(sectionsShowHideObj);
   //    sectionsShowHideObj.showTheseSectionsArray[countStep].scrollIntoView(true);
       sectionsShowHideObj.showTheseSectionsArray[countStep].style.opacity="1";
       sectionsShowHideObj.showTheseSectionsArray[countStep-1].style.opacity="0.2"; // reduce opacity of a completed step so user focus is on current step
@@ -120,7 +274,7 @@ const prevStepActionsScroll = () => {
     } else if (countStep >= 1) {
         countStep--;
         hideSections(sectionsShowHideObj);
-        showSections(sectionsShowHideObj);
+        sectionVisibility(sectionsShowHideObj);
         sectionsShowHideObj.showTheseSectionsArray[countStep].style.opacity="1";
         sectionsShowHideObj.showTheseSectionsArray[countStep+1].style.opacity="0.2";
         activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
@@ -155,7 +309,7 @@ const checkButtonStep = () => {
 };
 
   // show/hideSections() based on prev/next button onclick
-const showSections = (sectionsShowHideObj) => {
+const sectionVisibility = (sectionsShowHideObj) => {
   if (sectionsShowHideObj.showTheseSectionsArray.length > 0 && sectionsShowHideObj.showTheseSectionsArray[countStep] !== undefined) {
     sectionsShowHideObj.showTheseSectionsArray[countStep].style.display = "block";
   }
@@ -174,7 +328,7 @@ const nextStepActions = () => {
     if (countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1) {
       countStep++;
       hideSections(sectionsShowHideObj);
-      showSections(sectionsShowHideObj);
+      sectionVisibility(sectionsShowHideObj);
       sectionsShowHideObj.showTheseSectionsArray[countStep].scrollIntoView(true);
     //  sectionsShowHideObj.showTheseSectionsArray[countStep].style.opacity="1";
     //  sectionsShowHideObj.showTheseSectionsArray[countStep-1].style.opacity="0.2"; // reduce opacity of a completed step so user focus is on current step
@@ -191,14 +345,14 @@ const prevStepActions = () => {
     } else if (countStep >= 1) {
         countStep--;
         hideSections(sectionsShowHideObj);
-        showSections(sectionsShowHideObj);
+        sectionVisibility(sectionsShowHideObj);
     //    sectionsShowHideObj.showTheseSectionsArray[countStep].style.opacity="1";
     //    sectionsShowHideObj.showTheseSectionsArray[countStep+1].style.opacity="0.2";
         sectionsShowHideObj.showTheseSectionsArray[countStep].scrollIntoView(true);
         checkButtonStep();
     } return countStep;
   };
-
+*/
 document.getElementById("button-next").onclick = () => {
   nextStepActions();
 };
@@ -255,8 +409,6 @@ const setupRBEventListeners = () => {
   addRadioEventListener(ticketAppealBylawRadioOptions, ticketAppealBylawRadioSelection);
   addRadioEventListener(potentialTicketRadioOptions, potentialTicketRadioSelection);
 } // Note this is being called at bottom of main.js to initialize rb event listeners
-
-
 
 
 export {
