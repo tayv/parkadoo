@@ -45,7 +45,6 @@ const formSections = {
   // Used as index to track which step to show on button clicks
 let countStep = 0;
 let finishedQuestions; // Boolean to check if questionnaire is done
-let timeout; // stores timeout so can use debouncing with scroll events
   // Object of sections to show/hide. Needs to be object so can be mutated in main.js
 let sectionsShowHideObj = {
   hideTheseSectionsArray: [],
@@ -76,6 +75,7 @@ const testScroll = function(){
 };
 */
 
+// needs lodash throttle still
 window.addEventListener("scroll", function() {
   isScrolledIntoView(activeSection);
         }, {
@@ -115,18 +115,14 @@ function isScrolledIntoView(el) {
     let activeElemBottom = Math.round(rect.bottom);
     let headerHeight = document.getElementById("header-main").offsetHeight;
     let footerHeight = document.getElementById("footer-main").offsetHeight;
-    let windowHeight = (window.innerHeight);
-    let bottomHeight = Math.round(windowHeight - footerHeight);
-//    console.log("element: ", el, "activeElemTop: ", activeElemTop, "headerHeight: ", headerHeight);
-//    console.log(el === sectionsShowHideObj.showTheseSectionsArray[countStep]);
-    // return true/false values to trigger correct conditions on scroll
-    let isTopHidden = (activeElemTop < headerHeight) && (activeElemBottom < bottomHeight);
-  //  let isTopScrolledDown = (activeElemTop > headerHeight + Math.round(windowHeight - headerHeight * 0.2));
-     let isTopScrolledDown = (activeElemTop > headerHeight);
-     let test = document.getElementById("welcome-section");
-     console.log("activeElemTop", activeElemTop);
-  //  console.log("Top: ", isTopHidden, " Bottom: ", isTopScrolledDown);
-  //  console.log(window.getComputedStyle(sectionsShowHideObj.showTheseSectionsArray[countStep]).display==="block");
+    let ctaHeight = document.querySelector(".cta-sticky-container").offsetHeight;
+    let windowHeight = (window.innerHeight); // If don't use opacity header/footer styling then using parking form container instead of window could simplify math
+    let paddingHeight = windowHeight * 0.15; // for more natural transition of active-class when div leaves viewing area
+    let bottomHeight = Math.round(windowHeight - footerHeight - ctaHeight - paddingHeight);
+  // return true/false values to trigger correct conditions on scroll
+    let isTopHidden = (activeElemTop < headerHeight) && (activeElemBottom <= bottomHeight);
+    let isTopScrolledDown = (activeElemTop > headerHeight);
+    let test = document.getElementById("welcome-section");
 
     if (activeElemTop >= bottomHeight) {
       console.log("TOP IS BELOW THE FOOTER");
@@ -135,17 +131,6 @@ function isScrolledIntoView(el) {
       console.log("BOTTOM IS ABOVE THE HEADER");
       nextStepActionsScroll();
     }
-/*
-    if (isTopScrolledDown && countStep > 0 && !finishedQuestions) {
-      //setTimeout(prevStepActionsScroll, 2000);
-      console.log("TRIGGERED PREV Scroll()", el);
-      prevStepActionsScroll();
-    } else if (isTopHidden) {
-      console.log("TRIGGERED NEXT Scroll()", el);
-      //setTimeout(nextStepActionsScroll, 2000);
-      nextStepActionsScroll();
-    }
-    //return isVisible; */
 }
 
 // To hide all steps other than initial welcome section by default
@@ -188,8 +173,7 @@ const sectionVisibility = (sectionsShowHideObj) => {
   }
 };
 
-  // TO REMOVE ACTIVE SECTION
-
+  // TO REMOVE ACTIVE SECTION STYLES
   const removeActiveClass = () => {
     sectionsShowHideObj.showTheseSectionsArray.forEach(section => {
       section.classList.remove('active-section-container');
@@ -225,7 +209,6 @@ const prevStepActions = () => {
         activeSection.classList.add('active-section-container');
         activeSection.scrollIntoView(true);
         checkButtonStep();
-
     } return countStep;
   };
 
