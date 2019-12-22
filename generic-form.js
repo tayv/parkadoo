@@ -61,8 +61,6 @@ const visibleWindowHeight = (window.innerHeight - headerHeight - footerHeight);
 // experimental
 const elements = document.querySelectorAll(".section-container");
 
-//let activeSection = document.getElementById("active-section");
-//let activeSection;
 const lastScrollTop = 30;
 /*
 const testScroll = function(){
@@ -78,33 +76,22 @@ const testScroll = function(){
 };
 */
 
-const nextStepActionsScroll = () => {
-    if (countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1) {
-  /*    window.removeEventListener("scroll", function(){isScrolledIntoView(activeSection)}, {
-        capture: true,
-        passive: true
-      }); // Need to remove eventlistener to prevent infinite loop until reach end of questionnaire */
-      if (sectionsShowHideObj.showTheseSectionsArray[countStep+1].display=="block") {
-        countStep++;
-      }
-      sectionVisibility(sectionsShowHideObj);
-    //  console.log("active section:", document.getElementById("active-section"), "Current: ", sectionsShowHideObj.showTheseSectionsArray[countStep]);
-    //  document.getElementById("active-section").removeAttribute("id", "active-section"); // EXPERIMENTAL PART OF SCROLL TRIGGER
-    //  sectionsShowHideObj.showTheseSectionsArray[countStep].setAttribute("id", "active-section"); // EXPERIMENTAL PART OF SCROLL TRIGGER
-    //  console.log("active section:", document.getElementById("active-section", "Current: ", sectionsShowHideObj.showTheseSectionsArray[countStep]));
-  //    sectionsShowHideObj.showTheseSectionsArray[countStep].scrollIntoView(true);
-        sectionsShowHideObj.showTheseSectionsArray.classList.add('active-section-container');
-        sectionsShowHideObj.showTheseSectionsArray[countStep].classList.add('active-section-container');
-/*      sectionsShowHideObj.showTheseSectionsArray[countStep].style.opacity="1";
-      sectionsShowHideObj.showTheseSectionsArray[countStep-1].style.opacity="0.2"; // reduce opacity of a completed step so user focus is on current step
-      activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
-      window.addEventListener("scroll", function() {
-          clearTimeout(timeout);
-          timeout = setTimeout(isScrolledIntoView(activeSection), 2000);
+window.addEventListener("scroll", function() {
+  isScrolledIntoView(activeSection);
         }, {
           capture: true,
           passive: true
-        }); */
+        });
+
+const nextStepActionsScroll = () => {
+      // want to check that the questionnaire hasn't finished and that the next step scrolling to hasn't been scrolled to already
+    if ((countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1) && window.getComputedStyle(sectionsShowHideObj.showTheseSectionsArray[countStep+1]).display==="block")  {
+      removeActiveClass();
+      countStep++;
+      activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep]
+      sectionVisibility(sectionsShowHideObj);
+      activeSection.classList.add('active-section-container');
+      activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
     } else {
         checkButtonStep();
     } return countStep;
@@ -114,8 +101,7 @@ const prevStepActionsScroll = () => {
     if (countStep < 1) {
       checkButtonStep();
     } else if (countStep >= 1) {
-        console.log(sectionsShowHideObj.showTheseSectionsArray.classList);
-        sectionsShowHideObj.showTheseSectionsArray.classList.remove('active-section-container');
+        removeActiveClass();
         countStep--;
         activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
         activeSection.classList.add('active-section-container');
@@ -140,14 +126,14 @@ function isScrolledIntoView(el) {
      let test = document.getElementById("welcome-section");
      console.log("activeElemTop", activeElemTop);
   //  console.log("Top: ", isTopHidden, " Bottom: ", isTopScrolledDown);
-  //  console.log(window.getComputedStyle(test).display==="block");
+  //  console.log(window.getComputedStyle(sectionsShowHideObj.showTheseSectionsArray[countStep]).display==="block");
 
     if (activeElemTop >= bottomHeight) {
       console.log("TOP IS BELOW THE FOOTER");
       prevStepActionsScroll();
     } else if (activeElemBottom <= headerHeight) {
       console.log("BOTTOM IS ABOVE THE HEADER");
-    //  nextStepActionsScroll();
+      nextStepActionsScroll();
     }
 /*
     if (isTopScrolledDown && countStep > 0 && !finishedQuestions) {
@@ -219,8 +205,9 @@ const nextStepActions = () => {
         activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
         sectionVisibility(sectionsShowHideObj);
         activeSection.classList.add('active-section-container');
-        sectionsShowHideObj.showTheseSectionsArray[countStep].scrollIntoView(true);
+        activeSection.scrollIntoView(true);
         checkButtonStep();
+        console.log(window.getComputedStyle(sectionsShowHideObj.showTheseSectionsArray[countStep]).display==="block");
       } else {
         checkButtonStep();
     } return countStep;
@@ -230,28 +217,13 @@ const prevStepActions = () => {
     if (countStep < 1) {
       checkButtonStep();
     } else if (countStep >= 1) {
-      /*
-        window.removeEventListener("scroll", function() {
-          isScrolledIntoView(activeSection)
-        }, {
-          capture: true,
-          passive: true
-        }); // Need to remove eventlistener to prevent infinite loop until reach end of questionnaire
-        window.addEventListener("scroll", function() {
-            clearTimeout(timeout);
-            timeout = setTimeout(isScrolledIntoView(activeSection), 2000);
-          }, {
-            capture: true,
-            passive: true
-          }); */
-
+        removeActiveClass();
+        activeSection.style.display="none";
         countStep--;
-        sectionVisibility(sectionsShowHideObj);
-    //    document.getElementById("active-section").removeAttribute("id", "active-section"); // EXPERIMENTAL PART OF SCROLL TRIGGER
-    //    sectionsShowHideObj.showTheseSectionsArray[countStep].setAttribute("id", "active-section"); // EXPERIMENTAL PART OF SCROLL TRIGGER
-        sectionsShowHideObj.showTheseSectionsArray[countStep].style.opacity="1";
-        sectionsShowHideObj.showTheseSectionsArray[countStep+1].style.opacity="0.2";
-        sectionsShowHideObj.showTheseSectionsArray[countStep].scrollIntoView(true);
+        activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
+        sectionVisibility(sectionsShowHideObj)
+        activeSection.classList.add('active-section-container');
+        activeSection.scrollIntoView(true);
         checkButtonStep();
 
     } return countStep;
@@ -454,8 +426,6 @@ const setupRBEventListeners = () => {
   addRadioEventListener(ticketAppealBylawRadioOptions, ticketAppealBylawRadioSelection);
   addRadioEventListener(potentialTicketRadioOptions, potentialTicketRadioSelection);
 } // Note this is being called at bottom of main.js to initialize rb event listeners
-
-
 
 
 export {
