@@ -87,8 +87,7 @@ const nextStepActionsScroll = () => {
       if (sectionsShowHideObj.showTheseSectionsArray[countStep+1].display=="block") {
         countStep++;
       }
-      hideSections(sectionsShowHideObj);
-      showSections(sectionsShowHideObj);
+      sectionVisibility(sectionsShowHideObj);
     //  console.log("active section:", document.getElementById("active-section"), "Current: ", sectionsShowHideObj.showTheseSectionsArray[countStep]);
     //  document.getElementById("active-section").removeAttribute("id", "active-section"); // EXPERIMENTAL PART OF SCROLL TRIGGER
     //  sectionsShowHideObj.showTheseSectionsArray[countStep].setAttribute("id", "active-section"); // EXPERIMENTAL PART OF SCROLL TRIGGER
@@ -120,31 +119,6 @@ const prevStepActionsScroll = () => {
         countStep--;
         activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
         activeSection.classList.add('active-section-container');
-
-/*
-        window.removeEventListener("scroll", function() {
-          isScrolledIntoView(activeSection)
-        }, {
-          capture: true,
-          passive: true
-        }); // Need to remove eventlistener to prevent infinite loop until reach end of questionnaire
-        countStep--;
-        hideSections(sectionsShowHideObj);
-        showSections(sectionsShowHideObj);
-      //  document.getElementById("active-section").removeAttribute("id", "active-section"); // EXPERIMENTAL PART OF SCROLL TRIGGER
-      //  sectionsShowHideObj.showTheseSectionsArray[countStep].setAttribute("id", "active-section"); // EXPERIMENTAL PART OF SCROLL TRIGGER
-        sectionsShowHideObj.showTheseSectionsArray[countStep].style.opacity="1";
-        sectionsShowHideObj.showTheseSectionsArray[countStep+1].style.opacity="0.2";
-        activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
-      //  sectionsShowHideObj.showTheseSectionsArray[countStep].scrollIntoView(true);
-      console.log("PREFVE SCROLL FIRED: ", activeSection);
-        window.addEventListener("scroll", function() {
-            clearTimeout(timeout);
-            timeout = setTimeout(isScrolledIntoView(activeSection), 2000);
-          }, {
-            capture: true,
-            passive: true
-          }); */
     }
     return countStep;
   };
@@ -214,13 +188,13 @@ const checkButtonStep = () => {
   }
 };
 
-  // show/hideSections() based on prev/next button onclick
-const showSections = (sectionsShowHideObj) => {
+  // show/hide questionnaire sections based on user's answers
+const sectionVisibility = (sectionsShowHideObj) => {
+  // Show sections
   if (sectionsShowHideObj.showTheseSectionsArray.length > 0 && sectionsShowHideObj.showTheseSectionsArray[countStep] !== undefined) {
     sectionsShowHideObj.showTheseSectionsArray[countStep].style.display = "block";
   }
-};
-const hideSections = (sectionsShowHideObj) => {
+  // hide sections
   if (sectionsShowHideObj.hideTheseSectionsArray.length > 0) {
     for (let i = 0; i <= sectionsShowHideObj.hideTheseSectionsArray.length && sectionsShowHideObj.hideTheseSectionsArray[i] !== undefined; i++) {
       sectionsShowHideObj.hideTheseSectionsArray[i].style.display = "none";
@@ -239,52 +213,14 @@ const hideSections = (sectionsShowHideObj) => {
   // functionality for displaying steps on prev/next button click
 
 const nextStepActions = () => {
-    if (countStep === 0) {
-      sectionsShowHideObj.showTheseSectionsArray[countStep].classList.add('active-section-container');
-      countStep++;
-      hideSections(sectionsShowHideObj);
-      showSections(sectionsShowHideObj);
-      sectionsShowHideObj.showTheseSectionsArray[countStep].scrollIntoView(true);
-      activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
-/*
-      window.removeEventListener("scroll", function(){isScrolledIntoView(activeSection)}, {
-        capture: true,
-        passive: true
-      }); // Need to remove eventlistener to prevent infinite loop until reach end of questionnaire
-      countStep++;
-      hideSections(sectionsShowHideObj);
-      showSections(sectionsShowHideObj);
-    //  document.getElementById("active-section").removeAttribute("id", "active-section"); // EXPERIMENTAL PART OF SCROLL TRIGGER
-    //  sectionsShowHideObj.showTheseSectionsArray[countStep].setAttribute("id", "active-section"); // EXPERIMENTAL PART OF SCROLL TRIGGER
-      sectionsShowHideObj.showTheseSectionsArray[countStep].scrollIntoView(true);
-      sectionsShowHideObj.showTheseSectionsArray[countStep].style.opacity="1";
-      sectionsShowHideObj.showTheseSectionsArray[countStep-1].style.opacity="0.2"; // reduce opacity of a completed step so user focus is on current step
-      activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
-      window.addEventListener("scroll", function() {
-          clearTimeout(timeout);
-          timeout = setTimeout(isScrolledIntoView(activeSection), 2000);
-        }, {
-          capture: true,
-          passive: true
-        });
-      checkButtonStep();
-    /*  window.addEventListener("scroll", function(){isScrolledIntoView(activeSection)}, {
-        capture: true,
-        passive: true
-      }); */
-    } else if (countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1) {
-
-      removeActiveClass();
-
-      //  activeSection.classList.remove('active-section-container');
-        console.log(activeSection);
+   if (countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1) {
+        removeActiveClass();
         countStep++;
         activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
-        hideSections(sectionsShowHideObj);
-        showSections(sectionsShowHideObj);
+        sectionVisibility(sectionsShowHideObj);
         activeSection.classList.add('active-section-container');
         sectionsShowHideObj.showTheseSectionsArray[countStep].scrollIntoView(true);
-
+        checkButtonStep();
       } else {
         checkButtonStep();
     } return countStep;
@@ -294,29 +230,30 @@ const prevStepActions = () => {
     if (countStep < 1) {
       checkButtonStep();
     } else if (countStep >= 1) {
-
+      /*
         window.removeEventListener("scroll", function() {
           isScrolledIntoView(activeSection)
         }, {
           capture: true,
           passive: true
         }); // Need to remove eventlistener to prevent infinite loop until reach end of questionnaire
-        countStep--;
-        hideSections(sectionsShowHideObj);
-        showSections(sectionsShowHideObj);
-    //    document.getElementById("active-section").removeAttribute("id", "active-section"); // EXPERIMENTAL PART OF SCROLL TRIGGER
-    //    sectionsShowHideObj.showTheseSectionsArray[countStep].setAttribute("id", "active-section"); // EXPERIMENTAL PART OF SCROLL TRIGGER
-        sectionsShowHideObj.showTheseSectionsArray[countStep].style.opacity="1";
-        sectionsShowHideObj.showTheseSectionsArray[countStep+1].style.opacity="0.2";
-        sectionsShowHideObj.showTheseSectionsArray[countStep].scrollIntoView(true);
-        checkButtonStep();
         window.addEventListener("scroll", function() {
             clearTimeout(timeout);
             timeout = setTimeout(isScrolledIntoView(activeSection), 2000);
           }, {
             capture: true,
             passive: true
-          });
+          }); */
+
+        countStep--;
+        sectionVisibility(sectionsShowHideObj);
+    //    document.getElementById("active-section").removeAttribute("id", "active-section"); // EXPERIMENTAL PART OF SCROLL TRIGGER
+    //    sectionsShowHideObj.showTheseSectionsArray[countStep].setAttribute("id", "active-section"); // EXPERIMENTAL PART OF SCROLL TRIGGER
+        sectionsShowHideObj.showTheseSectionsArray[countStep].style.opacity="1";
+        sectionsShowHideObj.showTheseSectionsArray[countStep+1].style.opacity="0.2";
+        sectionsShowHideObj.showTheseSectionsArray[countStep].scrollIntoView(true);
+        checkButtonStep();
+
     } return countStep;
   };
 
@@ -366,8 +303,7 @@ targets.forEach((target) => {
 const nextStepActionsScroll = () => {
     if (countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1) {
       countStep++;
-      hideSections(sectionsShowHideObj);
-      showSections(sectionsShowHideObj);
+      sectionVisibility(sectionsShowHideObj);
   //    sectionsShowHideObj.showTheseSectionsArray[countStep].scrollIntoView(true);
       sectionsShowHideObj.showTheseSectionsArray[countStep].style.opacity="1";
       sectionsShowHideObj.showTheseSectionsArray[countStep-1].style.opacity="0.2"; // reduce opacity of a completed step so user focus is on current step
@@ -383,7 +319,7 @@ const prevStepActionsScroll = () => {
     } else if (countStep >= 1) {
         countStep--;
         hideSections(sectionsShowHideObj);
-        showSections(sectionsShowHideObj);
+        sectionVisibility(sectionsShowHideObj);
         sectionsShowHideObj.showTheseSectionsArray[countStep].style.opacity="1";
         sectionsShowHideObj.showTheseSectionsArray[countStep+1].style.opacity="0.2";
         activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
@@ -418,7 +354,7 @@ const checkButtonStep = () => {
 };
 
   // show/hideSections() based on prev/next button onclick
-const showSections = (sectionsShowHideObj) => {
+const sectionVisibility = (sectionsShowHideObj) => {
   if (sectionsShowHideObj.showTheseSectionsArray.length > 0 && sectionsShowHideObj.showTheseSectionsArray[countStep] !== undefined) {
     sectionsShowHideObj.showTheseSectionsArray[countStep].style.display = "block";
   }
@@ -437,7 +373,7 @@ const nextStepActions = () => {
     if (countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1) {
       countStep++;
       hideSections(sectionsShowHideObj);
-      showSections(sectionsShowHideObj);
+      sectionVisibility(sectionsShowHideObj);
       sectionsShowHideObj.showTheseSectionsArray[countStep].scrollIntoView(true);
     //  sectionsShowHideObj.showTheseSectionsArray[countStep].style.opacity="1";
     //  sectionsShowHideObj.showTheseSectionsArray[countStep-1].style.opacity="0.2"; // reduce opacity of a completed step so user focus is on current step
@@ -454,7 +390,7 @@ const prevStepActions = () => {
     } else if (countStep >= 1) {
         countStep--;
         hideSections(sectionsShowHideObj);
-        showSections(sectionsShowHideObj);
+        sectionVisibility(sectionsShowHideObj);
     //    sectionsShowHideObj.showTheseSectionsArray[countStep].style.opacity="1";
     //    sectionsShowHideObj.showTheseSectionsArray[countStep+1].style.opacity="0.2";
         sectionsShowHideObj.showTheseSectionsArray[countStep].scrollIntoView(true);
