@@ -4,9 +4,6 @@
   "description": "Check parking bylaws and make an appeal letter to challenge unfair parking tickets.",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "scripts": {
     "start": "http-server -c-1 -p 8081"
   },
   "repository": {
@@ -20,7 +17,7 @@
   },
   "homepage": "https://github.com/tayv/parkadoo#readme",
   "dependencies": {
-    "dompurify": "^2.0.6"
+    "dompurify": "^2.0.7"
   },
   "devDependencies": {
     "http-server": "^0.11.1"
