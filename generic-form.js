@@ -5,6 +5,7 @@ import {
 } from "/main.js";
 import {setLetterTemplate} from "/letter.js";
 
+
 // Sections
 const formSections = {
   // Holds the total number of sections
@@ -56,10 +57,9 @@ let activeSection; // to keep track of current step when scrolling
 const headerHeight = document.getElementById("header-main").offsetHeight;
 const footerHeight = document.getElementById("footer-main").offsetHeight;
 const visibleWindowHeight = (window.innerHeight - headerHeight - footerHeight);
-
+//  const throttledScroll = _.throttle(isScrolledIntoView(activeSection), 200); unable to import lodash
 // experimental
 const elements = document.querySelectorAll(".section-container");
-
 const lastScrollTop = 30;
 /*
 const testScroll = function(){
@@ -78,7 +78,7 @@ const testScroll = function(){
 // needs lodash throttle still
 window.addEventListener("scroll", function() {
   isScrolledIntoView(activeSection);
-        }, {
+    }, {
           capture: true,
           passive: true
         });
