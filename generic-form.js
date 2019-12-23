@@ -76,10 +76,14 @@ const testScroll = function(){
 */
 
 const clickActiveClass = () => {
+  if (!event.target.closest("SECTION")) return; // short circuit if don't click on section-container or its child elements
   removeActiveClass();
   let sectionDiv = event.target.closest(".section-container");
   sectionDiv.classList.add('active-section-container');
 }
+
+// CLICK EVENT TO HIGHLIGHT SECTION-CONTAINER WHEN USER INTERACTS WITH IT
+document.getElementById("parking-form-content").addEventListener("click", clickActiveClass); 
 
 const nextStepActionsScroll = () => {
       // want to check that the questionnaire hasn't finished and that the next step scrolling to hasn't been scrolled to already
@@ -130,10 +134,7 @@ function isScrolledIntoView(el) {
     }
 }
 
-// ACTIVECLASS EVENTLISTENERS
-// click event to highlight section when user interacts with it
-document.getElementById("welcome-section").addEventListener("click", clickActiveClass);
-
+// ACTIVECLASS SCROLL LISTENER
 // needs lodash throttle still
 window.addEventListener("scroll", function() {
   isScrolledIntoView(activeSection);
