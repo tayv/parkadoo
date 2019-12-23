@@ -75,13 +75,11 @@ const testScroll = function(){
 };
 */
 
-// needs lodash throttle still
-window.addEventListener("scroll", function() {
-  isScrolledIntoView(activeSection);
-    }, {
-          capture: true,
-          passive: true
-        });
+const clickActiveClass = () => {
+  removeActiveClass();
+  let sectionDiv = event.target.closest(".section-container");
+  sectionDiv.classList.add('active-section-container');
+}
 
 const nextStepActionsScroll = () => {
       // want to check that the questionnaire hasn't finished and that the next step scrolling to hasn't been scrolled to already
@@ -122,7 +120,6 @@ function isScrolledIntoView(el) {
   // return true/false values to trigger correct conditions on scroll
     let isTopHidden = (activeElemTop < headerHeight) && (activeElemBottom <= bottomHeight);
     let isTopScrolledDown = (activeElemTop > headerHeight);
-    let test = document.getElementById("welcome-section");
 
     if (activeElemTop >= bottomHeight) {
       console.log("TOP IS BELOW THE FOOTER");
@@ -132,6 +129,18 @@ function isScrolledIntoView(el) {
       nextStepActionsScroll();
     }
 }
+
+// ACTIVECLASS EVENTLISTENERS
+// click event to highlight section when user interacts with it
+document.getElementById("welcome-section").addEventListener("click", clickActiveClass);
+
+// needs lodash throttle still
+window.addEventListener("scroll", function() {
+  isScrolledIntoView(activeSection);
+    }, {
+          capture: true,
+          passive: true
+        });
 
 // To hide all steps other than initial welcome section by default
 const hideAllSteps = () => {
@@ -212,147 +221,7 @@ const prevStepActions = () => {
     } return countStep;
   };
 
-/*
-// INTERSECTION OBSERVER
-// init the observer
-const options = {
-	//rootMargin: "-80px",
-	threshold: [0.5, 0.75, 1]
-}
-	// simple function to use for callback in the intersection observer
-const callbackIO = (entries, observer) => {
-  let prevElIntersecting = false;
-	entries.forEach((entry) => {
-    //  console.log(entry.target.getAttribute("id"), "Is intersecting: ", entry.isIntersecting, "intersection ratio: ", entry.intersectionRatio, "root height: ", visibleWindowHeight,"target height", entry.target.clientHeight, "Target bigger than root: ", (visibleWindowHeight < entry.target.clientHeight));
-    //  console.log("OFFSET HIEGIHT: ", entry.target.offsetHeight, "Within area? ", (entry.target.offsetHeight > headerHeight) && (entry.target.offsetHeight < 400));
 
-    // verify the element is intersecting
-    if((entry.target.offsetHeight > headerHeight) && (entry.target.offsetHeight < 400) && ((entry.isIntersecting && visibleWindowHeight < entry.target.clientHeight && entry.intersectionRatio > 0.1) || (entry.isIntersecting && visibleWindowHeight >= entry.target.clientHeight && entry.intersectionRatio > 0.9))){
-    	// remove previous active-section-container class
-      if(document.querySelector(".active-section-container")) {
-      	document.querySelector(".active-section-container").classList.remove("active-section-container");
-        entry.target.classList.add("active-section-container");
-        }
-			// add active-section-container class
-			 entry.target.classList.add("active-section-container");
-
-			// get id of the intersecting section
-			console.log("active-section-container: ", entry.target.getAttribute('id'), "ENTRY ITEM: ", entry);
-		} else {
-    	//	entry.target.classList.remove('active-section-container');
-      //  entry.target.classList.add("active-section-container");
-    }
-	});
-}
-
-const observer = new IntersectionObserver(callbackIO, options);
-
-// target the elements to be observed
-const targets = document.querySelectorAll(".section-container");
-targets.forEach((target) => {
-	observer.observe(target);
-});
-
-// END INTERSECTION OBSERVER
-
-const nextStepActionsScroll = () => {
-    if (countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1) {
-      countStep++;
-      sectionVisibility(sectionsShowHideObj);
-  //    sectionsShowHideObj.showTheseSectionsArray[countStep].scrollIntoView(true);
-      sectionsShowHideObj.showTheseSectionsArray[countStep].style.opacity="1";
-      sectionsShowHideObj.showTheseSectionsArray[countStep-1].style.opacity="0.2"; // reduce opacity of a completed step so user focus is on current step
-      activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
-    } else {
-        checkButtonStep();
-    } return countStep;
-  };
-
-const prevStepActionsScroll = () => {
-    if (countStep < 1) {
-      checkButtonStep();
-    } else if (countStep >= 1) {
-        countStep--;
-        hideSections(sectionsShowHideObj);
-        sectionVisibility(sectionsShowHideObj);
-        sectionsShowHideObj.showTheseSectionsArray[countStep].style.opacity="1";
-        sectionsShowHideObj.showTheseSectionsArray[countStep+1].style.opacity="0.2";
-        activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
-      //  sectionsShowHideObj.showTheseSectionsArray[countStep].scrollIntoView(true);
-    } return countStep;
-  };
-
-// To hide all steps other than initial welcome section by default
-const hideAllSteps = () => {
-  for (let i = 1; i < formSections.allFormSections.length; i++) {
-    formSections.allFormSections[i].style.display="none";
-  }
-  formSections.finishedSectionDiv.style.display="none";
-};
-
-// GENERIC FUNCTIONALITY - Previous/Next/Submit button visiblity and to scroll to next div/step.
-  // Needs to be initialized before question specific visibility conditions
-const checkButtonStep = () => {
-  if (countStep === 0) {
-    finishedQuestions = false;
-    document.getElementById("button-previous").style.display="none";
-    document.getElementById("button-submit").style.display="none";
-  } else if (countStep > 0 && countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1) {
-      document.getElementById("button-previous").style.display="inline";
-      document.getElementById("button-submit").style.display="none";
-  } else if (countStep >= sectionsShowHideObj.showTheseSectionsArray.length - 1) {
-      finishedQuestions = true;
-      document.getElementById("button-previous").style.display="none";
-      document.getElementById("button-next").style.display="none";
-      document.getElementById("button-submit").style.display="block";
-  }
-};
-
-  // show/hideSections() based on prev/next button onclick
-const sectionVisibility = (sectionsShowHideObj) => {
-  if (sectionsShowHideObj.showTheseSectionsArray.length > 0 && sectionsShowHideObj.showTheseSectionsArray[countStep] !== undefined) {
-    sectionsShowHideObj.showTheseSectionsArray[countStep].style.display = "block";
-  }
-};
-const hideSections = (sectionsShowHideObj) => {
-  if (sectionsShowHideObj.hideTheseSectionsArray.length > 0) {
-    for (let i = 0; i <= sectionsShowHideObj.hideTheseSectionsArray.length && sectionsShowHideObj.hideTheseSectionsArray[i] !== undefined; i++) {
-      sectionsShowHideObj.hideTheseSectionsArray[i].style.display = "none";
-    }
-  }
-};
-
-  // functionality for displaying steps on prev/next button click
-
-const nextStepActions = () => {
-    if (countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1) {
-      countStep++;
-      hideSections(sectionsShowHideObj);
-      sectionVisibility(sectionsShowHideObj);
-      sectionsShowHideObj.showTheseSectionsArray[countStep].scrollIntoView(true);
-    //  sectionsShowHideObj.showTheseSectionsArray[countStep].style.opacity="1";
-    //  sectionsShowHideObj.showTheseSectionsArray[countStep-1].style.opacity="0.2"; // reduce opacity of a completed step so user focus is on current step
-      activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
-      checkButtonStep();
-    } else {
-        checkButtonStep();
-    } return countStep;
-  };
-
-const prevStepActions = () => {
-    if (countStep < 1) {
-      checkButtonStep();
-    } else if (countStep >= 1) {
-        countStep--;
-        hideSections(sectionsShowHideObj);
-        sectionVisibility(sectionsShowHideObj);
-    //    sectionsShowHideObj.showTheseSectionsArray[countStep].style.opacity="1";
-    //    sectionsShowHideObj.showTheseSectionsArray[countStep+1].style.opacity="0.2";
-        sectionsShowHideObj.showTheseSectionsArray[countStep].scrollIntoView(true);
-        checkButtonStep();
-    } return countStep;
-  };
-*/
 document.getElementById("button-next").onclick = () => {
   nextStepActions();
 };
