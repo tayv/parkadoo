@@ -216,7 +216,9 @@ const prevStepActions = () => {
       checkButtonStep();
     } else if (countStep >= 1) {
         removeActiveClass();
-        activeSection.style.display="none";
+        sectionsShowHideObj.showTheseSectionsArray.slice(countStep).forEach(function(element) { // To hide multiple next steps if user skips multiple sections using scroll 
+          element.style.display="none"
+        });
         countStep--;
         activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
         sectionVisibility(sectionsShowHideObj)
