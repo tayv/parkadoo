@@ -79,11 +79,14 @@ const clickActiveClass = () => {
   if (!event.target.closest("SECTION")) return; // short circuit if don't click on section-container or its child elements
   removeActiveClass();
   let sectionDiv = event.target.closest(".section-container");
+
   sectionDiv.classList.add('active-section-container');
+  countStep = sectionsShowHideObj.showTheseSectionsArray.indexOf(sectionDiv);
+  checkButtonStep();
 }
 
 // CLICK EVENT TO HIGHLIGHT SECTION-CONTAINER WHEN USER INTERACTS WITH IT
-document.getElementById("parking-form-content").addEventListener("click", clickActiveClass); 
+document.getElementById("parking-form-content").addEventListener("click", clickActiveClass);
 
 const nextStepActionsScroll = () => {
       // want to check that the questionnaire hasn't finished and that the next step scrolling to hasn't been scrolled to already
@@ -155,14 +158,16 @@ const hideAllSteps = () => {
   // Needs to be initialized before question specific visibility conditions
 const checkButtonStep = () => {
   if (countStep === 0) {
-    finishedQuestions = false;
+  //  finishedQuestions = false;
     document.getElementById("button-previous").style.display="none";
+    document.getElementById("button-next").style.display="inline";
     document.getElementById("button-submit").style.display="none";
   } else if (countStep > 0 && countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1) {
       document.getElementById("button-previous").style.display="inline";
+      document.getElementById("button-next").style.display="inline";
       document.getElementById("button-submit").style.display="none";
   } else if (countStep >= sectionsShowHideObj.showTheseSectionsArray.length - 1) {
-      finishedQuestions = true;
+    //  finishedQuestions = true;
       document.getElementById("button-previous").style.display="none";
       document.getElementById("button-next").style.display="none";
       document.getElementById("button-submit").style.display="block";
@@ -201,7 +206,6 @@ const nextStepActions = () => {
         activeSection.classList.add('active-section-container');
         activeSection.scrollIntoView(true);
         checkButtonStep();
-        console.log(window.getComputedStyle(sectionsShowHideObj.showTheseSectionsArray[countStep]).display==="block");
       } else {
         checkButtonStep();
     } return countStep;
