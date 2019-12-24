@@ -53,7 +53,7 @@ let sectionsShowHideObj = {
 };
 
 // EXPERIMENTAL
-let activeSection; // to keep track of current step when scrolling
+let activeSection = formSections.welcomeSection; // to keep track of current step when scrolling
 const headerHeight = document.getElementById("header-main").offsetHeight;
 const footerHeight = document.getElementById("footer-main").offsetHeight;
 const visibleWindowHeight = (window.innerHeight - headerHeight - footerHeight);
@@ -216,7 +216,7 @@ const prevStepActions = () => {
       checkButtonStep();
     } else if (countStep >= 1) {
         removeActiveClass();
-        sectionsShowHideObj.showTheseSectionsArray.slice(countStep).forEach(function(element) { // To hide multiple next steps if user skips multiple sections using scroll 
+        sectionsShowHideObj.showTheseSectionsArray.slice(countStep).forEach(function(element) { // To hide multiple next steps if user skips multiple sections using scroll
           element.style.display="none"
         });
         countStep--;
