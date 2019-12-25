@@ -81,8 +81,8 @@ input[type="password"]:focus,
 }
 
 .cta-sticky-container {
-  background-color: hsla(218, 12%, 18%, 1);
-  background-color: var(--primary-color-500);
+  background-color: hsla(218, 12%, 18%, 0.85);
+/*  background-color: var(--primary-color-500); */
   box-shadow: 1 1 1px hsla(0, 0%, 0%, 1);
 }
 
