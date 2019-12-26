@@ -48,6 +48,10 @@ body {
   box-shadow: var(--shadow-normal);
 }
 
+#logo {
+  color: var(--color-white);
+}
+
 .questionnaire-container {
   background-color: hsla(218, 12%, 18%, 1);
   background-color: var(--primary-color-500);
