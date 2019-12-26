@@ -402,10 +402,18 @@ li {
        appearance: none;
   -webkit-appearance:none;
   padding:10px 20px;
+  outline: none;
+}
+
+#button-previous {
+  margin-right: 4px;
+}
+
+#button-next {
+  margin-left: 4px;
 }
 
 #button-submit {
-  /* display: none; to hide and avoid clashing with prev/next button divs until completed all steps */
   font: inherit;
   border: none;
   border-radius: 3px;
@@ -413,6 +421,7 @@ li {
        appearance: none;
   -webkit-appearance:none;
   padding:10px 20px;
+  outline: none;
 }
 
 
