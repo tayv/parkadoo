@@ -4,6 +4,8 @@
   --primary-color-900: hsla(218, 22%, 7%, 1);
   --primary-color-700: hsla(218, 22%, 12%, 1);
   --primary-color-500: hsla(218, 12%, 18%, 1); /* dark greyish blue */
+  --primary-color-500-opacity: hsla(218, 12%, 18%, 0.9); /* for CTA sticky background */
+  --primary-color-400: hsla(218, 12%, 22%, 1); 
   --primary-color-300: hsla(218, 12%, 26%, 1);
   --primary-color-100: hsla(218, 17%, 33%, 1);
 
@@ -34,17 +36,13 @@
 }
 
 body {
-  background-color: hsla(0, 0%, 13%, 1); /* fallback for IE11 */
   background-color: var(--primary-color-900);
-  color: hsla(0, 0%, 100%, 1);
   color: var(--color-white);
   text-shadow: var(--shadow-normal);
 }
 
 #header-main {
-  background-color: hsla(218, 22%, 12%, 1);
   background-color: var(--primary-color-700);
-  border-bottom: 1px solid hsla(0, 0%, 0%, 1);
   box-shadow: var(--shadow-normal);
 }
 
@@ -53,15 +51,12 @@ body {
 }
 
 .questionnaire-container {
-  background-color: hsla(218, 12%, 18%, 1);
   background-color: var(--primary-color-500);
 }
 
 .active-section-container {
-  border-color: hsla(153, 100%, 53%, 1);
   border-color: var(--accent-color1-500);
-/*  background-color: var(--primary-color-500); */
-  background-color: hsla(218, 12%, 22%, 1);
+  background-color: var(--primary-color-400);
   box-shadow: var(--shadow-normal);
 
 }
@@ -73,9 +68,7 @@ body {
 .field-container .abstract,
 .field-date input[type="number"],
 .field-date input[type="text"] {
-  background-color: hsla(216, 33%, 97%, 1);
   background-color: var(--neutral-color-100);
-  border-color: hsla(48, 95%, 76%, 1);
   border-color: var(--accent-color2-500);
 }
 
@@ -86,80 +79,62 @@ input[type="password"]:focus,
 .field-container .abstract:focus,
 .field-date input[type="number"]:focus,
 .field-date input[type="text"]:focus {
-  background-color: hsla(0, 0%, 100%, 1);
   background-color: var(--color-white);
-  border-color: hsla(48, 95%, 76%, 1);
   border-color: var(--accent-color2-500);
 }
 
 .cta-sticky-container {
-  background-color: hsla(218, 12%, 18%, 0.9);
-/*  background-color: var(--primary-color-500); Use this color but add opacity */
-  border-top: 1px solid hsla(227, 12%, 30%, 1);
+  background-color: var(--primary-color-500-opacity);
+  border-top: var(--border-top);
 }
 
 #button-previous,
 #button-next {
-  background-color: hsla(210, 16%, 82%, 1);
   background-color: var(--neutral-color-500);
 }
 
 #button-submit {
-  background-color: hsla(48, 95%, 76%, 1);
   background-color: var(--accent-color2-500);
 }
 
 #footer-main {
-  background-color: hsla(218, 22%, 12%, 1);
   background-color: var(--primary-color-700);
-  border-top: 1px solid hsla(227, 12%, 30%, 1);
+  border-top: var(--border-top);
 
 }
 
   /* Radio buttons */
 .field-radio-button label,
 .customRB::after { /* rb center dot. should match label background color */
-  color: hsla(210, 16%, 82%, 1);
   color: var(--neutral-color-500);
 }
 
 .field-radio-button label:hover {
-  background-color: hsla(218, 12%, 26%, 1);
   background-color: var(--primary-color-300);
-  color: hsla(0, 0%, 100%, 1);
   color: var(--color-white);
 }
 
 input:checked ~ label .customRB {
-  border-color: hsla(153, 100%, 53%, 1);
   border-color: var(--accent-color1-500);
 }
 
 input:checked ~ label .customRB::after {
-  background-color: hsla(153, 100%, 53%, 1);
   background-color: var(--accent-color1-500);
 }
 
 .field-radio-button input:checked ~ label {
-  color: hsla(153, 100%, 53%, 1);
   color: var(--accent-color1-500);
-  border-color: hsla(153, 100%, 53%, 1);
   border-color: var(--accent-color1-500);
-  background-color: hsla(218, 12%, 26%, 1);
   background-color: var(--primary-color-300);
 }
   /* Info Box */
 .info-box-div {
-  background-color: hsla(210, 16%, 82%, 1);
   background-color: var(--neutral-color-500);
-  color: hsla(210, 50%, 1%, 1);
   color: var(--color-black);
 }
 
 /* Letter Preview Box */
 #letter-preview-container{
-  background-color: hsla(0, 0%, 100%, 1);
   background-color: var(--color-white);
-  color: hsla(210, 50%, 1%, 1);
   color: var(--color-black);
 }
