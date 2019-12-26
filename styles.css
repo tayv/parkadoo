@@ -84,8 +84,8 @@ body {
 
 /* experimental for IO API */
 .active-section-container{
-  border: 3px red solid;
-  opacity: 1;
+  border-left: 5px solid;
+  border-radius: 1px;
 }
 
 /* For testing
