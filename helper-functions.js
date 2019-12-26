@@ -3,7 +3,7 @@
 const calcAndSetWhiteSpace = (function() {
   let headerHeight = document.getElementById("header-main").offsetHeight;
   let footerHeight = document.getElementById("footer-main").offsetHeight;
-  let newPadding = (window.innerHeight - headerHeight - footerHeight);
+  let newPadding = Math.round(document.getElementById("parking-form-main").offsetHeight - headerHeight - footerHeight);
   let setNewPadding = document.getElementById("add-whitespace").style.paddingBottom = newPadding + "px";
   return setNewPadding;
 }());

@@ -49,7 +49,6 @@ body {
   width: 100%;
   overflow-y: scroll; /* Scroll window for main content so header stays fixed */
   height: 100vh; /* To push footer to bottom of page */
-/*  scroll-snap-type: block mandatory;*/
 }
 
 /* Main content containers */
@@ -79,11 +78,8 @@ body {
 }
 
 .section-container {
-  padding-left: 5%;
-  padding-right: 5%;
+  padding: 0% 10% 5% 10%;
   display: block; /* To fix Chrome/Safari issue with first section divs overlapping */
-  scroll-snap-align: start;
-
 }
 
 /* experimental for IO API */
@@ -159,7 +155,6 @@ body {
 .field-checkbox,
 .field-date,
 .fieldset-radio {
-  max-width: 400px;
   width: 100%; /* of .questionnaire-container */
 }
 
@@ -413,23 +408,6 @@ li {
   padding:10px 20px;
 }
 
-/* Main footer */
-/*
-#footer-main {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-
-  height: 80px;
-  width: 100vw;
-  margin-top: auto; /* Uses flex to stay fixed to bottom of content without jumping out of document flow like fixed position */
-} */
 
 /* Mobile Styles */
 @media only screen and (max-width: 400px) {

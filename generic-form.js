@@ -118,20 +118,25 @@ function isScrolledIntoView(el) {
     let rect = el.getBoundingClientRect();
     let activeElemTop = Math.round(rect.top);
     let activeElemBottom = Math.round(rect.bottom);
-    let headerHeight = document.getElementById("header-main").offsetHeight;
-    let footerHeight = document.getElementById("footer-main").offsetHeight;
-    let ctaHeight = document.querySelector(".cta-sticky-container").offsetHeight;
-    let windowHeight = (window.innerHeight); // If don't use opacity header/footer styling then using parking form container instead of window could simplify math
-    let paddingHeight = windowHeight * 0.15; // for more natural transition of active-class when div leaves viewing area
-    let bottomHeight = Math.round(windowHeight - footerHeight - ctaHeight - paddingHeight);
+    let contentHeight = Math.round(document.getElementById("parking-form-main").offsetHeight);
+    /*
+    let headerHeight = Math.round(document.getElementById("header-main").offsetHeight);
+    let footerHeight = Math.round(document.getElementById("footer-main").offsetHeight);
+    let ctaHeight = Math.round(document.querySelector(".cta-sticky-container").offsetHeight);
+    let windowHeight = Math.round(window.innerHeight); // If don't use opacity header/footer styling then using parking form container instead of window could simplify math
+*/
+    let paddingHeight = Math.round(contentHeight * 0.1); // for more natural transition of active-class when div leaves viewing area
+    let topHeight = Math.round(headerHeight + paddingHeight);
+    let bottomHeight = Math.round(contentHeight - paddingHeight);
+  //  let bottomHeight = Math.round(windowHeight - footerHeight - ctaHeight - paddingHeight);
   // return true/false values to trigger correct conditions on scroll
-    let isTopHidden = (activeElemTop < headerHeight) && (activeElemBottom <= bottomHeight);
-    let isTopScrolledDown = (activeElemTop > headerHeight);
+    let isTopHidden = (activeElemTop < topHeight) && (activeElemBottom < bottomHeight);
+    let isTopScrolledDown = (activeElemTop > topHeight);
 
-    if (activeElemTop >= bottomHeight) {
+    if (activeElemTop > bottomHeight) {
       console.log("TOP IS BELOW THE FOOTER");
       prevStepActionsScroll();
-    } else if (activeElemBottom <= headerHeight) {
+    } else if (activeElemBottom < topHeight) {
       console.log("BOTTOM IS ABOVE THE HEADER");
       nextStepActionsScroll();
     }
