@@ -4,6 +4,7 @@ import {
   ticketAccuracyRadioSelection, ticketReasonRadioSelection, ticketAppealBylawRadioSelection, potentialTicketRadioSelection
 } from "/main.js";
 import {setLetterTemplate} from "/letter.js";
+import {calcAndSetWhiteSpace} from "/helper-functions.js";
 
 
 // Sections
@@ -129,6 +130,7 @@ function isScrolledIntoView(el) {
       // element is below the footer so scrolling down
       nextStepActionsScroll();
     }
+    calcAndSetWhiteSpace(activeSection);
 }
 
 // ACTIVECLASS SCROLL LISTENER
