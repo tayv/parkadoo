@@ -25,7 +25,6 @@ window.onload = function setDefaultAnswerState() {
   ticketReasonRadioSelection();
   ticketAppealBylawRadioSelection();
   potentialTicketRadioSelection();
-  //formSections.welcomeSection.setAttribute("id", "active-section"); //EXPERIMENTAL PART OF SCROLL TRIGGER (initialize step count)
 };
 
 // LIST OF VARIABLES FOR LETTER OUTPUT
