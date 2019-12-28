@@ -53,28 +53,12 @@ let sectionsShowHideObj = {
   showTheseSectionsArray: []
 };
 
-// EXPERIMENTAL
+// For Active-class on scrolling 
 let activeSection = formSections.welcomeSection; // to keep track of current step when scrolling
 const headerHeight = document.getElementById("header-main").offsetHeight;
 const footerHeight = document.getElementById("footer-main").offsetHeight;
 const visibleWindowHeight = (window.innerHeight - headerHeight - footerHeight);
 //  const throttledScroll = _.throttle(isScrolledIntoView(activeSection), 200); unable to import lodash
-// experimental
-const elements = document.querySelectorAll(".section-container");
-const lastScrollTop = 30;
-/*
-const testScroll = function(){
-   console.log("testScroll fired");
-   let scrollAmount = window.pageYOffset
-     if (scrollAmount > lastScrollTop){
-        // downscroll code
-        console.log("DOWNSCROLL fired: ", scrollAmount);
-     } else {
-        // upscroll code
-        console.log("UPSCROLL fired", scrollAmount);
-     }
-};
-*/
 
 const clickActiveClass = () => {
   if (!event.target.closest("SECTION")) return; // short circuit if don't click on section-container or its child elements
