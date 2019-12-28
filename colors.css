@@ -94,15 +94,11 @@ input[type="password"]:focus,
   color: var(--neutral-color-500);
 }
 
-.button-next {
+.button-next,
+#button-submit {
   box-shadow: none;
   background-color: var(--accent-color1-500);
   color: var(--color-black);
-}
-
-#button-submit {
-  box-shadow: none;
-  background-color: var(--accent-color2-500);
 }
 
 #footer-main {

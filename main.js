@@ -12,8 +12,8 @@ import {
 
 // TO LOAD DEFAULT VISIBILITY CONDITIONS (works)
 window.onload = function setDefaultAnswerState() {
-  document.getElementById("parking-form-content").reset();
-  formSections.welcomeSection.scrollIntoView(true);
+//  document.getElementById("parking-form-content").reset();
+//  formSections.welcomeSection.scrollIntoView(true);
   checkButtonStep(); // to display proper button at page load
   hideAllSteps(); // to start with all the steps hidden
   // To set initial rb visibility conditions

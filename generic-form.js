@@ -53,7 +53,7 @@ let sectionsShowHideObj = {
   showTheseSectionsArray: []
 };
 
-// For Active-class on scrolling 
+// For Active-class on scrolling
 let activeSection = formSections.welcomeSection; // to keep track of current step when scrolling
 const headerHeight = document.getElementById("header-main").offsetHeight;
 const footerHeight = document.getElementById("footer-main").offsetHeight;
@@ -80,6 +80,7 @@ const nextStepActionsScroll = () => {
       countStep++;
       activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep]
       sectionVisibility(sectionsShowHideObj);
+      if (activeSection == document.querySelector("#finished-section-container")) return;
       activeSection.classList.add('active-section-container');
       activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
     } else {
@@ -90,6 +91,7 @@ const nextStepActionsScroll = () => {
 const prevStepActionsScroll = () => {
     if (countStep < 1) {
       checkButtonStep();
+      removeActiveClass();
     } else if (countStep >= 1) {
         removeActiveClass();
         countStep--;
@@ -140,7 +142,6 @@ const checkButtonStep = () => {
   //  finishedQuestions = false;
     document.getElementById("button-prev").style.display="none";
     document.querySelector(".button-next").value = "Get Started";
-  //  document.querySelector(".button-next").classList.toggle("button-start");
     document.querySelector(".button-next").style.display="inline";
     document.querySelector("#button-submit").style.display="none";
   } else if (countStep > 0 && countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1) {
@@ -152,6 +153,7 @@ const checkButtonStep = () => {
     //  finishedQuestions = true;
       document.getElementById("button-prev").style.display="none";
       document.querySelector(".button-next").style.display="none";
+      removeActiveClass();
       document.getElementById("button-submit").style.display="block";
   }
 };
@@ -196,8 +198,11 @@ const nextStepActions = () => {
 const prevStepActions = () => {
     if (countStep < 1) {
       checkButtonStep();
+      removeActiveClass();
     } else if (countStep >= 1) {
         removeActiveClass();
+        console.log((activeSection) );
+        if (activeSection == document.querySelector("#welcome-section")) return;
         sectionsShowHideObj.showTheseSectionsArray.slice(countStep).forEach(function(element) { // To hide multiple next steps if user skips multiple sections using scroll
           element.style.display="none"
         });
@@ -210,7 +215,6 @@ const prevStepActions = () => {
     } return countStep;
   };
 
-
 document.querySelector(".button-next").onclick = () => {
   nextStepActions();
   calcAndSetWhiteSpace(activeSection);
@@ -220,8 +224,6 @@ document.querySelector("#button-prev").onclick = () => {
   prevStepActions();
   calcAndSetWhiteSpace(activeSection);
 };
-
-
 
 // Using sessionStorage to save user answers
 document.getElementById("button-submit").onclick = () => {
