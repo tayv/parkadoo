@@ -395,7 +395,7 @@ li {
 /* Buttons */
 .button-cta {
   font: inherit;
-  border: none;
+  border: 5px;
   border-radius: 3px;
   -moz-appearance: none;
        appearance: none;
@@ -404,11 +404,11 @@ li {
   outline: none;
 }
 
-#button-previous {
+#button-prev {
   margin-right: 4px;
 }
 
-#button-next {
+.button-next {
   margin-left: 4px;
 }
 

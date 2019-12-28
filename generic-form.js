@@ -130,7 +130,6 @@ function isScrolledIntoView(el) {
       // element is below the footer so scrolling down
       nextStepActionsScroll();
     }
-    calcAndSetWhiteSpace(activeSection);
 }
 
 // ACTIVECLASS SCROLL LISTENER
@@ -155,17 +154,20 @@ const hideAllSteps = () => {
 const checkButtonStep = () => {
   if (countStep === 0) {
   //  finishedQuestions = false;
-    document.getElementById("button-previous").style.display="none";
-    document.getElementById("button-next").style.display="inline";
-    document.getElementById("button-submit").style.display="none";
+    document.getElementById("button-prev").style.display="none";
+    document.querySelector(".button-next").value = "Get Started";
+  //  document.querySelector(".button-next").classList.toggle("button-start");
+    document.querySelector(".button-next").style.display="inline";
+    document.querySelector("#button-submit").style.display="none";
   } else if (countStep > 0 && countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1) {
-      document.getElementById("button-previous").style.display="inline";
-      document.getElementById("button-next").style.display="inline";
+      document.getElementById("button-prev").style.display="inline";
+      document.querySelector(".button-next").value = "Next Question";
+      document.querySelector(".button-next").style.display="inline";
       document.getElementById("button-submit").style.display="none";
   } else if (countStep >= sectionsShowHideObj.showTheseSectionsArray.length - 1) {
     //  finishedQuestions = true;
-      document.getElementById("button-previous").style.display="none";
-      document.getElementById("button-next").style.display="none";
+      document.getElementById("button-prev").style.display="none";
+      document.querySelector(".button-next").style.display="none";
       document.getElementById("button-submit").style.display="block";
   }
 };
@@ -225,12 +227,14 @@ const prevStepActions = () => {
   };
 
 
-document.getElementById("button-next").onclick = () => {
+document.querySelector(".button-next").onclick = () => {
   nextStepActions();
+  calcAndSetWhiteSpace(activeSection);
 };
 
-document.getElementById("button-previous").onclick = () => {
+document.querySelector("#button-prev").onclick = () => {
   prevStepActions();
+  calcAndSetWhiteSpace(activeSection);
 };
 
 

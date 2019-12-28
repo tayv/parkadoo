@@ -89,10 +89,19 @@ input[type="password"]:focus,
 }
 
 .button-cta {
-  background-color: var(--neutral-color-500);
+  box-shadow: inset 0 0 0 3px var(--neutral-color-500);
+  background-color: transparent;
+  color: var(--neutral-color-500);
+}
+
+.button-next {
+  box-shadow: none;
+  background-color: var(--accent-color1-500);
+  color: var(--color-black);
 }
 
 #button-submit {
+  box-shadow: none;
   background-color: var(--accent-color2-500);
 }
 
