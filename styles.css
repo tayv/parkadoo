@@ -89,7 +89,7 @@ body {
   display: block; /* To fix Chrome/Safari issue with first section divs overlapping */
 }
 
-.active-section-container{
+.active-section-container {
   border-left: 5px solid;
   border-radius: 1px;
 }
@@ -178,6 +178,11 @@ body {
   font-size: 14px;
 }
 
+/* remove default selected input field styling */
+textarea:focus, input:focus, select {
+    outline: none;
+}
+
 /* h1 styling for questions without standard primary label */
 .question-primary {
   padding-top: 30px;
@@ -195,8 +200,7 @@ body {
 }
 
 .field-label-small {
-  margin-top: 20px;
-  margin-bottom: 15px;
+  padding-left: 2px;
   font-size: 19px;
 }
 

@@ -181,6 +181,7 @@ const sectionVisibility = (sectionsShowHideObj) => {
   // functionality for displaying steps on prev/next button click
 
 const nextStepActions = () => {
+  console.log(sectionsShowHideObj.showTheseSectionsArray);
    if (countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1) {
         removeActiveClass();
         countStep++;
