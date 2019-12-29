@@ -191,6 +191,7 @@ const nextStepActions = () => {
         calcAndSetWhiteSpace(activeSection);
         activeSection.scrollIntoView(true);
         checkButtonStep();
+        console.log(countStep);
       } else {
           checkButtonStep();
     } return countStep;
@@ -207,13 +208,13 @@ const prevStepActions = () => {
         });
         countStep--;
         activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
-        sectionVisibility(sectionsShowHideObj)
+        sectionVisibility(sectionsShowHideObj);
         checkButtonStep();
         if (activeSection == document.querySelector("#welcome-section")) return;
         activeSection.classList.add("active-section-container");
         calcAndSetWhiteSpace(activeSection);
         activeSection.scrollIntoView(true);
-
+          console.log(countStep);
     } return countStep;
   };
 

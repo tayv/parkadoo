@@ -130,14 +130,9 @@ input:checked ~ label .customRB::after {
   border-color: var(--accent-color1-500);
   background-color: var(--primary-color-300);
 }
-  /* Info Box */
-.info-box-div {
-  background-color: var(--neutral-color-500);
-  color: var(--color-black);
-}
-
-/* Letter Preview Box */
-#letter-preview-container{
-  background-color: var(--color-white);
+  /* Special information boxes */
+.info-box-div,
+ #letter-preview-container {
+  background-color: var(--neutral-color-300);
   color: var(--color-black);
 }
