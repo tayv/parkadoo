@@ -64,7 +64,6 @@ const clickActiveClass = () => {
   if (!event.target.closest("SECTION")) return; // short circuit if don't click on section-container or its child elements
   removeActiveClass();
   let sectionDiv = event.target.closest(".section-container");
-
   sectionDiv.classList.add('active-section-container');
   countStep = sectionsShowHideObj.showTheseSectionsArray.indexOf(sectionDiv);
   checkButtonStep();
@@ -201,17 +200,17 @@ const prevStepActions = () => {
       removeActiveClass();
     } else if (countStep >= 1) {
         removeActiveClass();
-        console.log((activeSection) );
-        if (activeSection == document.querySelector("#welcome-section")) return;
         sectionsShowHideObj.showTheseSectionsArray.slice(countStep).forEach(function(element) { // To hide multiple next steps if user skips multiple sections using scroll
           element.style.display="none"
         });
         countStep--;
         activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
         sectionVisibility(sectionsShowHideObj)
+        checkButtonStep();
+        if (activeSection == document.querySelector("#welcome-section")) return;
         activeSection.classList.add('active-section-container');
         activeSection.scrollIntoView(true);
-        checkButtonStep();
+
     } return countStep;
   };
 
