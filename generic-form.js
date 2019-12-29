@@ -64,7 +64,7 @@ const clickActiveClass = () => {
   if (!event.target.closest("SECTION")) return; // short circuit if don't click on section-container or its child elements
   removeActiveClass();
   let sectionDiv = event.target.closest(".section-container");
-  sectionDiv.classList.add('active-section-container');
+  sectionDiv.classList.add("active-section-container");
   countStep = sectionsShowHideObj.showTheseSectionsArray.indexOf(sectionDiv);
   checkButtonStep();
 }
@@ -80,7 +80,7 @@ const nextStepActionsScroll = () => {
       activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep]
       sectionVisibility(sectionsShowHideObj);
       if (activeSection == document.querySelector("#finished-section-container")) return;
-      activeSection.classList.add('active-section-container');
+      activeSection.classList.add("active-section-container");
       activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
     } else {
         checkButtonStep();
@@ -95,7 +95,7 @@ const prevStepActionsScroll = () => {
         removeActiveClass();
         countStep--;
         activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
-        activeSection.classList.add('active-section-container');
+        activeSection.classList.add("active-section-container");
     }
     return countStep;
   };
@@ -174,7 +174,7 @@ const sectionVisibility = (sectionsShowHideObj) => {
   // TO REMOVE ACTIVE SECTION STYLES
   const removeActiveClass = () => {
     sectionsShowHideObj.showTheseSectionsArray.forEach(section => {
-      section.classList.remove('active-section-container');
+      section.classList.remove("active-section-container");
     });
   }
 
@@ -186,11 +186,12 @@ const nextStepActions = () => {
         countStep++;
         activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
         sectionVisibility(sectionsShowHideObj);
-        activeSection.classList.add('active-section-container');
+        activeSection.classList.add("active-section-container");
+        calcAndSetWhiteSpace(activeSection);
         activeSection.scrollIntoView(true);
         checkButtonStep();
       } else {
-        checkButtonStep();
+          checkButtonStep();
     } return countStep;
   };
 
@@ -208,7 +209,8 @@ const prevStepActions = () => {
         sectionVisibility(sectionsShowHideObj)
         checkButtonStep();
         if (activeSection == document.querySelector("#welcome-section")) return;
-        activeSection.classList.add('active-section-container');
+        activeSection.classList.add("active-section-container");
+        calcAndSetWhiteSpace(activeSection);
         activeSection.scrollIntoView(true);
 
     } return countStep;
