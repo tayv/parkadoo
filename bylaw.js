@@ -215,7 +215,7 @@ let bylawTextObj = {
   ticketReason35: "parking bylaw not found",
   checkBylawsPlainLanguageHint35: "",
   ticketBylawExplanation35:
-    "Sorry, I couldn't find the bylaw for this situation :("
+    "Sorry, I couldn't find the bylaw for this situation &#xF614;"
 };
 
 export {

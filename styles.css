@@ -180,8 +180,8 @@ body {
 
 /* h1 styling for questions without standard primary label */
 .question-primary {
-  margin-top: 30px;
-  margin-bottom: 6px;
+  padding-top: 30px;
+  padding-bottom: 6px;
   font-size: 24px;
 }
 
@@ -329,9 +329,6 @@ input:checked ~ label .customRB::after {
 }
 
 /* Bylaw info box styling */
-#check-bylaw-info-section {
-  padding: 0px;
-}
 .info-box-div, #letter-preview-container {
   margin-top: 4%;
   padding: 5%;
