@@ -181,7 +181,6 @@ const sectionVisibility = (sectionsShowHideObj) => {
   // functionality for displaying steps on prev/next button click
 
 const nextStepActions = () => {
-  console.log(sectionsShowHideObj.showTheseSectionsArray);
    if (countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1) {
         removeActiveClass();
         countStep++;
@@ -191,7 +190,6 @@ const nextStepActions = () => {
         calcAndSetWhiteSpace(activeSection);
         activeSection.scrollIntoView(true);
         checkButtonStep();
-        console.log(countStep);
       } else {
           checkButtonStep();
     } return countStep;
@@ -214,7 +212,6 @@ const prevStepActions = () => {
         activeSection.classList.add("active-section-container");
         calcAndSetWhiteSpace(activeSection);
         activeSection.scrollIntoView(true);
-          console.log(countStep);
     } return countStep;
   };
 
