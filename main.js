@@ -612,6 +612,7 @@ const displayPotentialTicketContent = () => {
   document.getElementById("check-bylaw-primary-question-insert-here").innerHTML = checkBylawsIntroParagraph;
   document.getElementById("bylaw-plain-language-hint-insert-here").innerHTML = checkBylawsPlainLanguageHint;
   document.getElementById("city-bylaw-name").innerHTML = cityBylawName;
+  console.log(ticketBylawExplanation);
   document.getElementById("insert-check-bylaw-info-box-text-here").innerHTML = ticketBylawExplanation;
 };
 

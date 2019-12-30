@@ -33,7 +33,7 @@ let bylawTextObj = {
 
   ticketReason5: "parking in a space with a hooded meter",
   checkBylawsPlainLanguageHint5: "You can't park in front of a covered meter.",
-  ticketBylawExplanation:
+  ticketBylawExplanation5:
     "<ul>s(44) <li>A vehicle shall not be parked on a highway in any space governed by a parking meter on which a hood or cover has been placed.</li></ul>",
 
   ticketReason6: "parking too close to a stop or yield sign",
@@ -45,7 +45,7 @@ let bylawTextObj = {
   ticketReason7: "parking too close to a crosswalk",
   checkBylawsPlainLanguageHint7:
     "You can't park within 5 metres of the nearest side of a crosswalk unless a sign indicates otherwise.",
-  ticketBylawExplanation:
+  ticketBylawExplanation7:
     "<ul>s(5) <li>Unless a traffic control device permits or requires, a vehicle shall not be parked: <br><br>(a) on a crosswalk or any part of a crosswalk; or <br><br>(b) within 5 metres of the near side of a marked crosswalk.</li></ul>",
 
   ticketReason8: "parking too close to a fire hydrant",
@@ -166,7 +166,7 @@ let bylawTextObj = {
   ticketReason27: "parking a vehicle in the same location for more than 72 hrs",
   checkBylawsPlainLanguageHint27:
     "A vehicle is considered abandoned if it's left parked for 72 hrs.",
-  ticketBylawExplanation28:
+  ticketBylawExplanation27:
     "<ul>s(26) <li>(1) A vehicle shall not be abandoned on a highway.</li><li>(2) Without restricting the generality of subsection (1) a vehicle that is left standing in one location on a highway for more than 72 consecutive hours is deemed to have been abandoned at that location.</li></ul>",
 
   ticketReason28: "incorrectly parking a recreational vehicle on a public road",
@@ -178,7 +178,7 @@ let bylawTextObj = {
   ticketReason29: "parking in an alley",
   checkBylawsPlainLanguageHint29:
     "You can't park in an alley unless a sign states otherwise or are a commercial vehicle loading/unloading with your hazard lights on and don't take longer than 30 min. No vehicle is allowed to block an alley.",
-  ticketBylawExplanation:
+  ticketBylawExplanation29:
     "<ul>s(12) <li>(1) A vehicle shall not be parked in an alley unless:<br><br>(a) a traffic control device permits such parking; or <br><br>(b) the vehicle is a commercial vehicle with hazard warning lights alight and in the process of loading or unloading goods.</li><li>(2) Notwithstanding subsection (1)(b) a commercial vehicle shall not be parked in an alley for more than 30 minutes.</li><li>(3) Nothing in this section permits a person to park a vehicle in an alley in a manner that blocks or obstructs the movement of traffic.</li></ul>",
 
   ticketReason30: "double parking next to another vehicle",
@@ -196,7 +196,7 @@ let bylawTextObj = {
   ticketReason32: "parking an unattached trailer",
   checkBylawsPlainLanguageHint32:
     "You can't leave trailers unattached. Trailers need to be attached to a vehicle capable of towing it.",
-  ticketBylawExplanation:
+  ticketBylawExplanation32:
     "<ul>s(20) <li>Notwithstanding any other provision of this bylaw, a trailer shall not be parked on a highway unless the trailer is attached to a vehicle by which it may be drawn.</li></ul>",
 
   ticketReason33: "pay and display zone violation",
