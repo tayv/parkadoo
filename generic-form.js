@@ -4,6 +4,7 @@ import {
   ticketAccuracyRadioSelection, ticketReasonRadioSelection, ticketAppealBylawRadioSelection, potentialTicketRadioSelection
 } from "/main.js";
 import {setLetterTemplate} from "/letter.js";
+import {calcAndSetWhiteSpace} from "/helper-functions.js";
 
 
 // Sections
@@ -52,35 +53,18 @@ let sectionsShowHideObj = {
   showTheseSectionsArray: []
 };
 
-// EXPERIMENTAL
+// For Active-class on scrolling
 let activeSection = formSections.welcomeSection; // to keep track of current step when scrolling
 const headerHeight = document.getElementById("header-main").offsetHeight;
 const footerHeight = document.getElementById("footer-main").offsetHeight;
 const visibleWindowHeight = (window.innerHeight - headerHeight - footerHeight);
 //  const throttledScroll = _.throttle(isScrolledIntoView(activeSection), 200); unable to import lodash
-// experimental
-const elements = document.querySelectorAll(".section-container");
-const lastScrollTop = 30;
-/*
-const testScroll = function(){
-   console.log("testScroll fired");
-   let scrollAmount = window.pageYOffset
-     if (scrollAmount > lastScrollTop){
-        // downscroll code
-        console.log("DOWNSCROLL fired: ", scrollAmount);
-     } else {
-        // upscroll code
-        console.log("UPSCROLL fired", scrollAmount);
-     }
-};
-*/
 
 const clickActiveClass = () => {
   if (!event.target.closest("SECTION")) return; // short circuit if don't click on section-container or its child elements
   removeActiveClass();
   let sectionDiv = event.target.closest(".section-container");
-
-  sectionDiv.classList.add('active-section-container');
+  sectionDiv.classList.add("active-section-container");
   countStep = sectionsShowHideObj.showTheseSectionsArray.indexOf(sectionDiv);
   checkButtonStep();
 }
@@ -95,7 +79,8 @@ const nextStepActionsScroll = () => {
       countStep++;
       activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep]
       sectionVisibility(sectionsShowHideObj);
-      activeSection.classList.add('active-section-container');
+      if (activeSection == document.querySelector("#finished-section-container")) return;
+      activeSection.classList.add("active-section-container");
       activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
     } else {
         checkButtonStep();
@@ -105,11 +90,12 @@ const nextStepActionsScroll = () => {
 const prevStepActionsScroll = () => {
     if (countStep < 1) {
       checkButtonStep();
+      removeActiveClass();
     } else if (countStep >= 1) {
         removeActiveClass();
         countStep--;
         activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
-        activeSection.classList.add('active-section-container');
+        activeSection.classList.add("active-section-container");
     }
     return countStep;
   };
@@ -118,21 +104,15 @@ function isScrolledIntoView(el) {
     let rect = el.getBoundingClientRect();
     let activeElemTop = Math.round(rect.top);
     let activeElemBottom = Math.round(rect.bottom);
-    let headerHeight = document.getElementById("header-main").offsetHeight;
-    let footerHeight = document.getElementById("footer-main").offsetHeight;
-    let ctaHeight = document.querySelector(".cta-sticky-container").offsetHeight;
-    let windowHeight = (window.innerHeight); // If don't use opacity header/footer styling then using parking form container instead of window could simplify math
-    let paddingHeight = windowHeight * 0.15; // for more natural transition of active-class when div leaves viewing area
-    let bottomHeight = Math.round(windowHeight - footerHeight - ctaHeight - paddingHeight);
-  // return true/false values to trigger correct conditions on scroll
-    let isTopHidden = (activeElemTop < headerHeight) && (activeElemBottom <= bottomHeight);
-    let isTopScrolledDown = (activeElemTop > headerHeight);
-
-    if (activeElemTop >= bottomHeight) {
-      console.log("TOP IS BELOW THE FOOTER");
+    let contentHeight = Math.round(document.getElementById("parking-form-main").offsetHeight);
+    let paddingHeight = Math.round(contentHeight * 0.1); // for more natural transition of active-class when div leaves viewing area
+    let topHeight = Math.round(headerHeight + paddingHeight);
+    let bottomHeight = Math.round(contentHeight - paddingHeight);
+    if (activeElemTop > bottomHeight) {
+      // element is above the header so scrolling up
       prevStepActionsScroll();
-    } else if (activeElemBottom <= headerHeight) {
-      console.log("BOTTOM IS ABOVE THE HEADER");
+    } else if (activeElemBottom < topHeight) {
+      // element is below the footer so scrolling down
       nextStepActionsScroll();
     }
 }
@@ -159,17 +139,20 @@ const hideAllSteps = () => {
 const checkButtonStep = () => {
   if (countStep === 0) {
   //  finishedQuestions = false;
-    document.getElementById("button-previous").style.display="none";
-    document.getElementById("button-next").style.display="inline";
-    document.getElementById("button-submit").style.display="none";
+    document.getElementById("button-prev").style.display="none";
+    document.querySelector(".button-next").value = "Get Started";
+    document.querySelector(".button-next").style.display="inline";
+    document.querySelector("#button-submit").style.display="none";
   } else if (countStep > 0 && countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1) {
-      document.getElementById("button-previous").style.display="inline";
-      document.getElementById("button-next").style.display="inline";
+      document.getElementById("button-prev").style.display="inline";
+      document.querySelector(".button-next").value = "Next Question";
+      document.querySelector(".button-next").style.display="inline";
       document.getElementById("button-submit").style.display="none";
   } else if (countStep >= sectionsShowHideObj.showTheseSectionsArray.length - 1) {
     //  finishedQuestions = true;
-      document.getElementById("button-previous").style.display="none";
-      document.getElementById("button-next").style.display="none";
+      document.getElementById("button-prev").style.display="none";
+      document.querySelector(".button-next").style.display="none";
+      removeActiveClass();
       document.getElementById("button-submit").style.display="block";
   }
 };
@@ -191,29 +174,33 @@ const sectionVisibility = (sectionsShowHideObj) => {
   // TO REMOVE ACTIVE SECTION STYLES
   const removeActiveClass = () => {
     sectionsShowHideObj.showTheseSectionsArray.forEach(section => {
-      section.classList.remove('active-section-container');
+      section.classList.remove("active-section-container");
     });
   }
 
   // functionality for displaying steps on prev/next button click
 
 const nextStepActions = () => {
+  console.log(sectionsShowHideObj.showTheseSectionsArray);
    if (countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1) {
         removeActiveClass();
         countStep++;
         activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
         sectionVisibility(sectionsShowHideObj);
-        activeSection.classList.add('active-section-container');
+        activeSection.classList.add("active-section-container");
+        calcAndSetWhiteSpace(activeSection);
         activeSection.scrollIntoView(true);
         checkButtonStep();
+        console.log(countStep);
       } else {
-        checkButtonStep();
+          checkButtonStep();
     } return countStep;
   };
 
 const prevStepActions = () => {
     if (countStep < 1) {
       checkButtonStep();
+      removeActiveClass();
     } else if (countStep >= 1) {
         removeActiveClass();
         sectionsShowHideObj.showTheseSectionsArray.slice(countStep).forEach(function(element) { // To hide multiple next steps if user skips multiple sections using scroll
@@ -221,23 +208,25 @@ const prevStepActions = () => {
         });
         countStep--;
         activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
-        sectionVisibility(sectionsShowHideObj)
-        activeSection.classList.add('active-section-container');
-        activeSection.scrollIntoView(true);
+        sectionVisibility(sectionsShowHideObj);
         checkButtonStep();
+        if (activeSection == document.querySelector("#welcome-section")) return;
+        activeSection.classList.add("active-section-container");
+        calcAndSetWhiteSpace(activeSection);
+        activeSection.scrollIntoView(true);
+          console.log(countStep);
     } return countStep;
   };
 
-
-document.getElementById("button-next").onclick = () => {
+document.querySelector(".button-next").onclick = () => {
   nextStepActions();
+  calcAndSetWhiteSpace(activeSection);
 };
 
-document.getElementById("button-previous").onclick = () => {
+document.querySelector("#button-prev").onclick = () => {
   prevStepActions();
+  calcAndSetWhiteSpace(activeSection);
 };
-
-
 
 // Using sessionStorage to save user answers
 document.getElementById("button-submit").onclick = () => {

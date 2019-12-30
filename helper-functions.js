@@ -1,12 +1,12 @@
 "use strict";
 // GENERIC FUNCTIONALITY - To add whitespace to the end of the document so each section div will scroll to the top of the window when Next button selected
-const calcAndSetWhiteSpace = (function() {
+const calcAndSetWhiteSpace = function(el) {
   let headerHeight = document.getElementById("header-main").offsetHeight;
   let footerHeight = document.getElementById("footer-main").offsetHeight;
-  let newPadding = (window.innerHeight - headerHeight - footerHeight);
+  let newPadding = Math.round(document.getElementById("parking-form-main").offsetHeight - headerHeight - el.offsetHeight);
   let setNewPadding = document.getElementById("add-whitespace").style.paddingBottom = newPadding + "px";
   return setNewPadding;
-}());
+};
 
 // Generic function to grab current date and format it for letter
 let currentDateUnformatted = new Date();

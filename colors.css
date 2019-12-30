@@ -4,6 +4,8 @@
   --primary-color-900: hsla(218, 22%, 7%, 1);
   --primary-color-700: hsla(218, 22%, 12%, 1);
   --primary-color-500: hsla(218, 12%, 18%, 1); /* dark greyish blue */
+  --primary-color-500-opacity: hsla(218, 12%, 18%, 0.9); /* for CTA sticky background */
+  --primary-color-400: hsla(218, 12%, 22%, 1);
   --primary-color-300: hsla(218, 12%, 26%, 1);
   --primary-color-100: hsla(218, 17%, 33%, 1);
 
@@ -27,31 +29,34 @@
 
   --color-white: hsla(0, 0%, 100%, 1); /* full white */
   --color-black: hsla(210, 50%, 1%, 1); /* rich black */
+
+  --shadow-top: 0 -1px 5px hsla(0, 0%, 0%, 0.75);
+  --shadow-normal: 0px 1px 4px hsla(0, 0%, 0%, 0.9);
+  --border-top: 1px solid hsla(227, 12%, 30%, 1);
 }
 
 body {
-  background-color: hsla(0, 0%, 13%, 1); /* fallback for IE11 */
   background-color: var(--primary-color-900);
-  color: hsla(0, 0%, 100%, 1);
   color: var(--color-white);
-  text-shadow: 0px 1px 1px hsla(0, 0%, 0%, 1);
+  text-shadow: var(--shadow-normal);
 }
 
 #header-main {
-  background-color: hsla(218, 22%, 12%, 1);
   background-color: var(--primary-color-700);
-  border-bottom: 1px solid hsla(0, 0%, 0%, 1);
-  box-shadow: 0 0 1px hsla(0, 0%, 0%, 1);
+  box-shadow: var(--shadow-normal);
+}
+
+#logo {
+  color: var(--color-white);
 }
 
 .questionnaire-container {
-  background-color: hsla(218, 12%, 18%, 1);
   background-color: var(--primary-color-500);
 }
 
-.section-container-highlight { /* Not currently being used */
-  background-color: hsla(153, 100%, 53%, 1);
-  background-color: var(--accent-color1-500);
+.active-section-container {
+  border-color: var(--accent-color1-500);
+  background-color: var(--primary-color-400);
 }
 
 /* Unselected text field */
@@ -61,10 +66,8 @@ body {
 .field-container .abstract,
 .field-date input[type="number"],
 .field-date input[type="text"] {
-  background-color: hsla(216, 33%, 97%, 1);
-  background-color: var(--neutral-color-100);
-  border-color: hsla(48, 95%, 76%, 1);
-  border-color: var(--accent-color2-500);
+  background-color: var(--neutral-color-300);
+  border-color: var(--neutral-color-900);
 }
 
 /* Selected text field */
@@ -73,81 +76,63 @@ input[type="email"]:focus,
 input[type="password"]:focus,
 .field-container .abstract:focus,
 .field-date input[type="number"]:focus,
-.field-date input[type="text"]:focus {
-  background-color: hsla(0, 0%, 100%, 1);
+.field-date input[type="text"]:focus,
+#ticket-month {
   background-color: var(--color-white);
-  border-color: hsla(48, 95%, 76%, 1);
   border-color: var(--accent-color2-500);
 }
 
 .cta-sticky-container {
-  background-color: hsla(218, 12%, 18%, 0.85);
-/*  background-color: var(--primary-color-500); */
-  box-shadow: 1 1 1px hsla(0, 0%, 0%, 1);
+  background-color: var(--primary-color-500-opacity);
+  border-top: var(--border-top);
 }
 
-#button-previous,
-#button-next {
-  background-color: hsla(210, 16%, 82%, 1);
-  background-color: var(--neutral-color-500);
+.button-cta {
+  box-shadow: inset 0 0 0 2px var(--neutral-color-500);
+  background-color: transparent;
+  color: var(--neutral-color-500);
 }
 
+.button-next,
 #button-submit {
-  background-color: hsla(48, 95%, 76%, 1);
-  background-color: var(--accent-color2-500);
+  box-shadow: none;
+  background-color: var(--accent-color1-500);
+  color: var(--color-black);
 }
 
 #footer-main {
-  background-color: hsla(218, 22%, 12%, 1);
   background-color: var(--primary-color-700);
-  border-top: 1px solid hsla(227, 12%, 30%, 1);
+  border-top: var(--border-top);
 
 }
 
   /* Radio buttons */
 .field-radio-button label,
 .customRB::after { /* rb center dot. should match label background color */
-  color: hsla(210, 16%, 82%, 1);
   color: var(--neutral-color-500);
 }
 
 .field-radio-button label:hover {
-  background-color: hsla(218, 12%, 26%, 1);
   background-color: var(--primary-color-300);
-  color: hsla(0, 0%, 100%, 1);
   color: var(--color-white);
 }
 
 input:checked ~ label .customRB {
-  border-color: hsla(153, 100%, 53%, 1);
   border-color: var(--accent-color1-500);
 }
 
 input:checked ~ label .customRB::after {
-  background-color: hsla(153, 100%, 53%, 1);
   background-color: var(--accent-color1-500);
 }
 
 .field-radio-button input:checked ~ label {
-  color: hsla(153, 100%, 53%, 1);
   color: var(--accent-color1-500);
-  border-color: hsla(153, 100%, 53%, 1);
   border-color: var(--accent-color1-500);
-  background-color: hsla(218, 12%, 26%, 1);
   background-color: var(--primary-color-300);
 }
-  /* Info Box */
-.info-box-div {
-  background-color: hsla(210, 16%, 82%, 1);
-  background-color: var(--neutral-color-500);
-  color: hsla(210, 50%, 1%, 1);
-  color: var(--color-black);
-}
-
-/* Letter Preview Box */
-#letter-preview-container{
-  background-color: hsla(0, 0%, 100%, 1);
-  background-color: var(--color-white);
-  color: hsla(210, 50%, 1%, 1);
+  /* Special information boxes */
+.info-box-div,
+ #letter-preview-container {
+  background-color: var(--neutral-color-300);
   color: var(--color-black);
 }

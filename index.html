@@ -12,7 +12,7 @@
   <body>
     <header>
       <div id="header-main">
-        <a href="index.html"><img src="images/header.svg" alt="Parkadoo logo"/></a>
+        <a id="logo" href="index.html" rel="home">PARKADOO</a>
       </div>
     </header>
     <main id="parking-form-main">
@@ -21,10 +21,10 @@
         <section class="section-container" id="welcome-section">
           <!--Message Field-->
           <div class="field-container" id="active-section">
-              <h1 class="field-label-large">Welcome to Parkadoo :-)</h1>
+              <h1 class="field-label-large">Welcome to Parkadoo &#x1F697;</h1>
               <p>I'm a free app that helps you avoid and appeal parking tickets.
-              All you have to do is answer some questions and leave the rest to me.
-              Are you ready to get started?</p>
+              All you have to do is answer a few easy questions.
+              Are you ready?</p>
           </div>
         </section>
         <!--Type of Parking Problem Radio Buttons-->
@@ -464,7 +464,7 @@
           </fieldset>
         </section>
         <!--Bylaw info box if just preemptively checking for potential ticket-->
-        <section id="check-bylaw-info-section" class="section-container">
+        <section class="section-container" id="check-bylaw-info-section">
           <h2 class="question-primary" id="check-bylaw-primary-question-insert-here"></h2>
           <span class="field-hint" id="bylaw-plain-language-hint-insert-here"></span>
           <div class="info-box-div">
@@ -1099,7 +1099,7 @@
               <span class="field-hint" id="bylaw-plain-language-hint-2-insert-here"></span>
               <div class="info-box-div">
                 <p id="insert-bylaw-correct-info-box-text-here"></p>
-                <p class="info-box-disclaimer-text"> *** Please remember I'm not a lawyer and don't guarantee this info is correct. You should check out <a href="" class="city-bylaw-link" target="_blank"><span id="city-bylaw-name-2"></span></a> yourself to be sure :)</p>
+                <p class="info-box-disclaimer-text"> *** Please remember I'm not a lawyer and don't guarantee this info is correct. You should check out <a href="" class="city-bylaw-link" target="_blank"><span id="city-bylaw-name-2"></span></a> yourself to be sure &#x1F642;</p>
               </div>
             </div>
         </section>
@@ -1243,22 +1243,22 @@
           </div>
         </section>
       <!--Last Section -->
-      <section id="finished-section-container">
-        <p>All done! See that wasn't so bad. Are you ready to view your appeal letter?</p>
+      <section class="section-container" id="finished-section-container">
+        <p>All done! &#x1F389; See that wasn't so bad. Are you ready to view your appeal letter?</p>
       </section>
       <!-- whitespace div so section gets pushed to top of window and scrolling is possible -->
       <div id="add-whitespace"></div>
       <!--CTA sticky-->
       <div class="cta-sticky-container">
-        <div class="cta-prevnext-container">
+        <div class="cta-button-container">
         <span class="button-div">
-          <input id="button-previous"
+          <input class="button-cta" id="button-prev"
             type="button"
             name="previous"
             value="Previous Question">
         </span>
         <span class="button-div">
-          <input id="button-next"
+          <input class="button-cta button-next"
             type="button"
             name="next"
             value="Next Question">
@@ -1266,7 +1266,7 @@
       </div>
       <div class="cta-submit-container">
         <span class="button-div">
-          <input id="button-submit"
+          <input class="button-cta" id="button-submit"
             type="submit"
             name="submit"
             value="Submit">

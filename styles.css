@@ -27,6 +27,10 @@ body {
   line-height: 1.3;
 }
 
+p {
+  line-height: 1.4;
+}
+
 /* Primary header */
 #header-main,
 #footer-main {
@@ -40,16 +44,22 @@ body {
       -ms-flex-align: center;
           align-items: center;
 
-  height: 80px;
+  height: 60px;
   width: 100vw;
 }
 
-/* Main form and footer content container */
+/* Navigation */
+#logo {
+  text-decoration: none;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+/* Main form container */
 #parking-form-main {
   width: 100%;
   overflow-y: scroll; /* Scroll window for main content so header stays fixed */
   height: 100vh; /* To push footer to bottom of page */
-/*  scroll-snap-type: block mandatory;*/
 }
 
 /* Main content containers */
@@ -79,17 +89,13 @@ body {
 }
 
 .section-container {
-  padding-left: 5%;
-  padding-right: 5%;
+  padding: 0% 10% 5% 10%;
   display: block; /* To fix Chrome/Safari issue with first section divs overlapping */
-  scroll-snap-align: start;
-
 }
 
-/* experimental for IO API */
-.active-section-container{
-  border: 3px red solid;
-  opacity: 1;
+.active-section-container {
+  border-left: 5px solid;
+  border-radius: 1px;
 }
 
 /* For testing
@@ -159,7 +165,6 @@ body {
 .field-checkbox,
 .field-date,
 .fieldset-radio {
-  max-width: 400px;
   width: 100%; /* of .questionnaire-container */
 }
 
@@ -177,31 +182,35 @@ body {
   font-size: 14px;
 }
 
+/* remove default selected input field styling */
+textarea:focus, input:focus, select {
+    outline: none;
+}
+
 /* h1 styling for questions without standard primary label */
 .question-primary {
-  margin-top: 30px;
-  margin-bottom: 6px;
+  padding-top: 30px;
+  padding-bottom: 6px;
   font-size: 24px;
 }
 
 /* Primary label styling */
 .field-label-large {
   margin-top: 20px;
-  margin-bottom: 15px;
+  margin-bottom: 6px;
   font-size: 24px;
   font-weight: bold;
   display: inline-block;
 }
 
 .field-label-small {
-  margin-top: 20px;
-  margin-bottom: 15px;
+  padding-left: 2px;
   font-size: 19px;
 }
 
 /* Supporting label styling */
 .field-hint {
-  padding-bottom: 6px;
+  padding-bottom: 10px;
 }
 
 .field-hint,
@@ -328,9 +337,6 @@ input:checked ~ label .customRB::after {
 }
 
 /* Bylaw info box styling */
-#check-bylaw-info-section {
-  padding: 0px;
-}
 .info-box-div, #letter-preview-container {
   margin-top: 4%;
   padding: 5%;
@@ -391,19 +397,26 @@ li {
 }
 
 /* Buttons */
-#button-previous,
-#button-next {
+.button-cta {
   font: inherit;
-  border: none;
+  border: 5px;
   border-radius: 3px;
   -moz-appearance: none;
        appearance: none;
   -webkit-appearance:none;
   padding:10px 20px;
+  outline: none;
+}
+
+#button-prev {
+  margin-right: 4px;
+}
+
+.button-next {
+  margin-left: 4px;
 }
 
 #button-submit {
-  /* display: none; to hide and avoid clashing with prev/next button divs until completed all steps */
   font: inherit;
   border: none;
   border-radius: 3px;
@@ -411,25 +424,9 @@ li {
        appearance: none;
   -webkit-appearance:none;
   padding:10px 20px;
+  outline: none;
 }
 
-/* Main footer */
-/*
-#footer-main {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-
-  height: 80px;
-  width: 100vw;
-  margin-top: auto; /* Uses flex to stay fixed to bottom of content without jumping out of document flow like fixed position */
-} */
 
 /* Mobile Styles */
 @media only screen and (max-width: 400px) {
