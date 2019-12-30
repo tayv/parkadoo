@@ -132,6 +132,7 @@ const parkingProblemRadioSelection = () => {
           formSections.photoUploadSection];
         sectionsShowHideObj.showTheseSectionsArray = [
           formSections.welcomeSection,
+          formSections.parkingProblemSection,
           formSections.potentialIssueSection,
           formSections.checkBylawsSection,
           formSections.finishedSectionDiv

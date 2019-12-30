@@ -191,7 +191,7 @@ const nextStepActions = () => {
         calcAndSetWhiteSpace(activeSection);
         activeSection.scrollIntoView(true);
         checkButtonStep();
-        console.log(countStep);
+        console.log("nextStepActions countStep: ", countStep);
       } else {
           checkButtonStep();
     } return countStep;
@@ -214,7 +214,7 @@ const prevStepActions = () => {
         activeSection.classList.add("active-section-container");
         calcAndSetWhiteSpace(activeSection);
         activeSection.scrollIntoView(true);
-          console.log(countStep);
+          console.log("prevStepActions step count: ", countStep);
     } return countStep;
   };
 
