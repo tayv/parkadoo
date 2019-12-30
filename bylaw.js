@@ -3,7 +3,7 @@
 // Bylaw info box variables
 let checkBylawsOutputTemplate = "";
 let cityBylawLink = "https://www.edmonton.ca/transportation/Bylaws/C5590.pdf"; // Can expand this functionality as add more cities
-let cityBylawName = "<a href='https://www.edmonton.ca/transportation/Bylaws/C5590.pd'>Bylaw 5590</a>";
+let cityBylawName = "<a href='https://www.edmonton.ca/transportation/Bylaws/C5590.pdf'>Bylaw 5590</a>";
 // Edmonton bylaw object
 let bylawTextObj = {
   ticketReason1: "parking in an expired meter zone",
