@@ -3,6 +3,7 @@
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  text-decoration: none;
 }
 
 /* GENERIC STYLES */
@@ -427,6 +428,12 @@ li {
   outline: none;
 }
 
+/* footer tabs */
+#blog,
+#reset,
+#feedback {
+  font-size: 1.5rem;
+}
 
 /* Mobile Styles */
 @media only screen and (max-width: 400px) {

@@ -136,3 +136,10 @@ input:checked ~ label .customRB::after {
   background-color: var(--neutral-color-300);
   color: var(--color-black);
 }
+
+/* footer tabs */
+#blog,
+#reset,
+#feedback {
+  color: var(--color-white);
+}
