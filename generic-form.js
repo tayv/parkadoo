@@ -53,6 +53,13 @@ let sectionsShowHideObj = {
   showTheseSectionsArray: []
 };
 
+// To hide multiple next steps if user skips multiple sections by scrolling up
+const hideExtraSteps = (counter) => {
+  sectionsShowHideObj.showTheseSectionsArray.slice(counter).forEach(function(element) {
+    element.style.display="none"
+  });
+}
+
 // For Active-class on scrolling
 let activeSection = formSections.welcomeSection; // to keep track of current step when scrolling
 const headerHeight = document.getElementById("header-main").offsetHeight;
@@ -67,6 +74,7 @@ const clickActiveClass = () => {
   sectionDiv.classList.add("active-section-container");
   countStep = sectionsShowHideObj.showTheseSectionsArray.indexOf(sectionDiv);
   checkButtonStep();
+  hideExtraSteps(countStep+1);
 }
 
 // CLICK EVENT TO HIGHLIGHT SECTION-CONTAINER WHEN USER INTERACTS WITH IT
@@ -201,9 +209,7 @@ const prevStepActions = () => {
       removeActiveClass();
     } else if (countStep >= 1) {
         removeActiveClass();
-        sectionsShowHideObj.showTheseSectionsArray.slice(countStep).forEach(function(element) { // To hide multiple next steps if user skips multiple sections using scroll
-          element.style.display="none"
-        });
+        hideExtraSteps(countStep);
         countStep--;
         activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
         sectionVisibility(sectionsShowHideObj);
