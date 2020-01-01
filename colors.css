@@ -88,7 +88,8 @@ input[type="password"]:focus,
   border-top: var(--border-top);
 }
 
-.button-cta {
+.button-cta,
+.button-cta-letter {
   box-shadow: inset 0 0 0 1.5px var(--neutral-color-500);
   background-color: transparent;
   color: var(--neutral-color-500);

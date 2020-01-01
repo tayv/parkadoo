@@ -404,7 +404,8 @@ li {
 }
 
 /* Buttons */
-.button-cta {
+.button-cta,
+.button-cta-letter {
   font: inherit;
   border: 5px;
   border-radius: 3px;
