@@ -143,25 +143,52 @@ const hideAllSteps = () => {
 };
 
 // GENERIC FUNCTIONALITY - Previous/Next/Submit button visiblity and to scroll to next div/step.
-  // Needs to be initialized before question specific visibility conditions
-const checkButtonStep = () => {
-  if (countStep === 0) {
-  //  finishedQuestions = false;
-    document.getElementById("button-prev").style.display="none";
-    document.querySelector(".button-next").value = "Get Started";
-    document.querySelector(".button-next").style.display="inline";
-    document.querySelector("#button-submit").style.display="none";
-  } else if (countStep > 0 && countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1) {
-      document.getElementById("button-prev").style.display="inline";
-      document.querySelector(".button-next").value = "Next Question";
+
+  // Called inside checkButtonStep(). Sets button text and visiblity
+const ctaDisplay = (position) => {
+  switch (position) {
+    case "start":
+      document.getElementById("button-prev").style.display="none";
+      document.querySelector(".button-next").value = "Get Started";
       document.querySelector(".button-next").style.display="inline";
-      document.getElementById("button-submit").style.display="none";
-  } else if (countStep >= sectionsShowHideObj.showTheseSectionsArray.length - 1) {
-    //  finishedQuestions = true;
+      document.querySelector("#button-submit").style.display="none";
+      break;
+    case "inProgress":
+      document.getElementById("button-prev").style.display="inline";
+      document.querySelector("#button-prev").value = "Previous Question";
+      document.querySelector(".button-next").style.display="inline";
+      document.querySelector(".button-next").value = "Next Question";
+      document.querySelector("#button-submit").style.display="none";
+      break;
+    case "bylawComplete":
+      document.getElementById("button-prev").style.display="inline";
+      document.querySelector("#button-prev").value = "Check Another Bylaw";
+      document.querySelector(".button-next").style.display="none";
+      document.querySelector("#button-submit").style.display="none";
+      break;
+    case "letterComplete":
       document.getElementById("button-prev").style.display="none";
       document.querySelector(".button-next").style.display="none";
       removeActiveClass();
       document.getElementById("button-submit").style.display="block";
+      break;
+  }
+};
+  // Needs to be initialized before question specific visibility conditions
+const checkButtonStep = () => {
+  let start = (countStep === 0);
+  let inProgress = countStep > 0 && countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1;
+  let complete = (countStep >= sectionsShowHideObj.showTheseSectionsArray.length - 1);
+  if (start) {
+    ctaDisplay("start");
+  } else if (inProgress) {
+      ctaDisplay("inProgress");
+  } else if (complete) {
+      if (sectionsShowHideObj.showTheseSectionsArray[countStep] == formSections.checkBylawsSection) {
+        ctaDisplay("bylawComplete");
+      } else {
+        ctaDisplay("letterComplete");
+    }
   }
 };
 
