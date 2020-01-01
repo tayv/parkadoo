@@ -1,0 +1,16 @@
+
+.letter-cta-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 5px;
+}
+
+.letter-button-div {
+  margin: 5px;
+}
+
+#letter-explanation {
+  padding-bottom: 1%;
+}

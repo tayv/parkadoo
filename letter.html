@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <title>Parkadoo Appeal Letter</title>
     <link rel="stylesheet" href="styles.css"/>
+    <link rel="stylesheet" href="letter-styles.css"/>
     <link rel="stylesheet" href="colors.css"/>
     <script src="print-letter.js" type="module"></script>
     <script type="text/javascript" src="node_modules/dompurify/dist/purify.min.js"></script>
@@ -15,16 +16,45 @@
       <a id="logo" href="index.html" rel="home">PARKADOO</a>
     </div>
   </header>
-  <main id="parking-form-main">
-    <div class="questionnaire-container">
+  <main id="letter-main">
+    <div class="letter-container">
       <!--Intro Message-->
-      <section class="section-container" id="welcome-section">
+      <section class="section-container" id="letter-explanation">
         <!--Message Field-->
         <div class="field-container">
             <h1 class="field-label-large">Here's your parking appeal letter...</h1>
             <p>You can copy and paste it using the button below. People usually email their letter but you can also paste it into a Word document to print.</p>
         </div>
       </section>
+    <!-- CTAs -->
+    <section>
+      <div class="letter-cta-container">
+        <span class="letter-button-div">
+          <input class="button-cta" id="button-edit"
+            type="button"
+            name="edit"
+            value="Edit Answers">
+        </span>
+        <span class="letter-button-div">
+          <input class="button-cta" id="button-copy"
+            type="button"
+            name="copy"
+            value="Copy To Clipboard">
+        </span>
+        <span class="letter-button-div">
+          <input class="button-cta" id="button-print"
+            type="button"
+            name="print"
+            value="Print">
+        </span>
+        <span class="letter-button-div">
+          <input class="button-cta" id="button-send"
+            type="button"
+            name="send"
+            value="Email Appeal Letter">
+        </span>
+      </div>
+    </section>
     <!--Letter Section -->
     <section class="section-container">
       <div id="letter-preview-container">
@@ -34,23 +64,6 @@
         </div>
       </div>
     </section>
-    <!--CTAs-->
-    <div class="cta-sticky-container">
-      <div class="cta-button-container">
-        <span class="button-div">
-          <input class="button-cta" id="button-edit"
-            type="button"
-            name="edit"
-            value="Edit Answers">
-        </span>
-        <span class="button-div">
-          <input class="button-cta" id="button-send"
-            type="button"
-            name="send"
-            value="Send Appeal Letter">
-        </span>
-      </div>
-    </div>
   </div>
   </main>
   <footer>
