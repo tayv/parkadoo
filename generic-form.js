@@ -264,7 +264,7 @@ const formAction = (str) => {
   switch(str)
   {
     case "city":
-    formID.action = "letter-ticket.html";
+    formID.action = "letter-city.html";
     break;
 
     case "report abandoned vehicle":
@@ -272,11 +272,11 @@ const formAction = (str) => {
     break;
 
     case "private operator":
-    formID.action = "letter-ticket.html";
+    formID.action = "letter-privateop.html";
     break;
 
     case "institution":
-    formID.action = "letter-ticket.html";
+    formID.action = "letter-privateop.html";
     break;
   }
 }
