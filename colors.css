@@ -41,6 +41,14 @@ body {
   text-shadow: var(--shadow-normal);
 }
 
+a {
+  color: var(--accent-color2-500);
+}
+
+a:hover {
+  color: var(--accent-color2-300);
+}
+
 #header-main {
   background-color: var(--primary-color-700);
   box-shadow: var(--shadow-normal);
@@ -137,6 +145,11 @@ input:checked ~ label .customRB::after {
  #letter-preview-container {
   background-color: var(--neutral-color-300);
   color: var(--color-black);
+}
+
+.contact-box {
+  background-color: var(--primary-color-300);
+  color: var(--color-white);
 }
 
 /* footer tabs */
