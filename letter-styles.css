@@ -17,4 +17,18 @@
 
 .button-cta-letter {
   padding-left: 15px;
+  margin-top: 10px;
+}
+
+.letter-ul {
+  margin: 0px;
+}
+
+.letter-bullet-li{
+  margin-bottom: 0px;
+}
+
+.letter-bullet-li::before {
+    content: "\2B50"; /* Unicode symbol for li bullet */
+    padding-right: 2px;
 }
