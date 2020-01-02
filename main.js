@@ -14,7 +14,7 @@ import {
 window.onload = function setDefaultAnswerState() {
 //  document.getElementById("parking-form-content").reset();
 //  formSections.welcomeSection.scrollIntoView(true);
-  checkButtonStep(); // to display proper button at page load
+  //checkButtonStep(); // to display proper button at page load
   hideAllSteps(); // to start with all the steps hidden
   // To set initial rb visibility conditions
   parkingProblemRadioSelection(); // without this won't display city output without rb event change

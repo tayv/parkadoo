@@ -435,6 +435,20 @@ li {
   outline: none;
 }
 
+/* Hide by default to prevent flickering from js */
+.section-container,
+#button-submit,
+#button-prev,
+#button-next {
+  display: none;
+}
+/* Show by default to prevent flickering */
+#welcome-section,
+#letter-explanation,
+#letter-section {
+  display: block;
+}
+
 /* footer tabs */
 #articles,
 #reset,
