@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>Parkadoo Appeal Letter</title>
+    <link rel="stylesheet" href="styles.css"/>
+    <link rel="stylesheet" href="letter-styles.css"/>
+    <link rel="stylesheet" href="colors.css"/>
+    <script src="letter-actions.js" type="module"></script>
+    <script type="text/javascript" src="node_modules/dompurify/dist/purify.min.js"></script>
+  </head>
+<body>
+  <header>
+    <div id="header-main">
+      <a id="logo" href="index.html" rel="home">PARKADOO</a>
+    </div>
+  </header>
+  <main id="letter-main">
+    <div class="letter-container">
+      <!--Intro Message-->
+      <section class="section-container" id="letter-explanation">
+        <!--Message Field-->
+        <div class="field-container">
+            <h1 class="field-label-large">Here's your parking appeal letter...</h1>
+            <p>You can copy and paste it using the button below. People usually email their letter but you can also paste it into a Word document to print.</p>
+        </div>
+      </section>
+    <!-- CTAs -->
+    <section class="letter-cta-container">
+      <span class="letter-button-div">
+        <input class="button-cta-letter" id="button-send"
+          type="button"
+          name="send"
+          value="✉️ Email Appeal Letter">
+      </span>
+      <span class="letter-button-div">
+        <input class="button-cta-letter" id="button-print"
+          type="button"
+          name="print"
+          value="🖨️ Print">
+      </span>
+      <span class="letter-button-div">
+        <input class="button-cta-letter" id="button-copy"
+          type="button"
+          name="copy"
+          value="👯 Copy To Clipboard">
+      </span>
+      <span class="letter-button-div">
+        <input class="button-cta-letter" id="button-edit"
+          type="button"
+          name="edit"
+          value="✏️ Edit Answers">
+      </span>
+    </section>
+    <!--Letter Section -->
+    <section class="section-container">
+      <div id="letter-preview-container">
+        <div id="letter-output">
+          <span id="insert-letter-output-text-here">
+          </span>
+        </div>
+      </div>
+    </section>
+  </div>
+  </main>
+  <footer>
+    <div id="footer-main">
+      <a id="articles" href="articles.html" rel="articles">ARTICLES</a>
+      <a id="reset" href="index.html" rel="reset">RESTART</a>
+      <a id="feedback" href="mailto:" rel="feedback">FEEDBACK</a>
+    </div>
+  </footer>
+</body>
+</html>

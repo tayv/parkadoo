@@ -140,7 +140,7 @@ input:checked ~ label .customRB::after {
 }
 
 /* footer tabs */
-#blog,
+#articles,
 #reset,
 #feedback {
   color: var(--color-white);

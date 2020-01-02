@@ -184,7 +184,7 @@ const checkButtonStep = () => {
   } else if (inProgress) {
       ctaDisplay("inProgress");
   } else if (complete) {
-      if (sectionsShowHideObj.showTheseSectionsArray[countStep] == formSections.checkBylawsSection) {
+      if (templateType == "") {
         ctaDisplay("bylawComplete");
       } else {
         ctaDisplay("letterComplete");
@@ -258,6 +258,29 @@ document.querySelector("#button-prev").onclick = () => {
   calcAndSetWhiteSpace(activeSection);
 };
 
+// Function to send to correct html page
+const formAction = (str) => {
+  let formID = document.querySelector("#parking-form-content");
+  switch(str)
+  {
+    case "city":
+    formID.action = "letter-ticket.html";
+    break;
+
+    case "report abandoned vehicle":
+    formID.action = "letter-neighbour.html";
+    break;
+
+    case "private operator":
+    formID.action = "letter-ticket.html";
+    break;
+
+    case "institution":
+    formID.action = "letter-ticket.html";
+    break;
+  }
+}
+
 // Using sessionStorage to save user answers
 document.getElementById("button-submit").onclick = () => {
   try {
@@ -274,6 +297,8 @@ document.getElementById("button-submit").onclick = () => {
       // Chrome doesn't allow sessStorage when 3rd party cookies are blocked.
       alert(e.message, "Sorry, looks like I'm blocked from saving and displaying your answers because your browser doesn't allow 3rd party cookies in your advanced browser settings.");
   }
+
+  formAction(templateType); // To send to right html page
 };
 
 
@@ -304,6 +329,7 @@ const setupRBEventListeners = () => {
   addRadioEventListener(ticketAppealBylawRadioOptions, ticketAppealBylawRadioSelection);
   addRadioEventListener(potentialTicketRadioOptions, potentialTicketRadioSelection);
 } // Note this is being called at bottom of main.js to initialize rb event listeners
+
 
 
 export {
