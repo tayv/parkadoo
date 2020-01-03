@@ -357,8 +357,8 @@ input:checked ~ label .customRB::after {
 
 /* Bylaw info box styling */
 .info-box-div, #letter-preview-container {
-  margin-top: 4%;
-  padding: 5%;
+  margin-top: 12px;
+  padding: 25px;
   font-size: 15px;
   border-radius: 3px;
   text-shadow: none;

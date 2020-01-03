@@ -29,6 +29,21 @@
 }
 
 .letter-bullet-li::before {
-    content: "\2B50"; /* Unicode symbol for li bullet */
-    padding-right: 2px;
+  content: "\2B50"; /* Unicode symbol for li bullet */
+  padding-right: 2px;
+}
+
+.p-bold {
+  font-weight: bold;
+  padding-bottom: 2px;
+}
+
+.p-letter {
+  padding-top: 10px;
+}
+
+.contact-box {
+  margin: 12px 0px 12px 0px;
+  padding-bottom: 10px;
+
 }
