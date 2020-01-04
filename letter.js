@@ -29,10 +29,10 @@ const setLetterTemplate = (x) => {
       currentDateFormatted +
       "<br><br>RE: Abandoned Vehicle" +
       "<br><br>Dear Neighbour," +
-      "<br><br>It appears that a vehicle that belongs to a resident of this home has been parked for an extended period in the neighbourhood. Our strees are a shared public resource so if this vehicle belongs to you or someone you know it would be appreciated if you could take action in moving the vehicle as bylaw 5590 considers vehicles parked for over 72hrs without moving to be abandoned." +
-      "<br>Thank you for understanding. If you have any questions about parking bylaws you can call the city at #311." +
+      "<br><br>It appears that a vehicle that belongs to a resident of this home has been parked for an extended period in the neighbourhood. Our streets are a shared public resource so if this vehicle belongs to you or someone you know it would be appreciated if you could take action in moving the vehicle as bylaw 5590 considers vehicles parked for over 72hrs without moving to be abandoned." +
+      "<br><br>Thank you for understanding. If you have any questions about parking bylaws you can call the city at #311." +
       "<br><br>Sincerely," +
-      "<br><br>A neighbour";
+      "<br><br>Anonymous neighbour";
       return letterTemplate;
   } else if (x === "private operator") {
       letterTemplate =

@@ -14,7 +14,7 @@ import {
 window.onload = function setDefaultAnswerState() {
 //  document.getElementById("parking-form-content").reset();
 //  formSections.welcomeSection.scrollIntoView(true);
-  checkButtonStep(); // to display proper button at page load
+  //checkButtonStep(); // to display proper button at page load
   hideAllSteps(); // to start with all the steps hidden
   // To set initial rb visibility conditions
   parkingProblemRadioSelection(); // without this won't display city output without rb event change
@@ -134,8 +134,7 @@ const parkingProblemRadioSelection = () => {
           formSections.welcomeSection,
           formSections.parkingProblemSection,
           formSections.potentialIssueSection,
-          formSections.checkBylawsSection,
-          formSections.finishedSectionDiv
+          formSections.checkBylawsSection
         ];
         return templateType = "";
       }
@@ -612,7 +611,6 @@ const displayPotentialTicketContent = () => {
   document.getElementById("check-bylaw-primary-question-insert-here").innerHTML = checkBylawsIntroParagraph;
   document.getElementById("bylaw-plain-language-hint-insert-here").innerHTML = checkBylawsPlainLanguageHint;
   document.getElementById("city-bylaw-name").innerHTML = cityBylawName;
-  console.log(ticketBylawExplanation);
   document.getElementById("insert-check-bylaw-info-box-text-here").innerHTML = ticketBylawExplanation;
 };
 

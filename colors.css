@@ -31,14 +31,17 @@
   --color-black: hsla(210, 50%, 1%, 1); /* rich black */
 
   --shadow-top: 0 -1px 5px hsla(0, 0%, 0%, 0.75);
-  --shadow-normal: 0px 1px 4px hsla(0, 0%, 0%, 0.9);
+  --shadow-normal: 0px 1px 2px hsla(0, 0%, 0%, 0.7);
   --border-top: 1px solid hsla(227, 12%, 30%, 1);
 }
 
 body {
   background-color: var(--primary-color-900);
   color: var(--color-white);
-  text-shadow: var(--shadow-normal);
+}
+
+a {
+  color: var(--accent-color2-500);
 }
 
 #header-main {
@@ -50,7 +53,8 @@ body {
   color: var(--color-white);
 }
 
-.questionnaire-container {
+.questionnaire-container,
+.letter-container {
   background-color: var(--primary-color-500);
 }
 
@@ -82,24 +86,44 @@ input[type="password"]:focus,
   border-color: var(--accent-color2-500);
 }
 
+/* CTAs */
 .cta-sticky-container {
   background-color: var(--primary-color-500-opacity);
   border-top: var(--border-top);
 }
 
-.button-cta {
-  box-shadow: inset 0 0 0 2px var(--neutral-color-500);
+.button-cta,
+.button-cta:active,
+.button-cta-letter,
+.button-cta-letter:active {
+  box-shadow: inset 0 0 0 1.5px var(--neutral-color-500);
   background-color: transparent;
   color: var(--neutral-color-500);
 }
 
+.button-cta:hover,
+.button-cta-letter:hover {
+  box-shadow: inset 0 0 0 1.5px var(--neutral-color-300);
+  color: var(--neutral-color-300);
+}
+
 .button-next,
-#button-submit {
+.button-next:active,
+#button-submit,
+#button-submit:active {
   box-shadow: none;
   background-color: var(--accent-color1-500);
   color: var(--color-black);
 }
 
+.button-next:hover,
+#button-submit:hover {
+  box-shadow: none;
+  background-color: var(--accent-color1-300);
+  color: var(--color-black);
+}
+
+/* Footer */
 #footer-main {
   background-color: var(--primary-color-700);
   border-top: var(--border-top);
@@ -135,4 +159,29 @@ input:checked ~ label .customRB::after {
  #letter-preview-container {
   background-color: var(--neutral-color-300);
   color: var(--color-black);
+}
+
+.contact-box {
+  background-color: var(--primary-color-300);
+  color: var(--color-white);
+}
+
+/* footer tabs */
+#articles,
+#reset,
+#feedback {
+  color: var(--color-white);
+}
+
+/* LETTER PREVIEW PAGE SPECIFIC COLORS */
+.contact-box {
+  box-shadow: var(--shadow-normal);
+}
+
+.letter-cta-container {
+  background-color: var(--primary-color-300);
+}
+
+.button-cta-letter:hover {
+   border-color: var(--color-white);
 }

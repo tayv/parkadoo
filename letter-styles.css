@@ -1,0 +1,69 @@
+
+
+/* Intro message explaining next steps with the appeal letter */
+#letter-explanation {
+  padding-bottom: 0;
+}
+
+/* List styling */
+.letter-ul {
+  margin: 0px;
+}
+
+.letter-bullet-li{
+  margin-bottom: 0px;
+}
+
+.letter-bullet-li::before {
+  content: "\2B50"; /* Unicode symbol for li bullet */
+  padding-right: 2px;
+}
+
+/* paragraph styling */
+.p-bold {
+  font-weight: bold;
+  padding-bottom: 2px;
+}
+
+.p-letter {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* Info box on where to send the letter */
+.contact-box {
+  margin: 15px 0px 20px 0px;
+  padding-bottom: 10px;
+}
+
+/* CTA section styling */
+.letter-subheading-h2 {
+  font-size: 23px;
+  padding-bottom: 10px;
+}
+
+
+/* CTA styling */
+.letter-cta-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.letter-button-div {
+  margin: 6px;
+}
+
+.button-cta-letter {
+  padding-left: 15px;
+  margin-top: 10px;
+}
+
+.button-cta-letter:hover {
+  cursor: pointer;
+}

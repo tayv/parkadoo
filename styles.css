@@ -3,10 +3,12 @@
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  text-decoration: none;
 }
 
 /* GENERIC STYLES */
 body {
+  /* flex alignment */
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -19,16 +21,31 @@ body {
           align-items: center;
 
   max-height: 100vh;
+  /* font styles */
   font-family: -apple-system, BlinkMacSystemFont,
     “Segoe UI”, “Roboto”, “Oxygen”, “Ubuntu”, “Cantarell”,
     “Fira Sans”, “Droid Sans”, “Helvetica Neue”, sans-serif;
   -webkit-font-smoothing: subpixel-antialiased;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.3;
+  -moz-font-feature-settings:'kern';
 }
 
 p {
   line-height: 1.4;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.font-emphasis {
+  font-style: italic;
 }
 
 /* Primary header */
@@ -56,7 +73,8 @@ p {
 }
 
 /* Main form container */
-#parking-form-main {
+#parking-form-main,
+#letter-main {
   width: 100%;
   overflow-y: scroll; /* Scroll window for main content so header stays fixed */
   height: 100vh; /* To push footer to bottom of page */
@@ -64,6 +82,8 @@ p {
 
 /* Main content containers */
 #parking-form-main,
+#letter-main,
+.letter-container,
 .questionnaire-container,
 .section-container,
 .cta-sticky-container,
@@ -81,6 +101,7 @@ p {
 }
 
 .questionnaire-container,
+.letter-container,
 .cta-sticky-container {
   max-width: 500px;
   width: 100%; /* want cta sticky width to match questionnaire containers */
@@ -88,7 +109,8 @@ p {
       flex-shrink: 0;  /*To fix safari bug of container not filling full height */
 }
 
-.section-container {
+.section-container,
+.letter-cta-container {
   padding: 0% 10% 5% 10%;
   display: block; /* To fix Chrome/Safari issue with first section divs overlapping */
 }
@@ -158,6 +180,7 @@ p {
 }
 
 /* Standard & large input field widths */
+.letter-container,
 .section-container,
 .field-container,
 .field-container .abstract,
@@ -191,33 +214,33 @@ textarea:focus, input:focus, select {
 .question-primary {
   padding-top: 30px;
   padding-bottom: 6px;
-  font-size: 24px;
+  font-size: 26px;
 }
 
 /* Primary label styling */
 .field-label-large {
   margin-top: 20px;
   margin-bottom: 6px;
-  font-size: 24px;
+  font-size: 26px;
   font-weight: bold;
   display: inline-block;
 }
 
 .field-label-small {
   padding-left: 2px;
-  font-size: 19px;
+  font-size: 21px;
 }
 
 /* Supporting label styling */
 .field-hint {
-  padding-bottom: 10px;
+  padding-bottom: 12px;
 }
 
 .field-hint,
 .field-example,
 .field-abstract-example {
   display: block;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .field-example,
@@ -338,10 +361,10 @@ input:checked ~ label .customRB::after {
 
 /* Bylaw info box styling */
 .info-box-div, #letter-preview-container {
-  margin-top: 4%;
-  padding: 5%;
+  margin-top: 12px;
+  padding: 25px;
   font-size: 15px;
-  border-radius: 4px;
+  border-radius: 3px;
   text-shadow: none;
 }
 
@@ -397,7 +420,8 @@ li {
 }
 
 /* Buttons */
-.button-cta {
+.button-cta,
+.button-cta-letter {
   font: inherit;
   border: 5px;
   border-radius: 3px;
@@ -406,6 +430,11 @@ li {
   -webkit-appearance:none;
   padding:10px 20px;
   outline: none;
+}
+
+.button-cta:hover,
+.button-cta-letter  {
+  cursor: pointer;
 }
 
 #button-prev {
@@ -427,17 +456,39 @@ li {
   outline: none;
 }
 
+/* Hide by default to prevent flickering from js */
+.section-container,
+#button-submit,
+#button-prev,
+#button-next {
+  display: none;
+}
+/* Show by default to prevent flickering */
+#welcome-section,
+#letter-explanation,
+#letter-section {
+  display: block;
+}
+
+/* footer tabs */
+#articles,
+#reset,
+#feedback {
+  font-size: 1.5rem;
+}
 
 /* Mobile Styles */
 @media only screen and (max-width: 400px) {
-  .questionnaire-container {
+  .questionnaire-container,
+  .letter-container {
     background-color: #D6E9FE; /* Light Blue */
   }
 }
 
 /* Tablet Styles */
 @media only screen and (min-width: 401px) and (max-width: 960px) {
-  .questionnaire-container {
+  .questionnaire-container,
+  .letter-container {
     background-color: #F5CF8E; /* Yellow */
   }
 }

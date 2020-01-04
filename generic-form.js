@@ -53,6 +53,13 @@ let sectionsShowHideObj = {
   showTheseSectionsArray: []
 };
 
+// To hide multiple next steps if user skips multiple sections by scrolling up
+const hideExtraSteps = (counter) => {
+  sectionsShowHideObj.showTheseSectionsArray.slice(counter).forEach(function(element) {
+    element.style.display="none"
+  });
+}
+
 // For Active-class on scrolling
 let activeSection = formSections.welcomeSection; // to keep track of current step when scrolling
 const headerHeight = document.getElementById("header-main").offsetHeight;
@@ -67,6 +74,7 @@ const clickActiveClass = () => {
   sectionDiv.classList.add("active-section-container");
   countStep = sectionsShowHideObj.showTheseSectionsArray.indexOf(sectionDiv);
   checkButtonStep();
+  hideExtraSteps(countStep+1);
 }
 
 // CLICK EVENT TO HIGHLIGHT SECTION-CONTAINER WHEN USER INTERACTS WITH IT
@@ -135,25 +143,52 @@ const hideAllSteps = () => {
 };
 
 // GENERIC FUNCTIONALITY - Previous/Next/Submit button visiblity and to scroll to next div/step.
-  // Needs to be initialized before question specific visibility conditions
-const checkButtonStep = () => {
-  if (countStep === 0) {
-  //  finishedQuestions = false;
-    document.getElementById("button-prev").style.display="none";
-    document.querySelector(".button-next").value = "Get Started";
-    document.querySelector(".button-next").style.display="inline";
-    document.querySelector("#button-submit").style.display="none";
-  } else if (countStep > 0 && countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1) {
-      document.getElementById("button-prev").style.display="inline";
-      document.querySelector(".button-next").value = "Next Question";
+
+  // Called inside checkButtonStep(). Sets button text and visiblity
+const ctaDisplay = (position) => {
+  switch (position) {
+    case "start":
+      document.getElementById("button-prev").style.display="none";
+      document.querySelector(".button-next").value = "Get Started";
       document.querySelector(".button-next").style.display="inline";
-      document.getElementById("button-submit").style.display="none";
-  } else if (countStep >= sectionsShowHideObj.showTheseSectionsArray.length - 1) {
-    //  finishedQuestions = true;
+      document.querySelector("#button-submit").style.display="none";
+      break;
+    case "inProgress":
+      document.getElementById("button-prev").style.display="inline";
+      document.querySelector("#button-prev").value = "Previous Question";
+      document.querySelector(".button-next").style.display="inline";
+      document.querySelector(".button-next").value = "Next Question";
+      document.querySelector("#button-submit").style.display="none";
+      break;
+    case "bylawComplete":
+      document.getElementById("button-prev").style.display="inline";
+      document.querySelector("#button-prev").value = "Check Another Bylaw";
+      document.querySelector(".button-next").style.display="none";
+      document.querySelector("#button-submit").style.display="none";
+      break;
+    case "letterComplete":
       document.getElementById("button-prev").style.display="none";
       document.querySelector(".button-next").style.display="none";
       removeActiveClass();
       document.getElementById("button-submit").style.display="block";
+      break;
+  }
+};
+  // Needs to be initialized before question specific visibility conditions
+const checkButtonStep = () => {
+  let start = (countStep === 0);
+  let inProgress = countStep > 0 && countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1;
+  let complete = (countStep >= sectionsShowHideObj.showTheseSectionsArray.length - 1);
+  if (start) {
+    ctaDisplay("start");
+  } else if (inProgress) {
+      ctaDisplay("inProgress");
+  } else if (complete) {
+      if (templateType == "") {
+        ctaDisplay("bylawComplete");
+      } else {
+        ctaDisplay("letterComplete");
+    }
   }
 };
 
@@ -201,9 +236,7 @@ const prevStepActions = () => {
       removeActiveClass();
     } else if (countStep >= 1) {
         removeActiveClass();
-        sectionsShowHideObj.showTheseSectionsArray.slice(countStep).forEach(function(element) { // To hide multiple next steps if user skips multiple sections using scroll
-          element.style.display="none"
-        });
+        hideExtraSteps(countStep);
         countStep--;
         activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
         sectionVisibility(sectionsShowHideObj);
@@ -225,6 +258,29 @@ document.querySelector("#button-prev").onclick = () => {
   calcAndSetWhiteSpace(activeSection);
 };
 
+// Function to send to correct html page
+const formAction = (str) => {
+  let formID = document.querySelector("#parking-form-content");
+  switch(str)
+  {
+    case "city":
+    formID.action = "letter-city.html";
+    break;
+
+    case "report abandoned vehicle":
+    formID.action = "letter-neighbour.html";
+    break;
+
+    case "private operator":
+    formID.action = "letter-privateop.html";
+    break;
+
+    case "institution":
+    formID.action = "letter-privateop.html";
+    break;
+  }
+}
+
 // Using sessionStorage to save user answers
 document.getElementById("button-submit").onclick = () => {
   try {
@@ -241,6 +297,8 @@ document.getElementById("button-submit").onclick = () => {
       // Chrome doesn't allow sessStorage when 3rd party cookies are blocked.
       alert(e.message, "Sorry, looks like I'm blocked from saving and displaying your answers because your browser doesn't allow 3rd party cookies in your advanced browser settings.");
   }
+
+  formAction(templateType); // To send to right html page
 };
 
 
@@ -271,6 +329,7 @@ const setupRBEventListeners = () => {
   addRadioEventListener(ticketAppealBylawRadioOptions, ticketAppealBylawRadioSelection);
   addRadioEventListener(potentialTicketRadioOptions, potentialTicketRadioSelection);
 } // Note this is being called at bottom of main.js to initialize rb event listeners
+
 
 
 export {
