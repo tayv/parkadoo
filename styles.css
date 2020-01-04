@@ -8,6 +8,7 @@
 
 /* GENERIC STYLES */
 body {
+  /* flex alignment */
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -20,12 +21,14 @@ body {
           align-items: center;
 
   max-height: 100vh;
+  /* font styles */
   font-family: -apple-system, BlinkMacSystemFont,
     “Segoe UI”, “Roboto”, “Oxygen”, “Ubuntu”, “Cantarell”,
     “Fira Sans”, “Droid Sans”, “Helvetica Neue”, sans-serif;
   -webkit-font-smoothing: subpixel-antialiased;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.3;
+  -moz-font-feature-settings:'kern';
 }
 
 p {
@@ -38,6 +41,7 @@ a {
 
 a:hover {
   cursor: pointer;
+  text-decoration: underline;
 }
 
 .font-emphasis {
@@ -210,33 +214,33 @@ textarea:focus, input:focus, select {
 .question-primary {
   padding-top: 30px;
   padding-bottom: 6px;
-  font-size: 24px;
+  font-size: 26px;
 }
 
 /* Primary label styling */
 .field-label-large {
   margin-top: 20px;
   margin-bottom: 6px;
-  font-size: 24px;
+  font-size: 26px;
   font-weight: bold;
   display: inline-block;
 }
 
 .field-label-small {
   padding-left: 2px;
-  font-size: 19px;
+  font-size: 21px;
 }
 
 /* Supporting label styling */
 .field-hint {
-  padding-bottom: 10px;
+  padding-bottom: 12px;
 }
 
 .field-hint,
 .field-example,
 .field-abstract-example {
   display: block;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .field-example,
