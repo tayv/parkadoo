@@ -44,10 +44,6 @@ a {
   color: var(--accent-color2-500);
 }
 
-a:hover {
-  color: var(--accent-color2-300);
-}
-
 #header-main {
   background-color: var(--primary-color-700);
   box-shadow: var(--shadow-normal);
@@ -90,25 +86,44 @@ input[type="password"]:focus,
   border-color: var(--accent-color2-500);
 }
 
+/* CTAs */
 .cta-sticky-container {
   background-color: var(--primary-color-500-opacity);
   border-top: var(--border-top);
 }
 
 .button-cta,
-.button-cta-letter {
+.button-cta:active,
+.button-cta-letter,
+.button-cta-letter:active {
   box-shadow: inset 0 0 0 1.5px var(--neutral-color-500);
   background-color: transparent;
   color: var(--neutral-color-500);
 }
 
+.button-cta:hover,
+.button-cta-letter:hover {
+  box-shadow: inset 0 0 0 1.5px var(--neutral-color-300);
+  color: var(--neutral-color-300);
+}
+
 .button-next,
-#button-submit {
+.button-next:active,
+#button-submit,
+#button-submit:active {
   box-shadow: none;
   background-color: var(--accent-color1-500);
   color: var(--color-black);
 }
 
+.button-next:hover,
+#button-submit:hover {
+  box-shadow: none;
+  background-color: var(--accent-color1-300);
+  color: var(--color-black);
+}
+
+/* Footer */
 #footer-main {
   background-color: var(--primary-color-700);
   border-top: var(--border-top);
@@ -165,4 +180,8 @@ input:checked ~ label .customRB::after {
 
 .letter-cta-container {
   background-color: var(--primary-color-300);
+}
+
+.button-cta-letter:hover {
+   border-color: var(--color-white);
 }

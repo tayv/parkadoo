@@ -432,6 +432,11 @@ li {
   outline: none;
 }
 
+.button-cta:hover,
+.button-cta-letter  {
+  cursor: pointer;
+}
+
 #button-prev {
   margin-right: 4px;
 }
