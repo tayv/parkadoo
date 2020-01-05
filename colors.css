@@ -157,7 +157,7 @@ input:checked ~ label .customRB::after {
   /* Special information boxes */
 .info-box-div,
  #letter-preview-container {
-  background-color: var(--neutral-color-300);
+  background-color: var(--color-white);
   color: var(--color-black);
 }
 

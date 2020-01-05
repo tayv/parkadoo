@@ -16,7 +16,7 @@ function copyDivToClipboard() {
   document.execCommand("copy");
     window.getSelection().style.color="red";
   window.getSelection().removeAllRanges(); // to deselect
-} */
+} 
 
 if (document.getElementById("button-copy")) {
   document.getElementById("button-copy").onclick = () => {
