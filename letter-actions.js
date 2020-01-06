@@ -16,11 +16,19 @@ function copyDivToClipboard() {
   document.execCommand("copy");
     window.getSelection().style.color="red";
   window.getSelection().removeAllRanges(); // to deselect
-} 
+}
 
+// copy to clipboard
 if (document.getElementById("button-copy")) {
   document.getElementById("button-copy").onclick = () => {
     copyDivToClipboard();
     alert("copied");
+  }
+}
+
+// print
+if (document.getElementById("button-print")) {
+  document.getElementById("button-print").onclick = () => {
+    window.print();
   }
 }
