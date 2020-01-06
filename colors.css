@@ -183,5 +183,12 @@ input:checked ~ label .customRB::after {
 }
 
 .button-cta-letter:hover {
-   border-color: var(--color-white);
+  border-color: var(--color-white);
+}
+
+.button-success {
+  background-color: green;
+  color: var(--color-white);
+  box-shadow: none;
+  transition: all 2s ease;
 }
