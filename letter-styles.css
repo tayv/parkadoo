@@ -68,6 +68,11 @@
   cursor: pointer;
 }
 
+#button-copy {
+  width: 211px; /* To keep cta the same width when text changes onclick and .button-success added */
+  transition: all 1s ease;
+}
+
 /* For printing the letter */
 @media print {
   body * {

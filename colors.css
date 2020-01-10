@@ -187,8 +187,6 @@ input:checked ~ label .customRB::after {
 }
 
 .button-success {
-  background-color: green;
-  color: var(--color-white);
-  box-shadow: none;
-  transition: all 2s ease;
+  box-shadow: inset 0 0 0 1.5px var(--accent-color1-900) !important; /* To override standard secondary CTA border */
+  background-color: var(--accent-color1-900);
 }

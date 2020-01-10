@@ -27,16 +27,18 @@ function copyDivToClipboard() {
   window.getSelection().removeAllRanges(); // to deselect
 }
 
-// copy to event listener
+// copy to clipboard event listener
 if (document.getElementById("button-copy")) {
   document.getElementById("button-copy").onclick = () => {
     copyDivToClipboard();
     let copyInput = document.querySelector('input[name="copy"]')
-    // Success message & styling 
+    // Success message & styling
     copyInput.value ="✅ Copied!";
+    copyInput.classList.remove("button-cta-letter:hover");
     copyInput.classList.add("button-success");
     setTimeout(function() {
       // to reset cta to original state
+      copyInput.classList.add(".button-cta-letter:hover");
       copyInput.classList.remove("button-success");
       copyInput.value ="👯 Copy To Clipboard";
     }, 2000);
