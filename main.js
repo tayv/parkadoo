@@ -4,7 +4,7 @@ import {setLetterTemplate, letterTemplate} from "/letter.js";
 import {checkBylawsOutputTemplate, cityBylawLink, cityBylawName, bylawTextObj} from "/bylaw.js";
 import {calcAndSetWhiteSpace, currentDateFormatted, upperCaseFirstLetter, lowerCaseFirstLetter, formatSentenceEnding} from "/helper-functions.js";
 import {
-  formSections, sectionsShowHideObj, hideAllSteps, checkButtonStep,
+  formSections, sectionsShowHideObj, checkButtonStep,
   parkingProblemRadioOptions, ticketIssuerRadioOptions, municipalityRadioOptions, studentOrEmployeeRadioOptions,
   ticketAccuracyRadioOptions, ticketReasonRadioOptions, ticketAppealBylawRadioOptions, potentialTicketRadioOptions,
   setupRBEventListeners
@@ -15,7 +15,6 @@ window.onload = function setDefaultAnswerState() {
 //  document.getElementById("parking-form-content").reset();
 //  formSections.welcomeSection.scrollIntoView(true);
   //checkButtonStep(); // to display proper button at page load
-  hideAllSteps(); // to start with all the steps hidden
   // To set initial rb visibility conditions
   parkingProblemRadioSelection(); // without this won't display city output without rb event change
   ticketIssuerSelection();

@@ -134,14 +134,6 @@ window.addEventListener("scroll", function() {
           passive: true
         });
 
-// To hide all steps other than initial welcome section by default
-const hideAllSteps = () => {
-  for (let i = 1; i < formSections.allFormSections.length; i++) {
-    formSections.allFormSections[i].style.display="none";
-  }
-  formSections.finishedSectionDiv.style.display="none";
-};
-
 // GENERIC FUNCTIONALITY - Previous/Next/Submit button visiblity and to scroll to next div/step.
 
   // Called inside checkButtonStep(). Sets button text and visiblity
@@ -333,7 +325,7 @@ const setupRBEventListeners = () => {
 
 
 export {
-  formSections, sectionsShowHideObj, hideAllSteps, checkButtonStep, parkingProblemRadioOptions,
+  formSections, sectionsShowHideObj, checkButtonStep, parkingProblemRadioOptions,
   ticketIssuerRadioOptions, municipalityRadioOptions, studentOrEmployeeRadioOptions, ticketAccuracyRadioOptions,
   ticketReasonRadioOptions, ticketAppealBylawRadioOptions, potentialTicketRadioOptions, setupRBEventListeners
 };
