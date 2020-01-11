@@ -43,7 +43,7 @@
 }
 
 
-/* CTA styling */
+/* Generic CTA styling */
 .letter-cta-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -67,3 +67,27 @@
 .button-cta-letter:hover {
   cursor: pointer;
 }
+
+#button-copy {
+  width: 211px; /* To keep cta the same width when text changes onclick and .button-success added */
+  transition: all 1s ease;
+}
+
+/* For printing the letter */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #insert-letter-output-text-here, #insert-letter-output-text-here * {
+    visibility: visible;
+  }
+  #insert-letter-output-text-here {
+    position: absolute;
+    top: 1in;
+    right: 1in;
+    bottom: 1in;
+    left: 1in;
+  }
+}
+/* To remove page title and date from printed doc (@page not supported in safari) */
+@page { size: auto;  margin: 0mm; }
