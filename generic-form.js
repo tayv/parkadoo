@@ -243,6 +243,10 @@ const prevStepActions = () => {
 document.querySelector(".button-next").onclick = () => {
   nextStepActions();
   calcAndSetWhiteSpace(activeSection);
+  if (document.querySelector("#ticket-number-text-field").value !== sessionStorage["ticket-number"]) {
+    sessionStorage.setItem("ticket-number", document.querySelector("#ticket-number-text-field").value);
+  }
+  console.log(sessionStorage);
 };
 
 document.querySelector("#button-prev").onclick = () => {
@@ -250,7 +254,7 @@ document.querySelector("#button-prev").onclick = () => {
   calcAndSetWhiteSpace(activeSection);
 };
 
-// Function to send to correct html page
+// Function to send to correct html page after clicked Submit
 const formAction = (str) => {
   let formID = document.querySelector("#parking-form-content");
   switch(str)

@@ -24,6 +24,11 @@ window.onload = function setDefaultAnswerState() {
   ticketReasonRadioSelection();
   ticketAppealBylawRadioSelection();
   potentialTicketRadioSelection();
+  (function init() {
+    if (sessionStorage["ticket-number"]) {
+        document.querySelector("#ticket-number-text-field").value = sessionStorage["ticket-number"];
+    }
+  })();
 };
 
 // LIST OF VARIABLES FOR LETTER OUTPUT
