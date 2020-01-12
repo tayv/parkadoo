@@ -28,9 +28,39 @@ window.onload = function setDefaultAnswerState() {
 /*    if (sessionStorage["ticket-number"]) {
         document.querySelector("#ticket-number-text-field").value = sessionStorage["ticket-number"];
     } */
-    document.querySelectorAll("input").forEach( function(element) {
-      if (element.value !== sessionStorage["element.value"]) {
-        element.value = sessionStorage[element.name];
+
+  /*   not working
+    document.querySelectorAll("input").forEach(function(element) {
+      if ((sessionStorage[element.name] != undefined) && (element.value != sessionStorage["element.value"])) {
+        console.log("first", sessionStorage[element.name])
+      //  element.value = sessionStorage[element.name];
+        console.log("second", element.value)
+        if (element.type == "radio") {
+          let id = element.id;
+          console.log("HURRR", sessionStorage)
+          document.getElementById(id).checked = true;
+        }
+      }
+    }); */
+
+    document.querySelectorAll("textarea").forEach(function(element) {
+      console.log(element)
+      // use elementID to access input value in sessionStorage
+      let elementID = element.id;
+      // check to make sure it's not undefined and there is an autosave value to use
+      if ((sessionStorage[elementID] != undefined) && (element.value != sessionStorage["element.value"])) {
+        // update the text field with the autosaved value
+        element.value = sessionStorage[elementID];
+      }
+    });
+
+    document.querySelectorAll("input[type='text']").forEach(function(element) {
+      // use elementID to access input value in sessionStorage
+      let elementID = element.id;
+      // check to make sure it's not undefined and there is an autosave value to use
+      if ((sessionStorage[elementID] != undefined) && (element.value != sessionStorage["element.value"])) {
+        // update the text field with the autosaved value
+        element.value = sessionStorage[elementID];
       }
     });
 

@@ -248,9 +248,9 @@ document.querySelector(".button-next").onclick = () => {
       sessionStorage.setItem(element.name, element.value);
     }
   }); */
-  document.querySelectorAll("input").forEach( function(element) {
-    if (element.value !== sessionStorage["element.value"]) {
-      sessionStorage.setItem(element.name, element.value);
+  document.querySelectorAll("input[type='text']").forEach(function(element) {
+    if (element.value != sessionStorage["element.value"]) {
+      sessionStorage.setItem(element.id, element.value);
     }
   });
   console.log(sessionStorage);
