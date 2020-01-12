@@ -258,6 +258,13 @@ document.querySelector(".button-next").onclick = () => {
       sessionStorage.setItem(element.id, element.value);
     }
   });
+  document.querySelectorAll("input[type='radio']").forEach(function(element) {
+    // if radio is checked then we want to save it in sessionStorage to retrieve if pg reloaded
+    if (element.checked) {
+      console.log("WORKSS");
+      sessionStorage.setItem(element.id, element.value);
+    }
+  });
   console.log(sessionStorage);
 };
 
