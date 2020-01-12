@@ -16,7 +16,7 @@ window.onload = function setDefaultAnswerState() {
 //  formSections.welcomeSection.scrollIntoView(true);
   //checkButtonStep(); // to display proper button at page load
   // To set initial rb visibility conditions
-  parkingProblemRadioSelection(); // without this won't display city output without rb event change
+  parkingProblemRadioSelection(2); // without this won't display city output without rb event change
   ticketIssuerSelection();
   municipalityRadioSelection();
   studentOrEmployeeRadioSelection();
@@ -25,10 +25,18 @@ window.onload = function setDefaultAnswerState() {
   ticketAppealBylawRadioSelection();
   potentialTicketRadioSelection();
   (function init() {
-    if (sessionStorage["ticket-number"]) {
+/*    if (sessionStorage["ticket-number"]) {
         document.querySelector("#ticket-number-text-field").value = sessionStorage["ticket-number"];
-    }
+    } */
+    document.querySelectorAll("input").forEach( function(element) {
+      if (element.value !== sessionStorage["element.value"]) {
+        element.value = sessionStorage[element.name];
+      }
+    });
+
   })();
+
+//  console.log(document.querySelectorAll("input[type=text]"));
 };
 
 // LIST OF VARIABLES FOR LETTER OUTPUT
@@ -64,7 +72,20 @@ let mailAddressAnswer = "";
 // QUESTIONNAIRE SECTIONS
 // Generic step 1 - What is your parking problem?
   // update visibiilty conditions
-const parkingProblemRadioSelection = () => {
+const parkingProblemRadioSelection = (i) => {
+//  parkingProblemRadioOptions[i].checked = true;
+  console.log(document.getElementById('parking-problem-1').checked);
+
+  if (document.getElementById("parking-problem-1").checked) {
+    console.log("1 chose");
+  } else if (document.getElementById("parking-problem-2").checked) {
+    console.log("2 chose");
+  } else if (document.getElementById("parking-problem-3").checked) {
+    console.log("3 chose");
+  }
+
+
+/*
   for (let i = 0; i < parkingProblemRadioOptions.length; i++) {
     if (parkingProblemRadioOptions[i].checked) {
       if (parkingProblemRadioOptions[i].value === "1") {
@@ -143,7 +164,7 @@ const parkingProblemRadioSelection = () => {
         return templateType = "";
       }
    }
-  }
+ } */
 };
 
 // .ticket-issuer-section - Who issued your ticket?

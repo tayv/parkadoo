@@ -243,9 +243,16 @@ const prevStepActions = () => {
 document.querySelector(".button-next").onclick = () => {
   nextStepActions();
   calcAndSetWhiteSpace(activeSection);
-  if (document.querySelector("#ticket-number-text-field").value !== sessionStorage["ticket-number"]) {
-    sessionStorage.setItem("ticket-number", document.querySelector("#ticket-number-text-field").value);
-  }
+/*  document.querySelectorAll("input[type=text]").forEach( function(element) {
+    if (element.value !== sessionStorage["element.value"]) {
+      sessionStorage.setItem(element.name, element.value);
+    }
+  }); */
+  document.querySelectorAll("input").forEach( function(element) {
+    if (element.value !== sessionStorage["element.value"]) {
+      sessionStorage.setItem(element.name, element.value);
+    }
+  });
   console.log(sessionStorage);
 };
 
