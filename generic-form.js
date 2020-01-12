@@ -253,6 +253,11 @@ document.querySelector(".button-next").onclick = () => {
       sessionStorage.setItem(element.id, element.value);
     }
   });
+  document.querySelectorAll("textarea").forEach(function(element) {
+    if (element.value != sessionStorage["element.value"]) {
+      sessionStorage.setItem(element.id, element.value);
+    }
+  });
   console.log(sessionStorage);
 };
 

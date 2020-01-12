@@ -44,7 +44,6 @@ window.onload = function setDefaultAnswerState() {
     }); */
 
     document.querySelectorAll("textarea").forEach(function(element) {
-      console.log(element)
       // use elementID to access input value in sessionStorage
       let elementID = element.id;
       // check to make sure it's not undefined and there is an autosave value to use
