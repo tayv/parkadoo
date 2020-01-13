@@ -29,20 +29,7 @@ window.onload = function setDefaultAnswerState() {
         document.querySelector("#ticket-number-text-field").value = sessionStorage["ticket-number"];
     } */
 
-  /*   not working
-    document.querySelectorAll("input").forEach(function(element) {
-      if ((sessionStorage[element.name] != undefined) && (element.value != sessionStorage["element.value"])) {
-        console.log("first", sessionStorage[element.name])
-      //  element.value = sessionStorage[element.name];
-        console.log("second", element.value)
-        if (element.type == "radio") {
-          let id = element.id;
-          console.log("HURRR", sessionStorage)
-          document.getElementById(id).checked = true;
-        }
-      }
-    }); */
-
+    // update textarea fields with autosave value
     document.querySelectorAll("textarea").forEach(function(element) {
       // use elementID to access input value in sessionStorage
       let elementID = element.id;
@@ -53,6 +40,7 @@ window.onload = function setDefaultAnswerState() {
       }
     });
 
+      // update standard text fields with autosave value
     document.querySelectorAll("input[type='text']").forEach(function(element) {
       // use elementID to access input value in sessionStorage
       let elementID = element.id;
@@ -63,13 +51,15 @@ window.onload = function setDefaultAnswerState() {
       }
     });
 
+      // update radio buttons with autosave value
     document.querySelectorAll("input[type='radio']").forEach(function(element) {
       // use elementID to access input value in sessionStorage
       let elementID = element.id;
-      console.log((element.value === sessionStorage[elementID]))
+      console.log(elementID, sessionStorage[elementID] )
       // check to make sure it's not undefined and that current element radio is an autosave value to use
-      if ((sessionStorage[elementID] != undefined) && (element.value === sessionStorage[elementID])) {
+      if ((sessionStorage[elementID] != undefined) && (sessionStorage[elementID] === "checked")) {
         // check the element radio because it has an autosaved value
+        //console.log((sessionStorage[elementID]));
         element.checked = true;
       }
     });

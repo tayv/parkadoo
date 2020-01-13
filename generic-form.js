@@ -261,11 +261,12 @@ document.querySelector(".button-next").onclick = () => {
   document.querySelectorAll("input[type='radio']").forEach(function(element) {
     // if radio is checked then we want to save it in sessionStorage to retrieve if pg reloaded
     if (element.checked) {
-      console.log("WORKSS");
-      sessionStorage.setItem(element.id, element.value);
+
+      sessionStorage.setItem(element.id, "checked");
+      // PROBLEM with radio autosave not updating seems to be because each radio input is unique and gets its own sessionstaroage field and
+      // is not cleared when a field changes
     }
   });
-  console.log(sessionStorage);
 };
 
 document.querySelector("#button-prev").onclick = () => {
