@@ -77,7 +77,7 @@ const clickActiveClass = () => {
   hideExtraSteps(countStep+1);
 }
 
-// CLICK EVENT TO HIGHLIGHT SECTION-CONTAINER WHEN USER INTERACTS WITH IT
+// CLICK & SCROLL EVENTS TO HIGHLIGHT SECTION-CONTAINER WHEN USER INTERACTS WITH IT
 document.getElementById("parking-form-content").addEventListener("click", clickActiveClass);
 
 const nextStepActionsScroll = () => {
@@ -243,11 +243,8 @@ const prevStepActions = () => {
 document.querySelector(".button-next").onclick = () => {
   nextStepActions();
   calcAndSetWhiteSpace(activeSection);
-/*  document.querySelectorAll("input[type=text]").forEach( function(element) {
-    if (element.value !== sessionStorage["element.value"]) {
-      sessionStorage.setItem(element.name, element.value);
-    }
-  }); */
+
+  // AUTOSAVE TEXT, TEXT AREA, RADIOS
   document.querySelectorAll("input[type='text']").forEach(function(element) {
     if (element.value != sessionStorage["element.value"]) {
       sessionStorage.setItem(element.id, element.value);
@@ -258,15 +255,18 @@ document.querySelector(".button-next").onclick = () => {
       sessionStorage.setItem(element.id, element.value);
     }
   });
-  document.querySelectorAll("input[type='radio']").forEach(function(element) {
-    // if radio is checked then we want to save it in sessionStorage to retrieve if pg reloaded
+  document.querySelectorAll(".parking-problem-radio-class").forEach(function(element) {
+    // if radio is checked then we want to save it in sessionStorage to retrieve if pg reload
+    console.log("first check", element, element.checked);
     if (element.checked) {
-
-      sessionStorage.setItem(element.id, "checked");
+      console.log("second check", element, element.checked);
+    //  sessionStorage.setItem(element.id, undefined); // trying to prevent multiple checked by clearing old saved references of checked
+      sessionStorage.setItem("rb", element.value);
       // PROBLEM with radio autosave not updating seems to be because each radio input is unique and gets its own sessionstaroage field and
       // is not cleared when a field changes
     }
   });
+  console.log(sessionStorage);
 };
 
 document.querySelector("#button-prev").onclick = () => {

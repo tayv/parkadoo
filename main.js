@@ -41,7 +41,10 @@ window.onload = function setDefaultAnswerState() {
     });
 
       // update standard text fields with autosave value
-    document.querySelectorAll("input[type='text']").forEach(function(element) {
+      parkingProblemRadioOptions.value = sessionStorage["rb"];
+      console.log(parkingProblemRadioOptions.value, sessionStorage["rb"])
+      /*
+    document.querySelectorAll(".parking-problem-radio-class").forEach(function(element) {
       // use elementID to access input value in sessionStorage
       let elementID = element.id;
       // check to make sure it's not undefined and there is an autosave value to use
@@ -49,24 +52,22 @@ window.onload = function setDefaultAnswerState() {
         // update the text field with the autosaved value
         element.value = sessionStorage[elementID];
       }
-    });
+    }); */
 
       // update radio buttons with autosave value
     document.querySelectorAll("input[type='radio']").forEach(function(element) {
       // use elementID to access input value in sessionStorage
       let elementID = element.id;
-      console.log(elementID, sessionStorage[elementID] )
       // check to make sure it's not undefined and that current element radio is an autosave value to use
-      if ((sessionStorage[elementID] != undefined) && (sessionStorage[elementID] === "checked")) {
+      console.log("Treu or false", (sessionStorage["rb"] == element.value));
+      if (sessionStorage["rb"] != undefined && sessionStorage["rb"] == element.value) {
         // check the element radio because it has an autosaved value
-        //console.log((sessionStorage[elementID]));
+        console.log("TEST", sessionStorage["rb"], element.value);
         element.checked = true;
       }
     });
 
   })();
-
-//  console.log(document.querySelectorAll("input[type=text]"));
 };
 
 // LIST OF VARIABLES FOR LETTER OUTPUT
@@ -127,6 +128,7 @@ const parkingProblemRadioSelection = () => {
           formSections.mailingAddressSection,
           formSections.finishedSectionDiv
         ];
+
         return templateType = "city";
       }
       else if (parkingProblemRadioOptions[i].value === "2") {
