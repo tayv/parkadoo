@@ -255,17 +255,22 @@ document.querySelector(".button-next").onclick = () => {
       sessionStorage.setItem(element.id, element.value);
     }
   });
-  document.querySelectorAll(".parking-problem-radio-class").forEach(function(element) {
-    // if radio is checked then we want to save it in sessionStorage to retrieve if pg reload
-    console.log("first check", element, element.checked);
-    if (element.checked) {
-      console.log("second check", element, element.checked);
-    //  sessionStorage.setItem(element.id, undefined); // trying to prevent multiple checked by clearing old saved references of checked
-      sessionStorage.setItem("rb", element.value);
-      // PROBLEM with radio autosave not updating seems to be because each radio input is unique and gets its own sessionstaroage field and
-      // is not cleared when a field changes
-    }
-  });
+
+  function autosaveRadio(radioArray) {
+    radioArray.forEach(function(radioClass) {
+      radioClass.forEach(function(element) {
+        console.log("NAME", element.name);
+        // if radio is checked then we want to save it in sessionStorage to retrieve if pg reload
+        if (element.checked) {
+        //  sessionStorage.setItem(element.id, undefined); // trying to prevent multiple checked by clearing old saved references of checked
+          sessionStorage.setItem(element.name, element.value);
+          // PROBLEM with radio autosave not updating seems to be because each radio input is unique and gets its own sessionstaroage field and
+          // is not cleared when a field changes
+        }
+      });
+    });
+  }
+  autosaveRadio(allRadiosArray);
   console.log(sessionStorage);
 };
 
@@ -334,6 +339,16 @@ const ticketAccuracyRadioOptions = document.querySelectorAll(".ticket-accuracy-r
 const ticketReasonRadioOptions = document.querySelectorAll(".ticket-reason-radio-class");
 const ticketAppealBylawRadioOptions = document.querySelectorAll(".yn-ticket-valid-class");
 const potentialTicketRadioOptions = document.querySelectorAll(".potential-ticket-radio-class");
+const allRadiosArray = [
+  parkingProblemRadioOptions,
+  ticketIssuerRadioOptions,
+  municipalityRadioOptions,
+  studentOrEmployeeRadioOptions,
+  ticketAccuracyRadioOptions,
+  ticketReasonRadioOptions,
+  ticketAppealBylawRadioOptions,
+  potentialTicketRadioOptions
+];
 
 const setupRBEventListeners = () => {
   addRadioEventListener(parkingProblemRadioOptions, parkingProblemRadioSelection);
@@ -347,9 +362,8 @@ const setupRBEventListeners = () => {
 } // Note this is being called at bottom of main.js to initialize rb event listeners
 
 
-
 export {
   formSections, sectionsShowHideObj, checkButtonStep, parkingProblemRadioOptions,
   ticketIssuerRadioOptions, municipalityRadioOptions, studentOrEmployeeRadioOptions, ticketAccuracyRadioOptions,
-  ticketReasonRadioOptions, ticketAppealBylawRadioOptions, potentialTicketRadioOptions, setupRBEventListeners
+  ticketReasonRadioOptions, ticketAppealBylawRadioOptions, potentialTicketRadioOptions, allRadiosArray, setupRBEventListeners
 };
