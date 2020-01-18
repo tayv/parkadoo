@@ -1,10 +1,10 @@
-"use strict";
 import {
   parkingProblemRadioSelection, ticketIssuerSelection, municipalityRadioSelection, studentOrEmployeeRadioSelection, templateType,
   ticketAccuracyRadioSelection, ticketReasonRadioSelection, ticketAppealBylawRadioSelection, potentialTicketRadioSelection
 } from "/main.js";
 import {setLetterTemplate} from "/letter.js";
 import {calcAndSetWhiteSpace} from "/helper-functions.js";
+import {autosaveText, autosaveRadio} from "/autosave.js";
 
 
 // Sections
@@ -243,36 +243,15 @@ const prevStepActions = () => {
 document.querySelector(".button-next").onclick = () => {
   nextStepActions();
   calcAndSetWhiteSpace(activeSection);
-
-  // AUTOSAVE TEXT, TEXT AREA, RADIOS
-  document.querySelectorAll("input[type='text']").forEach(function(element) {
-    if (element.value != sessionStorage["element.value"]) {
-      sessionStorage.setItem(element.id, element.value);
-    }
-  });
-  document.querySelectorAll("textarea").forEach(function(element) {
-    if (element.value != sessionStorage["element.value"]) {
-      sessionStorage.setItem(element.id, element.value);
-    }
-  });
-
-  // Adds value of checked radio buttons to sessionStorage to be used by initSavedAnswers() in main.js
-  function autosaveRadio(radioArray) {
-    radioArray.forEach(function(radioClass) {
-      radioClass.forEach(function(element) {
-        // if radio is checked then we want to save it in sessionStorage to retrieve if pg reloads
-        if (element.checked) {
-          sessionStorage.setItem(element.name, element.value );
-        }
-      });
-    });
-  }
-  autosaveRadio(allRadiosArray);
+  autosaveText(); // updates sessionStorage for each step
+  autosaveRadio(allRadiosArray); // updates sessionStorage for each step
 };
 
 document.querySelector("#button-prev").onclick = () => {
   prevStepActions();
   calcAndSetWhiteSpace(activeSection);
+  autosaveText(); // updates sessionStorage for each step
+  autosaveRadio(allRadiosArray); // updates sessionStorage for each step
 };
 
 // Function to send to correct html page after clicked Submit

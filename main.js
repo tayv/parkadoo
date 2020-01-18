@@ -1,5 +1,4 @@
-"use strict";
-
+import {initSavedAnswers} from "/autosave.js";
 import {setLetterTemplate, letterTemplate} from "/letter.js";
 import {checkBylawsOutputTemplate, cityBylawLink, cityBylawName, bylawTextObj} from "/bylaw.js";
 import {calcAndSetWhiteSpace, currentDateFormatted, upperCaseFirstLetter, lowerCaseFirstLetter, formatSentenceEnding} from "/helper-functions.js";
@@ -10,52 +9,9 @@ import {
   allRadiosArray, setupRBEventListeners
 } from "/generic-form.js";
 
-// TO LOAD DEFAULT VISIBILITY CONDITIONS (works)
-window.onload = function setDefaultAnswerState() {
-
-  (function initSavedAnswers() {
-/*    if (sessionStorage["ticket-number"]) {
-        document.querySelector("#ticket-number-text-field").value = sessionStorage["ticket-number"];
-    } */
-
-    // update textarea fields with autosave value
-    document.querySelectorAll("textarea").forEach(function(element) {
-      // use elementID to access input value in sessionStorage
-      let elementID = element.id;
-      // check to make sure it's not undefined and there is an autosave value to use
-      if ((sessionStorage[elementID] != undefined) && (element.value != sessionStorage["element.value"])) {
-        // update the text field with the autosaved value
-        element.value = sessionStorage[elementID];
-      }
-    });
-
-      // update standard text fields with autosave value
-      document.querySelectorAll("input[type='text']").forEach(function(element) {
-        // use elementID to access input value in sessionStorage
-        let elementID = element.id;
-        // check to make sure it's not undefined and there is an autosave value to use
-        if ((sessionStorage[elementID] != undefined) && (element.value != sessionStorage["element.value"])) {
-          // update the text field with the autosaved value
-          element.value = sessionStorage[elementID];
-        }
-      });
-
-      // update radio buttons with autosave value
-    allRadiosArray.forEach(function(radioClass) {
-      radioClass.forEach(function(element) {
-        // use elementID to access input value in sessionStorage
-        let elementName = element.name;
-        // check to make sure it's not undefined and that current element radio is an autosave value to use
-      //  console.log("Treu or false", (sessionStorage["rb"] == element.value));
-        if (sessionStorage[elementName] != undefined && sessionStorage[elementName] == element.value) {
-          // set radiobutton to checked to match autosaved value
-          element.checked = true;
-        }
-      });
-    });
-
-  })();
-
+// TO LOAD DEFAULT VISIBILITY CONDITIONS
+window.onload = function() {
+  initSavedAnswers();
   parkingProblemRadioSelection(); // parkingProblemRadioSelection() initializes form answers and applies any sessionStorage autosaved answers. Later sections are handled in subsequent sections _radioselection()
 };
 
