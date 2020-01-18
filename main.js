@@ -12,18 +12,7 @@ import {
 
 // TO LOAD DEFAULT VISIBILITY CONDITIONS (works)
 window.onload = function setDefaultAnswerState() {
-//  document.getElementById("parking-form-content").reset();
-//  formSections.welcomeSection.scrollIntoView(true);
-  //checkButtonStep(); // to display proper button at page load
-  // To set initial rb visibility conditions
-  parkingProblemRadioSelection(); // without this won't display city output without rb event change
-  ticketIssuerSelection();
-  municipalityRadioSelection();
-  studentOrEmployeeRadioSelection();
-  ticketAccuracyRadioSelection();
-  ticketReasonRadioSelection();
-  ticketAppealBylawRadioSelection();
-  potentialTicketRadioSelection();
+
   (function initSavedAnswers() {
 /*    if (sessionStorage["ticket-number"]) {
         document.querySelector("#ticket-number-text-field").value = sessionStorage["ticket-number"];
@@ -66,14 +55,8 @@ window.onload = function setDefaultAnswerState() {
     });
 
   })();
-  parkingProblemRadioSelection(); // without this won't display city output without rb event change
-  ticketIssuerSelection();
-/*  municipalityRadioSelection();
-  studentOrEmployeeRadioSelection();
-  ticketAccuracyRadioSelection();
-  ticketReasonRadioSelection();
-  ticketAppealBylawRadioSelection(); */
-  potentialTicketRadioSelection();
+
+  parkingProblemRadioSelection(); // parkingProblemRadioSelection() initializes form answers and applies any sessionStorage autosaved answers. Later sections are handled in subsequent sections _radioselection()
 };
 
 // LIST OF VARIABLES FOR LETTER OUTPUT
@@ -134,7 +117,8 @@ const parkingProblemRadioSelection = () => {
           formSections.mailingAddressSection,
           formSections.finishedSectionDiv
         ];
-
+        ticketIssuerSelection(); // to init any sessionStorage saved radio answers on next step
+        ticketAccuracyRadioSelection();
         return templateType = "city";
       }
       else if (parkingProblemRadioOptions[i].value === "2") {
@@ -186,6 +170,7 @@ const parkingProblemRadioSelection = () => {
           formSections.potentialIssueSection,
           formSections.checkBylawsSection
         ];
+        potentialTicketRadioSelection(); // to init any sessionStorage saved radio answers on next step
         return templateType = "";
       }
    }
@@ -218,11 +203,15 @@ const ticketIssuerSelection = () => {
           formSections.mailingAddressSection,
           formSections.finishedSectionDiv
         ];
+        municipalityRadioSelection(); // to init any sessionStorage saved radio answers on next step
+        ticketReasonRadioSelection(); // autosave init
+        ticketAppealBylawRadioSelection(); //autosave init
         return templateType = "city";
       }
       else if (ticketIssuerRadioOptions[i].value === "2") {
         sectionsShowHideObj.hideTheseSectionsArray = [
-          formSections.municipalitySection
+          formSections.municipalitySection,
+          formSections.ticketReasonSection,
         ];
         sectionsShowHideObj.showTheseSectionsArray = [
           formSections.welcomeSection,
@@ -230,7 +219,6 @@ const ticketIssuerSelection = () => {
           formSections.parkingTicketIssuerSection,
           formSections.ticketNumberSection,
           formSections.ticketAccuracySection,
-          formSections.ticketReasonSection,
           formSections.privateTicketAppealSection,
           formSections.photoUploadSection,
           formSections.ticketDateSection,
@@ -243,7 +231,8 @@ const ticketIssuerSelection = () => {
       }
       else if (ticketIssuerRadioOptions[i].value === "3") {
         sectionsShowHideObj.hideTheseSectionsArray = [
-          formSections.municipalitySection
+          formSections.municipalitySection,
+          formSections.ticketReasonSection,
         ];
         sectionsShowHideObj.showTheseSectionsArray = [
           formSections.welcomeSection,
@@ -252,7 +241,6 @@ const ticketIssuerSelection = () => {
           formSections.studentOrEmployeeSection,
           formSections.ticketNumberSection,
           formSections.ticketAccuracySection,
-          formSections.ticketReasonSection,
           formSections.privateTicketAppealSection,
           formSections.photoUploadSection,
           formSections.ticketDateSection,
@@ -261,6 +249,7 @@ const ticketIssuerSelection = () => {
           formSections.mailingAddressSection,
           formSections.finishedSectionDiv
         ];
+        studentOrEmployeeRadioSelection(); // to init any sessionStorage saved radio answers on next step
         return templateType = "institution";
         }
       }
