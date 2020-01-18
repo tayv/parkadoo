@@ -17,7 +17,7 @@ window.onload = function() {
 
 // LIST OF VARIABLES FOR LETTER OUTPUT
 let templateType = ""; // to be used as parameter for setLetterTemplate() to update the output template on next step button click
-let city = ""; // used for municipality section to set appropriate city name
+let city = "city"; // used for municipality section to set appropriate city name
 
 // LIST OF VARIABLES FOR SPECIFIC ANSWERS
  // #ticket-number-section
