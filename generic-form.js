@@ -256,22 +256,18 @@ document.querySelector(".button-next").onclick = () => {
     }
   });
 
+  // Adds value of checked radio buttons to sessionStorage to be used by initSavedAnswers() in main.js
   function autosaveRadio(radioArray) {
     radioArray.forEach(function(radioClass) {
       radioClass.forEach(function(element) {
-        console.log("NAME", element.name);
-        // if radio is checked then we want to save it in sessionStorage to retrieve if pg reload
+        // if radio is checked then we want to save it in sessionStorage to retrieve if pg reloads
         if (element.checked) {
-        //  sessionStorage.setItem(element.id, undefined); // trying to prevent multiple checked by clearing old saved references of checked
-          sessionStorage.setItem(element.name, element.value);
-          // PROBLEM with radio autosave not updating seems to be because each radio input is unique and gets its own sessionstaroage field and
-          // is not cleared when a field changes
+          sessionStorage.setItem(element.name, element.value );
         }
       });
     });
   }
   autosaveRadio(allRadiosArray);
-  console.log(sessionStorage);
 };
 
 document.querySelector("#button-prev").onclick = () => {

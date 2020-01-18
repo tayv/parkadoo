@@ -24,7 +24,7 @@ window.onload = function setDefaultAnswerState() {
   ticketReasonRadioSelection();
   ticketAppealBylawRadioSelection();
   potentialTicketRadioSelection();
-  (function init() {
+  (function initSavedAnswers() {
 /*    if (sessionStorage["ticket-number"]) {
         document.querySelector("#ticket-number-text-field").value = sessionStorage["ticket-number"];
     } */
@@ -66,6 +66,14 @@ window.onload = function setDefaultAnswerState() {
     });
 
   })();
+  parkingProblemRadioSelection(); // without this won't display city output without rb event change
+  ticketIssuerSelection();
+/*  municipalityRadioSelection();
+  studentOrEmployeeRadioSelection();
+  ticketAccuracyRadioSelection();
+  ticketReasonRadioSelection();
+  ticketAppealBylawRadioSelection(); */
+  potentialTicketRadioSelection();
 };
 
 // LIST OF VARIABLES FOR LETTER OUTPUT
