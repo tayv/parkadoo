@@ -1,10 +1,10 @@
-"use strict";
 import {
   parkingProblemRadioSelection, ticketIssuerSelection, municipalityRadioSelection, studentOrEmployeeRadioSelection, templateType,
   ticketAccuracyRadioSelection, ticketReasonRadioSelection, ticketAppealBylawRadioSelection, potentialTicketRadioSelection
 } from "/main.js";
 import {setLetterTemplate} from "/letter.js";
 import {calcAndSetWhiteSpace} from "/helper-functions.js";
+import {autosaveText, autosaveRadio} from "/autosave.js";
 
 
 // Sections
@@ -77,7 +77,7 @@ const clickActiveClass = () => {
   hideExtraSteps(countStep+1);
 }
 
-// CLICK EVENT TO HIGHLIGHT SECTION-CONTAINER WHEN USER INTERACTS WITH IT
+// CLICK & SCROLL EVENTS TO HIGHLIGHT SECTION-CONTAINER WHEN USER INTERACTS WITH IT
 document.getElementById("parking-form-content").addEventListener("click", clickActiveClass);
 
 const nextStepActionsScroll = () => {
@@ -133,14 +133,6 @@ window.addEventListener("scroll", function() {
           capture: true,
           passive: true
         });
-
-// To hide all steps other than initial welcome section by default
-const hideAllSteps = () => {
-  for (let i = 1; i < formSections.allFormSections.length; i++) {
-    formSections.allFormSections[i].style.display="none";
-  }
-  formSections.finishedSectionDiv.style.display="none";
-};
 
 // GENERIC FUNCTIONALITY - Previous/Next/Submit button visiblity and to scroll to next div/step.
 
@@ -251,14 +243,18 @@ const prevStepActions = () => {
 document.querySelector(".button-next").onclick = () => {
   nextStepActions();
   calcAndSetWhiteSpace(activeSection);
+  autosaveText(); // updates sessionStorage for each step
+  autosaveRadio(allRadiosArray); // updates sessionStorage for each step
 };
 
 document.querySelector("#button-prev").onclick = () => {
   prevStepActions();
   calcAndSetWhiteSpace(activeSection);
+  autosaveText(); // updates sessionStorage for each step
+  autosaveRadio(allRadiosArray); // updates sessionStorage for each step
 };
 
-// Function to send to correct html page
+// Function to send to correct html page after clicked Submit
 const formAction = (str) => {
   let formID = document.querySelector("#parking-form-content");
   switch(str)
@@ -318,6 +314,16 @@ const ticketAccuracyRadioOptions = document.querySelectorAll(".ticket-accuracy-r
 const ticketReasonRadioOptions = document.querySelectorAll(".ticket-reason-radio-class");
 const ticketAppealBylawRadioOptions = document.querySelectorAll(".yn-ticket-valid-class");
 const potentialTicketRadioOptions = document.querySelectorAll(".potential-ticket-radio-class");
+const allRadiosArray = [
+  parkingProblemRadioOptions,
+  ticketIssuerRadioOptions,
+  municipalityRadioOptions,
+  studentOrEmployeeRadioOptions,
+  ticketAccuracyRadioOptions,
+  ticketReasonRadioOptions,
+  ticketAppealBylawRadioOptions,
+  potentialTicketRadioOptions
+];
 
 const setupRBEventListeners = () => {
   addRadioEventListener(parkingProblemRadioOptions, parkingProblemRadioSelection);
@@ -331,9 +337,8 @@ const setupRBEventListeners = () => {
 } // Note this is being called at bottom of main.js to initialize rb event listeners
 
 
-
 export {
-  formSections, sectionsShowHideObj, hideAllSteps, checkButtonStep, parkingProblemRadioOptions,
+  formSections, sectionsShowHideObj, checkButtonStep, parkingProblemRadioOptions,
   ticketIssuerRadioOptions, municipalityRadioOptions, studentOrEmployeeRadioOptions, ticketAccuracyRadioOptions,
-  ticketReasonRadioOptions, ticketAppealBylawRadioOptions, potentialTicketRadioOptions, setupRBEventListeners
+  ticketReasonRadioOptions, ticketAppealBylawRadioOptions, potentialTicketRadioOptions, allRadiosArray, setupRBEventListeners
 };

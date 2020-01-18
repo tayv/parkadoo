@@ -29,7 +29,7 @@
         </section>
         <!--Type of Parking Problem Radio Buttons-->
         <section id="parking-problem-section" class="section-container">
-          <fieldset class="fieldset-radio">
+          <fieldset class="fieldset-radio" id="fieldset-parking-problem">
             <legend>
               <h2 class="question-primary">What is your parking problem?</h2>
             </legend>
@@ -1280,7 +1280,7 @@
   <footer>
     <div id="footer-main">
       <a id="articles" href="articles.html" rel="articles">ARTICLES</a>
-      <a id="reset" href="index.html" rel="reset">RESTART</a>
+      <a id="reset" href="index.html" rel="reset" onclick="sessionStorage.clear()">RESTART</a>
       <a id="feedback" href="mailto:" rel="feedback">FEEDBACK</a>
     </div>
   </footer>

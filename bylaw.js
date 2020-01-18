@@ -1,5 +1,3 @@
-"use strict";
-
 // Bylaw info box variables
 let checkBylawsOutputTemplate = "";
 let cityBylawLink = "https://www.edmonton.ca/transportation/Bylaws/C5590.pdf"; // Can expand this functionality as add more cities

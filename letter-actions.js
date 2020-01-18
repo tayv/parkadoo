@@ -1,5 +1,3 @@
-"use strict";
-
 //import {templateType} from "/main.js"
 
 // This converts JSON sessionStorage letter and prints it onto letter.html after submitted on index.html
