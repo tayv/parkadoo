@@ -7,7 +7,7 @@ import {
   parkingProblemRadioOptions, ticketIssuerRadioOptions, municipalityRadioOptions, studentOrEmployeeRadioOptions,
   ticketAccuracyRadioOptions, ticketReasonRadioOptions, ticketAppealBylawRadioOptions, potentialTicketRadioOptions,
   allRadiosArray, setupRBEventListeners
-} from "/generic-form.js";
+} from "/generic-form-functionality.js";
 
 // TO LOAD DEFAULT VISIBILITY CONDITIONS
 window.onload = function() {

@@ -1,4 +1,4 @@
-import {allRadiosArray} from "/generic-form.js";
+import {allRadiosArray} from "/generic-form-functionality.js";
 
 // MODULE FOR AUTOSAVING TEXT, TEXT AREA, RADIOS
 // Sessionstorage is reset but clicked "RESET" in bottom nav link
