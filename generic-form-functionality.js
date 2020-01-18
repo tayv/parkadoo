@@ -26,8 +26,6 @@ const formSections = {
   ticketReasonOtherSubSection: document.getElementById("ticket-reason-other-subsection"),
   ticketAppealBylawSection: document.getElementById("ticket-appeal-bylaw-section"),
   ticketAppealSubSection: document.getElementById("ticket-appeal-bylaw-subsection"),
-  photoUploadSection: document.getElementById("photo-upload-section"),
-  photoUploadPromptSubSection: document.getElementById("photo-upload-prompt-subsection"),
   ticketDateSection: document.getElementById("ticket-date-section"),
   nameSection: document.getElementById("name-section"),
   contactDetailsSection: document.getElementById("contact-details-section"),

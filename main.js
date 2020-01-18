@@ -94,8 +94,8 @@ const parkingProblemRadioSelection = () => {
           formSections.ticketDateSection,
           formSections.nameSection,
           formSections.contactDetailsSection,
-          formSections.mailingAddressSection,
-          formSections.photoUploadSection];
+          formSections.mailingAddressSection
+        ];
         sectionsShowHideObj.showTheseSectionsArray = [
           formSections.welcomeSection,
           formSections.parkingProblemSection,
@@ -118,8 +118,8 @@ const parkingProblemRadioSelection = () => {
           formSections.ticketDateSection,
           formSections.nameSection,
           formSections.contactDetailsSection,
-          formSections.mailingAddressSection,
-          formSections.photoUploadSection];
+          formSections.mailingAddressSection
+        ];
         sectionsShowHideObj.showTheseSectionsArray = [
           formSections.welcomeSection,
           formSections.parkingProblemSection,
@@ -152,7 +152,6 @@ const ticketIssuerSelection = () => {
           formSections.ticketAccuracySection,
           formSections.ticketReasonSection,
           formSections.ticketAppealBylawSection,
-          formSections.photoUploadSection,
           formSections.ticketDateSection,
           formSections.nameSection,
           formSections.contactDetailsSection,
@@ -176,7 +175,6 @@ const ticketIssuerSelection = () => {
           formSections.ticketNumberSection,
           formSections.ticketAccuracySection,
           formSections.privateTicketAppealSection,
-          formSections.photoUploadSection,
           formSections.ticketDateSection,
           formSections.nameSection,
           formSections.contactDetailsSection,
@@ -198,7 +196,6 @@ const ticketIssuerSelection = () => {
           formSections.ticketNumberSection,
           formSections.ticketAccuracySection,
           formSections.privateTicketAppealSection,
-          formSections.photoUploadSection,
           formSections.ticketDateSection,
           formSections.nameSection,
           formSections.contactDetailsSection,
@@ -231,7 +228,6 @@ const municipalityRadioSelection = () => {
           formSections.ticketReasonSection,
           formSections.ticketAppealBylawSection,
           formSections.privateTicketAppealSection,
-          formSections.photoUploadSection,
           formSections.ticketDateSection,
           formSections.nameSection,
           formSections.contactDetailsSection,
@@ -253,7 +249,6 @@ const municipalityRadioSelection = () => {
           formSections.ticketReasonSection,
           formSections.ticketAppealBylawSection,
           formSections.privateTicketAppealSection,
-          formSections.photoUploadSection,
           formSections.ticketDateSection,
           formSections.nameSection,
           formSections.contactDetailsSection,
