@@ -237,7 +237,7 @@ const municipalityRadioSelection = () => {
         return city = "City of Edmonton";
       }
       else if (municipalityRadioOptions[i].value === "2") {
-    //  sectionsShowHideObj.hideTheseSectionsArray = [];
+        sectionsShowHideObj.hideTheseSectionsArray = [];
         sectionsShowHideObj.showTheseSectionsArray = [
           formSections.welcomeSection,
           formSections.parkingProblemSection,
@@ -255,7 +255,7 @@ const municipalityRadioSelection = () => {
           formSections.mailingAddressSection,
           formSections.finishedSectionDiv
         ];
-        return city = document.getElementById("new-city-request-textfield").value;
+      //  return city = document.getElementById("new-city-request-textfield").value;
       }
     }
   }
