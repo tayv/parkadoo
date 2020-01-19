@@ -11,7 +11,7 @@ if (document.getElementById("button-send")) {
   document.getElementById("button-send").onclick = () => {
     let htmlLetterContent = document.getElementById("insert-letter-output-text-here").innerHTML;
     let formattedContent = htmlLetterContent.replace(/<br>/g, "%0D%0A") // converts all instance of <br> with mailto appropriate line breaks
-     document.getElementById("test-mail").href=`mailto:?subject=Parking%20ticket%20appeal&body=${formattedContent}`;
+     document.getElementById("email-letter").href=`mailto:?subject=Parking%20ticket%20appeal&body=${formattedContent}`;
   }
 }
 

@@ -74,7 +74,8 @@ const parkingProblemRadioSelection = () => {
           formSections.finishedSectionDiv
         ];
         ticketIssuerSelection(); // to init any sessionStorage saved radio answers on next step
-        ticketAccuracyRadioSelection();
+        ticketAccuracyRadioSelection(); // to init any sessionStorage saved radio answers on next step
+        document.querySelector("#finished-message").innerHTML = "See that wasn't so bad. Are you ready to view your appeal letter?";
         return templateType = "city";
       }
       else if (parkingProblemRadioOptions[i].value === "2") {
@@ -101,6 +102,7 @@ const parkingProblemRadioSelection = () => {
           formSections.parkingProblemSection,
           formSections.finishedSectionDiv
         ];
+        document.querySelector("#finished-message").innerHTML = "See that wasn't so bad. Next I'll give you a letter you can use and show you how to report an abandoned vehicle.";
         return templateType = "report abandoned vehicle";
       }
       else if (parkingProblemRadioOptions[i].value === "3") {
@@ -234,16 +236,11 @@ const municipalityRadioSelection = () => {
           formSections.mailingAddressSection,
           formSections.finishedSectionDiv
         ];
+        templateType = "city";
         return city = "City of Edmonton";
       }
       else if (municipalityRadioOptions[i].value === "2") {
-        sectionsShowHideObj.hideTheseSectionsArray = [];
-        sectionsShowHideObj.showTheseSectionsArray = [
-          formSections.welcomeSection,
-          formSections.parkingProblemSection,
-          formSections.parkingTicketIssuerSection,
-          formSections.municipalitySection,
-          formSections.cityUnavailableSection,
+        sectionsShowHideObj.hideTheseSectionsArray = [
           formSections.ticketNumberSection,
           formSections.ticketAccuracySection,
           formSections.ticketReasonSection,
@@ -255,7 +252,15 @@ const municipalityRadioSelection = () => {
           formSections.mailingAddressSection,
           formSections.finishedSectionDiv
         ];
-      //  return city = document.getElementById("new-city-request-textfield").value;
+        sectionsShowHideObj.showTheseSectionsArray = [
+          formSections.welcomeSection,
+          formSections.parkingProblemSection,
+          formSections.parkingTicketIssuerSection,
+          formSections.municipalitySection,
+          formSections.cityUnavailableSection
+        ];
+        return templateType = "no city"
+      //  return city = document.getElementById("new-city-request-textfield").value; // Not currently used (have mailto link in html instead)
       }
     }
   }

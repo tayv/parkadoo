@@ -548,13 +548,16 @@
         <section id="city-unavailable-section" class="section-container">
           <div class="field-container">
             <label for="new-city-request-textfield">
-              <h2 class="question-primary">Parkadoo isn't available in your city yet :(</h2>
-              <span class="field-hint">Let me know what city you want added next:</span>
+              <h2 class="question-primary">Bylaw ticket appeals aren't available in your city yet 😞</h2>
+              <p>However, you can still use this app to appeal tickets from private parking operators by going back a couple steps.</p>
+              <p>If you have time, <a href="mailto:?subject=Parkadoo%20add%20city&body=Hey,%20please%20add%20this%20city:">let me know which city</a> you'd like me to add next.</p>
             </label>
+            <!-- Hid textfield because don't have in-form contact submissions yet-->
             <input id="new-city-request-textfield"
               type="text"
-              name="new-city-request-textfield">
-            <span class="field-example">e.g. Toronto</span>
+              name="new-city-request-textfield"
+              style="display: none;"
+              >
           </div>
         </section>
         <!--A Student or Employee of Issuer Radio Buttons-->
@@ -1207,8 +1210,9 @@
           </div>
         </section>
       <!--Last Section -->
-      <section class="section-container" id="finished-section-container">
-        <p>All done! &#x1F389; See that wasn't so bad. Are you ready to view your appeal letter?</p>
+      <section class="section-container" id="finished-section-container" style="text-align: center;">
+        <h2 class="question-primary">All done &#x1F389;</h2>
+        <p id="finished-message">See that wasn't so bad. Are you ready to view your appeal letter?</p>
       </section>
       <!-- whitespace div so section gets pushed to top of window and scrolling is possible -->
       <div id="add-whitespace"></div>

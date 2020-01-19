@@ -162,6 +162,11 @@ const ctaDisplay = (position) => {
       removeActiveClass();
       document.getElementById("button-submit").style.display="block";
       break;
+    case "cityUnavailable":
+      document.getElementById("button-prev").style.display="inline";
+      document.querySelector(".button-next").style.display="none";
+      document.getElementById("button-submit").style.display="none";
+      break;
   }
 };
   // Needs to be initialized before question specific visibility conditions
@@ -174,12 +179,17 @@ const checkButtonStep = () => {
   } else if (inProgress) {
       ctaDisplay("inProgress");
   } else if (complete) {
-      if (templateType == "") {
+     switch(true) {
+      case templateType == "":
         ctaDisplay("bylawComplete");
-      } else {
+        break;
+      case templateType == "no city":
+        ctaDisplay("cityUnavailable");
+        break;
+      default:
         ctaDisplay("letterComplete");
+     }
     }
-  }
 };
 
   // show/hide questionnaire sections based on user's answers
