@@ -22,13 +22,20 @@ body {
 
   max-height: 100vh;
   /* font styles */
-  font-family: -apple-system, BlinkMacSystemFont,
-    “Segoe UI”, “Roboto”, “Oxygen”, “Ubuntu”, “Cantarell”,
-    “Fira Sans”, “Droid Sans”, “Helvetica Neue”, sans-serif;
-  -webkit-font-smoothing: subpixel-antialiased;
-  font-size: 18px;
+  font-size: 16px;
+  letter-spacing: 0.02rem;
   line-height: 1.3;
-  -moz-font-feature-settings:'kern';
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-font-feature-settings:"kern";
+}
+
+@import url('https://rsms.me/inter/inter.css');
+html { font-family: "Inter", -apple-system, BlinkMacSystemFont,
+  “Segoe UI”, “Roboto”, “Oxygen”, “Ubuntu”, “Cantarell”,
+  “Fira Sans”, “Droid Sans”, “Helvetica Neue”, sans-serif;
+ }
+@supports (font-variation-settings: normal) {
+  html { font-family: "Inter var", sans-serif; }
 }
 
 p {
@@ -216,7 +223,6 @@ textarea:focus, input:focus, select {
 .question-primary {
   padding-top: 30px;
   padding-bottom: 6px;
-  font-size: 26px;
 }
 
 /* Primary label styling */
@@ -224,7 +230,7 @@ textarea:focus, input:focus, select {
   margin-top: 20px;
   margin-bottom: 6px;
   font-size: 26px;
-  font-weight: bold;
+  font-weight: 600;
   display: inline-block;
 }
 
