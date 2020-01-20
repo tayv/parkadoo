@@ -21,6 +21,14 @@
   --accent-color1-300: hsla(153, 100%, 69%, 1);
   --accent-color1-100: hsla(153, 100%, 79%, 1);
 
+  /*
+  --accent-color1-900: hsla(153, 92%, 30%, 1);
+  --accent-color1-700: hsla(153, 93%, 42%, 1);
+  --accent-color1-500: hsla(153, 100%, 53%, 1); /* green
+  --accent-color1-300: hsla(153, 100%, 69%, 1);
+  --accent-color1-100: hsla(153, 100%, 79%, 1);
+  */
+
   --accent-color2-900: hsla(44, 92%, 63%, 1);
   --accent-color2-700: hsla(48, 94%, 68%, 1);
   --accent-color2-500: hsla(48, 95%, 76%, 1); /* yellow */
@@ -167,9 +175,12 @@ input:checked ~ label .customRB::after {
 }
 
 /* footer tabs */
-#articles,
-#reset,
-#feedback {
+#footer-nav-container a {
+  color: var(--neutral-color-700);
+  text-decoration: none;
+}
+
+#footer-nav-container a:hover {
   color: var(--color-white);
 }
 

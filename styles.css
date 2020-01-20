@@ -59,7 +59,8 @@ a:hover {
 
 /* Primary header */
 #header-main,
-#footer-main {
+#footer-main,
+#footer-nav-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -111,7 +112,8 @@ a:hover {
 
 .questionnaire-container,
 .letter-container,
-.cta-sticky-container {
+.cta-sticky-container,
+#footer-nav-container {
   max-width: 500px;
   width: 100%; /* want cta sticky width to match questionnaire containers */
  -ms-flex-negative: 0;
@@ -478,11 +480,10 @@ li {
   display: block;
 }
 
-/* footer tabs */
-#articles,
-#reset,
-#feedback {
-  font-size: 1.5rem;
+/* footer nav */
+#footer-nav-container {
+  font-size: 1.1rem;
+  letter-spacing: 1.3px;
 }
 
 /* Mobile Styles */
