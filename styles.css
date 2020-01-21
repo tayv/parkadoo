@@ -4,6 +4,27 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   text-decoration: none;
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --font-xsmall: 12px;
+  --font-small: 14px;
+  --root-font: 16px;
+  --font-large: 20px;
+  --font-xlarge: 24px;
+  --font-xxlarge: 30px;`
+}
+
+/* FONTS */
+@import url('https://rsms.me/inter/inter.css');
+html { font-family: "Inter", -apple-system, BlinkMacSystemFont,
+  “Segoe UI”, “Roboto”, “Oxygen”, “Ubuntu”, “Cantarell”,
+  “Fira Sans”, “Droid Sans”, “Helvetica Neue”, sans-serif;
+ }
+@supports (font-variation-settings: normal) {
+  html { font-family: "Inter var", sans-serif; }
 }
 
 /* GENERIC STYLES */
@@ -21,27 +42,17 @@ body {
           align-items: center;
 
   max-height: 100vh;
-  /* font styles */
-  font-size: 16px;
-  letter-spacing: 0.02rem;
-  line-height: 1.3;
+
+  /* body font styles */
+  font-size: var(--root-font);
+  letter-spacing: 0.01rem;
   -webkit-font-smoothing: subpixel-antialiased;
   -moz-font-feature-settings:"kern";
 }
 
-@import url('https://rsms.me/inter/inter.css');
-html { font-family: "Inter", -apple-system, BlinkMacSystemFont,
-  “Segoe UI”, “Roboto”, “Oxygen”, “Ubuntu”, “Cantarell”,
-  “Fira Sans”, “Droid Sans”, “Helvetica Neue”, sans-serif;
- }
-@supports (font-variation-settings: normal) {
-  html { font-family: "Inter var", sans-serif; }
-}
-
 p {
-  line-height: 1.5;
+  line-height: 1.4;
   padding-top: 10px;
-  font-size: 17px;
 }
 
 a {
@@ -78,7 +89,7 @@ a:hover {
 /* Navigation */
 #logo {
   text-decoration: none;
-  font-size: 30px;
+  font-size: var(--font-xxlarge);
   font-weight: bold;
 }
 
@@ -231,18 +242,18 @@ textarea:focus, input:focus, select {
 .field-label-large {
   margin-top: 20px;
   margin-bottom: 6px;
-  font-size: 26px;
-  font-weight: 600;
+  font-size: var(--font-xlarge);
   display: inline-block;
 }
 
 .field-label-small {
   padding-left: 2px;
-  font-size: 21px;
+  font-size: var(--font-large);
 }
 
 /* Supporting label styling */
 .field-hint {
+  padding-left: 2px;
   padding-bottom: 12px;
 }
 
@@ -250,7 +261,7 @@ textarea:focus, input:focus, select {
 .field-example,
 .field-abstract-example {
   display: block;
-  font-size: 15px;
+  font-size: var(--font-small);
 }
 
 .field-example,
@@ -361,7 +372,7 @@ input:checked ~ label .customRB::after {
   border-radius: 7px;
   width: 100%;
   padding: 7px;
-  font-size: 14px;            /* This won't work in Chrome or Safari */
+  font-size: var(--font-small);            /* This won't work in Chrome or Safari */
   -webkit-appearance: none;   /* This will make it work */
 }
 
@@ -373,13 +384,13 @@ input:checked ~ label .customRB::after {
 .info-box-div, #letter-preview-container {
   margin-top: 12px;
   padding: 25px;
-  font-size: 15px;
+  font-size: var(--font-small);
   border-radius: 3px;
   text-shadow: none;
 }
 
 .info-box-disclaimer-text {
-  font-size: 12px;
+  font-size: var(--font-xsmall);
 }
 
 /* For spacing legislation subsections */
@@ -482,7 +493,7 @@ li {
 
 /* footer nav */
 #footer-nav-container {
-  font-size: 1.1rem;
+  font-size: var(--font-small);
   letter-spacing: 1.3px;
 }
 
