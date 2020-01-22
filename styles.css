@@ -11,10 +11,10 @@
 :root {
   --font-xsmall: 12px;
   --font-small: 14px;
-  --root-font: 16px;
+  --font-root: 16px;
   --font-large: 20px;
   --font-xlarge: 24px;
-  --font-xxlarge: 30px;`
+  --font-xxlarge: 30px;
 }
 
 /* FONTS */
@@ -44,7 +44,7 @@ body {
   max-height: 100vh;
 
   /* body font styles */
-  font-size: var(--root-font);
+  font-size: var(--font-root);
   letter-spacing: 0.01rem;
   -webkit-font-smoothing: subpixel-antialiased;
   -moz-font-feature-settings:"kern";
@@ -142,26 +142,6 @@ a:hover {
   border-radius: 1px;
 }
 
-/* For testing
-.questionnaire-container,
-.section-container,
-.field-container,
-.field-date,
-.fieldset-radio,
-.field-checkbox ,
-.field-radio-button,
-.field-label-large,
-.field-label-small,
-.field-hint,
-.field-example,
-.field-abstract-example,
-.container-day,
-.container-month,
-.container-year,
-.cta-sticky-container {
-  border: 1px solid red; /* for testing */
-}
-
 /* To center and control questionnaire fields with flexbox*/
 .field-container,
 .field-date,
@@ -248,13 +228,13 @@ textarea:focus, input:focus, select {
 
 .field-label-small {
   padding-left: 2px;
-  font-size: var(--font-large);
+  font-size: var(--font-root);
 }
 
 /* Supporting label styling */
 .field-hint {
   padding-left: 2px;
-  padding-bottom: 12px;
+  padding-bottom: 16px;
 }
 
 .field-hint,
@@ -266,7 +246,7 @@ textarea:focus, input:focus, select {
 
 .field-example,
 .field-abstract-example {
-  padding-top: 5px;
+  padding-top: 6px;
   margin-left: 4px;
   font-style: italic;
 }

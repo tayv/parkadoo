@@ -31,7 +31,7 @@ if (document.getElementById("button-copy")) {
     copyDivToClipboard();
     let copyInput = document.querySelector('input[name="copy"]')
     // Success message & styling
-    copyInput.value ="✅ Copied!";
+    copyInput.value ="🙌 Copied!";
     copyInput.classList.remove("button-cta-letter:hover");
     copyInput.classList.add("button-success");
     setTimeout(function() {
