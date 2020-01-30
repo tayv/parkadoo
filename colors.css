@@ -3,6 +3,60 @@
 :root {
   --primary-color-900: hsla(218, 22%, 7%, 1);
   --primary-color-700: hsla(218, 22%, 12%, 1);
+  --primary-color-500: hsla(317, 94%, 94%, 1); /* light blue */
+  --primary-color-500-opacity: hsla(317, 94%, 94%, 0.9); /* for CTA sticky background */
+  --primary-color-400: hsla(218, 12%, 22%, 1);
+  --primary-color-300: hsla(218, 12%, 26%, 1);
+  --primary-color-100: hsla(218, 17%, 33%, 1);
+
+  --neutral-color-900: hsla(211, 10%, 53%, 1);
+  --neutral-color-700: hsla(211, 13%, 65%, 1);
+  --neutral-color-500: hsla(210, 16%, 82%, 1); /* grey */
+  --neutral-color-300: hsla(214, 15%, 91%, 1);
+  --neutral-color-100: hsla(216, 33%, 97%, 1);
+
+/*
+  --accent-color1-900: hsla(153, 92%, 30%, 1);
+  --accent-color1-700: hsla(153, 93%, 42%, 1);
+  --accent-color1-500: hsla(234, 100%, 63%, 1); /* bluey purple
+  --accent-color1-300: hsla(153, 100%, 69%, 1);
+  --accent-color1-100: hsla(153, 100%, 79%, 1); */
+
+
+  --accent-color1-900: hsla(153, 92%, 30%, 1);
+  --accent-color1-700: hsla(153, 93%, 42%, 1);
+  --accent-color1-500: hsla(153, 100%, 53%, 1); /* green */
+  --accent-color1-300: hsla(153, 100%, 69%, 1);
+  --accent-color1-100: hsla(153, 100%, 79%, 1);
+
+
+  --accent-color2-900: hsla(207, 100%, 63%, 1);
+  --accent-color2-700: hsla(207, 100%, 68%, 1);
+  --accent-color2-500: hsl(193, 100%, 53%, 1); /* yellow */
+  --accent-color2-300: hsla(207, 100%, 88%, 1);
+  --accent-color2-100: hsla(207, 100%, 96%, 1);
+
+  --color-white: hsla(0, 0%, 100%, 1); /* full white */
+  --color-black: hsla(210, 50%, 1%, 1); /* rich black */
+
+  --shadow-top: 0 -1px 5px hsla(0, 0%, 0%, 0.75);
+  --shadow-normal: 0px 1px 2px hsla(0, 0%, 0%, 0.7);
+  --border-top: 1px solid hsla(227, 12%, 30%, 1);
+
+  --header-footer-color: var(--neutral-color-500);
+  --main-background-color: var(--neutral-color-300);
+  --form-color: var(--color-white);
+  --main-text-color: var(--color-black);
+
+  /*
+  --cta-container-color:
+
+  */
+}
+
+[data-theme="dark"] {
+  --primary-color-900: hsla(218, 22%, 7%, 1);
+  --primary-color-700: hsla(218, 22%, 12%, 1);
   --primary-color-500: hsla(218, 12%, 18%, 1); /* dark greyish blue */
   --primary-color-500-opacity: hsla(218, 12%, 18%, 0.9); /* for CTA sticky background */
   --primary-color-400: hsla(218, 12%, 22%, 1);
@@ -15,37 +69,22 @@
   --neutral-color-300: hsla(214, 15%, 91%, 1);
   --neutral-color-100: hsla(216, 33%, 97%, 1);
 
-  --accent-color1-900: hsla(153, 92%, 30%, 1);
-  --accent-color1-700: hsla(153, 93%, 42%, 1);
-  --accent-color1-500: hsla(153, 100%, 53%, 1); /* green */
-  --accent-color1-300: hsla(153, 100%, 69%, 1);
-  --accent-color1-100: hsla(153, 100%, 79%, 1);
-
-  /*
-  --accent-color1-900: hsla(153, 92%, 30%, 1);
-  --accent-color1-700: hsla(153, 93%, 42%, 1);
-  --accent-color1-500: hsla(153, 100%, 53%, 1); /* green
-  --accent-color1-300: hsla(153, 100%, 69%, 1);
-  --accent-color1-100: hsla(153, 100%, 79%, 1);
-  */
-
-  --accent-color2-900: hsla(44, 92%, 63%, 1);
-  --accent-color2-700: hsla(48, 94%, 68%, 1);
-  --accent-color2-500: hsla(48, 95%, 76%, 1); /* yellow */
-  --accent-color2-300: hsla(48, 100%, 88%, 1);
-  --accent-color2-100: hsla(49, 100%, 96%, 1);
-
-  --color-white: hsla(0, 0%, 100%, 1); /* full white */
-  --color-black: hsla(210, 50%, 1%, 1); /* rich black */
-
-  --shadow-top: 0 -1px 5px hsla(0, 0%, 0%, 0.75);
-  --shadow-normal: 0px 1px 2px hsla(0, 0%, 0%, 0.7);
-  --border-top: 1px solid hsla(227, 12%, 30%, 1);
+  --header-footer-color: var(--primary-color-700);
+  --logo-color: var(--color-white);
+  --main-background-color: var(--primary-color-900);
+  --form-container-color: var(--color-white);
+  --active-section-color: var(--primary-color-400));
+  --primary-text-color: var(--color-white);
+  --nav-link-color: var(--neutral-color-700);
+  --nav-link-hover-color: var(--color-white);
+  --rb-background-color: var(--primary-color-300);
+  --ghost-button-color: var(--neutral-color-500);
+  --ghost-button-hover-color: var(--neutral-color-300);
 }
 
 body {
-  background-color: var(--primary-color-900);
-  color: var(--color-white);
+  background-color: var(--main-background-color);
+  color: var(--primary-text-color);
 }
 
 a {
@@ -53,12 +92,12 @@ a {
 }
 
 #header-main {
-  background-color: var(--primary-color-700);
+  background-color: var(--header-footer-color);
   box-shadow: var(--shadow-normal);
 }
 
 #logo {
-  color: var(--color-white);
+  color: var(--logo-color);
 }
 
 .questionnaire-container,
@@ -68,7 +107,7 @@ a {
 
 .active-section-container {
   border-color: var(--accent-color1-500);
-  background-color: var(--primary-color-400);
+  background-color: var(--active-section-color);
 }
 
 /* Unselected text field */
@@ -104,15 +143,15 @@ input[type="password"]:focus,
 .button-cta:active,
 .button-cta-letter,
 .button-cta-letter:active {
-  box-shadow: inset 0 0 0 1.5px var(--neutral-color-500);
+  box-shadow: inset 0 0 0 1.5px var(--ghost-button-color);
   background-color: transparent;
-  color: var(--neutral-color-500);
+  color: var(--ghost-button-color);
 }
 
 .button-cta:hover,
 .button-cta-letter:hover {
-  box-shadow: inset 0 0 0 1.5px var(--neutral-color-300);
-  color: var(--neutral-color-300);
+  box-shadow: inset 0 0 0 1.5px var(--ghost-button-hover-color);
+  color: var(--ghost-button-hover-color);
 }
 
 .button-next,
@@ -133,7 +172,7 @@ input[type="password"]:focus,
 
 /* Footer */
 #footer-main {
-  background-color: var(--primary-color-700);
+  background-color: var(--header-footer-color);
   border-top: var(--border-top);
 
 }
@@ -145,7 +184,7 @@ input[type="password"]:focus,
 }
 
 .field-radio-button label:hover {
-  background-color: var(--primary-color-300);
+  background-color: var(--rb-background-color);
   color: var(--color-white);
 }
 
@@ -160,7 +199,7 @@ input:checked ~ label .customRB::after {
 .field-radio-button input:checked ~ label {
   color: var(--accent-color1-500);
   border-color: var(--accent-color1-500);
-  background-color: var(--primary-color-300);
+  background-color: var(--rb-background-color);
 }
   /* Special information boxes */
 .info-box-div,
@@ -176,12 +215,12 @@ input:checked ~ label .customRB::after {
 
 /* footer tabs */
 #footer-nav-container a {
-  color: var(--neutral-color-700);
+  color: var(--nav-link-color);
   text-decoration: none;
 }
 
 #footer-nav-container a:hover {
-  color: var(--color-white);
+  color: var(--nav-link-hover-color);
 }
 
 /* LETTER PREVIEW PAGE SPECIFIC COLORS */

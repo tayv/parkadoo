@@ -6,6 +6,7 @@
   text-decoration: none;
   font-weight: normal;
   font-style: normal;
+  word-wrap: break-word;
 }
 
 :root {
