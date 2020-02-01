@@ -16,6 +16,8 @@
   --font-large: 20px;
   --font-xlarge: 24px;
   --font-xxlarge: 30px;
+
+  --max-width-content: 700px;
 }
 
 /* FONTS */
@@ -126,7 +128,7 @@ a:hover {
 .letter-container,
 .cta-sticky-container,
 #footer-nav-container {
-  max-width: 500px;
+  max-width: var(--max-width-content);
   width: 100%; /* want cta sticky width to match questionnaire containers */
  -ms-flex-negative: 0;
       flex-shrink: 0;  /*To fix safari bug of container not filling full height */
