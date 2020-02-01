@@ -2,8 +2,8 @@
   /* Generic questionnaire colors */
 :root {
   --primary-color-900: hsla(218, 22%, 7%, 1);
-  --primary-color-700: hsla(218, 22%, 12%, 1);
-  --primary-color-500: hsla(317, 94%, 94%, 1); /* light blue */
+  --primary-color-700: hsla(317, 94%, 74%, 1);
+  --primary-color-500: hsla(317, 94%, 94%, 1); /* light pink */
   --primary-color-500-opacity: hsla(317, 94%, 94%, 0.9); /* for CTA sticky background */
   --primary-color-400: hsla(218, 12%, 22%, 1);
   --primary-color-300: hsla(218, 12%, 26%, 1);
@@ -45,8 +45,18 @@
 
   --header-footer-color: var(--neutral-color-500);
   --main-background-color: var(--neutral-color-300);
+  --form-container-color: var(--primary-color-500);
   --form-color: var(--color-white);
   --main-text-color: var(--color-black);
+
+  --rb-text-color: var(--neutral-color-500);
+  --rb-background-color: var(--primary-color-700);
+  --rb-text-hover-color: var(--color-white);
+
+  --ghost-button-color: var(--color-black);
+  --ghost-button-hover-color: var(--neutral-color-900);
+
+  --bkgd-alt-color: var(--primary-color-300); /* For alternate background on letter pages */
 
   /*
   --cta-container-color:
@@ -71,15 +81,23 @@
 
   --header-footer-color: var(--primary-color-700);
   --logo-color: var(--color-white);
+
   --main-background-color: var(--primary-color-900);
-  --form-container-color: var(--color-white);
+  --form-container-color: var(--primary-color-500);
   --active-section-color: var(--primary-color-400));
+
   --primary-text-color: var(--color-white);
   --nav-link-color: var(--neutral-color-700);
   --nav-link-hover-color: var(--color-white);
+
+  --rb-text-color: var(--neutral-color-500);
   --rb-background-color: var(--primary-color-300);
+  --rb-text-hover-color: var(--color-white);
+
   --ghost-button-color: var(--neutral-color-500);
   --ghost-button-hover-color: var(--neutral-color-300);
+
+  --bkgd-alt-color: var(--primary-color-300); /* For alternate background on letter pages */
 }
 
 body {
@@ -102,7 +120,7 @@ a {
 
 .questionnaire-container,
 .letter-container {
-  background-color: var(--primary-color-500);
+  background-color: var(--form-container-color);
 }
 
 .active-section-container {
@@ -180,12 +198,13 @@ input[type="password"]:focus,
   /* Radio buttons */
 .field-radio-button label,
 .customRB::after { /* rb center dot. should match label background color */
-  color: var(--neutral-color-500);
+  color: var(--rb-text-color);
 }
 
 .field-radio-button label:hover {
   background-color: var(--rb-background-color);
-  color: var(--color-white);
+  color: var(--rb-text-hover-color);
+
 }
 
 input:checked ~ label .customRB {
@@ -209,8 +228,8 @@ input:checked ~ label .customRB::after {
 }
 
 .contact-box {
-  background-color: var(--primary-color-300);
-  color: var(--color-white);
+  background-color: var(--bkgd-alt-color);
+  color: var(--main-text-color);
 }
 
 /* footer tabs */
@@ -229,7 +248,7 @@ input:checked ~ label .customRB::after {
 }
 
 .letter-cta-container {
-  background-color: var(--primary-color-300);
+  background-color: var(--bkgd-alt-color);
 }
 
 .button-cta-letter:hover {

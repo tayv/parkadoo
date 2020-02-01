@@ -17,7 +17,7 @@
   --font-xlarge: 24px;
   --font-xxlarge: 30px;
 
-  --max-width-content: 700px;
+  --max-width-content: 600px;
 }
 
 /* FONTS */
@@ -87,6 +87,7 @@ a:hover {
 
   height: 60px;
   width: 100vw;
+  z-index: 99;
 }
 
 /* Navigation */
