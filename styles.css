@@ -4,7 +4,7 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   text-decoration: none;
-  font-weight: normal;
+  font-weight: 300;
   font-style: normal;
   word-wrap: break-word;
 }
@@ -16,6 +16,8 @@
   --font-large: 20px;
   --font-xlarge: 24px;
   --font-xxlarge: 30px;
+
+  --font-weight-heading: 400;
 
   --max-width-content: 600px;
 }
@@ -93,7 +95,7 @@ a:hover {
 /* Navigation */
 #logo {
   text-decoration: none;
-  font-size: var(--font-xxlarge);
+  font-size: var(--font-large);
   font-weight: bold;
 }
 
@@ -142,7 +144,7 @@ a:hover {
 }
 
 .active-section-container {
-  border-left: 5px solid;
+  border-left: 8px solid;
   border-radius: 1px;
 }
 
@@ -220,6 +222,7 @@ textarea:focus, input:focus, select {
 .question-primary {
   padding-top: 30px;
   padding-bottom: 6px;
+  font-weight: var(--font-weight-heading);
 }
 
 /* Primary label styling */
@@ -227,6 +230,7 @@ textarea:focus, input:focus, select {
   margin-top: 20px;
   margin-bottom: 6px;
   font-size: var(--font-xlarge);
+  font-weight: var(--font-weight-heading);
   display: inline-block;
 }
 
@@ -239,6 +243,7 @@ textarea:focus, input:focus, select {
 .field-hint {
   padding-left: 2px;
   padding-bottom: 16px;
+  font-weight: var(--font-weight-heading);
 }
 
 .field-hint,

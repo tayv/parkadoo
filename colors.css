@@ -3,8 +3,8 @@
 :root {
   --primary-color-900: hsla(218, 22%, 7%, 1);
   --primary-color-700: hsla(317, 94%, 74%, 1);
-  --primary-color-500: hsla(317, 94%, 94%, 1); /* light pink */
-  --primary-color-500-opacity: hsla(317, 94%, 94%, 0.9); /* for CTA sticky background */
+  --primary-color-500: hsla(210, 100%, 98%, 1); /* light blue */
+  --primary-color-500-opacity: hsla(210, 100%, 98%, 0.9); /* for cta container */
   --primary-color-400: hsla(218, 12%, 22%, 1);
   --primary-color-300: hsla(218, 12%, 26%, 1);
   --primary-color-100: hsla(218, 17%, 33%, 1);
@@ -15,12 +15,12 @@
   --neutral-color-300: hsla(214, 15%, 91%, 1);
   --neutral-color-100: hsla(216, 33%, 97%, 1);
 
-/*
-  --accent-color1-900: hsla(153, 92%, 30%, 1);
-  --accent-color1-700: hsla(153, 93%, 42%, 1);
-  --accent-color1-500: hsla(234, 100%, 63%, 1); /* bluey purple
-  --accent-color1-300: hsla(153, 100%, 69%, 1);
-  --accent-color1-100: hsla(153, 100%, 79%, 1); */
+
+  --accent-color3-900: hsla(235, 85%, 41%, 1);
+  --accent-color3-700: hsla(235, 90%, 52%, 1);
+  --accent-color3-500: hsla(235, 100%, 63%, 1); /* purple */
+  --accent-color3-300: hsla(237, 87%, 65%, 1);
+  --accent-color3-100: hsla(237, 81%, 72%, 1);
 
 
   --accent-color1-900: hsla(153, 92%, 30%, 1);
@@ -39,24 +39,39 @@
   --color-white: hsla(0, 0%, 100%, 1); /* full white */
   --color-black: hsla(210, 50%, 1%, 1); /* rich black */
 
-  --shadow-top: 0 -1px 5px hsla(0, 0%, 0%, 0.75);
+  --shadow-top: 0 -1px 5px hsla(0, 0%, 0%, 0.15);
   --shadow-normal: 0px 1px 2px hsla(0, 0%, 0%, 0.7);
-  --border-top: 1px solid hsla(227, 12%, 30%, 1);
+  --border-top-light: 1px solid var(--neutral-color-100);
 
-  --header-footer-color: var(--neutral-color-500);
+  --header-color: var(--neutral-color-300);
+  --header-shadow: var(--shadow-top);
   --main-background-color: var(--neutral-color-300);
   --form-container-color: var(--primary-color-500);
   --form-color: var(--color-white);
   --main-text-color: var(--color-black);
 
-  --rb-text-color: var(--neutral-color-500);
-  --rb-background-color: var(--primary-color-700);
+  --logo-color: var(--accent-color3-500);
+
+  --active-section-color: var(--color-white);
+  --active-highlight-color: var(--accent-color3-500);
+  --rb-text-color: var(--neutral-color-900);
+  --rb-background-color: var(--accent-color3-500);
+  --rb-text-color: var(--color-black);
   --rb-text-hover-color: var(--color-white);
+  --rb-selected-color: var(--color-white);
+
+  --border-top: var(--border-top-light);
+  --cta-container-color: var(--primary-color-500-opacity);
+  --cta-button-color: var(--active-highlight-color);
 
   --ghost-button-color: var(--color-black);
   --ghost-button-hover-color: var(--neutral-color-900);
 
-  --bkgd-alt-color: var(--primary-color-300); /* For alternate background on letter pages */
+  --bkgd-alt-color: var(--color-white); /* For alternate background on letter pages */
+
+  --nav-link-color: var(--neutral-color-700);
+  --nav-link-hover-color: var(--color-white);
+  --footer-color: var(--neutral-color-300);
 
   /*
   --cta-container-color:
@@ -79,25 +94,34 @@
   --neutral-color-300: hsla(214, 15%, 91%, 1);
   --neutral-color-100: hsla(216, 33%, 97%, 1);
 
-  --header-footer-color: var(--primary-color-700);
-  --logo-color: var(--color-white);
+  --border-top-dark: 1px solid hsla(227, 12%, 30%, 1);
+
+  --header-color: var(--primary-color-700);
+  --header-shadow: var(--shadow-normal);
+
+  --logo-color: var(--accent-color3-500);
 
   --main-background-color: var(--primary-color-900);
   --form-container-color: var(--primary-color-500);
-  --active-section-color: var(--primary-color-400));
+  --active-section-color: var(--primary-color-500);
 
   --primary-text-color: var(--color-white);
-  --nav-link-color: var(--neutral-color-700);
-  --nav-link-hover-color: var(--color-white);
 
   --rb-text-color: var(--neutral-color-500);
-  --rb-background-color: var(--primary-color-300);
+  --rb-background-color: var(--active-highlight-color);
+  --rb-text-color: var(--color-white);
   --rb-text-hover-color: var(--color-white);
+  /* --rb-selected-color: var(--accent-color3-500); */
+
+
+  --border-top: var(--border-top-dark);
 
   --ghost-button-color: var(--neutral-color-500);
   --ghost-button-hover-color: var(--neutral-color-300);
 
   --bkgd-alt-color: var(--primary-color-300); /* For alternate background on letter pages */
+
+  --footer-color: var(--primary-color-700);
 }
 
 body {
@@ -110,8 +134,8 @@ a {
 }
 
 #header-main {
-  background-color: var(--header-footer-color);
-  box-shadow: var(--shadow-normal);
+  background-color: var(--header-color);
+  box-shadow: var(--header-shadow);
 }
 
 #logo {
@@ -124,7 +148,7 @@ a {
 }
 
 .active-section-container {
-  border-color: var(--accent-color1-500);
+  border-color: var(--active-highlight-color);
   background-color: var(--active-section-color);
 }
 
@@ -153,8 +177,9 @@ input[type="password"]:focus,
 
 /* CTAs */
 .cta-sticky-container {
-  background-color: var(--primary-color-500-opacity);
+  background-color: var(--cta-container-color);
   border-top: var(--border-top);
+  box-shadow: var(--shadow-top);
 }
 
 .button-cta,
@@ -177,27 +202,26 @@ input[type="password"]:focus,
 #button-submit,
 #button-submit:active {
   box-shadow: none;
-  background-color: var(--accent-color1-500);
-  color: var(--color-black);
+  background-color: var(--cta-button-color);
+  color: var(--color-white);
 }
 
 .button-next:hover,
 #button-submit:hover {
   box-shadow: none;
-  background-color: var(--accent-color1-300);
-  color: var(--color-black);
+  background-color: var(--cta-button-color);
+  color: var(--color-white);
 }
 
 /* Footer */
 #footer-main {
-  background-color: var(--header-footer-color);
+  background-color: var(--footer-color);
   border-top: var(--border-top);
 
 }
 
   /* Radio buttons */
-.field-radio-button label,
-.customRB::after { /* rb center dot. should match label background color */
+.field-radio-button label {
   color: var(--rb-text-color);
 }
 
@@ -207,17 +231,18 @@ input[type="password"]:focus,
 
 }
 
+.customRB::after, /* rb center dot. should match label background color */
 input:checked ~ label .customRB {
-  border-color: var(--accent-color1-500);
+  border-color: var(--rb-selected-color);
 }
 
 input:checked ~ label .customRB::after {
-  background-color: var(--accent-color1-500);
+  background-color: var(--rb-selected-color);
 }
 
 .field-radio-button input:checked ~ label {
-  color: var(--accent-color1-500);
-  border-color: var(--accent-color1-500);
+  color: var(--rb-selected-color);
+  border-color: var(--rb-selected-color);
   background-color: var(--rb-background-color);
 }
   /* Special information boxes */
