@@ -2,12 +2,12 @@
   /* Generic questionnaire colors */
 :root {
   --primary-color-900: hsla(218, 22%, 7%, 1);
-  --primary-color-700: hsla(317, 94%, 74%, 1);
-  --primary-color-500: hsla(210, 100%, 98%, 1); /* light blue */
-  --primary-color-500-opacity: hsla(210, 100%, 98%, 0.9); /* for cta container */
-  --primary-color-400: hsla(218, 12%, 22%, 1);
-  --primary-color-300: hsla(218, 12%, 26%, 1);
-  --primary-color-100: hsla(218, 17%, 33%, 1);
+  --primary-color-700: hsl(210, 100%, 81%);
+  --primary-color-500: hsl(210, 100%, 89%); /* light blue */
+  --primary-color-500-opacity: hsla(210, 100%, 89%, 0.9); /* for cta container */
+  --primary-color-300: hsl(210, 100%, 92%);
+  --primary-color-100: hsl(210, 100%, 94%);
+  --primary-color-100-opacity: hsl(210, 100%, 94%, 0.9);
 
   --neutral-color-900: hsla(211, 10%, 53%, 1);
   --neutral-color-700: hsla(211, 13%, 65%, 1);
@@ -43,10 +43,10 @@
   --shadow-normal: 0px 1px 2px hsla(0, 0%, 0%, 0.7);
   --border-top-light: 1px solid var(--neutral-color-100);
 
-  --header-color: var(--neutral-color-300);
+  --header-color: var(--primary-color-100);
   --header-shadow: var(--shadow-top);
-  --main-background-color: var(--neutral-color-300);
-  --form-container-color: var(--primary-color-500);
+  --main-background-color: var(--primary-color-100);
+  --form-container-color: var(--primary-color-100);
   --form-color: var(--color-white);
   --main-text-color: var(--color-black);
 
@@ -61,7 +61,7 @@
   --rb-selected-color: var(--color-white);
 
   --border-top: var(--border-top-light);
-  --cta-container-color: var(--primary-color-500-opacity);
+  --cta-container-color: var(--primary-color-100-opacity);
   --cta-button-color: var(--active-highlight-color);
 
   --ghost-button-color: var(--color-black);
@@ -71,7 +71,7 @@
 
   --nav-link-color: var(--neutral-color-700);
   --nav-link-hover-color: var(--color-white);
-  --footer-color: var(--neutral-color-300);
+  --footer-color: var(--color-black);
 
   /*
   --cta-container-color:
@@ -84,9 +84,7 @@
   --primary-color-700: hsla(218, 22%, 12%, 1);
   --primary-color-500: hsla(218, 12%, 18%, 1); /* dark greyish blue */
   --primary-color-500-opacity: hsla(218, 12%, 18%, 0.9); /* for CTA sticky background */
-  --primary-color-400: hsla(218, 12%, 22%, 1);
   --primary-color-300: hsla(218, 12%, 26%, 1);
-  --primary-color-100: hsla(218, 17%, 33%, 1);
 
   --neutral-color-900: hsla(211, 10%, 53%, 1);
   --neutral-color-700: hsla(211, 13%, 65%, 1);
