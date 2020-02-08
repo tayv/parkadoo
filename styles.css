@@ -98,7 +98,7 @@ a:hover {
   text-decoration: none;
   font-size: var(--font-large);
   font-weight: 600;
-  margin-left: 10%;
+  margin-left: 8%;
 }
 
 .theme-switch {
@@ -153,7 +153,7 @@ a:hover {
 
 .active-section-container {
   border-left: 8px solid;
-  border-radius: 1px;
+  border-radius: 8px;
 }
 
 /* To center and control questionnaire fields with flexbox*/
@@ -439,10 +439,11 @@ li {
 
 /* Buttons */
 .button-cta,
-.button-cta-letter {
+.button-cta-letter,
+#button-submit {
   font: inherit;
   border: 5px;
-  border-radius: 3px;
+  border-radius: 6px;
   -moz-appearance: none;
        appearance: none;
   -webkit-appearance:none;
@@ -464,14 +465,7 @@ li {
 }
 
 #button-submit {
-  font: inherit;
   border: none;
-  border-radius: 3px;
-  -moz-appearance: none;
-       appearance: none;
-  -webkit-appearance:none;
-  padding:10px 20px;
-  outline: none;
 }
 
 /* Hide by default to prevent flickering from js */
