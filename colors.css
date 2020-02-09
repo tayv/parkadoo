@@ -9,11 +9,13 @@
   --primary-color-100: hsl(210, 100%, 94%);
   --primary-color-100-opacity: hsl(210, 100%, 94%, 0.9);
 
-  --neutral-color-900: hsla(211, 10%, 53%, 1);
-  --neutral-color-700: hsla(211, 13%, 65%, 1);
-  --neutral-color-500: hsla(210, 16%, 82%, 1); /* grey */
-  --neutral-color-300: hsla(214, 15%, 91%, 1);
-  --neutral-color-100: hsla(216, 33%, 97%, 1);
+  --neutral-color-900: hsla(215, 26%, 45%, 1);
+  --neutral-color-700: hsla(215, 55%, 92%, 1);
+  --neutral-color-500: hsla(220, 60%, 95%, 1); /* grey */
+  --neutral-color-300: hsla(220, 60%, 98%, 1);
+  --neutral-color-300-opacity: hsla(220, 60%, 98%, 0.9);
+  --neutral-color-100: hsla(220, 60%, 99%, 1);
+  --neutral-color-100-opacity: hsla(220, 60%, 99%, 0.9);
 
 
   --accent-color3-900: hsla(235, 85%, 41%, 1);
@@ -38,17 +40,21 @@
 
   --color-white: hsla(0, 0%, 100%, 1); /* full white */
   --color-black: hsla(210, 50%, 1%, 1); /* rich black */
+  --color-black-light: hsla(210, 50%, 1%, 0.8);
 
   --shadow-top: 0 -1px 5px hsla(0, 0%, 0%, 0.15);
   --shadow-normal: 0px 1px 2px hsla(0, 0%, 0%, 0.7);
-  --border-top-light: 1px solid var(--neutral-color-100);
+  --border-top-light: 2px solid var(--neutral-color-500);
 
-  --header-color: var(--primary-color-100);
+  --header-color: var(--neutral-color-100);
   --header-shadow: var(--shadow-top);
-  --main-background-color: var(--primary-color-100);
-  --form-container-color: var(--primary-color-100);
+  --main-background-color: var(--neutral-color-500);
+  --form-container-color: var(--neutral-color-300);
   --form-color: var(--color-white);
   --main-text-color: var(--color-black);
+
+  --primary-label-color: var(--color-black);
+  --primary-text-color: var(--color-black-light);
 
   --logo-color: var(--accent-color3-500);
 
@@ -56,12 +62,12 @@
   --active-highlight-color: var(--accent-color3-500);
   --rb-text-color: var(--neutral-color-900);
   --rb-background-color: var(--accent-color3-500);
-  --rb-text-color: var(--color-black);
+  --rb-text-color: var(--primary-text-color);
   --rb-text-hover-color: var(--color-white);
   --rb-selected-color: var(--color-white);
 
   --border-top: var(--border-top-light);
-  --cta-container-color: var(--primary-color-100-opacity);
+  --cta-container-color: var(--neutral-color-300-opacity);
   --cta-button-color: var(--active-highlight-color);
 
   --ghost-button-color: var(--color-black);
@@ -102,6 +108,7 @@
   --main-background-color: var(--primary-color-900);
   --form-container-color: var(--primary-color-500);
   --active-section-color: var(--primary-color-500);
+  --cta-container-color: var(--primary-color-500-opacity);
 
   --primary-text-color: var(--color-white);
 
@@ -150,6 +157,12 @@ a {
   background-color: var(--active-section-color);
 }
 
+.field-label-large,
+.field-label-small,
+.question-primary {
+  color: var(--primary-label-color);
+}
+
 /* Unselected text field */
 .field-container input[type="text"],
 .field-container input[type="email"],
@@ -177,7 +190,6 @@ input[type="password"]:focus,
 .cta-sticky-container {
   background-color: var(--cta-container-color);
   border-top: var(--border-top);
-  box-shadow: var(--shadow-top);
 }
 
 .button-cta,
