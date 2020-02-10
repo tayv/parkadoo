@@ -62,10 +62,10 @@
   --active-section-color: var(--color-white);
   --active-highlight-color: var(--accent-color3-500);
   --rb-text-color: var(--neutral-color-900);
-  --rb-background-color: var(--accent-color3-500);
+  --rb-background-color: var(--neutral-color-500);
   --rb-text-color: var(--primary-text-color);
-  --rb-text-hover-color: var(--color-white);
-  --rb-selected-color: var(--color-white);
+  --rb-text-hover-color: var(--primary-text-color);
+  --rb-selected-color: var(--accent-color3-500);
 
   --border-top: var(--border-top-light);
   --cta-container-color: var(--neutral-color-300-opacity);
@@ -92,6 +92,7 @@
   --primary-color-500: hsla(218, 12%, 18%, 1); /* dark greyish blue */
   --primary-color-500-opacity: hsla(218, 12%, 18%, 0.9); /* for CTA sticky background */
   --primary-color-300: hsla(218, 12%, 26%, 1);
+  --primary-color-100: hsla(218, 12%, 16%, 1);
 
   --neutral-color-900: hsla(211, 10%, 53%, 1);
   --neutral-color-700: hsla(211, 13%, 65%, 1);
@@ -115,7 +116,7 @@
   --primary-text-color: var(--color-white);
 
   --rb-text-color: var(--neutral-color-500);
-  --rb-background-color: var(--active-highlight-color);
+  --rb-background-color: var(--primary-color-100);
   --rb-text-color: var(--color-white);
   --rb-text-hover-color: var(--color-white);
   /* --rb-selected-color: var(--accent-color3-500); */
