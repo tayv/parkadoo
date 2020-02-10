@@ -370,7 +370,7 @@ input[type=radio]:checked + label > span { /* to bold text of selected answer */
 /* To style the date dropdown */
 .container-month select {
   background-color: hsla(210, 17%, 93%, 1);
-  border: 3px solid hsla(180, 100%, 13%, 1);
+  border: 2px solid hsla(180, 100%, 13%, 1);
   border-radius: 7px;
   width: 100%;
   padding: 7px;

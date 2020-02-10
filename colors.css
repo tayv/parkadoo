@@ -17,27 +17,13 @@
   --neutral-color-100: hsla(220, 60%, 99%, 1);
   --neutral-color-100-opacity: hsla(220, 60%, 99%, 0.9);
 
+  --highlight-color-500: hsla(235, 100%, 63%, 1); /* purple */
+  --highlight-color-300: hsla(237, 87%, 65%, 1);
+  --highlight-color-100: hsla(237, 81%, 72%, 1);
 
-  --accent-color3-900: hsla(235, 85%, 41%, 1);
-  --accent-color3-700: hsla(235, 90%, 52%, 1);
-  --accent-color3-500: hsla(235, 100%, 63%, 1); /* purple */
-  --accent-color3-300: hsla(237, 87%, 65%, 1);
-  --accent-color3-100: hsla(237, 81%, 72%, 1);
+  --link-color-500: hsl(193, 100%, 53%, 1); /* cyan blue */
 
   --alt-color1:   hsl(198, 76%, 93%); /* light blue */
-
-  --accent-color1-900: hsla(153, 92%, 30%, 1);
-  --accent-color1-700: hsla(153, 93%, 42%, 1);
-  --accent-color1-500: hsla(153, 100%, 53%, 1); /* green */
-  --accent-color1-300: hsla(153, 100%, 69%, 1);
-  --accent-color1-100: hsla(153, 100%, 79%, 1);
-
-
-  --accent-color2-900: hsla(207, 100%, 63%, 1);
-  --accent-color2-700: hsla(207, 100%, 68%, 1);
-  --accent-color2-500: hsl(193, 100%, 53%, 1); /* yellow */
-  --accent-color2-300: hsla(207, 100%, 88%, 1);
-  --accent-color2-100: hsla(207, 100%, 96%, 1);
 
   --color-white: hsla(0, 0%, 100%, 1); /* full white */
   --color-black: hsla(210, 50%, 1%, 1); /* rich black */
@@ -57,15 +43,15 @@
   --primary-label-color: var(--color-black);
   --primary-text-color: var(--color-black-light);
 
-  --logo-color: var(--accent-color3-500);
+  --logo-color: var(--highlight-color-500);
 
   --active-section-color: var(--color-white);
-  --active-highlight-color: var(--accent-color3-500);
+  --active-highlight-color: var(--highlight-color-500);
   --rb-text-color: var(--neutral-color-900);
   --rb-background-color: var(--neutral-color-500);
   --rb-text-color: var(--primary-text-color);
   --rb-text-hover-color: var(--primary-text-color);
-  --rb-selected-color: var(--accent-color3-500);
+  --rb-selected-color: var(--highlight-color-500);
 
   --border-top: var(--border-top-light);
   --cta-container-color: var(--neutral-color-300-opacity);
@@ -76,14 +62,9 @@
 
   --bkgd-alt-color: var(--alt-color1); /* For alternate background on letter pages */
 
-  --nav-link-color: var(--neutral-color-700);
+  --nav-highlight-color: var(--neutral-color-700);
   --nav-link-hover-color: var(--color-white);
   --footer-color: var(--color-black);
-
-  /*
-  --cta-container-color:
-
-  */
 }
 
 [data-theme="dark"] {
@@ -105,7 +86,7 @@
   --header-color: var(--primary-color-700);
   --header-shadow: var(--shadow-normal);
 
-  --logo-color: var(--accent-color3-500);
+  --logo-color: var(--highlight-color-500);
 
   --main-background-color: var(--primary-color-900);
   --form-container-color: var(--primary-color-500);
@@ -116,11 +97,10 @@
   --primary-text-color: var(--color-white);
 
   --rb-text-color: var(--color-white);
-  --rb-background-color: var(--accent-color3-500);
+  --rb-background-color: var(--highlight-color-500);
   --rb-text-color: var(--color-white);
   --rb-text-hover-color: var(--color-white);
   --rb-selected-color: var(--color-white);
-
 
   --border-top: var(--border-top-dark);
 
@@ -138,7 +118,7 @@ body {
 }
 
 a {
-  color: var(--accent-color2-500);
+  color: var(--link-color-500);
 }
 
 #header-main {
@@ -186,7 +166,7 @@ input[type="password"]:focus,
 .field-date input[type="text"]:focus,
 #ticket-month {
   background-color: var(--color-white);
-  border-color: var(--accent-color2-500);
+  border-color: var(--link-color-500);
 }
 
 /* CTAs */
@@ -268,7 +248,7 @@ input:checked ~ label .customRB::after {
 
 /* footer tabs */
 #footer-nav-container a {
-  color: var(--nav-link-color);
+  color: var(--nav-highlight-color);
   text-decoration: none;
 }
 
