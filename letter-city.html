@@ -11,10 +11,13 @@
     <script type="text/javascript" src="node_modules/dompurify/dist/purify.min.js"></script>
   </head>
 <body>
-  <header>
-    <div id="header-main">
-      <a id="logo" href="index.html" rel="home">PARKADOO</a>
-    </div>
+  <header id="header-main">
+      <div id="header-nav-container">
+        <a id="logo" href="index.html" rel="home">PARKADOO</a>
+        <label class="theme-switch" for="checkbox">
+          <input type="checkbox" id="checkbox" />
+        </label>
+      </div>
   </header>
   <main id="letter-main">
     <div class="letter-container">
@@ -78,9 +81,11 @@
   </main>
   <footer>
     <div id="footer-main">
-      <a id="articles" href="articles.html" rel="articles">ARTICLES</a>
-      <a id="reset" href="index.html" rel="reset" onclick="sessionStorage.clear()">&#10226; RESET</a>
-      <a id="feedback" href="mailto:" rel="feedback">FEEDBACK</a>
+      <div id="footer-nav-container">
+        <a id="articles" href="articles.html" rel="articles">ARTICLES</a>
+        <a id="reset" href="index.html" rel="reset" onclick="sessionStorage.clear()">RESTART</a>
+        <a id="feedback" href="mailto:" rel="feedback">FEEDBACK</a>
+      </div>
     </div>
   </footer>
 </body>

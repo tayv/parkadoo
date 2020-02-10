@@ -70,7 +70,7 @@
 
 #button-copy {
   width: 211px; /* To keep cta the same width when text changes onclick and .button-success added */
-  transition: all 1s ease;
+  transition: all 0.25s ease;
 }
 
 /* For printing the letter */
