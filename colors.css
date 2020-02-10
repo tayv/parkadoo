@@ -24,7 +24,7 @@
   --accent-color3-300: hsla(237, 87%, 65%, 1);
   --accent-color3-100: hsla(237, 81%, 72%, 1);
 
-  --alt-color1: hsl(268, 100%, 96%); /* light purple/pink */
+  --alt-color1:   hsl(198, 76%, 93%); /* light blue */
 
   --accent-color1-900: hsla(153, 92%, 30%, 1);
   --accent-color1-700: hsla(153, 93%, 42%, 1);
@@ -109,17 +109,17 @@
 
   --main-background-color: var(--primary-color-900);
   --form-container-color: var(--primary-color-500);
-  --active-section-color: var(--primary-color-500);
+  --active-section-color: var(--primary-color-300);
   --cta-container-color: var(--primary-color-500-opacity);
 
   --primary-label-color: var(--color-white);
   --primary-text-color: var(--color-white);
 
-  --rb-text-color: var(--neutral-color-500);
-  --rb-background-color: var(--primary-color-100);
+  --rb-text-color: var(--color-white);
+  --rb-background-color: var(--accent-color3-500);
   --rb-text-color: var(--color-white);
   --rb-text-hover-color: var(--color-white);
-  /* --rb-selected-color: var(--accent-color3-500); */
+  --rb-selected-color: var(--color-white);
 
 
   --border-top: var(--border-top-dark);
