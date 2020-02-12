@@ -111,7 +111,7 @@ function isScrolledIntoView(el) {
     let activeElemTop = Math.round(rect.top);
     let activeElemBottom = Math.round(rect.bottom);
     let contentHeight = Math.round(document.getElementById("parking-form-main").offsetHeight);
-    let paddingHeight = Math.round(contentHeight * 0.1); // for more natural transition of active-class when div leaves viewing area
+    let paddingHeight = Math.round(contentHeight * 0.4); // for more natural transition of active-class when div leaves viewing area
     let topHeight = Math.round(headerHeight + paddingHeight);
     let bottomHeight = Math.round(contentHeight - paddingHeight);
     if (activeElemTop > bottomHeight) {
