@@ -103,7 +103,11 @@ a:hover {
 
 .theme-switch {
   margin-left: auto;
-  margin-right: 10%;
+  margin-right: 6%;
+}
+
+.theme-icon {
+  font-size: var(--font-large);
 }
 
 /* Main form container */
