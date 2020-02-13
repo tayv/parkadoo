@@ -69,7 +69,7 @@
 }
 
 #button-copy {
-  width: 211px; /* To keep cta the same width when text changes onclick and .button-success added */
+  width: 200px; /* To keep cta the same width when text changes onclick and .button-success added */
   transition: all 0.25s ease;
 }
 

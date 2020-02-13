@@ -257,7 +257,9 @@ input:checked ~ label .customRB::after {
 }
 
 /* LETTER PREVIEW PAGE SPECIFIC COLORS */
-.contact-box {
+.info-box-div,
+.contact-box,
+ #letter-preview-container {
   box-shadow: var(--shadow-normal);
 }
 
