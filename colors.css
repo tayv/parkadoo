@@ -238,6 +238,12 @@ input:checked ~ label .customRB::after {
   border-color: var(--rb-selected-color);
   background-color: var(--rb-background-color);
 }
+
+/* For keyboard tabbing accessibiilty */
+.field-radio-button input[type="radio"]:focus + label {
+  border: 1px dashed var(--rb-selected-color);
+}
+
   /* Special information boxes */
 .info-box-div,
 .contact-box,
