@@ -9,6 +9,19 @@
   word-wrap: break-word;
 }
 
+/*
+  This will hide the focus indicator if the element receives focus via the mouse,
+  but it will still show up on keyboard focus.
+*/
+.js-focus-visible :focus:not(.focus-visible) {
+  outline: none;
+}
+
+/* Optional: Customize .focus-visible */
+.focus-visible {
+  outline: lightgreen solid 2px !important;
+}
+
 :root {
   --font-xsmall: 12px;
   --font-small: 14px;
@@ -226,9 +239,9 @@ a:hover {
 }
 
 /* remove default selected input field styling */
-textarea:focus, input:focus, select {
+/* textarea:focus, input:focus, select {
     outline: none;
-}
+} */
 
 /* h1 styling for questions without standard primary label */
 .question-primary {

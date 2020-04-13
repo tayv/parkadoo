@@ -240,9 +240,9 @@ input:checked ~ label .customRB::after {
 }
 
 /* For keyboard tabbing accessibiilty */
-.field-radio-button input[type="radio"]:focus + label {
+/* .field-radio-button input[type="radio"]:focus + label {
   border: 1px dashed var(--rb-selected-color);
-}
+} */
 
   /* Special information boxes */
 .info-box-div,
