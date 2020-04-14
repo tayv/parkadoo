@@ -257,6 +257,7 @@ const nextStepActions = () => {
         calcAndSetWhiteSpace(activeSection);
         activeSection.scrollIntoView(true);
         checkButtonStep();
+        activeSection.querySelector("input, textarea").focus();
       } else {
           checkButtonStep();
     } return countStep;
@@ -344,19 +345,21 @@ const addRadioEventListener = (rbClassName, updateConditionalsFunction) => {
     rbClassName[i].addEventListener("change", updateConditionalsFunction, false);
 
     rbClassName[i].addEventListener("keypress", function(event) {
-      console.log(event.keyCode)
+      let complete = (countStep >= sectionsShowHideObj.showTheseSectionsArray.length - 1);
+      console.log("step complete", complete);
         var x = event.cancelable;
-        console.log(x);
+    //    console.log(x);
       // Number 13 is the "Enter" key on the keyboard
-      if (event.keyCode === 13) {
-
-        console.log("TRIGGERED", x);
+      if (!complete && event.keyCode === 13) {
+    //    console.log("TRIGGERED", x);
         // Cancel the default form submit action
         event.preventDefault();
         // Trigger the button element with a click
         console.log(document.querySelector(".button-next"))
         document.querySelector(".button-next").click();
+
       }
+      console.log("active", countStep);
     });
 
   }
