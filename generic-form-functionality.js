@@ -257,7 +257,6 @@ const nextStepActions = () => {
         calcAndSetWhiteSpace(activeSection);
         activeSection.scrollIntoView(true);
         checkButtonStep();
-        activeSection.querySelector("input, textarea").focus();
       } else {
           checkButtonStep();
     } return countStep;

@@ -50,9 +50,9 @@ const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"
 
 function switchTheme(e) {
     if (e.target.checked) {
-        document.documentElement.setAttribute("data-theme", "dark");
-      //  localStorage.setItem("default-theme", "false");  // saving setting to local storage and media query for preferred theme still needed
-        document.querySelector(".theme-icon").innerHTML="🌜";
+      document.documentElement.setAttribute("data-theme", "dark");
+    // localStorage.setItem("default-theme", "false");  // saving setting to local storage and media query for preferred theme still needed
+      document.querySelector(".theme-icon").innerHTML="🌜";
       console.log("DARK MODE");
     }
     else {
