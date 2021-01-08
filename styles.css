@@ -13,14 +13,16 @@
   This will hide the focus indicator if the element receives focus via the mouse,
   but it will still show up on keyboard focus.
 */
-*:focus:not(.focus-visible) {
+*:focus:not(.focus-visible),
+#logo {
   outline: none;
 }
 
-/* Add custom focus style for keyboard interactions. Need additional selector to target custom radio labels as default input is hidden */
+/* Add custom focus style for keyboard interactions. Need additional selector to target nightmode checkbox + custom radio labels as default input is hidden */
+.theme-switch input:focus-visible + span,
 .field-radio-button input:focus-visible + label,
 .focus-visible {
-  outline: lightgreen solid 3px !important;
+  box-shadow: 0 0 0 3px lightgreen !important;
 }
 
 :root {
