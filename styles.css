@@ -22,6 +22,8 @@
 .theme-switch input:focus-visible + span,
 .field-radio-button input:focus-visible + label,
 .focus-visible {
+  -webkit-appearance: none;
+  -webkit-box-shadow: 0 0 0 3px lightgreen !important;
   box-shadow: 0 0 0 3px lightgreen !important;
 }
 
