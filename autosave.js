@@ -29,7 +29,6 @@ const autosaveRadio = (radioArrayParam) => {
   });
 }
 
-
 // FOR USE ON MAIN.JS ON WINDOW LOAD TO INIT ANY ANSWERS SAVED TO SESSIONSTORAGE
 const initSavedAnswers = () => {
   // update textarea fields with autosave value

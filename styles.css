@@ -9,6 +9,22 @@
   word-wrap: break-word;
 }
 
+/*
+  This will hide the focus indicator if the element receives focus via the mouse,
+  but it will still show up on keyboard focus.
+*/
+*:focus:not(.focus-visible),
+#logo {
+  outline: none;
+}
+
+/* Add custom focus style for keyboard interactions. Need additional selector to target nightmode checkbox + custom radio labels as default input is hidden */
+.theme-switch input:focus-visible + span,
+.field-radio-button input:focus-visible + label,
+.focus-visible {
+  box-shadow: 0 0 0 3px lightgreen !important;
+}
+
 :root {
   --font-xsmall: 12px;
   --font-small: 14px;
@@ -87,7 +103,7 @@ a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-
+  border: none;
   height: 60px;
   width: 100vw;
   z-index: 99;
@@ -103,7 +119,11 @@ a:hover {
 
 .theme-switch {
   margin-left: auto;
-  margin-right: 10%;
+  margin-right: 6%;
+}
+
+.theme-icon {
+  font-size: var(--font-large);
 }
 
 /* Main form container */
@@ -222,9 +242,9 @@ a:hover {
 }
 
 /* remove default selected input field styling */
-textarea:focus, input:focus, select {
+/* textarea:focus, input:focus, select {
     outline: none;
-}
+} */
 
 /* h1 styling for questions without standard primary label */
 .question-primary {
@@ -273,13 +293,24 @@ textarea:focus, input:focus, select {
 input[type="radio"] {
   opacity: 0;
 }
+
+  /* To reposition default radio selector so that :focus border style better fits around each radio input field.
+  Also changed .field-radio-button top margin from -12px to 4px to keep desired style */
+input[type="radio"] {
+  position: absolute;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 0;
+  width: 0;
+}
+
   /* To remove radio button fieldset default border */
 .fieldset-radio {
   border-style: none;
 }
 
 .field-radio-button {
-  margin: -12px -12px 0px -12px;
+  margin: 4px -12px 0px -12px;
 }
 
 .field-radio-button label {

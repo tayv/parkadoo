@@ -8,13 +8,15 @@
     <link rel="stylesheet" href="colors.css"/>
     <script src="main.js" type="module"></script>
     <script type="text/javascript" src="node_modules/dompurify/dist/purify.min.js"></script>
+    <script src="/node_modules/focus-visible/dist/focus-visible.min.js"></script>
   </head>
   <body>
     <header id="header-main">
         <div id="header-nav-container">
-          <a id="logo" href="index.html" rel="home">PARKADOO</a>
-          <label class="theme-switch" for="checkbox">
-            <input type="checkbox" id="checkbox" />
+          <a id="logo" href="index.html" rel="home">parkadoo.</a>
+          <label class="theme-switch" for="theme-cb">
+            <input type="checkbox" id="theme-cb" style="opacity:0"/>
+            <span class="theme-icon">☀️</span>
           </label>
         </div>
     </header>
@@ -24,10 +26,10 @@
         <section class="section-container" id="welcome-section">
           <!--Message Field-->
           <div class="field-container" id="active-section">
-              <h1 class="field-label-large">Hey! Got a parking problem? I can help &#x1F697;</h1>
-              <p>I'm a free app that helps you avoid and appeal parking tickets.
-              All you have to do is answer a few easy questions.
-              Are you ready?</p>
+              <h1 class="field-label-large">Got a parking ticket? Let me help!</h1>
+              <p>I'm a free app that helps you avoid and fight pesky parking tickets.
+              All you have to do is answer a few simple questions.</p>
+              <p>Ready to make your parking ticket go away? &#x1F697;</p>
           </div>
         </section>
         <!--Type of Parking Problem Radio Buttons-->
@@ -1232,7 +1234,7 @@
           <input class="button-cta button-next"
             type="button"
             name="next"
-            value="Get Started">
+            value="Fight My Ticket">
         </span>
       </div>
       <div class="cta-submit-container">

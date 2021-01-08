@@ -111,7 +111,7 @@ function isScrolledIntoView(el) {
     let activeElemTop = Math.round(rect.top);
     let activeElemBottom = Math.round(rect.bottom);
     let contentHeight = Math.round(document.getElementById("parking-form-main").offsetHeight);
-    let paddingHeight = Math.round(contentHeight * 0.1); // for more natural transition of active-class when div leaves viewing area
+    let paddingHeight = Math.round(contentHeight * 0.4); // for more natural transition of active-class when div leaves viewing area
     let topHeight = Math.round(headerHeight + paddingHeight);
     let bottomHeight = Math.round(contentHeight - paddingHeight);
     if (activeElemTop > bottomHeight) {
@@ -131,6 +131,38 @@ window.addEventListener("scroll", function() {
           capture: true,
           passive: true
         });
+
+// KEYBOARD ACCESSIBILITY
+  // Prevent form submission when pressing enter in an input field
+
+  // Radio buttons
+    //Execute a function to check for enter press and switch default action to use next button when the user releases a key on the keyboard
+  /*const allRadios = document.querySelectorAll("input[type=radio]");
+  console.log(allRadios);
+  allRadios.addEventListener("keyup", function(event) {
+    // Number 13 is the "Enter" key on the keyboard
+    if (event.keyCode === 13) {
+      // Cancel the default form submit action
+      event.preventDefault();
+      // Trigger the button element with a click
+      document.querySelectorAll(".button-next").click();
+    }
+  }); */
+/*
+  const addKeyboardEventListener = (className) => {
+    for(let i = 0; i < className.length; i++) {
+      className[i].addEventListener("keyup", function(event) {
+        // Number 13 is the "Enter" key on the keyboard
+        if (event.keyCode === 13) {
+          // Cancel the default form submit action
+         event.preventDefault();
+          // Trigger the button element with a click
+          document.querySelector(".button-next").click();
+        }
+      });
+    }
+  }; */
+
 
 // GENERIC FUNCTIONALITY - Previous/Next/Submit button visiblity and to scroll to next div/step.
 
@@ -310,6 +342,25 @@ document.getElementById("button-submit").onclick = () => {
 const addRadioEventListener = (rbClassName, updateConditionalsFunction) => {
   for(let i = 0; i < rbClassName.length; i++) {
     rbClassName[i].addEventListener("change", updateConditionalsFunction, false);
+
+    rbClassName[i].addEventListener("keypress", function(event) {
+      let complete = (countStep >= sectionsShowHideObj.showTheseSectionsArray.length - 1);
+      console.log("step complete", complete);
+        var x = event.cancelable;
+    //    console.log(x);
+      // Number 13 is the "Enter" key on the keyboard
+      if (!complete && event.keyCode === 13) {
+    //    console.log("TRIGGERED", x);
+        // Cancel the default form submit action
+        event.preventDefault();
+        // Trigger the button element with a click
+        console.log(document.querySelector(".button-next"))
+        document.querySelector(".button-next").click();
+
+      }
+      console.log("active", countStep);
+    });
+
   }
 };
 

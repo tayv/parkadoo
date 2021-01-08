@@ -50,17 +50,19 @@ const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"
 
 function switchTheme(e) {
     if (e.target.checked) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      //  localStorage.setItem('theme', 'dark');
+      document.documentElement.setAttribute("data-theme", "dark");
+    // localStorage.setItem("default-theme", "false");  // saving setting to local storage and media query for preferred theme still needed
+      document.querySelector(".theme-icon").innerHTML="🌜";
       console.log("DARK MODE");
     }
     else {
-      document.documentElement.setAttribute('data-theme', 'light');
-      //    localStorage.setItem('theme', 'light');
+      document.documentElement.setAttribute("data-theme", "light");
+     // localStorage.setItem("default-theme", "true");
+      document.querySelector(".theme-icon").innerHTML="☀️";
       console.log("LIGHT MODE");
     }
 }
 
-toggleSwitch.addEventListener('change', switchTheme, false);
+toggleSwitch.addEventListener("change", switchTheme, false);
 
 export {calcAndSetWhiteSpace, currentDateFormatted, upperCaseFirstLetter, lowerCaseFirstLetter, formatSentenceEnding};
