@@ -6,7 +6,6 @@ import {setLetterTemplate} from "/letter.js";
 import {calcAndSetWhiteSpace} from "/helper-functions.js";
 import {autosaveText, autosaveRadio} from "/autosave.js";
 
-
 // Sections
 const formSections = {
   // Holds the total number of sections

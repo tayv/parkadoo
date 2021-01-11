@@ -45,6 +45,25 @@ const formatSentenceEnding = (sentence) => {
   }
 };
 
+// Keyboard focus
+
+const setKeyboardFocus = () => {
+  document.querySelector("input.button-cta.button-next").focus();
+  console.log("SET FOCUS", document.querySelector("input.button-cta.button-next") );
+}
+
+// console.log  focused element
+document.addEventListener('focusin', function() {
+  console.log('focused: ', document.activeElement)
+}, true);
+/*
+// document.addEventListener('focusin', function() {
+document.addEventListener("keydown", function(event) {
+if key
+  document.activeElement
+}, true); */
+
+
 // For night mode toggle
 const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
 
@@ -65,4 +84,4 @@ function switchTheme(e) {
 
 toggleSwitch.addEventListener("change", switchTheme, false);
 
-export {calcAndSetWhiteSpace, currentDateFormatted, upperCaseFirstLetter, lowerCaseFirstLetter, formatSentenceEnding};
+export {calcAndSetWhiteSpace, currentDateFormatted, upperCaseFirstLetter, lowerCaseFirstLetter, formatSentenceEnding, setKeyboardFocus};
