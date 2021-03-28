@@ -13,6 +13,7 @@ import {
 window.onload = function() {
   initSavedAnswers();
   parkingProblemRadioSelection(); // parkingProblemRadioSelection() initializes form answers and applies any sessionStorage autosaved answers. Later sections are handled in subsequent sections _radioselection()
+//  setKeyboardFocus(); // Put focus on CTA so pressing enter starts questionnaire
 };
 
 // LIST OF VARIABLES FOR LETTER OUTPUT

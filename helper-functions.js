@@ -1,3 +1,5 @@
+import {activeSection} from "/generic-form-functionality.js";
+
 // GENERIC FUNCTIONALITY - To add whitespace to the end of the document so each section div will scroll to the top of the window when Next button selected
 const calcAndSetWhiteSpace = function(el) {
   let headerHeight = document.getElementById("header-main").offsetHeight;
