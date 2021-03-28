@@ -74,6 +74,26 @@ const clickActiveClass = () => {
   hideExtraSteps(countStep+1);
 }
 
+// focus element test code start
+const focusInput = () => {
+  let activeContainer = document.querySelector(".active-section-container");
+  activeContainer.querySelector("input").focus();
+  console.log("acitve", activeContainer);
+}
+
+document.addEventListener("keydown", function(event) {
+  let complete = (countStep >= sectionsShowHideObj.showTheseSectionsArray.length - 1);
+  if (!complete && event.key === "Enter") {
+    // Form isn't finished so cancel the default form submit action
+    event.preventDefault();
+    // Go to the next step
+    document.querySelector(".button-next").click();
+  }
+});
+
+// test code end. Remove event listener (commented out) in rb event on line 347
+
+
 // CLICK & SCROLL EVENTS TO HIGHLIGHT SECTION-CONTAINER WHEN USER INTERACTS WITH IT
 document.getElementById("parking-form-content").addEventListener("click", clickActiveClass);
 
@@ -84,9 +104,12 @@ const nextStepActionsScroll = () => {
       countStep++;
       activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep]
       sectionVisibility(sectionsShowHideObj);
+
       if (activeSection == document.querySelector("#finished-section-container")) return;
       activeSection.classList.add("active-section-container");
       activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
+      focusInput();
+
     } else {
         checkButtonStep();
     } return countStep;
@@ -101,6 +124,7 @@ const prevStepActionsScroll = () => {
         countStep--;
         activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
         activeSection.classList.add("active-section-container");
+        focusInput();
     }
     return countStep;
   };
@@ -123,7 +147,7 @@ function isScrolledIntoView(el) {
 }
 
 // ACTIVECLASS SCROLL LISTENER
-// needs lodash throttle still
+// may need lodash throttle function
 window.addEventListener("scroll", function() {
   isScrolledIntoView(activeSection);
     }, {
@@ -255,6 +279,7 @@ const nextStepActions = () => {
         activeSection.classList.add("active-section-container");
         calcAndSetWhiteSpace(activeSection);
         activeSection.scrollIntoView(true);
+        focusInput();
         checkButtonStep();
       } else {
           checkButtonStep();
@@ -276,6 +301,7 @@ const prevStepActions = () => {
         activeSection.classList.add("active-section-container");
         calcAndSetWhiteSpace(activeSection);
         activeSection.scrollIntoView(true);
+        focusInput();
     } return countStep;
   };
 
@@ -341,25 +367,6 @@ document.getElementById("button-submit").onclick = () => {
 const addRadioEventListener = (rbClassName, updateConditionalsFunction) => {
   for(let i = 0; i < rbClassName.length; i++) {
     rbClassName[i].addEventListener("change", updateConditionalsFunction, false);
-
-    rbClassName[i].addEventListener("keypress", function(event) {
-      let complete = (countStep >= sectionsShowHideObj.showTheseSectionsArray.length - 1);
-      console.log("step complete", complete);
-        var x = event.cancelable;
-    //    console.log(x);
-      // Number 13 is the "Enter" key on the keyboard
-      if (!complete && event.keyCode === 13) {
-    //    console.log("TRIGGERED", x);
-        // Cancel the default form submit action
-        event.preventDefault();
-        // Trigger the button element with a click
-        console.log(document.querySelector(".button-next"))
-        document.querySelector(".button-next").click();
-
-      }
-      console.log("active", countStep);
-    });
-
   }
 };
 
@@ -398,5 +405,5 @@ const setupRBEventListeners = () => {
 export {
   formSections, sectionsShowHideObj, checkButtonStep, parkingProblemRadioOptions,
   ticketIssuerRadioOptions, municipalityRadioOptions, studentOrEmployeeRadioOptions, ticketAccuracyRadioOptions,
-  ticketReasonRadioOptions, ticketAppealBylawRadioOptions, potentialTicketRadioOptions, allRadiosArray, setupRBEventListeners
+  ticketReasonRadioOptions, ticketAppealBylawRadioOptions, potentialTicketRadioOptions, allRadiosArray, setupRBEventListeners, activeSection
 };

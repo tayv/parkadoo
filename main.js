@@ -1,7 +1,7 @@
 import {initSavedAnswers} from "/autosave.js";
 import {setLetterTemplate, letterTemplate} from "/letter.js";
 import {checkBylawsOutputTemplate, cityBylawLink, cityBylawName, bylawTextObj} from "/bylaw.js";
-import {calcAndSetWhiteSpace, currentDateFormatted, upperCaseFirstLetter, lowerCaseFirstLetter, formatSentenceEnding, setKeyboardFocus} from "/helper-functions.js";
+import {calcAndSetWhiteSpace, currentDateFormatted, upperCaseFirstLetter, lowerCaseFirstLetter, formatSentenceEnding} from "/helper-functions.js";
 import {
   formSections, sectionsShowHideObj, checkButtonStep,
   parkingProblemRadioOptions, ticketIssuerRadioOptions, municipalityRadioOptions, studentOrEmployeeRadioOptions,
@@ -13,7 +13,7 @@ import {
 window.onload = function() {
   initSavedAnswers();
   parkingProblemRadioSelection(); // parkingProblemRadioSelection() initializes form answers and applies any sessionStorage autosaved answers. Later sections are handled in subsequent sections _radioselection()
-  setKeyboardFocus(); // Put focus on CTA so pressing enter starts questionnaire 
+//  setKeyboardFocus(); // Put focus on CTA so pressing enter starts questionnaire
 };
 
 // LIST OF VARIABLES FOR LETTER OUTPUT

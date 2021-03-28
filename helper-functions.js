@@ -1,3 +1,5 @@
+import {activeSection} from "/generic-form-functionality.js";
+
 // GENERIC FUNCTIONALITY - To add whitespace to the end of the document so each section div will scroll to the top of the window when Next button selected
 const calcAndSetWhiteSpace = function(el) {
   let headerHeight = document.getElementById("header-main").offsetHeight;
@@ -46,7 +48,7 @@ const formatSentenceEnding = (sentence) => {
 };
 
 // Keyboard focus
-
+/*
 const setKeyboardFocus = () => {
   document.querySelector("input.button-cta.button-next").focus();
   console.log("SET FOCUS", document.querySelector("input.button-cta.button-next") );
@@ -56,13 +58,28 @@ const setKeyboardFocus = () => {
 document.addEventListener('focusin', function() {
   console.log('focused: ', document.activeElement)
 }, true);
-/*
+
+
+const inputFields = document.querySelectorAll("input");
+const testChildNodes = document.getElementById("parking-problem-section").childNodes;
+
+console.log(testChildNodes[1].contains(inputFields[10]));
 // document.addEventListener('focusin', function() {
 document.addEventListener("keydown", function(event) {
-if key
-  document.activeElement
-}, true); */
+  if (event.key === "Enter") {
+    console.log(event.key);
+    if (activeSection.contains(document.activeElement)) {
+      console.log("IT WORKED");
+      activeSection.focus();
+      // PROBLEM: Need to select the first input field of activeSection and update focus. Also included in line 347, 356 of rb event listener in generic-form.js
+      console.log(activeSection.focus());
+    }
+  }
 
+  document.activeElement
+}, true);
+
+*/
 
 // For night mode toggle
 const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
@@ -84,4 +101,4 @@ function switchTheme(e) {
 
 toggleSwitch.addEventListener("change", switchTheme, false);
 
-export {calcAndSetWhiteSpace, currentDateFormatted, upperCaseFirstLetter, lowerCaseFirstLetter, formatSentenceEnding, setKeyboardFocus};
+export {calcAndSetWhiteSpace, currentDateFormatted, upperCaseFirstLetter, lowerCaseFirstLetter, formatSentenceEnding};
