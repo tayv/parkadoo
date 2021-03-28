@@ -74,16 +74,18 @@ const clickActiveClass = () => {
   hideExtraSteps(countStep+1);
 }
 
-// focus element test code start
+// SET focus
+// Sets UI focus to first input in the active section
+// Causes UI to break in FF
 const focusInput = () => {
   let activeContainer = document.querySelector(".active-section-container");
-  const inputRadio = activeContainer.querySelector("input");
-
-  if (inputRadio.type == "radio") {
+  const inputs = activeContainer.querySelector("input");
+  // Need to get first selected radio button in case user makes a different selection and then goes to prev section
+  if (inputs.type == "radio") {
   activeContainer.querySelector("input[type=radio]:checked").focus();
   } else {
-    activeContainer.querySelector("input").focus();
-  }
+      activeContainer.querySelector("input").focus();
+    }
 }
 
 document.addEventListener("keydown", function(event) {
@@ -95,8 +97,6 @@ document.addEventListener("keydown", function(event) {
     document.querySelector(".button-next").click();
   }
 });
-
-// test code end. Remove event listener (commented out) in rb event on line 347
 
 
 // CLICK & SCROLL EVENTS TO HIGHLIGHT SECTION-CONTAINER WHEN USER INTERACTS WITH IT
@@ -159,37 +159,6 @@ window.addEventListener("scroll", function() {
           capture: true,
           passive: true
         });
-
-// KEYBOARD ACCESSIBILITY
-  // Prevent form submission when pressing enter in an input field
-
-  // Radio buttons
-    //Execute a function to check for enter press and switch default action to use next button when the user releases a key on the keyboard
-  /*const allRadios = document.querySelectorAll("input[type=radio]");
-  console.log(allRadios);
-  allRadios.addEventListener("keyup", function(event) {
-    // Number 13 is the "Enter" key on the keyboard
-    if (event.keyCode === 13) {
-      // Cancel the default form submit action
-      event.preventDefault();
-      // Trigger the button element with a click
-      document.querySelectorAll(".button-next").click();
-    }
-  }); */
-/*
-  const addKeyboardEventListener = (className) => {
-    for(let i = 0; i < className.length; i++) {
-      className[i].addEventListener("keyup", function(event) {
-        // Number 13 is the "Enter" key on the keyboard
-        if (event.keyCode === 13) {
-          // Cancel the default form submit action
-         event.preventDefault();
-          // Trigger the button element with a click
-          document.querySelector(".button-next").click();
-        }
-      });
-    }
-  }; */
 
 
 // GENERIC FUNCTIONALITY - Previous/Next/Submit button visiblity and to scroll to next div/step.
