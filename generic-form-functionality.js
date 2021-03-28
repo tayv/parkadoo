@@ -77,8 +77,13 @@ const clickActiveClass = () => {
 // focus element test code start
 const focusInput = () => {
   let activeContainer = document.querySelector(".active-section-container");
-  activeContainer.querySelector("input").focus();
-  console.log("acitve", activeContainer);
+  const inputRadio = activeContainer.querySelector("input");
+
+  if (inputRadio.type == "radio") {
+  activeContainer.querySelector("input[type=radio]:checked").focus();
+  } else {
+    activeContainer.querySelector("input").focus();
+  }
 }
 
 document.addEventListener("keydown", function(event) {
