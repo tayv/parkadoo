@@ -6,6 +6,7 @@ import {setLetterTemplate} from "/letter.js";
 import {calcAndSetWhiteSpace} from "/helper-functions.js";
 import {autosaveText, autosaveRadio} from "/autosave.js";
 import {focusInput} from "/form-functionality/keyboard.js";
+import {clickActiveClass} from "/form-functionality/activeclass-click.js";
 
 // Sections
 const formSections = {
@@ -65,22 +66,9 @@ const footerHeight = document.getElementById("footer-main").offsetHeight;
 const visibleWindowHeight = (window.innerHeight - headerHeight - footerHeight);
 //  const throttledScroll = _.throttle(isScrolledIntoView(activeSection), 200); unable to import lodash
 
-const clickActiveClass = () => {
-  if (!event.target.closest("SECTION")) return; // short circuit if don't click on section-container or its child elements
-  removeActiveClass();
-  let sectionDiv = event.target.closest(".section-container");
-  sectionDiv.classList.add("active-section-container");
-  countStep = sectionsShowHideObj.showTheseSectionsArray.indexOf(sectionDiv);
-  checkButtonStep();
-  hideExtraSteps(countStep+1);
-}
 
 
-
-
-// CLICK & SCROLL EVENTS TO HIGHLIGHT SECTION-CONTAINER WHEN USER INTERACTS WITH IT
-document.getElementById("parking-form-content").addEventListener("click", clickActiveClass);
-
+// SCROLL EVENTS TO HIGHLIGHT SECTION-CONTAINER WHEN USER INTERACTS WITH IT
 const nextStepActionsScroll = () => {
       // want to check that the questionnaire hasn't finished and that the next step scrolling to hasn't been scrolled to already
     if ((countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1) && window.getComputedStyle(sectionsShowHideObj.showTheseSectionsArray[countStep+1]).display==="block")  {
@@ -358,6 +346,6 @@ const setupRBEventListeners = () => {
 export {
   formSections, sectionsShowHideObj, checkButtonStep, parkingProblemRadioOptions,
   ticketIssuerRadioOptions, municipalityRadioOptions, studentOrEmployeeRadioOptions, ticketAccuracyRadioOptions,
-  ticketReasonRadioOptions, ticketAppealBylawRadioOptions, potentialTicketRadioOptions, allRadiosArray, setupRBEventListeners,
-  activeSection, countStep
+  ticketReasonRadioOptions, ticketAppealBylawRadioOptions, potentialTicketRadioOptions, allRadiosArray,
+  setupRBEventListeners, activeSection, countStep, removeActiveClass, hideExtraSteps
 };

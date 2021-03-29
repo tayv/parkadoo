@@ -1,4 +1,4 @@
-import {removeActiveClass, countstep, checkButtonStep, hideExtraSteps} from "../generic-form-functionality.js";
+import {sectionsShowHideObj, removeActiveClass, countStep, checkButtonStep, hideExtraSteps} from "../generic-form-functionality.js";
 
 const clickActiveClass = () => {
   if (!event.target.closest("SECTION")) return; // short circuit if don't click on section-container or its child elements
@@ -15,7 +15,9 @@ document.getElementById("parking-form-content").addEventListener("click", clickA
 
 
 
-
+(function () {
+    console.log("FIRED");
+})();
 
 
 
