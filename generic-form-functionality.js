@@ -5,6 +5,7 @@ import {
 import {setLetterTemplate} from "/letter.js";
 import {calcAndSetWhiteSpace} from "/helper-functions.js";
 import {autosaveText, autosaveRadio} from "/autosave.js";
+import {focusInput} from "/form-functionality/keyboard.js";
 
 // Sections
 const formSections = {
@@ -74,29 +75,7 @@ const clickActiveClass = () => {
   hideExtraSteps(countStep+1);
 }
 
-// SET focus
-// Sets UI focus to first input in the active section
-// Causes UI to break in FF
-const focusInput = () => {
-  let activeContainer = document.querySelector(".active-section-container");
-  const inputs = activeContainer.querySelector("input");
-  // Need to get first selected radio button in case user makes a different selection and then goes to prev section
-  if (inputs.type == "radio") {
-  activeContainer.querySelector("input[type=radio]:checked").focus();
-  } else {
-      activeContainer.querySelector("input").focus();
-    }
-}
 
-document.addEventListener("keydown", function(event) {
-  let complete = (countStep >= sectionsShowHideObj.showTheseSectionsArray.length - 1);
-  if (!complete && event.key === "Enter") {
-    // Form isn't finished so cancel the default form submit action
-    event.preventDefault();
-    // Go to the next step
-    document.querySelector(".button-next").click();
-  }
-});
 
 
 // CLICK & SCROLL EVENTS TO HIGHLIGHT SECTION-CONTAINER WHEN USER INTERACTS WITH IT
@@ -379,5 +358,6 @@ const setupRBEventListeners = () => {
 export {
   formSections, sectionsShowHideObj, checkButtonStep, parkingProblemRadioOptions,
   ticketIssuerRadioOptions, municipalityRadioOptions, studentOrEmployeeRadioOptions, ticketAccuracyRadioOptions,
-  ticketReasonRadioOptions, ticketAppealBylawRadioOptions, potentialTicketRadioOptions, allRadiosArray, setupRBEventListeners, activeSection
+  ticketReasonRadioOptions, ticketAppealBylawRadioOptions, potentialTicketRadioOptions, allRadiosArray, setupRBEventListeners,
+  activeSection, countStep
 };
