@@ -1,11 +1,14 @@
-import {sectionsShowHideObj, removeActiveClass, countStep, checkButtonStep, hideExtraSteps} from "../generic-form-functionality.js";
+import {sectionsShowHideObj, removeActiveClass, checkButtonStep, hideExtraSteps} from "../generic-form-functionality.js";
+import {countStep, setCurrentStep} from "/form-functionality/step-tracker.js";
+
 
 const clickActiveClass = () => {
   if (!event.target.closest("SECTION")) return; // short circuit if don't click on section-container or its child elements
   removeActiveClass();
   let sectionDiv = event.target.closest(".section-container");
   sectionDiv.classList.add("active-section-container");
-  countStep = sectionsShowHideObj.showTheseSectionsArray.indexOf(sectionDiv);
+  // countStep = sectionsShowHideObj.showTheseSectionsArray.indexOf(sectionDiv);
+  setCurrentStep(sectionsShowHideObj.showTheseSectionsArray.indexOf(sectionDiv));
   checkButtonStep();
   hideExtraSteps(countStep+1);
 }
@@ -15,9 +18,6 @@ document.getElementById("parking-form-content").addEventListener("click", clickA
 
 
 
-(function () {
-    console.log("FIRED");
-})();
 
 
 

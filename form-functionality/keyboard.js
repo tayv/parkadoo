@@ -1,5 +1,6 @@
 import {countStep, sectionsShowHideObj} from "../generic-form-functionality.js";
 
+
 // Add event listener to stop the form from submitting when a user presses enter unless they're on the last step
 document.addEventListener("keydown", function(event) {
   let complete = (countStep >= sectionsShowHideObj.showTheseSectionsArray.length - 1);

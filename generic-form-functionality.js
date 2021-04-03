@@ -7,6 +7,7 @@ import {calcAndSetWhiteSpace} from "/helper-functions.js";
 import {autosaveText, autosaveRadio} from "/autosave.js";
 import {focusInput} from "/form-functionality/keyboard.js";
 import {clickActiveClass} from "/form-functionality/activeclass-click.js";
+import {countStep, setCurrentStep} from "/form-functionality/step-tracker.js";
 
 // Sections
 const formSections = {
@@ -44,7 +45,7 @@ const formSections = {
 
 // LIST OF VARIABLES
   // Used as index to track which step to show on button clicks
-let countStep = 0;
+// let countStep = 0;
 let finishedQuestions; // Boolean to check if questionnaire is done
   // Object of sections to show/hide. Needs to be object so can be mutated in main.js
 let sectionsShowHideObj = {
@@ -67,13 +68,12 @@ const visibleWindowHeight = (window.innerHeight - headerHeight - footerHeight);
 //  const throttledScroll = _.throttle(isScrolledIntoView(activeSection), 200); unable to import lodash
 
 
-
 // SCROLL EVENTS TO HIGHLIGHT SECTION-CONTAINER WHEN USER INTERACTS WITH IT
 const nextStepActionsScroll = () => {
       // want to check that the questionnaire hasn't finished and that the next step scrolling to hasn't been scrolled to already
     if ((countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1) && window.getComputedStyle(sectionsShowHideObj.showTheseSectionsArray[countStep+1]).display==="block")  {
       removeActiveClass();
-      countStep++;
+      setCurrentStep(countStep + 1);
       activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep]
       sectionVisibility(sectionsShowHideObj);
 
@@ -93,7 +93,7 @@ const prevStepActionsScroll = () => {
       removeActiveClass();
     } else if (countStep >= 1) {
         removeActiveClass();
-        countStep--;
+        setCurrentStep(countStep - 1);
         activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
         activeSection.classList.add("active-section-container");
         focusInput();
@@ -214,7 +214,7 @@ const sectionVisibility = (sectionsShowHideObj) => {
 const nextStepActions = () => {
    if (countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1) {
         removeActiveClass();
-        countStep++;
+        setCurrentStep(countStep + 1);
         activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
         sectionVisibility(sectionsShowHideObj);
         activeSection.classList.add("active-section-container");
@@ -234,7 +234,7 @@ const prevStepActions = () => {
     } else if (countStep >= 1) {
         removeActiveClass();
         hideExtraSteps(countStep);
-        countStep--;
+        setCurrentStep(countStep - 1);
         activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
         sectionVisibility(sectionsShowHideObj);
         checkButtonStep();
