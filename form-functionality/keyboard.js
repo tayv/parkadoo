@@ -20,10 +20,10 @@ const focusInput = () => {
   let activeContainer = document.querySelector(".active-section-container");
   let inputs = activeContainer.querySelector("input");
   // Need to get first selected radio button in case user makes a different selection and then goes to prev section
-  if (inputs.type == "radio") {
+  if (inputs && inputs.type == "radio") {
     activeContainer.querySelector("input[type=radio]:checked").focus();
   } else {
-      activeContainer.querySelector("input").focus();
+    //  activeContainer.querySelector("input").focus();
     }
 }
 
