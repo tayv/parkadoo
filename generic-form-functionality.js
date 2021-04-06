@@ -6,8 +6,8 @@ import {setLetterTemplate} from "/letter.js";
 import {calcAndSetWhiteSpace} from "/helper-functions.js";
 import {autosaveText, autosaveRadio} from "/autosave.js";
 import {focusInput} from "/form-functionality/keyboard.js";
-import {clickActiveClass} from "/form-functionality/activeclass-click.js";
-import {countStep, setCurrentStep} from "/form-functionality/step-tracker.js";
+import {activeSection, setActiveSection, clickActiveClass} from "/form-functionality/activeclass-click.js";
+import {countStep, setCurrentStep, sectionsShowHideObj} from "/form-functionality/step-tracker.js";
 
 // Sections
 const formSections = {
@@ -43,15 +43,8 @@ const formSections = {
   finishedSectionDiv: document.getElementById("finished-section-container")
 };
 
-// LIST OF VARIABLES
-  // Used as index to track which step to show on button clicks
-// let countStep = 0;
-let finishedQuestions; // Boolean to check if questionnaire is done
-  // Object of sections to show/hide. Needs to be object so can be mutated in main.js
-let sectionsShowHideObj = {
-  hideTheseSectionsArray: [],
-  showTheseSectionsArray: []
-};
+
+
 
 // To hide multiple next steps if user skips multiple sections by scrolling up
 const hideExtraSteps = (counter) => {
@@ -60,8 +53,8 @@ const hideExtraSteps = (counter) => {
   });
 }
 
-// For Active-class on scrolling
-let activeSection = formSections.welcomeSection; // to keep track of current step when scrolling
+// Used by Active-class on scrolling
+//let activeSection = formSections.welcomeSection; // to keep track of current section container when scrolling
 const headerHeight = document.getElementById("header-main").offsetHeight;
 const footerHeight = document.getElementById("footer-main").offsetHeight;
 const visibleWindowHeight = (window.innerHeight - headerHeight - footerHeight);
@@ -74,12 +67,12 @@ const nextStepActionsScroll = () => {
     if ((countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1) && window.getComputedStyle(sectionsShowHideObj.showTheseSectionsArray[countStep+1]).display==="block")  {
       removeActiveClass();
       setCurrentStep(countStep + 1);
-      activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep]
+      setActiveSection(sectionsShowHideObj.showTheseSectionsArray[countStep]);
       sectionVisibility(sectionsShowHideObj);
 
-      if (activeSection == document.querySelector("#finished-section-container")) return;
+      if (activeSection == document.querySelector("#finished-section-container")) return; // short circuit if last section
       activeSection.classList.add("active-section-container");
-      activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
+      setActiveSection(sectionsShowHideObj.showTheseSectionsArray[countStep]);
       focusInput();
 
     } else {
@@ -94,7 +87,7 @@ const prevStepActionsScroll = () => {
     } else if (countStep >= 1) {
         removeActiveClass();
         setCurrentStep(countStep - 1);
-        activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
+        setActiveSection(sectionsShowHideObj.showTheseSectionsArray[countStep]);
         activeSection.classList.add("active-section-container");
         focusInput();
     }
@@ -215,7 +208,7 @@ const nextStepActions = () => {
    if (countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1) {
         removeActiveClass();
         setCurrentStep(countStep + 1);
-        activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
+        setActiveSection(sectionsShowHideObj.showTheseSectionsArray[countStep]);
         sectionVisibility(sectionsShowHideObj);
         activeSection.classList.add("active-section-container");
         calcAndSetWhiteSpace(activeSection);
@@ -235,7 +228,7 @@ const prevStepActions = () => {
         removeActiveClass();
         hideExtraSteps(countStep);
         setCurrentStep(countStep - 1);
-        activeSection = sectionsShowHideObj.showTheseSectionsArray[countStep];
+        setActiveSection(sectionsShowHideObj.showTheseSectionsArray[countStep]);
         sectionVisibility(sectionsShowHideObj);
         checkButtonStep();
         if (activeSection == document.querySelector("#welcome-section")) return;
@@ -344,8 +337,8 @@ const setupRBEventListeners = () => {
 
 
 export {
-  formSections, sectionsShowHideObj, checkButtonStep, parkingProblemRadioOptions,
+  formSections, checkButtonStep, parkingProblemRadioOptions,
   ticketIssuerRadioOptions, municipalityRadioOptions, studentOrEmployeeRadioOptions, ticketAccuracyRadioOptions,
   ticketReasonRadioOptions, ticketAppealBylawRadioOptions, potentialTicketRadioOptions, allRadiosArray,
-  setupRBEventListeners, activeSection, countStep, removeActiveClass, hideExtraSteps
+  setupRBEventListeners, removeActiveClass, hideExtraSteps
 };

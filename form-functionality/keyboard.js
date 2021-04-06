@@ -1,5 +1,5 @@
-import {countStep, sectionsShowHideObj} from "../generic-form-functionality.js";
-
+//import {} from "../generic-form-functionality.js";
+import {countStep, setCurrentStep, sectionsShowHideObj} from "/form-functionality/step-tracker.js";
 
 // Add event listener to stop the form from submitting when a user presses enter unless they're on the last step
 document.addEventListener("keydown", function(event) {

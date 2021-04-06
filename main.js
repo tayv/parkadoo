@@ -3,17 +3,16 @@ import {setLetterTemplate, letterTemplate} from "/letter.js";
 import {checkBylawsOutputTemplate, cityBylawLink, cityBylawName, bylawTextObj} from "/bylaw.js";
 import {calcAndSetWhiteSpace, currentDateFormatted, upperCaseFirstLetter, lowerCaseFirstLetter, formatSentenceEnding} from "/helper-functions.js";
 import {
-  formSections, sectionsShowHideObj, checkButtonStep,
-  parkingProblemRadioOptions, ticketIssuerRadioOptions, municipalityRadioOptions, studentOrEmployeeRadioOptions,
-  ticketAccuracyRadioOptions, ticketReasonRadioOptions, ticketAppealBylawRadioOptions, potentialTicketRadioOptions,
-  allRadiosArray, setupRBEventListeners
+  checkButtonStep,parkingProblemRadioOptions, ticketIssuerRadioOptions, municipalityRadioOptions,
+  studentOrEmployeeRadioOptions, ticketAccuracyRadioOptions, ticketReasonRadioOptions, formSections,
+  ticketAppealBylawRadioOptions, potentialTicketRadioOptions, allRadiosArray, setupRBEventListeners
 } from "/generic-form-functionality.js";
+import {countStep, setCurrentStep, sectionsShowHideObj} from "/form-functionality/step-tracker.js";
 
 // TO LOAD DEFAULT VISIBILITY CONDITIONS
 window.onload = function() {
   initSavedAnswers();
   parkingProblemRadioSelection(); // parkingProblemRadioSelection() initializes form answers and applies any sessionStorage autosaved answers. Later sections are handled in subsequent sections _radioselection()
-//  setKeyboardFocus(); // Put focus on CTA so pressing enter starts questionnaire
 };
 
 // LIST OF VARIABLES FOR LETTER OUTPUT

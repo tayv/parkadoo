@@ -7,6 +7,10 @@ function setCurrentStep(value) {
     return countStep = value;
 }
 
+// Each section to be shown or hidden gets added here. Current step determined using counStep as index
+let sectionsShowHideObj = {
+  hideTheseSectionsArray: [],
+  showTheseSectionsArray: []
+};
 
-
-export {countStep, setCurrentStep};
+export {countStep, setCurrentStep, sectionsShowHideObj};
