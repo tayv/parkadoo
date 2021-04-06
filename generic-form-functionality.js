@@ -54,7 +54,6 @@ const hideExtraSteps = (counter) => {
 }
 
 // Used by Active-class on scrolling
-//let activeSection = formSections.welcomeSection; // to keep track of current section container when scrolling
 const headerHeight = document.getElementById("header-main").offsetHeight;
 const footerHeight = document.getElementById("footer-main").offsetHeight;
 const visibleWindowHeight = (window.innerHeight - headerHeight - footerHeight);
@@ -69,11 +68,7 @@ const nextStepActionsScroll = () => {
       setCurrentStep(countStep + 1);
       setActiveSection(sectionsShowHideObj.showTheseSectionsArray[countStep]);
       sectionVisibility(sectionsShowHideObj);
-
-      if (activeSection == document.querySelector("#finished-section-container")) return; // short circuit if last section
-      activeSection.classList.add("active-section-container");
-      setActiveSection(sectionsShowHideObj.showTheseSectionsArray[countStep]);
-      focusInput();
+  //    focusInput();
 
     } else {
         checkButtonStep();
@@ -88,8 +83,7 @@ const prevStepActionsScroll = () => {
         removeActiveClass();
         setCurrentStep(countStep - 1);
         setActiveSection(sectionsShowHideObj.showTheseSectionsArray[countStep]);
-        activeSection.classList.add("active-section-container");
-        focusInput();
+    //    focusInput();
     }
     return countStep;
   };
@@ -210,10 +204,9 @@ const nextStepActions = () => {
         setCurrentStep(countStep + 1);
         setActiveSection(sectionsShowHideObj.showTheseSectionsArray[countStep]);
         sectionVisibility(sectionsShowHideObj);
-        activeSection.classList.add("active-section-container");
         calcAndSetWhiteSpace(activeSection);
         activeSection.scrollIntoView(true);
-        focusInput();
+    //    focusInput();
         checkButtonStep();
       } else {
           checkButtonStep();
@@ -231,11 +224,9 @@ const prevStepActions = () => {
         setActiveSection(sectionsShowHideObj.showTheseSectionsArray[countStep]);
         sectionVisibility(sectionsShowHideObj);
         checkButtonStep();
-        if (activeSection == document.querySelector("#welcome-section")) return;
-        activeSection.classList.add("active-section-container");
         calcAndSetWhiteSpace(activeSection);
         activeSection.scrollIntoView(true);
-        focusInput();
+    //    focusInput();
     } return countStep;
   };
 

@@ -1,11 +1,17 @@
 import {formSections, removeActiveClass, checkButtonStep, hideExtraSteps} from "../generic-form-functionality.js";
 import {countStep, setCurrentStep, sectionsShowHideObj} from "/form-functionality/step-tracker.js";
 
-// Initialize variable that will keep track of active section container 
+// Initialize variable that will keep track of active section container
 let activeSection;
 // To update the active section
 function setActiveSection(section) {
   activeSection = section;
+  // short circuit if first or last section as they don't need active class
+  if (activeSection == (document.querySelector("#welcome-section") || document.querySelector("#finished-section-container"))) {
+    return;
+  } 
+  // Add active css style to any section other than first and last section
+  activeSection.classList.add("active-section-container");
 }
 
 // Set the active section on click
