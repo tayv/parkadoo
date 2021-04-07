@@ -1,4 +1,4 @@
-import {activeSection, setActiveClass} from "/form-functionality/activeclass-click.js";
+import {activeSection, setActiveClass} from "/form-functionality/active-section.js";
 
 // GENERIC FUNCTIONALITY - To add whitespace to the end of the document so each section div will scroll to the top of the window when Next button selected
 const calcAndSetWhiteSpace = function(el) {

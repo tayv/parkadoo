@@ -1,4 +1,4 @@
-import {activeSection} from "/form-functionality/activeclass-click.js";
+import {activeSection} from "/form-functionality/active-section.js";
 import {countStep, setCurrentStep, sectionsShowHideObj} from "/form-functionality/step-tracker.js";
 
 // Add event listener to stop the form from submitting when a user presses enter unless they're on the last step

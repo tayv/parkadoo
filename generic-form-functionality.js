@@ -6,7 +6,7 @@ import {setLetterTemplate} from "/letter.js";
 import {calcAndSetWhiteSpace} from "/helper-functions.js";
 import {autosaveText, autosaveRadio} from "/autosave.js";
 import {focusInput} from "/form-functionality/keyboard.js";
-import {activeSection, setActiveClass, removeActiveClass, clickActiveClass} from "/form-functionality/activeclass-click.js";
+import {activeSection, setActiveClass, removeActiveClass, clickActiveClass} from "/form-functionality/active-section.js";
 import {countStep, setCurrentStep, sectionsShowHideObj} from "/form-functionality/step-tracker.js";
 
 // Sections
