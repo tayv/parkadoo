@@ -6,7 +6,7 @@ import {setLetterTemplate} from "/letter.js";
 import {calcAndSetWhiteSpace} from "/helper-functions.js";
 import {autosaveText, autosaveRadio} from "/autosave.js";
 import {focusInput} from "/form-functionality/keyboard.js";
-import {activeSection, setActiveSection, clickActiveClass} from "/form-functionality/activeclass-click.js";
+import {activeSection, setActiveClass, removeActiveClass, clickActiveClass} from "/form-functionality/activeclass-click.js";
 import {countStep, setCurrentStep, sectionsShowHideObj} from "/form-functionality/step-tracker.js";
 
 // Sections
@@ -44,8 +44,6 @@ const formSections = {
 };
 
 
-
-
 // To hide multiple next steps if user skips multiple sections by scrolling up
 const hideExtraSteps = (counter) => {
   sectionsShowHideObj.showTheseSectionsArray.slice(counter).forEach(function(element) {
@@ -58,61 +56,6 @@ const headerHeight = document.getElementById("header-main").offsetHeight;
 const footerHeight = document.getElementById("footer-main").offsetHeight;
 const visibleWindowHeight = (window.innerHeight - headerHeight - footerHeight);
 //  const throttledScroll = _.throttle(isScrolledIntoView(activeSection), 200); unable to import lodash
-
-
-// SCROLL EVENTS TO HIGHLIGHT SECTION-CONTAINER WHEN USER INTERACTS WITH IT
-const nextStepActionsScroll = () => {
-      // want to check that the questionnaire hasn't finished and that the next step scrolling to hasn't been scrolled to already
-    if ((countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1) && window.getComputedStyle(sectionsShowHideObj.showTheseSectionsArray[countStep+1]).display==="block")  {
-      removeActiveClass();
-      setCurrentStep(countStep + 1);
-      setActiveSection(sectionsShowHideObj.showTheseSectionsArray[countStep]);
-      sectionVisibility(sectionsShowHideObj);
-  //    focusInput();
-
-    } else {
-        checkButtonStep();
-    } return countStep;
-  };
-
-const prevStepActionsScroll = () => {
-    if (countStep < 1) {
-      checkButtonStep();
-      removeActiveClass();
-    } else if (countStep >= 1) {
-        removeActiveClass();
-        setCurrentStep(countStep - 1);
-        setActiveSection(sectionsShowHideObj.showTheseSectionsArray[countStep]);
-    //    focusInput();
-    }
-    return countStep;
-  };
-
-function isScrolledIntoView(el) {
-    let rect = el.getBoundingClientRect();
-    let activeElemTop = Math.round(rect.top);
-    let activeElemBottom = Math.round(rect.bottom);
-    let contentHeight = Math.round(document.getElementById("parking-form-main").offsetHeight);
-    let paddingHeight = Math.round(contentHeight * 0.4); // for more natural transition of active-class when div leaves viewing area
-    let topHeight = Math.round(headerHeight + paddingHeight);
-    let bottomHeight = Math.round(contentHeight - paddingHeight);
-    if (activeElemTop > bottomHeight) {
-      // element is above the header so scrolling up
-      prevStepActionsScroll();
-    } else if (activeElemBottom < topHeight) {
-      // element is below the footer so scrolling down
-      nextStepActionsScroll();
-    }
-}
-
-// ACTIVECLASS SCROLL LISTENER
-// may need lodash throttle function
-window.addEventListener("scroll", function() {
-  isScrolledIntoView(activeSection);
-    }, {
-          capture: true,
-          passive: true
-        });
 
 
 // GENERIC FUNCTIONALITY - Previous/Next/Submit button visiblity and to scroll to next div/step.
@@ -189,20 +132,13 @@ const sectionVisibility = (sectionsShowHideObj) => {
   }
 };
 
-  // TO REMOVE ACTIVE SECTION STYLES
-  const removeActiveClass = () => {
-    sectionsShowHideObj.showTheseSectionsArray.forEach(section => {
-      section.classList.remove("active-section-container");
-    });
-  }
-
-  // functionality for displaying steps on prev/next button click
+// functionality for displaying steps on prev/next button click
 
 const nextStepActions = () => {
    if (countStep < sectionsShowHideObj.showTheseSectionsArray.length - 1) {
         removeActiveClass();
         setCurrentStep(countStep + 1);
-        setActiveSection(sectionsShowHideObj.showTheseSectionsArray[countStep]);
+        setActiveClass(sectionsShowHideObj.showTheseSectionsArray[countStep]);
         sectionVisibility(sectionsShowHideObj);
         calcAndSetWhiteSpace(activeSection);
         activeSection.scrollIntoView(true);
@@ -221,7 +157,7 @@ const prevStepActions = () => {
         removeActiveClass();
         hideExtraSteps(countStep);
         setCurrentStep(countStep - 1);
-        setActiveSection(sectionsShowHideObj.showTheseSectionsArray[countStep]);
+        setActiveClass(sectionsShowHideObj.showTheseSectionsArray[countStep]);
         sectionVisibility(sectionsShowHideObj);
         checkButtonStep();
         calcAndSetWhiteSpace(activeSection);
@@ -328,8 +264,8 @@ const setupRBEventListeners = () => {
 
 
 export {
-  formSections, checkButtonStep, parkingProblemRadioOptions,
+  formSections, checkButtonStep, parkingProblemRadioOptions, sectionVisibility,
   ticketIssuerRadioOptions, municipalityRadioOptions, studentOrEmployeeRadioOptions, ticketAccuracyRadioOptions,
   ticketReasonRadioOptions, ticketAppealBylawRadioOptions, potentialTicketRadioOptions, allRadiosArray,
-  setupRBEventListeners, removeActiveClass, hideExtraSteps
+  setupRBEventListeners, hideExtraSteps, headerHeight, footerHeight, visibleWindowHeight
 };
