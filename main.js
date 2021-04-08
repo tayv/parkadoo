@@ -8,11 +8,13 @@ import {
   ticketAppealBylawRadioOptions, potentialTicketRadioOptions, allRadiosArray, setupRBEventListeners
 } from "/generic-form-functionality.js";
 import {countStep, setCurrentStep, sectionsShowHideObj} from "/form-functionality/step-tracker.js";
+import {checkSavedTheme} from "/app-generic/theme.js";
 
 // TO LOAD DEFAULT VISIBILITY CONDITIONS
 window.onload = function() {
   initSavedAnswers();
   parkingProblemRadioSelection(); // parkingProblemRadioSelection() initializes form answers and applies any sessionStorage autosaved answers. Later sections are handled in subsequent sections _radioselection()
+  checkSavedTheme();
 };
 
 // LIST OF VARIABLES FOR LETTER OUTPUT

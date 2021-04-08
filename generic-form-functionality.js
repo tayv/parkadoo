@@ -203,6 +203,7 @@ const formAction = (str) => {
   }
 }
 
+/*
 // Using sessionStorage to save user answers
 document.getElementById("button-submit").onclick = () => {
   try {
@@ -222,7 +223,7 @@ document.getElementById("button-submit").onclick = () => {
 
   formAction(templateType); // To send to right html page
 };
-
+*/
 
 // GENERIC FUNCTIONALITY: Add event listener to radio buttons within visibility condition function
 const addRadioEventListener = (rbClassName, updateConditionalsFunction) => {
