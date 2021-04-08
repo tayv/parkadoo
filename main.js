@@ -1,7 +1,7 @@
 import {initSavedAnswers} from "/autosave.js";
 import {setLetterTemplate, letterTemplate} from "/letter.js";
 import {checkBylawsOutputTemplate, cityBylawLink, cityBylawName, bylawTextObj} from "/bylaw.js";
-import {calcAndSetWhiteSpace, currentDateFormatted, upperCaseFirstLetter, lowerCaseFirstLetter, formatSentenceEnding} from "/helper-functions.js";
+import {calcAndSetWhiteSpace, currentDateFormatted, upperCaseFirstLetter, lowerCaseFirstLetter, formatSentenceEnding} from "/app-generic/formatting.js";
 import {
   checkButtonStep,parkingProblemRadioOptions, ticketIssuerRadioOptions, municipalityRadioOptions,
   studentOrEmployeeRadioOptions, ticketAccuracyRadioOptions, ticketReasonRadioOptions, formSections,

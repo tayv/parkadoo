@@ -3,7 +3,7 @@ import {
   ticketAccuracyRadioSelection, ticketReasonRadioSelection, ticketAppealBylawRadioSelection, potentialTicketRadioSelection
 } from "/main.js";
 import {setLetterTemplate} from "/letter.js";
-import {calcAndSetWhiteSpace} from "/helper-functions.js";
+import {calcAndSetWhiteSpace} from "/app-generic/formatting.js";
 import {autosaveText, autosaveRadio} from "/autosave.js";
 import {focusInput} from "/form-functionality/keyboard.js";
 import {activeSection, setActiveClass, removeActiveClass, clickActiveClass} from "/form-functionality/active-section.js";
