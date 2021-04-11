@@ -51,10 +51,7 @@ const hideExtraSteps = (counter) => {
   });
 }
 
-// Used by Active-class on scrolling
-const headerHeight = document.getElementById("header-main").offsetHeight;
-const footerHeight = document.getElementById("footer-main").offsetHeight;
-const visibleWindowHeight = (window.innerHeight - headerHeight - footerHeight);
+
 //  const throttledScroll = _.throttle(isScrolledIntoView(activeSection), 200); unable to import lodash
 
 
@@ -247,5 +244,5 @@ export {
   formSections, checkButtonStep, parkingProblemRadioOptions, sectionVisibility,
   ticketIssuerRadioOptions, municipalityRadioOptions, studentOrEmployeeRadioOptions, ticketAccuracyRadioOptions,
   ticketReasonRadioOptions, ticketAppealBylawRadioOptions, potentialTicketRadioOptions, allRadiosArray,
-  setupRBEventListeners, hideExtraSteps, headerHeight, footerHeight, visibleWindowHeight
+  setupRBEventListeners, hideExtraSteps
 };

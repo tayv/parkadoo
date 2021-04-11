@@ -1,9 +1,13 @@
-import {formSections, checkButtonStep, hideExtraSteps, headerHeight, footerHeight, visibleWindowHeight, sectionVisibility} from "../generic-form-functionality.js";
+import {formSections, checkButtonStep, hideExtraSteps, sectionVisibility} from "../generic-form-functionality.js";
 import {countStep, setCurrentStep, sectionsShowHideObj} from "/form-functionality/step-tracker.js";
 
-// INITIALIZE
+// INITIALIZE VARIABLES
 // setup variable and function to be used by click and scroll events in order to set css styling for active section
 let activeSection;
+// Used by Active-class on scrolling
+const headerHeight = document.getElementById("header-main").offsetHeight;
+const footerHeight = document.getElementById("footer-main").offsetHeight;
+const visibleWindowHeight = (window.innerHeight - headerHeight - footerHeight);
 
 // To update the active section
 function setActiveClass(section) {
