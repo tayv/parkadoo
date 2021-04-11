@@ -2,13 +2,13 @@ import {initSavedAnswers} from "/form-functionality/autosave.js";
 import {setLetterTemplate, letterTemplate} from "/letter.js";
 import {checkBylawsOutputTemplate, cityBylawLink, cityBylawName, bylawTextObj} from "/bylaw.js";
 import {calcAndSetWhiteSpace, currentDateFormatted, upperCaseFirstLetter, lowerCaseFirstLetter, formatSentenceEnding} from "/app-generic/formatting.js";
-import {
-  checkButtonStep,parkingProblemRadioOptions, ticketIssuerRadioOptions, municipalityRadioOptions,
-  studentOrEmployeeRadioOptions, ticketAccuracyRadioOptions, ticketReasonRadioOptions, formSections,
-  ticketAppealBylawRadioOptions, potentialTicketRadioOptions, allRadiosArray, setupRBEventListeners
-} from "/generic-form-functionality.js";
+import {checkButtonStep, formSections} from "/generic-form-functionality.js";
 import {countStep, setCurrentStep, sectionsShowHideObj} from "/form-functionality/step-tracker.js";
 import {checkSavedTheme} from "/app-generic/theme.js";
+import {
+  setupRBEventListeners, parkingProblemRadioOptions, ticketIssuerRadioOptions, municipalityRadioOptions,
+  studentOrEmployeeRadioOptions, ticketAccuracyRadioOptions, ticketReasonRadioOptions,
+  ticketAppealBylawRadioOptions, potentialTicketRadioOptions, allRadiosArray} from "/form-functionality/radio-buttons.js";
 
 // TO LOAD DEFAULT VISIBILITY CONDITIONS
 window.onload = function() {

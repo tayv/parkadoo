@@ -8,6 +8,7 @@ import {autosaveText, autosaveRadio} from "/form-functionality/autosave.js";
 import {focusInput} from "/form-functionality/keyboard.js";
 import {activeSection, setActiveClass, removeActiveClass, clickActiveClass} from "/form-functionality/active-section.js";
 import {countStep, setCurrentStep, sectionsShowHideObj} from "/form-functionality/step-tracker.js";
+import {allRadiosArray} from "/form-functionality/radio-buttons.js";
 
 // Sections
 const formSections = {
@@ -201,48 +202,11 @@ const formAction = (str) => {
 }
 
 
-// GENERIC FUNCTIONALITY: Add event listener to radio buttons within visibility condition function
-const addRadioEventListener = (rbClassName, updateConditionalsFunction) => {
-  for(let i = 0; i < rbClassName.length; i++) {
-    rbClassName[i].addEventListener("change", updateConditionalsFunction, false);
-  }
-};
 
-// Used to loop through section rb's to add event listeners
-const parkingProblemRadioOptions = document.querySelectorAll(".parking-problem-radio-class");
-const ticketIssuerRadioOptions = document.querySelectorAll(".ticket-issuer-radio-class");
-const municipalityRadioOptions = document.querySelectorAll(".municipality-radio-class");
-const studentOrEmployeeRadioOptions = document.querySelectorAll(".student-or-employee-class");
-const ticketAccuracyRadioOptions = document.querySelectorAll(".ticket-accuracy-radio-class");
-const ticketReasonRadioOptions = document.querySelectorAll(".ticket-reason-radio-class");
-const ticketAppealBylawRadioOptions = document.querySelectorAll(".yn-ticket-valid-class");
-const potentialTicketRadioOptions = document.querySelectorAll(".potential-ticket-radio-class");
-const allRadiosArray = [
-  parkingProblemRadioOptions,
-  ticketIssuerRadioOptions,
-  municipalityRadioOptions,
-  studentOrEmployeeRadioOptions,
-  ticketAccuracyRadioOptions,
-  ticketReasonRadioOptions,
-  ticketAppealBylawRadioOptions,
-  potentialTicketRadioOptions
-];
 
-const setupRBEventListeners = () => {
-  addRadioEventListener(parkingProblemRadioOptions, parkingProblemRadioSelection);
-  addRadioEventListener(ticketIssuerRadioOptions, ticketIssuerSelection);
-  addRadioEventListener(municipalityRadioOptions, municipalityRadioSelection);
-  addRadioEventListener(studentOrEmployeeRadioOptions, studentOrEmployeeRadioSelection);
-  addRadioEventListener(ticketAccuracyRadioOptions, ticketAccuracyRadioSelection);
-  addRadioEventListener(ticketReasonRadioOptions, ticketReasonRadioSelection);
-  addRadioEventListener(ticketAppealBylawRadioOptions, ticketAppealBylawRadioSelection);
-  addRadioEventListener(potentialTicketRadioOptions, potentialTicketRadioSelection);
-} // Note this is being called at bottom of main.js to initialize rb event listeners
+
 
 
 export {
-  formSections, checkButtonStep, parkingProblemRadioOptions, sectionVisibility,
-  ticketIssuerRadioOptions, municipalityRadioOptions, studentOrEmployeeRadioOptions, ticketAccuracyRadioOptions,
-  ticketReasonRadioOptions, ticketAppealBylawRadioOptions, potentialTicketRadioOptions, allRadiosArray,
-  setupRBEventListeners, hideExtraSteps
+  formSections, checkButtonStep, sectionVisibility, hideExtraSteps
 };
