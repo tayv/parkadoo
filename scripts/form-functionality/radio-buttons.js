@@ -1,7 +1,7 @@
 import {
   parkingProblemRadioSelection, ticketIssuerSelection, municipalityRadioSelection, studentOrEmployeeRadioSelection, templateType,
   ticketAccuracyRadioSelection, ticketReasonRadioSelection, ticketAppealBylawRadioSelection, potentialTicketRadioSelection
-} from "/main.js"; 
+} from "/scripts/main.js"; 
 
 
 // INITIALIZE VARIABLES

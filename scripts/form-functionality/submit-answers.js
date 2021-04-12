@@ -1,6 +1,6 @@
-import {loadLetter} from "../form-content/set-template.js";
-import {templateType} from "../main.js";
-import {setLetterTemplate} from "../letter.js";
+import {loadLetter} from "/scripts/form-content/set-template.js";
+import {templateType} from "/scripts/main.js";
+import {setLetterTemplate} from "/scripts/letter-builder.js";
 
 //sessionstorage used instead of localstorage so that answer data only persists during current browser session
 

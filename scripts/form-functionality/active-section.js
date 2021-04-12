@@ -1,6 +1,6 @@
-import {checkButtonStep, sectionVisibility} from "/form-functionality/stepper-buttons.js";
-import {countStep, setCurrentStep, sectionsShowHideObj} from "/form-functionality/step-tracker.js";
-import {formSections} from "../form-content/form-sections.js";
+import {checkButtonStep, sectionVisibility} from "/scripts/form-functionality/stepper-buttons.js";
+import {countStep, setCurrentStep, sectionsShowHideObj} from "/scripts/form-functionality/step-tracker.js";
+import {formSections} from "/scripts/form-content/form-sections.js";
 
 // INITIALIZE VARIABLES
 

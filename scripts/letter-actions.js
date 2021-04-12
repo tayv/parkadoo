@@ -1,4 +1,4 @@
-//import {templateType} from "/main.js"
+// Load this in the html header for any page that displays a letter 
 
 // This converts JSON sessionStorage letter and prints it onto letter.html after submitted on index.html
 document.addEventListener('DOMContentLoaded', function() {

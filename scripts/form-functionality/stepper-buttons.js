@@ -1,16 +1,16 @@
 import {
   parkingProblemRadioSelection, ticketIssuerSelection, municipalityRadioSelection, studentOrEmployeeRadioSelection, templateType,
   ticketAccuracyRadioSelection, ticketReasonRadioSelection, ticketAppealBylawRadioSelection, potentialTicketRadioSelection
-} from "/main.js";
-import {setLetterTemplate} from "/letter.js";
-import {calcAndSetWhiteSpace} from "/app-generic/formatting.js";
-import {autosaveText, autosaveRadio} from "/form-functionality/autosave.js";
-import {focusInput} from "/form-functionality/keyboard.js";
-import {activeSection, setActiveClass, removeActiveClass, clickActiveClass, hideExtraSteps} from "/form-functionality/active-section.js";
-import {countStep, setCurrentStep, sectionsShowHideObj} from "/form-functionality/step-tracker.js";
-import {allRadiosArray} from "/form-functionality/radio-buttons.js";
-import {loadLetter} from "/form-content/set-template.js";
-import {formSections} from "/form-content/form-sections.js";
+} from "/scripts/main.js";
+import {setLetterTemplate} from "/scripts/letter-builder.js";
+import {calcAndSetWhiteSpace} from "/scripts/app-generic/formatting.js";
+import {autosaveText, autosaveRadio} from "/scripts/form-functionality/autosave.js";
+import {focusInput} from "/scripts/form-functionality/keyboard.js";
+import {activeSection, setActiveClass, removeActiveClass, clickActiveClass, hideExtraSteps} from "/scripts/form-functionality/active-section.js";
+import {countStep, setCurrentStep, sectionsShowHideObj} from "/scripts/form-functionality/step-tracker.js";
+import {allRadiosArray} from "/scripts/form-functionality/radio-buttons.js";
+import {loadLetter} from "/scripts/form-content/set-template.js";
+import {formSections} from "/scripts/form-content/form-sections.js";
 
 
 // GENERIC FUNCTIONALITY - Previous/Next/Submit button visiblity and to scroll to next div/step.

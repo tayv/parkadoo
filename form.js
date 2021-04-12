@@ -1,4 +1,4 @@
-import {addRadioEventListener} from "/form-functionality/radio-buttons.js";
+import {addRadioEventListener} from "/scripts/form-functionality/radio-buttons.js";
 
 // LIST OF VARIABLES FOR SPECIFIC ANSWERS
  // #ticket-number-section
