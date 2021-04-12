@@ -1,4 +1,4 @@
-import {formAction} from "../form-content/set-template.js";
+import {loadLetter} from "../form-content/set-template.js";
 import {templateType} from "../main.js";
 import {setLetterTemplate} from "../letter.js";
 
@@ -23,5 +23,5 @@ document.getElementById("button-submit").onclick = () => {
   }
 
   // To load the correct html letter template using form.action
-  formAction(templateType);
+  loadLetter(templateType);
 };

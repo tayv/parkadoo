@@ -34,7 +34,6 @@ const removeActiveClass = () => {
 
 // To hide multiple next steps if user skips multiple sections by scrolling up
 const hideExtraSteps = (counter) => {
-  console.log("hide", counter);
   sectionsShowHideObj.showTheseSectionsArray.slice(counter).forEach(function(element) {
     element.style.display="none"
   });

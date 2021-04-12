@@ -9,7 +9,7 @@ import {focusInput} from "/form-functionality/keyboard.js";
 import {activeSection, setActiveClass, removeActiveClass, clickActiveClass, hideExtraSteps} from "/form-functionality/active-section.js";
 import {countStep, setCurrentStep, sectionsShowHideObj} from "/form-functionality/step-tracker.js";
 import {allRadiosArray} from "/form-functionality/radio-buttons.js";
-import {formAction} from "/form-content/set-template.js";
+import {loadLetter} from "/form-content/set-template.js";
 
 // Sections
 const formSections = {
