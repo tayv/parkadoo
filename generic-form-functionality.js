@@ -9,6 +9,7 @@ import {focusInput} from "/form-functionality/keyboard.js";
 import {activeSection, setActiveClass, removeActiveClass, clickActiveClass} from "/form-functionality/active-section.js";
 import {countStep, setCurrentStep, sectionsShowHideObj} from "/form-functionality/step-tracker.js";
 import {allRadiosArray} from "/form-functionality/radio-buttons.js";
+import {formAction} from "/form-content/set-template.js";
 
 // Sections
 const formSections = {
@@ -51,10 +52,6 @@ const hideExtraSteps = (counter) => {
     element.style.display="none"
   });
 }
-
-
-//  const throttledScroll = _.throttle(isScrolledIntoView(activeSection), 200); unable to import lodash
-
 
 // GENERIC FUNCTIONALITY - Previous/Next/Submit button visiblity and to scroll to next div/step.
 
@@ -178,28 +175,6 @@ document.querySelector("#button-prev").onclick = () => {
   autosaveRadio(allRadiosArray); // updates sessionStorage for each step
 };
 
-// Function to send to correct html page after clicked Submit
-const formAction = (str) => {
-  let formID = document.querySelector("#parking-form-content");
-  switch(str)
-  {
-    case "city":
-    formID.action = "letter-city.html";
-    break;
-
-    case "report abandoned vehicle":
-    formID.action = "letter-neighbour.html";
-    break;
-
-    case "private operator":
-    formID.action = "letter-privateop.html";
-    break;
-
-    case "institution":
-    formID.action = "letter-privateop.html";
-    break;
-  }
-}
 
 
 
@@ -207,6 +182,5 @@ const formAction = (str) => {
 
 
 
-export {
-  formSections, checkButtonStep, sectionVisibility, hideExtraSteps
-};
+
+export {formSections, checkButtonStep, sectionVisibility, hideExtraSteps};

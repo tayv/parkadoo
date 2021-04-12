@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }, false);
 
 // CTA Actions
-// send email button
+  // send email button
 if (document.getElementById("button-send")) {
   document.getElementById("button-send").onclick = () => {
     let htmlLetterContent = document.getElementById("insert-letter-output-text-here").innerHTML;

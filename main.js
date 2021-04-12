@@ -10,6 +10,7 @@ import {
   studentOrEmployeeRadioOptions, ticketAccuracyRadioOptions, ticketReasonRadioOptions,
   ticketAppealBylawRadioOptions, potentialTicketRadioOptions, allRadiosArray} from "/form-functionality/radio-buttons.js";
 
+
 // TO LOAD DEFAULT VISIBILITY CONDITIONS
 window.onload = function() {
   initSavedAnswers();

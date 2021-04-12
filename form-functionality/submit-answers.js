@@ -1,8 +1,11 @@
-import {formAction} from "../generic-form-functionality.js";
+import {formAction} from "../form-content/set-template.js";
+import {templateType} from "../main.js";
+import {setLetterTemplate} from "../letter.js";
 
 //sessionstorage used instead of localstorage so that answer data only persists during current browser session
 
-// Using sessionStorage to save user answers
+// SUBMIT BUTTON
+  // Using sessionStorage to save user answers
 document.getElementById("button-submit").onclick = () => {
   try {
       let storage = window.sessionStorage || {};
@@ -19,5 +22,6 @@ document.getElementById("button-submit").onclick = () => {
       alert(e.message, "Sorry, looks like I'm blocked from saving and displaying your answers because your browser doesn't allow 3rd party cookies in your advanced browser settings.");
   }
 
-  formAction(templateType); // To send to right html page
+  // To load the correct html letter template using form.action
+  formAction(templateType);
 };
