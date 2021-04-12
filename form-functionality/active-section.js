@@ -1,4 +1,4 @@
-import {checkButtonStep, sectionVisibility} from "../generic-form-functionality.js";
+import {checkButtonStep, sectionVisibility} from "../stepper.js";
 import {countStep, setCurrentStep, sectionsShowHideObj} from "/form-functionality/step-tracker.js";
 import {formSections} from "../form-content/form-sections.js";
 
