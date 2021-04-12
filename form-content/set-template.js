@@ -1,7 +1,6 @@
 
 // Function to load correct html page using .action after clicking submit
 const loadLetter = (str) => {
-  console.log("FomrAction worked");
   let formID = document.querySelector("#parking-form-content");
   switch(str)
   {

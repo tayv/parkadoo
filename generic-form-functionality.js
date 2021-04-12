@@ -10,7 +10,9 @@ import {activeSection, setActiveClass, removeActiveClass, clickActiveClass, hide
 import {countStep, setCurrentStep, sectionsShowHideObj} from "/form-functionality/step-tracker.js";
 import {allRadiosArray} from "/form-functionality/radio-buttons.js";
 import {loadLetter} from "/form-content/set-template.js";
+import {formSections} from "/form-content/form-sections.js";
 
+/*
 // Sections
 const formSections = {
   // Holds the total number of sections
@@ -43,10 +45,7 @@ const formSections = {
   checkBylawsSection: document.getElementById("check-bylaw-info-section"),
   // last step
   finishedSectionDiv: document.getElementById("finished-section-container")
-};
-
-
-
+}; */
 
 // GENERIC FUNCTIONALITY - Previous/Next/Submit button visiblity and to scroll to next div/step.
 
@@ -173,9 +172,4 @@ document.querySelector("#button-prev").onclick = () => {
 
 
 
-
-
-
-
-
-export {formSections, checkButtonStep, sectionVisibility};
+export {checkButtonStep, sectionVisibility};

@@ -2,9 +2,10 @@ import {initSavedAnswers} from "/form-functionality/autosave.js";
 import {setLetterTemplate, letterTemplate} from "/letter.js";
 import {checkBylawsOutputTemplate, cityBylawLink, cityBylawName, bylawTextObj} from "/bylaw.js";
 import {calcAndSetWhiteSpace, currentDateFormatted, upperCaseFirstLetter, lowerCaseFirstLetter, formatSentenceEnding} from "/app-generic/formatting.js";
-import {checkButtonStep, formSections} from "/generic-form-functionality.js";
+import {checkButtonStep} from "/generic-form-functionality.js";
 import {countStep, setCurrentStep, sectionsShowHideObj} from "/form-functionality/step-tracker.js";
 import {checkSavedTheme} from "/app-generic/theme.js";
+import {formSections} from "/form-content/form-sections.js";
 import {
   setupRBEventListeners, parkingProblemRadioOptions, ticketIssuerRadioOptions, municipalityRadioOptions,
   studentOrEmployeeRadioOptions, ticketAccuracyRadioOptions, ticketReasonRadioOptions,

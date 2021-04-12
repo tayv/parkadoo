@@ -102,21 +102,16 @@ const buttonVisibility = function() {
 
   // To display and hide steps depending on visibility conditions
     const stepMakeVisible = function(...stepToHide) { // Keeping ... in parameter. Removing it causes a bug where the for loop doesn't fire
-      console.log("stepMakeVisible triggered. The parameter = ", stepToHide);
       for (let i = 0; i < stepToHide.length; i++) {
-        console.log("i: ", i);
-        console.log("stepToHide: ", stepToHide[i]);
         if (stepsQuestionnaire[count] === stepToHide[0][i]) { // adding [0] necessary because ...stepToHide makes an array within an array
           if (stepsQuestionnaire[count+1] > stepsQuestionnaire.length) {
             finishedSectionDiv.scrollIntoView(true);
           } else {
               stepsQuestionnaire[count+1].style.display="block";
               stepsQuestionnaire[count+1].scrollIntoView(true);
-              console.log("hide a step");
           }
         } else {
           stepsQuestionnaire[count].style.display="block";
-          console.log("no step to hide. continue as usual");
         }
       }
     };
@@ -158,9 +153,8 @@ function updateHideTheseAnswersArray(addItem, subtractItem) { //use undefined wh
   function addToHideTheseAnswersArray(addItem) {
     if (hideTheseAnswersArray.indexOf(addItem) === -1 && typeof addItem !== "undefined") { // Need to exclude undefined because one parameter (either addItem or subtractItem) is likely left blank in the original function call
       hideTheseAnswersArray.push(addItem);
-      console.log("add an item: ", addItem);
     } else {
-        console.log("There's already an ", addItem, " here. Don't do anything");
+        // There's already an ${addItem} here. Don't do anything
     }
   }
   addToHideTheseAnswersArray(addItem);
@@ -169,8 +163,7 @@ function updateHideTheseAnswersArray(addItem, subtractItem) { //use undefined wh
     if (hideTheseAnswersArray.indexOf(subtractItem) > -1 && typeof subtractItem !== "undefined") {
       var arrayIndex = hideTheseAnswersArray.indexOf(subtractItem);
       hideTheseAnswersArray.splice(arrayIndex, 1);
-      console.log("subtract:" + subtractItem);
-      console.log(subtractItem);
+      // subtract ${subtractItem}
       }
   }
   subtractFromHideTheseAnswersArray(subtractItem);
@@ -179,11 +172,11 @@ function updateHideTheseAnswersArray(addItem, subtractItem) { //use undefined wh
 function applyActiveVisibilityConditions() {
   if (hideTheseAnswersArray.includes(ticketDate)) {
     ticketDate.style.display = "none";
-    console.log("I found ticketDate in the array and will hide the step");
+    // Found ${ticketDate} in the array and will hide the step
   }
   if (hideTheseAnswersArray.includes(checkboxSection)) {
     checkboxSection.style.display = "none";
-    console.log("I found checkboxSection in the array and will hide the step");
+    // Found ${checkboxSection} in the array and will hide the step
   }
 }
 
