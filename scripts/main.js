@@ -1,6 +1,6 @@
 import {initSavedAnswers} from "/scripts/form-functionality/autosave.js";
 import {setLetterTemplate, letterTemplate} from "/scripts/letter-builder.js";
-import {checkBylawsOutputTemplate, cityBylawLink, cityBylawName, bylawTextObj} from "/bylaw.js";
+import {checkBylawsOutputTemplate, cityBylawLink, cityBylawName, bylawTextObj} from "/scripts/form-content/bylaws.js";
 import {calcAndSetWhiteSpace, currentDateFormatted, upperCaseFirstLetter, lowerCaseFirstLetter, formatSentenceEnding} from "/scripts/app-generic/formatting.js";
 import {checkButtonStep} from "/scripts/form-functionality/stepper-buttons.js";
 import {countStep, setCurrentStep, sectionsShowHideObj} from "/scripts/form-functionality/step-tracker.js";
