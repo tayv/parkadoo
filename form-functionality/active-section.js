@@ -1,13 +1,18 @@
-import {formSections, checkButtonStep, hideExtraSteps, sectionVisibility} from "../generic-form-functionality.js";
+import {formSections, checkButtonStep, sectionVisibility} from "../generic-form-functionality.js";
 import {countStep, setCurrentStep, sectionsShowHideObj} from "/form-functionality/step-tracker.js";
 
 // INITIALIZE VARIABLES
+
 // setup variable and function to be used by click and scroll events in order to set css styling for active section
 let activeSection;
+
 // Used by Active-class on scrolling
 const headerHeight = document.getElementById("header-main").offsetHeight;
 const footerHeight = document.getElementById("footer-main").offsetHeight;
 const visibleWindowHeight = (window.innerHeight - headerHeight - footerHeight);
+
+
+// GENERIC FUNCTIONS
 
 // To update the active section
 function setActiveClass(section) {
@@ -24,6 +29,14 @@ function setActiveClass(section) {
 const removeActiveClass = () => {
   sectionsShowHideObj.showTheseSectionsArray.forEach(section => {
     section.classList.remove("active-section-container");
+  });
+}
+
+// To hide multiple next steps if user skips multiple sections by scrolling up
+const hideExtraSteps = (counter) => {
+  console.log("hide", counter);
+  sectionsShowHideObj.showTheseSectionsArray.slice(counter).forEach(function(element) {
+    element.style.display="none"
   });
 }
 
@@ -103,4 +116,4 @@ window.addEventListener("scroll", function() {
 
 
 
-export {activeSection, setActiveClass, removeActiveClass, clickActiveClass};
+export {activeSection, setActiveClass, removeActiveClass, clickActiveClass, hideExtraSteps};

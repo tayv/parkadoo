@@ -6,7 +6,7 @@ import {setLetterTemplate} from "/letter.js";
 import {calcAndSetWhiteSpace} from "/app-generic/formatting.js";
 import {autosaveText, autosaveRadio} from "/form-functionality/autosave.js";
 import {focusInput} from "/form-functionality/keyboard.js";
-import {activeSection, setActiveClass, removeActiveClass, clickActiveClass} from "/form-functionality/active-section.js";
+import {activeSection, setActiveClass, removeActiveClass, clickActiveClass, hideExtraSteps} from "/form-functionality/active-section.js";
 import {countStep, setCurrentStep, sectionsShowHideObj} from "/form-functionality/step-tracker.js";
 import {allRadiosArray} from "/form-functionality/radio-buttons.js";
 import {formAction} from "/form-content/set-template.js";
@@ -46,12 +46,7 @@ const formSections = {
 };
 
 
-// To hide multiple next steps if user skips multiple sections by scrolling up
-const hideExtraSteps = (counter) => {
-  sectionsShowHideObj.showTheseSectionsArray.slice(counter).forEach(function(element) {
-    element.style.display="none"
-  });
-}
+
 
 // GENERIC FUNCTIONALITY - Previous/Next/Submit button visiblity and to scroll to next div/step.
 
@@ -183,4 +178,4 @@ document.querySelector("#button-prev").onclick = () => {
 
 
 
-export {formSections, checkButtonStep, sectionVisibility, hideExtraSteps};
+export {formSections, checkButtonStep, sectionVisibility};
