@@ -35,6 +35,5 @@ function switchTheme(e) {
 
 toggleTheme.addEventListener("change", switchTheme, false);
 
-
-
-export {checkSavedTheme};
+// check theme on page load
+checkSavedTheme();

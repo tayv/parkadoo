@@ -7,18 +7,11 @@
     <link rel="stylesheet" href=/styles/styles.css/>
     <link rel="stylesheet" href="/styles/letter-styles.css"/>
     <link rel="stylesheet" href="/styles/colors.css"/>
-    <script src="/scripts/letter-actions.js" type="module"></script>
-    <script type="text/javascript" src="node_modules/dompurify/dist/purify.min.js"></script>
   </head>
 <body>
-  <header id="header-main">
-    <div id="header-nav-container">
-      <a id="logo" href="index.html" rel="home">parkadoo.</a>
-      <label class="theme-switch" for="theme-cb">
-        <input type="checkbox" id="theme-cb" style="opacity:0"/>
-        <span class="theme-icon">☀️</span>
-      </label>
-    </div>
+  <header>
+    <script src="/scripts/header.js" type="module"></script>
+    <div id="header-main"></div>
   </header>
   <main id="letter-main">
     <div class="letter-container">
@@ -81,13 +74,13 @@
   </div>
   </main>
   <footer>
-    <div id="footer-main">
-      <div id="footer-nav-container">
-        <a id="articles" href="articles.html" rel="articles">ARTICLES</a>
-        <a id="reset" href="index.html" rel="reset" onclick="sessionStorage.clear()">RESTART</a>
-        <a id="feedback" href="mailto:" rel="feedback">FEEDBACK</a>
-      </div>
-    </div>
+    <!-- load reusable footer -->
+    <script src="/scripts/footer.js" type="module"></script>
+    <div id="footer-main"></div>
   </footer>
+  <!-- Need to load scripts at bottom because need to load header/footer template scripts first -->
+  <script src="/scripts/app-generic/theme.js" type="module"></script>
+  <script src="/scripts/letter-actions.js" type="module"></script>
+  <script type="text/javascript" src="node_modules/dompurify/dist/purify.min.js"></script>
 </body>
 </html>

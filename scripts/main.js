@@ -4,7 +4,6 @@ import {checkBylawsOutputTemplate, cityBylawLink, cityBylawName, bylawTextObj} f
 import {calcAndSetWhiteSpace, currentDateFormatted, upperCaseFirstLetter, lowerCaseFirstLetter, formatSentenceEnding} from "/scripts/app-generic/formatting.js";
 import {checkButtonStep} from "/scripts/form-functionality/stepper-buttons.js";
 import {countStep, setCurrentStep, sectionsShowHideObj} from "/scripts/form-functionality/step-tracker.js";
-import {checkSavedTheme} from "/scripts/app-generic/theme.js";
 import {formSections} from "/scripts/form-content/form-sections.js";
 import {
   setupRBEventListeners, parkingProblemRadioOptions, ticketIssuerRadioOptions, municipalityRadioOptions,
@@ -16,7 +15,6 @@ import {
 window.onload = function() {
   initSavedAnswers();
   parkingProblemRadioSelection(); // parkingProblemRadioSelection() initializes form answers and applies any sessionStorage autosaved answers. Later sections are handled in subsequent sections _radioselection()
-  checkSavedTheme();
 };
 
 // LIST OF VARIABLES FOR LETTER OUTPUT

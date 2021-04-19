@@ -13,11 +13,11 @@ const loadLetter = (str) => {
     break;
 
     case "private operator":
-    formID.action = "letter-privateop.html";
+    formID.action = "letter-private-op.html";
     break;
 
     case "institution":
-    formID.action = "letter-privateop.html";
+    formID.action = "letter-private-op.html";
     break;
   }
 }
