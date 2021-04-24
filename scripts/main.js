@@ -1,4 +1,25 @@
-"use strict";
+import {initSavedAnswers} from "/scripts/form-functionality/autosave.js";
+import {setLetterTemplate, letterTemplate} from "/scripts/letter-builder.js";
+import {checkBylawsOutputTemplate, cityBylawLink, cityBylawName, bylawTextObj} from "/scripts/form-content/bylaws.js";
+import {calcAndSetWhiteSpace, currentDateFormatted, upperCaseFirstLetter, lowerCaseFirstLetter, formatSentenceEnding} from "/scripts/app-generic/formatting.js";
+import {checkButtonStep} from "/scripts/form-functionality/stepper-buttons.js";
+import {countStep, setCurrentStep, sectionsShowHideObj} from "/scripts/form-functionality/step-tracker.js";
+import {formSections} from "/scripts/form-content/form-sections.js";
+import {
+  setupRBEventListeners, parkingProblemRadioOptions, ticketIssuerRadioOptions, municipalityRadioOptions,
+  studentOrEmployeeRadioOptions, ticketAccuracyRadioOptions, ticketReasonRadioOptions,
+  ticketAppealBylawRadioOptions, potentialTicketRadioOptions, allRadiosArray} from "/scripts/form-functionality/radio-buttons.js";
+
+
+// TO LOAD DEFAULT VISIBILITY CONDITIONS
+window.onload = function() {
+  initSavedAnswers();
+  parkingProblemRadioSelection(); // parkingProblemRadioSelection() initializes form answers and applies any sessionStorage autosaved answers. Later sections are handled in subsequent sections _radioselection()
+};
+
+// LIST OF VARIABLES FOR LETTER OUTPUT
+let templateType = ""; // to be used as parameter for setLetterTemplate() to update the output template on next step button click
+let city = "city"; // used for municipality section to set appropriate city name
 
 // LIST OF VARIABLES FOR SPECIFIC ANSWERS
  // #ticket-number-section
@@ -29,492 +50,569 @@ let mailAddressAnswer = "";
 // QUESTIONNAIRE SECTIONS
 // Generic step 1 - What is your parking problem?
   // update visibiilty conditions
-const parkingProblemRadioSelection = (function updateParkingProblemConditionals() {
-  const parkingProblemRadioOptions = document.querySelectorAll(".parking-problem-radio-class");
-  addRadioEventListener(parkingProblemRadioOptions, updateParkingProblemConditionals);
+const parkingProblemRadioSelection = () => {
   for (let i = 0; i < parkingProblemRadioOptions.length; i++) {
     if (parkingProblemRadioOptions[i].checked) {
       if (parkingProblemRadioOptions[i].value === "1") {
-        // // hideSectionsNotInPath("city");
-        hideTheseSectionsArray = [cityUnavailableSection,
-          studentOrEmployeeSection,
-          potentialIssueSection,
-          checkBylawsSection,
-          privateTicketAppealReason];
-        hideSections(hideTheseSectionsArray);
-        showTheseSectionsArray = [
-          parkingTicketIssuerSection,
-          municipalitySection,
-          ticketNumberSection,
-          ticketAccuracySection,
-          ticketReasonSection,
-          ticketAppealBylawSection,
-          nameSection,
-          contactDetailsSection,
-          mailingAddressSection];
-        showSections(showTheseSectionsArray);
-        return;
+        sectionsShowHideObj.hideTheseSectionsArray = [
+          formSections.cityUnavailableSection,
+          formSections.studentOrEmployeeSection,
+          formSections.potentialIssueSection,
+          formSections.checkBylawsSection,
+          formSections.privateTicketAppealSection
+        ];
+        sectionsShowHideObj.showTheseSectionsArray = [
+          formSections.welcomeSection,
+          formSections.parkingProblemSection,
+          formSections.parkingTicketIssuerSection,
+          formSections.municipalitySection,
+          formSections.ticketNumberSection,
+          formSections.ticketAccuracySection,
+          formSections.ticketReasonSection,
+          formSections.ticketAppealBylawSection,
+          formSections.nameSection,
+          formSections.contactDetailsSection,
+          formSections.mailingAddressSection,
+          formSections.finishedSectionDiv
+        ];
+        ticketIssuerSelection(); // to init any sessionStorage saved radio answers on next step
+        ticketAccuracyRadioSelection(); // to init any sessionStorage saved radio answers on next step
+        document.querySelector("#finished-message").innerHTML = "See that wasn't so bad. Are you ready to view your appeal letter?";
+        return templateType = "city";
       }
       else if (parkingProblemRadioOptions[i].value === "2") {
-        // // hideSectionsNotInPath("report abandoned vehicle");
-        return;
+        sectionsShowHideObj.hideTheseSectionsArray = [
+          formSections.potentialIssueSection,
+          formSections.checkBylawsSection,
+          formSections.parkingTicketIssuerSection,
+          formSections.municipalitySection,
+          formSections.cityUnavailableSection,
+          formSections.studentOrEmployeeSection,
+          formSections.ticketAppealBylawSection,
+          formSections.ticketNumberSection,
+          formSections.ticketAccuracySection,
+          formSections.ticketReasonSection,
+          formSections.ticketAppealBylawSection,
+          formSections.privateTicketAppealSection,
+          formSections.ticketDateSection,
+          formSections.nameSection,
+          formSections.contactDetailsSection,
+          formSections.mailingAddressSection
+        ];
+        sectionsShowHideObj.showTheseSectionsArray = [
+          formSections.welcomeSection,
+          formSections.parkingProblemSection,
+          formSections.finishedSectionDiv
+        ];
+        document.querySelector("#finished-message").innerHTML = "See that wasn't so bad. Next I'll give you a letter you can use and show you how to report an abandoned vehicle.";
+        return templateType = "report abandoned vehicle";
       }
       else if (parkingProblemRadioOptions[i].value === "3") {
-      //  // hideSectionsNotInPath("check bylaws");
-        outputTemplateText("check bylaws");
-        return;
+        sectionsShowHideObj.hideTheseSectionsArray = [
+          formSections.parkingTicketIssuerSection,
+          formSections.municipalitySection,
+          formSections.cityUnavailableSection,
+          formSections.studentOrEmployeeSection,
+          formSections.ticketAppealBylawSection,
+          formSections.ticketNumberSection,
+          formSections.ticketAccuracySection,
+          formSections.ticketReasonSection,
+          formSections.ticketAppealBylawSection,
+          formSections.privateTicketAppealSection,
+          formSections.ticketDateSection,
+          formSections.nameSection,
+          formSections.contactDetailsSection,
+          formSections.mailingAddressSection
+        ];
+        sectionsShowHideObj.showTheseSectionsArray = [
+          formSections.welcomeSection,
+          formSections.parkingProblemSection,
+          formSections.potentialIssueSection,
+          formSections.checkBylawsSection
+        ];
+        potentialTicketRadioSelection(); // to init any sessionStorage saved radio answers on next step
+        return templateType = "";
       }
-    }
-  }
-}());
+   }
+ }
+};
 
 // .ticket-issuer-section - Who issued your ticket?
   // Update dependant visibiilty conditions
-const ticketIssuerRadioSelection = (function updateticketIssuerConditionals() {
-  const ticketIssuerRadioOptions = document.querySelectorAll(".ticket-issuer-radio-class");
-  addRadioEventListener(ticketIssuerRadioOptions, updateticketIssuerConditionals);
+const ticketIssuerSelection = () => {
   for (let i = 0; i < ticketIssuerRadioOptions.length; i++) {
     if (ticketIssuerRadioOptions[i].checked) {
       if (ticketIssuerRadioOptions[i].value === "1") {
-<<<<<<< Updated upstream
-        hideSectionsNotInPath("city");
-        applyActiveVisibilityConditions(hideTheseSectionsArray);
-=======
-      //  // hideSectionsNotInPath("city");
-        hideSections(hideTheseSectionsArray);
->>>>>>> Stashed changes
-    //  outputTemplateText("city");
-        return //templateType = "city";
-
+        sectionsShowHideObj.hideTheseSectionsArray = [
+          formSections.studentOrEmployeeSection,
+          formSections.privateTicketAppealSection
+        ];
+        sectionsShowHideObj.showTheseSectionsArray = [
+          formSections.welcomeSection,
+          formSections.parkingProblemSection,
+          formSections.parkingTicketIssuerSection,
+          formSections.municipalitySection,
+          formSections.ticketNumberSection,
+          formSections.ticketAccuracySection,
+          formSections.ticketReasonSection,
+          formSections.ticketAppealBylawSection,
+          formSections.ticketDateSection,
+          formSections.nameSection,
+          formSections.contactDetailsSection,
+          formSections.mailingAddressSection,
+          formSections.finishedSectionDiv
+        ];
+        municipalityRadioSelection(); // to init any sessionStorage saved radio answers on next step
+        ticketReasonRadioSelection(); // autosave init
+        ticketAppealBylawRadioSelection(); //autosave init
+        return templateType = "city";
       }
       else if (ticketIssuerRadioOptions[i].value === "2") {
-<<<<<<< Updated upstream
-        hideSectionsNotInPath("private operator");
-        applyActiveVisibilityConditions(hideTheseSectionsArray);
-=======
-      //  // hideSectionsNotInPath("private operator");
-        hideSections(hideTheseSectionsArray);
->>>>>>> Stashed changes
-    //  outputTemplateText("private operator");
-        return //templateType = "private operator";;
+        sectionsShowHideObj.hideTheseSectionsArray = [
+          formSections.municipalitySection,
+          formSections.ticketReasonSection,
+        ];
+        sectionsShowHideObj.showTheseSectionsArray = [
+          formSections.welcomeSection,
+          formSections.parkingProblemSection,
+          formSections.parkingTicketIssuerSection,
+          formSections.ticketNumberSection,
+          formSections.ticketAccuracySection,
+          formSections.privateTicketAppealSection,
+          formSections.ticketDateSection,
+          formSections.nameSection,
+          formSections.contactDetailsSection,
+          formSections.mailingAddressSection,
+          formSections.finishedSectionDiv
+        ];
+        return templateType = "private operator";
       }
       else if (ticketIssuerRadioOptions[i].value === "3") {
-<<<<<<< Updated upstream
-        hideSectionsNotInPath("private institution");
-        applyActiveVisibilityConditions(hideTheseSectionsArray);
-=======
-      //  // hideSectionsNotInPath("private institution");
-        hideSections(hideTheseSectionsArray);
->>>>>>> Stashed changes
-    //  outputTemplateText("private institution");
-        return // templateType = "private institution";;
+        sectionsShowHideObj.hideTheseSectionsArray = [
+          formSections.municipalitySection,
+          formSections.ticketReasonSection,
+        ];
+        sectionsShowHideObj.showTheseSectionsArray = [
+          formSections.welcomeSection,
+          formSections.parkingProblemSection,
+          formSections.parkingTicketIssuerSection,
+          formSections.studentOrEmployeeSection,
+          formSections.ticketNumberSection,
+          formSections.ticketAccuracySection,
+          formSections.privateTicketAppealSection,
+          formSections.ticketDateSection,
+          formSections.nameSection,
+          formSections.contactDetailsSection,
+          formSections.mailingAddressSection,
+          formSections.finishedSectionDiv
+        ];
+        studentOrEmployeeRadioSelection(); // to init any sessionStorage saved radio answers on next step
+        return templateType = "institution";
+        }
       }
     }
-  }
-}());
+};
 
 // #municipality-section
   // update sub-section visibility conditions
-const municipalityRadioSelection = (function updateMunicipalityConditionals() {
-  const municipalityRadioOptions = document.querySelectorAll(".municipality-radio-class");
-  addRadioEventListener(municipalityRadioOptions, updateMunicipalityConditionals);
+const municipalityRadioSelection = () => {
   for (let i = 0; i < municipalityRadioOptions.length; i++) {
     if (municipalityRadioOptions[i].checked) {
       if (municipalityRadioOptions[i].value === "1") {
-<<<<<<< Updated upstream
-        hideSectionsNotInPath("city");
-
-=======
-        // hideSectionsNotInPath("city");
-        hideSections(hideTheseSectionsArray);
->>>>>>> Stashed changes
-      //  newCityRequestSubsection.style.display = "none"; // Sub-sections need individual visibility conditions since they don't use hideTheseSectionsArray
-      //  outputTextCity("1");
-        return;
+        sectionsShowHideObj.hideTheseSectionsArray = [
+          formSections.cityUnavailableSection
+        ];
+        sectionsShowHideObj.showTheseSectionsArray = [
+          formSections.welcomeSection,
+          formSections.parkingProblemSection,
+          formSections.parkingTicketIssuerSection,
+          formSections.municipalitySection,
+          formSections.ticketNumberSection,
+          formSections.ticketAccuracySection,
+          formSections.ticketReasonSection,
+          formSections.ticketAppealBylawSection,
+          formSections.privateTicketAppealSection,
+          formSections.ticketDateSection,
+          formSections.nameSection,
+          formSections.contactDetailsSection,
+          formSections.mailingAddressSection,
+          formSections.finishedSectionDiv
+        ];
+        templateType = "city";
+        return city = "City of Edmonton";
       }
       else if (municipalityRadioOptions[i].value === "2") {
-      //  newCityRequestSubsection.style.display = "block";
-<<<<<<< Updated upstream
-        hideSectionsNotInPath("city unavailable");
-
-=======
-        // hideSectionsNotInPath("city unavailable");
-        hideSections(hideTheseSectionsArray);
->>>>>>> Stashed changes
-      //  outputTextCity("2");
-        return;
+        sectionsShowHideObj.hideTheseSectionsArray = [
+          formSections.ticketNumberSection,
+          formSections.ticketAccuracySection,
+          formSections.ticketReasonSection,
+          formSections.ticketAppealBylawSection,
+          formSections.privateTicketAppealSection,
+          formSections.ticketDateSection,
+          formSections.nameSection,
+          formSections.contactDetailsSection,
+          formSections.mailingAddressSection,
+          formSections.finishedSectionDiv
+        ];
+        sectionsShowHideObj.showTheseSectionsArray = [
+          formSections.welcomeSection,
+          formSections.parkingProblemSection,
+          formSections.parkingTicketIssuerSection,
+          formSections.municipalitySection,
+          formSections.cityUnavailableSection
+        ];
+        return templateType = "no city"
+      //  return city = document.getElementById("new-city-request-textfield").value; // Not currently used (have mailto link in html instead)
       }
     }
   }
-}());
-  // function to update output text
-function outputTextCity(answerValue) {
-  if (answerValue === "1") {
-    city = "City of Edmonton";
-    outputTemplateText("city"); // need to run outputTemplate() each time to update output text with new variable value
-  }
-  else if (answerValue === "2") {
-    city = document.getElementById("new-city-request-textfield").value;
-    outputTemplateText("city");
-  }
-}
-
+};
 
 // #student-or-employee-section
   // update sub-section visibility conditions
-const studentOrEmployeeRadioSelection = (function updateStudentOrEmployeeConditionals() {
-  const studentOrEmployeeRadioOptions = document.querySelectorAll(".student-or-employee-class");
-  addRadioEventListener(studentOrEmployeeRadioOptions, updateStudentOrEmployeeConditionals);
+const studentOrEmployeeRadioSelection = () => {
   for (let i = 0; i < studentOrEmployeeRadioOptions.length; i++) {
     if (studentOrEmployeeRadioOptions[i].checked) {
       if (studentOrEmployeeRadioOptions[i].value === "1") {
-        outputTextStudentOrEmployee("1");
-        return;
+        // No change to sectionsShowHideObj.hideTheseSectionsArray or sectionsShowHideObj.showTheseSectionsArray
+        document.getElementById("student-employee-tip").style.display = "block";
       }
       else if (studentOrEmployeeRadioOptions[i].value === "2") {
-        return;
+        document.getElementById("student-employee-tip").style.display = "none";
       }
     }
   }
-}());
-  // function to update output text
-function outputTextStudentOrEmployee(answerValue) {
-  if (answerValue === "1") {
-    yesStudentOrEmployee = "Note: As a student or employee of the issuer, be aware that although they can't force you to pay, the institution could withhold class credits or use other negative tactics against you if the vehicle is registered in your name and you refuse to pay the ticket.";
-    outputTemplateText("private institution");
-  } else if (answerValue === "2") {
-    yesStudentOrEmployee = "";
-    outputTemplateText("private institution")
-  }
-}
+};
+
 
 // #ticket-number-section
   // To update output text
-ticketNumberAnswer = document.getElementById("ticket-number-text-field").value;
-
+document.getElementById("ticket-number-text-field").onchange = () => {
+  ticketNumberAnswer = document.getElementById("ticket-number-text-field").value;
+};
 // #ticket-accuracy-section
   // gatekeeper function for displaying subsection
-const ticketAccuracyRadioSelection = (function updateTicketAccuracyConditionals() {
-  const ticketAccuracyRadioOptions = document.querySelectorAll(".ticket-accuracy-radio-class");
-  addRadioEventListener(ticketAccuracyRadioOptions, updateTicketAccuracyConditionals);
+const ticketAccuracyRadioSelection = () => {
   for (let i = 0; i < ticketAccuracyRadioOptions.length; i++) {
     if (ticketAccuracyRadioOptions[i].checked) {
       if (ticketAccuracyRadioOptions[i].value === "1") {
-        ticketErrorDescriptionSubSection.style.display = "block";
-        ticketErrorDescriptionAnswer = "The ticket has incorrect details.</li> " + formatSentenceEnding(upperCaseFirstLetter(document.getElementById("ticket-error-description-text-field").value));
-        return;
+        formSections.ticketErrorDescriptionSubSection.style.display = "block";
+        document.getElementById("ticket-error-description-text-field").onchange = () => {
+          return ticketErrorDescriptionAnswer = document.getElementById("ticket-error-description-text-field").value;
+        }
+        return "The ticket has incorrect details.</li> " + formatSentenceEnding(upperCaseFirstLetter(ticketErrorDescriptionAnswer));
       } else if (ticketAccuracyRadioOptions[i].value === "2") {
-          ticketErrorDescriptionSubSection.style.display = "none";
-          ticketErrorDescriptionAnswer = "";
-          return;
+          formSections.ticketErrorDescriptionSubSection.style.display = "none";
+          return ticketErrorDescriptionAnswer = "";
       }
     }
   }
-}());
+};
 
 // #ticket-reason-section
   // Function for setting the correct ticket reason text
-const ticketReasonRadioSelection = (function updateTicketReasonConditionals() {
-  const ticketReasonRadioOptions = document.querySelectorAll(".ticket-reason-radio-class");
-  addRadioEventListener(ticketReasonRadioOptions, updateTicketReasonConditionals);
+const ticketReasonRadioSelection = () => {
   for (let i = 0; i < ticketReasonRadioOptions.length; i++) {
     if (ticketReasonRadioOptions[i].checked) {
       switch (i) {
         case 0:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason1;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint1;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation1;
           break;
         case 1:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason2;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint2;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation2;
           break;
         case 2:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason3;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint3;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation3;
           break;
         case 3:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason4;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint4;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation4;
           break;
         case 4:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason5;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint5;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation;
           break;
         case 5:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason6;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint6;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation6;
           break;
         case 6:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason7;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint7;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation7;
           break;
         case 7:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason8;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint8;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation8;
           break;
         case 8:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason9;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint9;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation9;
           break;
         case 9:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason10;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint10;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation10;
           break;
         case 10:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason11;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint11;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation11;
           break;
         case 11:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason12;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint12;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation12;
           break;
         case 12:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason13;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint13;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation13;
           break;
         case 13:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason14;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint14;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation14;
           break;
         case 14:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason15;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint15;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation15;
           break;
         case 15:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason16;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint16;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation16;
           break;
         case 16:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason17;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint17;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation17;
           break;
         case 17:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason18;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint18;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation18;
           break;
         case 18:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason19;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint19;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation19;
           break;
         case 19:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason20;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint20;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation20;
           break;
         case 20:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason21;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint21;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation21;
           break;
         case 21:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason22;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint22;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation22;
           break;
         case 22:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason23;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint23;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation23;
           break;
         case 23:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason24;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint24;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation24;
           break;
         case 24:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason25;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint25;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation25;
           break;
         case 25:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason26;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint26;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation26;
           break;
         case 26:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason27;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint27;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation27;
           break;
         case 27:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason28;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint28;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation28;
           break;
         case 28:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason29;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint29;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation29;
           break;
         case 29:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason30;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint30;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation30;
           break;
         case 30:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason31;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint31;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation31;
           break;
         case 31:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason32;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint32;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation32;
           break;
         case 32:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason33;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint33;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation33;
           break;
         case 33:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = bylawTextObj.ticketReason34;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint34;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation34;
           break;
         case 34:
-          ticketReasonOtherSubSection.style.display = "block";
+          formSections.ticketReasonOtherSubSection.style.display = "block";
           ticketReason = document.getElementById("ticket-reason-other-text-field").value;
           checkBylawsPlainLanguageHint = bylawTextObj.checkBylawsPlainLanguageHint35;
           ticketBylawExplanation = bylawTextObj.ticketBylawExplanation35;
           break;
         default:
-          ticketReasonOtherSubSection.style.display = "none";
+          formSections.ticketReasonOtherSubSection.style.display = "none";
           ticketReason = "";
           checkBylawsPlainLanguageHint = "";
           ticketBylawExplanation = "";
       }
     }
   }
-}());
+};
 
 // #ticket-appeal-bylaw-section
   // gatekeeper function for displaying subsection
-const ticketAppealBylawRadioSelection = (function updateTicketBylawAppealConditionals() {
-  const ticketAppealBylawRadioOptions = document.querySelectorAll(".yn-ticket-valid-class");
-  addRadioEventListener(ticketAppealBylawRadioOptions, updateTicketBylawAppealConditionals);
+const ticketAppealBylawRadioSelection = () => {
+  // Bylaw info box output
+  checkBylawsIntroParagraph = "Here's the " + city + "&#39;s bylaw:";
+  document.getElementById("check-bylaw-correct-primary-question-2-insert-here").innerHTML = checkBylawsIntroParagraph;
+  document.getElementById("bylaw-plain-language-hint-2-insert-here").innerHTML = checkBylawsPlainLanguageHint;
+  document.getElementById("city-bylaw-name-2").innerHTML = cityBylawName;
+  document.getElementById("insert-bylaw-correct-info-box-text-here").innerHTML = ticketBylawExplanation;
+  // radio button conditions
   for (let i = 0; i < ticketAppealBylawRadioOptions.length; i++) {
     if (ticketAppealBylawRadioOptions[i].checked) {
       if (ticketAppealBylawRadioOptions[i].value === "1") {
-        ticketAppealSubSection.style.display = "none";
-        ticketAppealBylawAnswer = "";
-        return;
+        formSections.ticketAppealSubSection.style.display = "none";
+        return ticketAppealBylawAnswer = "";
       } else if (ticketAppealBylawRadioOptions[i].value === "2") {
-          ticketAppealSubSection.style.display = "block";
-          ticketAppealBylawAnswer = "I don't believe the bylaw should apply because " + formatSentenceEnding(lowerCaseFirstLetter(document.getElementById("incorrect-bylaw-text-field").value));
-          return;
+          formSections.ticketAppealSubSection.style.display = "block";
+          document.getElementById("incorrect-bylaw-text-field").onchange = () => {
+               ticketAppealBylawAnswer = document.getElementById("incorrect-bylaw-text-field").value;
+               return ticketAppealBylawAnswer;
+          };
+          return "I don't believe the bylaw should apply because " + formatSentenceEnding(lowerCaseFirstLetter(ticketAppealBylawAnswer));
       }
     }
   }
-}());
+};
 
 // #private-ticket-appeal-section
-if (document.getElementById("private-ticket-appeal-text-field").value) {
-   privateTicketAppealAnswer = document.getElementById("private-ticket-appeal-text-field").value;
-} else {
-   privateTicketAppealAnswer = "";
-}
+document.getElementById("private-ticket-appeal-text-field").onchange = () => {
+  if (document.getElementById("private-ticket-appeal-text-field").value) {
+     return privateTicketAppealAnswer = document.getElementById("private-ticket-appeal-text-field").value;
+  } else {
+     return privateTicketAppealAnswer = "";
+  }
+};
 
 // #name-section
   // functions to update nameAnswer
-function updateNameAnswer() {
+document.getElementById("person-name-text-field").onchange = () => {
   if (document.getElementById("person-name-text-field").value) {
     return nameAnswer = document.getElementById("person-name-text-field").value;
   } else {
     return nameAnswer = "_______________";
   }
-}
-updateNameAnswer();
+};
 
 // #contact-details-section
   // Functions to update emailAnswer
-function updateEmailAnswer() {
+document.getElementById("email-field").onchange = () => {
   if (document.getElementById("email-field").value) {
     return emailAnswer = document.getElementById("email-field").value;
   } else {
     return emailAnswer = "_______________";
   }
-}
-updateEmailAnswer();
+};
 
 // #mailing-address-section
   // function to update mailAddressAnswer
-function updateMailAddressAnswer() {
+document.getElementById("mailing-address-text-field").onchange = () => {
   if (document.getElementById("mailing-address-text-field").value) {
     return mailAddressAnswer = document.getElementById("mailing-address-text-field").value;
   } else {
     return mailAddressAnswer = "_______________<br>_______________";
   }
-}
-updateMailAddressAnswer();
+};
 
 // #potential-issue-section
   // Function for displaying bylaw text in the form
-function displayPotentialTicketContent () {
+const displayPotentialTicketContent = () => {
   checkBylawsIntroParagraph = "Hey, I found this in the " + city + "&#39;s bylaws:";
   document.getElementById("check-bylaw-primary-question-insert-here").innerHTML = checkBylawsIntroParagraph;
   document.getElementById("bylaw-plain-language-hint-insert-here").innerHTML = checkBylawsPlainLanguageHint;
-  checkBylawsOutputTemplate = ticketBylawExplanation;
   document.getElementById("city-bylaw-name").innerHTML = cityBylawName;
-  document.getElementById("insert-check-bylaw-info-box-text-here").innerHTML = checkBylawsOutputTemplate;
-}
+  document.getElementById("insert-check-bylaw-info-box-text-here").innerHTML = ticketBylawExplanation;
+};
 
   // Function for setting the correct parking bylaw text
-const potentialTicketRadioSelection = (function updatePotentialTicketConditionals() {
-  const potentialTicketRadioOptions = document.querySelectorAll(".potential-ticket-radio-class");
-  addRadioEventListener(potentialTicketRadioOptions, updatePotentialTicketConditionals);
+const potentialTicketRadioSelection = () => {
   for (let i = 0; i < potentialTicketRadioOptions.length; i++) {
     if (potentialTicketRadioOptions[i].checked) {
       switch (i) {
@@ -736,4 +834,11 @@ const potentialTicketRadioSelection = (function updatePotentialTicketConditional
       }
     }
   }
-}());
+};
+setupRBEventListeners(); // To setup rb event listeners after all conditions are loaded
+export {
+  templateType, city, nameAnswer, mailAddressAnswer, currentDateFormatted, ticketNumberAnswer, ticketDate,
+  ticketReason, emailAnswer, ticketAppealBylawAnswer, privateTicketAppealAnswer, ticketErrorDescriptionAnswer,
+  parkingProblemRadioSelection, ticketIssuerSelection, municipalityRadioSelection, studentOrEmployeeRadioSelection,
+  ticketAccuracyRadioSelection, ticketReasonRadioSelection, ticketAppealBylawRadioSelection, potentialTicketRadioSelection
+};

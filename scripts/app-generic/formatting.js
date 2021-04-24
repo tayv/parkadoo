@@ -1,4 +1,4 @@
-import {activeSection} from "/generic-form-functionality.js";
+import {activeSection, setActiveClass} from "/scripts/form-functionality/active-section.js";
 
 // GENERIC FUNCTIONALITY - To add whitespace to the end of the document so each section div will scroll to the top of the window when Next button selected
 const calcAndSetWhiteSpace = function(el) {
@@ -47,24 +47,6 @@ const formatSentenceEnding = (sentence) => {
   }
 };
 
-// For night mode toggle
-const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
 
-function switchTheme(e) {
-    if (e.target.checked) {
-      document.documentElement.setAttribute("data-theme", "dark");
-    // localStorage.setItem("default-theme", "false");  // saving setting to local storage and media query for preferred theme still needed
-      document.querySelector(".theme-icon").innerHTML="🌜";
-      console.log("DARK MODE");
-    }
-    else {
-      document.documentElement.setAttribute("data-theme", "light");
-     // localStorage.setItem("default-theme", "true");
-      document.querySelector(".theme-icon").innerHTML="☀️";
-      console.log("LIGHT MODE");
-    }
-}
-
-toggleSwitch.addEventListener("change", switchTheme, false);
 
 export {calcAndSetWhiteSpace, currentDateFormatted, upperCaseFirstLetter, lowerCaseFirstLetter, formatSentenceEnding};

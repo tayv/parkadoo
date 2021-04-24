@@ -1,4 +1,4 @@
-//import {templateType} from "/main.js"
+// Load this in the html header for any page that displays a letter 
 
 // This converts JSON sessionStorage letter and prints it onto letter.html after submitted on index.html
 document.addEventListener('DOMContentLoaded', function() {
@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }, false);
 
 // CTA Actions
-// send email button
+  // send email button
 if (document.getElementById("button-send")) {
   document.getElementById("button-send").onclick = () => {
     let htmlLetterContent = document.getElementById("insert-letter-output-text-here").innerHTML;
