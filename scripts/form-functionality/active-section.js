@@ -86,7 +86,6 @@ const prevStepActionsScroll = () => {
   };
 
 function isScrolledIntoView(el) {
-    console.log("active section", activeSection);
     let rect = el.getBoundingClientRect();
     let activeElemTop = Math.round(rect.top);
     let activeElemBottom = Math.round(rect.bottom);
