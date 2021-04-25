@@ -5,7 +5,7 @@ import {formSections} from "/scripts/form-content/form-sections.js";
 // INITIALIZE VARIABLES
 
 // setup variable and function to be used by click and scroll events in order to set css styling for active section
-let activeSection;
+let activeSection = document.querySelector("#welcome-section");
 
 // Used by Active-class on scrolling
 const headerHeight = document.getElementById("header-main").offsetHeight;
@@ -86,6 +86,7 @@ const prevStepActionsScroll = () => {
   };
 
 function isScrolledIntoView(el) {
+    console.log("active section", activeSection);
     let rect = el.getBoundingClientRect();
     let activeElemTop = Math.round(rect.top);
     let activeElemBottom = Math.round(rect.bottom);
