@@ -243,10 +243,11 @@ a:hover {
   font-size: 14px;
 }
 
-/* remove default selected input field styling */
-/* textarea:focus, input:focus, select {
-    outline: none;
-} */
+/* image styling */
+.hero-image {
+  width: 100%;
+  padding: 10% 10% 5% 10%;
+}
 
 /* h1 styling for questions without standard primary label */
 .question-primary {
