@@ -1,5 +1,6 @@
+import {currentDateFormatted} from "/scripts/app-generic/formatting.js";
 import {
-  templateType, city, nameAnswer, mailAddressAnswer, currentDateFormatted, ticketNumberAnswer, ticketDate,
+  templateType, city, nameAnswer, mailAddressAnswer, ticketNumberAnswer, ticketDate,
   ticketReason, emailAnswer, ticketAppealBylawAnswer, privateTicketAppealAnswer, ticketErrorDescriptionAnswer
 } from "/scripts/main.js";
 
