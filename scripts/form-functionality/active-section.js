@@ -65,8 +65,6 @@ const nextStepActionsScroll = () => {
       setCurrentStep(countStep + 1);
       setActiveClass(sectionsShowHideObj.showTheseSectionsArray[countStep]);
       sectionVisibility(sectionsShowHideObj);
-  //    focusInput();
-
     } else {
         checkButtonStep();
     } return countStep;
@@ -80,7 +78,6 @@ const prevStepActionsScroll = () => {
         removeActiveClass();
         setCurrentStep(countStep - 1);
         setActiveClass(sectionsShowHideObj.showTheseSectionsArray[countStep]);
-    //    focusInput();
     }
     return countStep;
   };
@@ -105,7 +102,9 @@ function isScrolledIntoView(el) {
 // ACTIVECLASS SCROLL LISTENER
 // may need lodash throttle function
 window.addEventListener("scroll", function() {
-  isScrolledIntoView(activeSection);
+  if (activeSection !== document.querySelector("#welcome-section")) {
+    isScrolledIntoView(activeSection);
+  }
     }, {
           capture: true,
           passive: true

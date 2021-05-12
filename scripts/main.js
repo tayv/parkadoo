@@ -836,6 +836,7 @@ const potentialTicketRadioSelection = () => {
   }
 };
 setupRBEventListeners(); // To setup rb event listeners after all conditions are loaded
+
 export {
   templateType, city, nameAnswer, mailAddressAnswer, ticketNumberAnswer, ticketDate,
   ticketReason, emailAnswer, ticketAppealBylawAnswer, privateTicketAppealAnswer, ticketErrorDescriptionAnswer,
