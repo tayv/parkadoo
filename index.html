@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="/styles/colors.css"/>
     <link rel="shortcut icon" href="/images/favicon.png" />
   </head>
+
   <body tabindex="-1">
     <header>
       <script src="/scripts/header.js" type="module"></script>
@@ -36,7 +37,13 @@
       <form class="questionnaire-container" id="parking-form-content" action="letter-neighbour.html">
         <!--Intro Message-->
         <section class="section-container" id="welcome-section">
-          <img src="/images/ufo.png" alt="ufo parked in no ufo zone" width="100%" class="hero-image"> 
+          <img src="images/photo_big.png"
+            srcset="/images/ufo_small.png 836w,
+                    /images/ufo_big.png 1288w"
+            sizes="(max-width: 1288px) 100vw, 1288px"
+            alt="ufo parked in no ufo zone"
+            class="hero-image"
+          />
           <!--Message Field-->
           <div class="field-container" id="active-section">
               <h1 class="field-label-large">Got a parking ticket? Let me help!</h1>
