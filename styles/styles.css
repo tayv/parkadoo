@@ -301,7 +301,7 @@ input[type="radio"] {
   Also changed .field-radio-button top margin from -12px to 4px to keep desired style */
 input[type="radio"] {
   position: relative;
-  margin: 0 !important;
+  margin: -5px !important; /* To move browser rb selector to the side in order to fix rb height spacing bug */
   padding: 0 !important;
   height: 0;
   width: 0;
