@@ -70,6 +70,7 @@ body {
   font-size: var(--font-root);
   letter-spacing: 0.01rem;
   -webkit-font-smoothing: subpixel-antialiased;
+  font-feature-settings:"kern";
   -moz-font-feature-settings:"kern";
 }
 
