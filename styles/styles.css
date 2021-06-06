@@ -300,8 +300,8 @@ input[type="radio"] {
   /* To reposition default radio selector so that :focus border style better fits around each radio input field.
   Also changed .field-radio-button top margin from -12px to 4px to keep desired style */
 input[type="radio"] {
-  position: absolute;
-  margin: 0 !important;
+  position: relative;
+  margin: -5px !important; /* To move browser rb selector to the side in order to fix rb height spacing bug */
   padding: 0 !important;
   height: 0;
   width: 0;
