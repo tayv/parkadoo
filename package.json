@@ -4,7 +4,7 @@
   "description": "Check parking bylaws and make an appeal letter to challenge unfair parking tickets.",
   "main": "main.js",
   "scripts": {
-    "build": "npm install --production",
+    "netlify-build": "npm install --production",
     "start:dev": "http-server -c-1 -p 8081"
   },
   "repository": {
