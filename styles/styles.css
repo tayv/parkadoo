@@ -530,8 +530,17 @@ li {
 
 
 /* ARTICLES SECTION STYLES */
+.article-section {
+  margin-bottom: 20px;
+  padding-top: 30px;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
 .article-box{
   padding: 1% 2% 1% 2%;
   border-radius: 8px;
   margin-bottom: 2%;
 }
+
+
