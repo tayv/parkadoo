@@ -281,3 +281,8 @@ input:checked ~ label .customRB::after {
   box-shadow: inset 0 0 0 1.5px var(--primary-color-300) !important; /* To override standard secondary CTA border */
   background-color: var(--primary-color-300);
 }
+
+/* ARTICLE PAGES SPECIFIC STYLES */
+.article-box {
+  background-color: var(--bkgd-alt-color);
+}
