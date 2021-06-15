@@ -21,7 +21,7 @@
   --highlight-color-300: hsla(237, 87%, 65%, 1);
   --highlight-color-100: hsla(237, 81%, 72%, 1);
 
-  --link-color-500: hsl(193, 100%, 53%, 1); /* cyan blue */
+  --link-color-500: dodgerblue; 
 
   --alt-color1:   hsl(198, 76%, 93%); /* light blue */
 
@@ -283,6 +283,8 @@ input:checked ~ label .customRB::after {
 }
 
 /* ARTICLE PAGES SPECIFIC STYLES */
-.article-box {
+.article-box:hover a {
   background-color: var(--bkgd-alt-color);
+  border-bottom-color: var(--link-color-500);
 }
+
