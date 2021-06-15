@@ -529,23 +529,40 @@ li {
 }
 
 
-/* Mobile Styles */
-@media only screen and (max-width: 400px) {
-  .questionnaire-container,
-  .letter-container {
-    background-color: #D6E9FE; /* Light Blue */
-  }
+/* ARTICLES SECTION STYLES */
+#article-container {
+  align-items: flex-start;
+  padding: 2%;
 }
 
-/* Tablet Styles */
-@media only screen and (min-width: 401px) and (max-width: 960px) {
-  .questionnaire-container,
-  .letter-container {
-    background-color: #F5CF8E; /* Yellow */
-  }
+.section-heading {
+  padding-bottom: 2%;
+  font-size: var(--font-xxlarge);
+  font-weight: var(--font-weight-heading);
+  
 }
 
-/* Desktop Styles */
-@media only screen and (min-width: 961px) {
-
+.article-section {
+  margin-bottom: 20px;
+  padding-top: 20px;
+  padding-right: 30px;
+  padding-left: 30px;
+  display: flex;
+  flex-direction: column;
 }
+
+.article-box {
+  padding: 1% 2% 1% 5%; /* 6% used to align link icon with section heading */
+  text-indent: -24px; /* For flush alignment next to the link icon for links with multiple lines */
+  line-height: 1.5; /* used to keep :hover bottom border from overlapping on multi line titles */
+}
+
+.article-box a {
+  font-weight: 400;
+}
+
+.article-box:hover a {
+  text-decoration: none;
+  border-bottom: solid 3px;
+}
+
