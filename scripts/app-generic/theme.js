@@ -2,11 +2,17 @@
 // The checkbox used for night mode toggle
 const toggleTheme = document.querySelector('.theme-switch input[type="checkbox"]');
 
+// Check if user prefers dark themes in their system settings 
+const prefersDarkTheme = window.matchMedia("(prefers-color-scheme: dark)");
+
 // Use this to See if the user previously chose a theme. If so set it during main.js window.onload
 const checkSavedTheme = () => {
   if (localStorage.getItem("theme")) {
     let existingTheme = localStorage.getItem("theme");
     setTheme(existingTheme);
+  } else if (prefersDarkTheme) { 
+    // If user has no parkadoo theme preference then check if they prefer dark theme on their system 
+    setTheme("dark");
   }
 }
 
