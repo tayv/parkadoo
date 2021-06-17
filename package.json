@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "netlify-build": "npm install --production",
-    "start:dev": "http-server -c-1 -p 8081"
+    "start:dev": "snowpack dev"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,6 @@
     "focus-visible": "^5.1.0"
   },
   "devDependencies": {
-    "http-server": "^0.11.1"
+    "snowpack": "^3.5.9"
   }
 }
