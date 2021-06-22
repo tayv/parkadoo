@@ -1,0 +1,568 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-decoration: none;
+  font-weight: 300;
+  font-style: normal;
+  word-wrap: break-word;
+}
+
+/*
+  This will hide the focus indicator if the element receives focus via the mouse,
+  but it will still show up on keyboard focus.
+*/
+*:focus:not(.focus-visible),
+#logo {
+  outline: none;
+}
+
+/* Add custom focus style for keyboard interactions. Need additional selector to target nightmode checkbox + custom radio labels as default input is hidden */
+.theme-switch input:focus-visible + span,
+.field-radio-button input:focus-visible + label,
+.focus-visible {
+  -webkit-appearance: none;
+  -webkit-box-shadow: 0 0 0 3px lightgreen !important;
+  box-shadow: 0 0 0 3px lightgreen !important;
+}
+
+:root {
+  --font-xsmall: 12px;
+  --font-small: 14px;
+  --font-root: 16px;
+  --font-large: 20px;
+  --font-xlarge: 24px;
+  --font-xxlarge: 30px;
+
+  --font-weight-heading: 400;
+
+  --max-width-content: 600px;
+}
+
+/* FONTS */
+@import url('https://rsms.me/inter/inter.css');
+html { font-family: "Inter", -apple-system, BlinkMacSystemFont,
+  “Segoe UI”, “Roboto”, “Oxygen”, “Ubuntu”, “Cantarell”,
+  “Fira Sans”, “Droid Sans”, “Helvetica Neue”, sans-serif;
+ }
+@supports (font-variation-settings: normal) {
+  html { font-family: "Inter var", sans-serif; }
+}
+
+/* GENERIC STYLES */
+body {
+  /* flex alignment */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+
+  max-height: 100vh;
+
+  /* body font styles */
+  font-size: var(--font-root);
+  letter-spacing: 0.01rem;
+  -webkit-font-smoothing: subpixel-antialiased;
+  font-feature-settings:"kern";
+  -moz-font-feature-settings:"kern";
+}
+
+p {
+  line-height: 1.4;
+  padding-top: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.font-emphasis {
+  font-style: italic;
+}
+
+/* Primary header/footer */
+#header-main,
+#header-nav-container,
+#footer-main,
+#footer-nav-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: none;
+  height: 60px;
+  width: 100vw;
+  z-index: 99;
+}
+
+/* Navigation */
+#logo {
+  text-decoration: none;
+  font-size: var(--font-large);
+  font-weight: 600;
+  margin-left: 10%;
+}
+
+.theme-switch {
+  margin-left: auto;
+  margin-right: 6%;
+}
+
+.theme-icon {
+  font-size: var(--font-large);
+}
+
+/* Main form container */
+#parking-form-main,
+#letter-main {
+  width: 100%;
+  overflow-y: scroll; /* Scroll window for main content so header stays fixed */
+  height: 100vh; /* To push footer to bottom of page */
+}
+
+/* Main content containers */
+#parking-form-main,
+#letter-main,
+.letter-container,
+.questionnaire-container,
+.section-container,
+.cta-sticky-container,
+.finished-section-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#header-nav-container,
+.questionnaire-container,
+.letter-container,
+.cta-sticky-container,
+#footer-nav-container {
+  max-width: var(--max-width-content);
+  width: 100%; /* want cta sticky width to match questionnaire containers */
+ -ms-flex-negative: 0;
+      flex-shrink: 0;  /*To fix safari bug of container not filling full height */
+}
+
+.section-container,
+.letter-cta-container {
+  padding: 0% 10% 5% 10%;
+  display: block; /* To fix Chrome/Safari issue with first section divs overlapping */
+}
+
+.active-section-container {
+  border-left: 8px solid;
+  border-radius: 8px;
+}
+
+/* To center and control questionnaire fields with flexbox*/
+.field-container,
+.field-date,
+.field-checkbox,
+.fieldset-radio {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+
+  padding: 0;
+  margin: 0;
+}
+
+/* Fields that are aligned with flexbox using row */
+.date-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+/* Margin to next question */
+.field-container,
+.field-date,
+.fieldset-radio,
+.field-checkbox {
+  margin-bottom: 20px;
+}
+
+/* Standard & large input field widths */
+.letter-container,
+.section-container,
+.field-container,
+.field-container .abstract,
+.field-abstract-example,
+.field-checkbox,
+.field-date,
+.fieldset-radio {
+  width: 100%; /* of .questionnaire-container */
+}
+
+/* Unselected field styling */
+.field-container input[type="text"],
+.field-container input[type="email"],
+.field-container input[type="password"],
+.field-container .abstract,
+.field-date input[type="number"],
+.field-date input[type="text"] {
+  border: 2px solid;
+  border-radius: 5px;
+  width: 100%;
+  padding: 7px;
+  font-size: 14px;
+}
+
+/* image styling */
+.hero-image {
+  width: 100%;
+  padding: 10% 10% 5% 10%;
+}
+
+/* h1 styling for questions without standard primary label */
+.question-primary {
+  padding-top: 30px;
+  padding-bottom: 6px;
+  font-weight: var(--font-weight-heading);
+}
+
+/* Primary label styling */
+.field-label-large {
+  margin-top: 20px;
+  margin-bottom: 6px;
+  font-size: var(--font-xlarge);
+  font-weight: var(--font-weight-heading);
+  display: inline-block;
+}
+
+.field-label-small {
+  padding-left: 2px;
+  font-size: var(--font-root);
+}
+
+/* Supporting label styling */
+.field-hint {
+  padding-left: 2px;
+  padding-bottom: 16px;
+  font-weight: var(--font-weight-heading);
+}
+
+.field-hint,
+.field-example,
+.field-abstract-example {
+  display: block;
+  font-size: var(--font-small);
+}
+
+.field-example,
+.field-abstract-example {
+  padding-top: 6px;
+  margin-left: 4px;
+  font-style: italic;
+}
+
+/* RADIO BUTTON STYLING */
+  /* To hide default rb selector styling */
+input[type="radio"] {
+  opacity: 0;
+}
+
+  /* To reposition default radio selector so that :focus border style better fits around each radio input field.
+  Also changed .field-radio-button top margin from -12px to 4px to keep desired style */
+input[type="radio"] {
+  position: relative;
+  margin: -5px !important; /* To move browser rb selector to the side in order to fix rb height spacing bug */
+  padding: 0 !important;
+  height: 0;
+  width: 0;
+}
+
+  /* To remove radio button fieldset default border */
+.fieldset-radio {
+  border-style: none;
+}
+
+.field-radio-button {
+  margin: 4px -12px 0px -12px;
+}
+
+.field-radio-button label {
+  position: relative;
+  cursor: pointer;
+  text-indent: -30px; /* To prevent second line wrapping under rb selector */
+  padding: 7px 5px 7px 40px;
+  display: inline-block;
+  width: 100%;
+}
+
+.field-radio-button label:hover {
+  border-radius: 25px;
+}
+
+.field-radio-button input:checked ~ label {
+  text-shadow: none;
+  padding-left: 40px; /* to fix chrome alignment bug */
+  border-radius: 25px;
+  font-weight: 500;
+}
+
+  /* Custom radio button styling */
+.customRB {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  border: 3px solid;
+  border-radius: 50%;
+
+  /* to vertically center */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Small interior rb circle */
+.customRB::after {
+  display: inline-block;
+  position: absolute;
+	content: '';
+  border-radius: 100%;
+  height: 8px;
+  width: 8px;
+  left: 22%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+input:checked ~ label .customRB {
+  transition: border .25s linear;
+    -webkit-transition: border 0.25s linear;
+}
+
+input:checked ~ label .customRB::after {
+  transition: background 0.25s linear;
+    -webkit-transition: background 0.25s linear;
+}
+
+input[type=radio]:checked + label > span { /* to bold text of selected answer */
+  font-weight: 500;
+}
+
+.answerTextRB {
+  padding-left: 30px;
+}
+
+/* Styling of date fields */
+.container-month {
+ margin-right: 10px;
+ display: block;
+}
+
+.container-day {
+  -webkit-appearance: none; /* To remove stepper */
+  max-width: 50px;
+  width: 100%;
+  margin-right: 10px;
+  display: block;
+}
+
+.container-year {
+  max-width: 70px;
+  width: 100%;
+  display: block;
+}
+
+/* To style the date dropdown */
+.container-month select {
+  background-color: hsla(210, 17%, 93%, 1);
+  border: 2px solid hsla(180, 100%, 13%, 1);
+  border-radius: 7px;
+  width: 100%;
+  padding: 7px;
+  font-size: var(--font-small);            /* This won't work in Chrome or Safari */
+  -webkit-appearance: none;   /* This will make it work */
+}
+
+.container-month select:focus {
+  background-color: hsla(0, 100%, 100%, 1);
+}
+
+/* Bylaw info box styling */
+.info-box-div, #letter-preview-container {
+  margin-top: 12px;
+  padding: 25px;
+  font-size: var(--font-small);
+  border-radius: 3px;
+  text-shadow: none;
+}
+
+.info-box-disclaimer-text {
+  font-size: var(--font-xsmall);
+}
+
+/* For spacing legislation subsections */
+ul {
+  margin-left: 8px;
+}
+
+li {
+  list-style-type: none;
+  margin-left: 28px;
+  margin-bottom: 12px;
+  text-indent: -24px;
+}
+
+/* Spacing for last section */
+#finished-section-container {
+  margin-bottom: 20px;
+  padding-top: 30px;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
+/* Output Section */
+#output {
+  padding-top: 30px;
+  padding-right: 30px;
+  padding-left: 30px;
+  /* padding-bottom: calc(100vh - 125px - 80px); */
+
+}
+
+/* CTA sticky*/
+.cta-sticky-container {
+  position: -webkit-sticky;
+  position: sticky;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+    -ms-flex-pack: space-evenly;
+        justify-content: space-evenly;
+  -webkit-box-align: center;
+    -ms-flex-align: center;
+        align-items: center;
+  bottom: 0;
+  height: 80px;
+  padding: 15px;
+}
+
+/* Buttons */
+.button-cta,
+.button-cta-letter,
+#button-submit {
+  font: inherit;
+  border: 5px;
+  border-radius: 6px;
+  -moz-appearance: none;
+       appearance: none;
+  -webkit-appearance:none;
+  padding:10px 20px;
+  outline: none;
+}
+
+.button-cta:hover,
+.button-cta-letter  {
+  cursor: pointer;
+}
+
+#button-prev {
+  margin-right: 4px;
+}
+
+.button-next {
+  margin-left: 4px;
+}
+
+#button-submit {
+  border: none;
+}
+
+/* Hide by default to prevent flickering from js */
+.section-container,
+#button-submit,
+#button-prev,
+#button-next {
+  display: none;
+}
+/* Show by default to prevent flickering */
+#welcome-section,
+#letter-explanation,
+#letter-section {
+  display: block;
+}
+
+/* footer nav */
+#footer-nav-container {
+  font-size: var(--font-small);
+  letter-spacing: 1.3px;
+}
+
+
+/* ARTICLES SECTION STYLES */
+#article-container {
+  align-items: flex-start;
+  padding: 2%;
+}
+
+.section-heading {
+  padding-bottom: 2%;
+  font-size: var(--font-xxlarge);
+  font-weight: var(--font-weight-heading);
+  
+}
+
+.article-section {
+  margin-bottom: 20px;
+  padding-top: 10px;
+  padding-right: 30px;
+  padding-left: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.article-box {
+  padding: 1% 2% 1% 5%; /* 6% used to align link icon with section heading */
+  text-indent: -26px; /* For flush alignment next to the link icon for links with multiple lines */
+  line-height: 1.5; /* used to keep :hover bottom border from overlapping on multi line titles */
+}
+
+.article-box a {
+  font-weight: 400;
+}
+
+.article-box:hover a {
+  text-decoration: none;
+  border-bottom: solid 3px;
+}
+

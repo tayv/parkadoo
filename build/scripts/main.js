@@ -1,14 +1,14 @@
-import {initSavedAnswers} from "/scripts/form-functionality/autosave.js";
-import {setLetterTemplate, letterTemplate} from "/scripts/letter-builder.js";
-import {checkBylawsOutputTemplate, cityBylawLink, cityBylawName, bylawTextObj} from "/scripts/form-content/bylaws.js";
-import {calcAndSetWhiteSpace, currentDateFormatted, upperCaseFirstLetter, lowerCaseFirstLetter, formatSentenceEnding} from "/scripts/app-generic/formatting.js";
-import {checkButtonStep} from "/scripts/form-functionality/stepper-buttons.js";
-import {countStep, setCurrentStep, sectionsShowHideObj} from "/scripts/form-functionality/step-tracker.js";
-import {formSections} from "/scripts/form-content/form-sections.js";
+import {initSavedAnswers} from "./form-functionality/autosave.js";
+import {setLetterTemplate, letterTemplate} from "./letter-builder.js";
+import {checkBylawsOutputTemplate, cityBylawLink, cityBylawName, bylawTextObj} from "./form-content/bylaws.js";
+import {calcAndSetWhiteSpace, currentDateFormatted, upperCaseFirstLetter, lowerCaseFirstLetter, formatSentenceEnding} from "./app-generic/formatting.js";
+import {checkButtonStep} from "./form-functionality/stepper-buttons.js";
+import {countStep, setCurrentStep, sectionsShowHideObj} from "./form-functionality/step-tracker.js";
+import {formSections} from "./form-content/form-sections.js";
 import {
   setupRBEventListeners, parkingProblemRadioOptions, ticketIssuerRadioOptions, municipalityRadioOptions,
   studentOrEmployeeRadioOptions, ticketAccuracyRadioOptions, ticketReasonRadioOptions,
-  ticketAppealBylawRadioOptions, potentialTicketRadioOptions, allRadiosArray} from "/scripts/form-functionality/radio-buttons.js";
+  ticketAppealBylawRadioOptions, potentialTicketRadioOptions, allRadiosArray} from "./form-functionality/radio-buttons.js";
 
 // TO LOAD DEFAULT VISIBILITY CONDITIONS
 window.onload = function() {

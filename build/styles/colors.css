@@ -1,0 +1,290 @@
+/* COLOR SECTION */
+  /* Generic questionnaire colors */
+:root {
+  --primary-color-900: hsla(218, 22%, 7%, 1);
+  --primary-color-700: hsl(210, 100%, 81%);
+  --primary-color-500: hsl(210, 100%, 89%); /* light blue */
+  --primary-color-500-opacity: hsla(210, 100%, 89%, 0.9); /* for cta container */
+  --primary-color-300: hsl(210, 100%, 92%);
+  --primary-color-100: hsl(210, 100%, 94%);
+  --primary-color-100-opacity: hsl(210, 100%, 94%, 0.9);
+
+  --neutral-color-900: hsla(215, 26%, 45%, 1);
+  --neutral-color-700: hsla(215, 55%, 92%, 1);
+  --neutral-color-500: hsla(220, 60%, 95%, 1); /* grey */
+  --neutral-color-300: hsla(220, 60%, 98%, 1);
+  --neutral-color-300-opacity: hsla(220, 60%, 98%, 0.9);
+  --neutral-color-100: hsla(220, 60%, 99%, 1);
+  --neutral-color-100-opacity: hsla(220, 60%, 99%, 0.9);
+
+  --highlight-color-500: hsla(235, 100%, 63%, 1); /* purple */
+  --highlight-color-300: hsla(237, 87%, 65%, 1);
+  --highlight-color-100: hsla(237, 81%, 72%, 1);
+
+  --link-color-500: dodgerblue; 
+
+  --alt-color1:   hsl(198, 76%, 93%); /* light blue */
+
+  --color-white: hsla(0, 0%, 100%, 1); /* full white */
+  --color-black: hsla(210, 50%, 1%, 1); /* rich black */
+  --color-black-light: hsla(210, 50%, 1%, 0.8);
+
+  --shadow-top: 0 -1px 5px hsla(0, 0%, 0%, 0.15);
+  --shadow-normal: 0px 2px 5px hsla(0, 0%, 0%, 0.1);
+  --border-top-light: 2px solid var(--neutral-color-500);
+
+  --header-color: var(--neutral-color-100);
+  --header-shadow: var(--shadow-top);
+  --main-background-color: var(--neutral-color-500);
+  --form-container-color: var(--neutral-color-300);
+  --form-color: var(--color-white);
+  --main-text-color: var(--color-black);
+
+  --primary-label-color: var(--color-black);
+  --primary-text-color: var(--color-black-light);
+
+  --logo-color: var(--highlight-color-500);
+
+  --active-section-color: var(--color-white);
+  --active-highlight-color: var(--highlight-color-500);
+  --rb-text-color: var(--neutral-color-900);
+  --rb-background-color: var(--neutral-color-500);
+  --rb-text-color: var(--primary-text-color);
+  --rb-text-hover-color: var(--primary-text-color);
+  --rb-selected-color: var(--highlight-color-500);
+
+  --border-top: var(--border-top-light);
+  --cta-container-color: var(--neutral-color-300-opacity);
+  --cta-button-color: var(--active-highlight-color);
+
+  --ghost-button-color: var(--color-black);
+  --ghost-button-hover-color: var(--neutral-color-900);
+
+  --bkgd-alt-color: var(--alt-color1); /* For alternate background on letter pages */
+
+  --nav-highlight-color: var(--neutral-color-700);
+  --nav-link-hover-color: var(--color-white);
+  --footer-color: var(--color-black);
+}
+
+[data-theme="dark"] {
+  --primary-color-900: hsla(218, 22%, 7%, 1);
+  --primary-color-700: hsla(218, 22%, 12%, 1);
+  --primary-color-500: hsla(218, 12%, 18%, 1); /* dark greyish blue */
+  --primary-color-500-opacity: hsla(218, 12%, 18%, 0.9); /* for CTA sticky background */
+  --primary-color-300: hsla(218, 12%, 26%, 1);
+  --primary-color-100: hsla(218, 12%, 16%, 1);
+
+  --neutral-color-900: hsla(211, 10%, 53%, 1);
+  --neutral-color-700: hsla(211, 13%, 65%, 1);
+  --neutral-color-500: hsla(210, 16%, 82%, 1); /* grey */
+  --neutral-color-300: hsla(214, 15%, 91%, 1);
+  --neutral-color-100: hsla(216, 33%, 97%, 1);
+
+  --border-top-dark: 1px solid hsla(227, 12%, 30%, 1);
+
+  --header-color: var(--primary-color-700);
+  --header-shadow: var(--shadow-normal);
+
+  --logo-color: var(--highlight-color-500);
+
+  --main-background-color: var(--primary-color-900);
+  --form-container-color: var(--primary-color-500);
+  --active-section-color: var(--primary-color-300);
+  --cta-container-color: var(--primary-color-500-opacity);
+
+  --primary-label-color: var(--color-white);
+  --primary-text-color: var(--color-white);
+
+  --rb-text-color: var(--color-white);
+  --rb-background-color: var(--highlight-color-500);
+  --rb-text-color: var(--color-white);
+  --rb-text-hover-color: var(--color-white);
+  --rb-selected-color: var(--color-white);
+
+  --border-top: var(--border-top-dark);
+
+  --ghost-button-color: var(--neutral-color-500);
+  --ghost-button-hover-color: var(--neutral-color-300);
+
+  --bkgd-alt-color: var(--primary-color-300); /* For alternate background on letter pages */
+
+  --footer-color: var(--primary-color-700);
+}
+
+body {
+  background-color: var(--main-background-color);
+  color: var(--primary-text-color);
+}
+
+a {
+  color: var(--link-color-500);
+}
+
+#header-main {
+  background-color: var(--header-color);
+  box-shadow: var(--header-shadow);
+}
+
+#logo {
+  color: var(--logo-color);
+}
+
+.questionnaire-container,
+.letter-container {
+  background-color: var(--form-container-color);
+}
+
+.active-section-container {
+  border-color: var(--active-highlight-color);
+  background-color: var(--active-section-color);
+}
+
+.field-label-large,
+.field-label-small,
+.question-primary {
+  color: var(--primary-label-color);
+}
+
+/* Unselected text field */
+.field-container input[type="text"],
+.field-container input[type="email"],
+.field-container input[type="password"],
+.field-container .abstract,
+.field-date input[type="number"],
+.field-date input[type="text"] {
+  background-color: var(--neutral-color-300);
+  border-color: var(--neutral-color-900);
+}
+
+/* Selected text field */
+.field-container input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+.field-container .abstract:focus,
+.field-date input[type="number"]:focus,
+.field-date input[type="text"]:focus,
+#ticket-month {
+  background-color: var(--color-white);
+  border-color: var(--link-color-500);
+}
+
+/* CTAs */
+.cta-sticky-container {
+  background-color: var(--cta-container-color);
+  border-top: var(--border-top);
+}
+
+.button-cta,
+.button-cta:active,
+.button-cta-letter,
+.button-cta-letter:active {
+  box-shadow: inset 0 0 0 1.5px var(--ghost-button-color);
+  background-color: transparent;
+  color: var(--ghost-button-color);
+}
+
+.button-cta:hover,
+.button-cta-letter:hover {
+  box-shadow: inset 0 0 0 1.5px var(--ghost-button-hover-color);
+  color: var(--ghost-button-hover-color);
+}
+
+.button-next,
+.button-next:active,
+#button-submit,
+#button-submit:active {
+  box-shadow: none;
+  background-color: var(--cta-button-color);
+  color: var(--color-white);
+}
+
+.button-next:hover,
+#button-submit:hover {
+  box-shadow: none;
+  background-color: var(--cta-button-color);
+  color: var(--color-white);
+}
+
+/* Footer */
+#footer-main {
+  background-color: var(--footer-color);
+  border-top: var(--border-top);
+
+}
+
+  /* Radio buttons */
+.field-radio-button label {
+  color: var(--rb-text-color);
+}
+
+.field-radio-button label:hover {
+  background-color: var(--rb-background-color);
+  color: var(--rb-text-hover-color);
+
+}
+
+.customRB::after, /* rb center dot. should match label background color */
+input:checked ~ label .customRB {
+  border-color: var(--rb-selected-color);
+}
+
+input:checked ~ label .customRB::after {
+  background-color: var(--rb-selected-color);
+}
+
+.field-radio-button input:checked ~ label {
+  color: var(--rb-selected-color);
+  border-color: var(--rb-selected-color);
+  background-color: var(--rb-background-color);
+}
+
+/* For keyboard tabbing accessibiilty */
+/* .field-radio-button input[type="radio"]:focus + label {
+  border: 1px dashed var(--rb-selected-color);
+} */
+
+  /* Special information boxes */
+.info-box-div,
+.contact-box,
+ #letter-preview-container {
+  background-color: var(--color-white);
+  color: var(--main-text-color);
+}
+
+/* footer tabs */
+#footer-nav-container a {
+  color: var(--nav-highlight-color);
+  text-decoration: none;
+}
+
+#footer-nav-container a:hover {
+  color: var(--nav-link-hover-color);
+}
+
+/* LETTER PREVIEW PAGE SPECIFIC COLORS */
+.info-box-div,
+.contact-box,
+ #letter-preview-container {
+  box-shadow: var(--shadow-normal);
+}
+
+.letter-cta-container {
+  background-color: var(--bkgd-alt-color);
+}
+
+.button-cta-letter:hover {
+  border-color: var(--color-white);
+}
+
+.button-success {
+  box-shadow: inset 0 0 0 1.5px var(--primary-color-300) !important; /* To override standard secondary CTA border */
+  background-color: var(--primary-color-300);
+}
+
+/* ARTICLE PAGES SPECIFIC STYLES */
+.article-box:hover a {
+  background-color: var(--bkgd-alt-color);
+  border-bottom-color: var(--link-color-500);
+}
+

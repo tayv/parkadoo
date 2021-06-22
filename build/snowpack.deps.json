@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "dompurify": "^2.2.9",
+    "focus-visible": "^5.2.0"
+  },
+  "lock": {
+    "dompurify#^2.2.9": "dompurify@v2.2.9-HO73kRGSaiqwSNmQ5tRA",
+    "focus-visible#^5.2.0": "focus-visible@v5.2.0-stXnfdtyign2OzolvXYT"
+  }
+}

@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+     <!-- Primary meta tags -->
+    <meta
+      name="Parkadoo"           
+      content="Avoid and challenge Edmonton parking tickets." 
+    />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="www.parkadoo.com">
+    <meta property="og:title" content="Parkadoo">
+    <meta property="og:description" content="Avoid and challenge Edmonton parking tickets.">
+    <meta property="og:image" content="/images/ufo.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="/images/ufo.png">
+    <meta property="twitter:url" content="www.parkadoo.com">
+    <meta property="twitter:title" content="Parkadoo">
+    <meta property="twitter:description" content="Avoid and challenge Edmonton parking tickets.">
+    <meta property="twitter:image" content="/images/ufo.png">
+
+    <title>Parkadoo</title>
+    <link rel="stylesheet" href="/styles/styles.css" />
+    <link rel="stylesheet" href="/styles/colors.css"/>
+    <link rel="shortcut icon" href="/images/favicon.png" />
+  </head>
+
+  <body tabindex="-1">
+    <header>
+      <script src="/scripts/header.js" type="module"></script>
+      <div id="header-main"></div>
+    </header>
+    <main tabindex="-1" id="parking-form-main">
+      <form class="questionnaire-container" id="parking-form-content" action="letter-neighbour.html">
+        <!--Intro Message-->
+        <section class="section-container" id="welcome-section">
+          <img src="images/photo_big.png"
+            srcset="/images/ufo_small.png 836w,
+                    /images/ufo_big.png 1288w"
+            sizes="(max-width: 1288px) 100vw, 1288px"
+            alt="ufo parked in no ufo zone"
+            class="hero-image"
+          />
+          <!--Message Field-->
+          <div class="field-container" id="active-section">
+              <h1 class="field-label-large">Got a parking ticket? Let me help!</h1>
+              <p>I'm a free app that helps you avoid and fight pesky parking tickets.
+              All you have to do is answer a few simple questions.</p>
+              <p>Ready to make your parking ticket go away? &#x1F697;</p>
+          </div>
+        </section>
+        <!--Type of Parking Problem Radio Buttons-->
+        <section id="parking-problem-section" class="section-container">
+          <fieldset class="fieldset-radio" id="fieldset-parking-problem">
+            <legend>
+              <h2 class="question-primary">What is your parking problem?</h2>
+            </legend>
+            <div class="field-radio-button">
+              <input id="parking-problem-1"
+                type="radio"
+                name="parking-problem-radio"
+                value="1"
+                checked="checked"
+                class="parking-problem-radio-class">
+                <label for="parking-problem-1">
+                  <div class="customRB"></div>
+                  <span class="answerTextRB">I want to appeal a parking ticket</span>
+                </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="parking-problem-2"
+                type="radio"
+                name="parking-problem-radio"
+                value="2"
+                class="parking-problem-radio-class">
+                <label for="parking-problem-2">
+                  <div class="customRB"></div>
+                  <span class="answerTextRB">I want to report a vehicle that's been parked for 72+ hrs</span>
+                </label>
+            </div>
+            <div class="field-radio-button">
+                <input id="parking-problem-3"
+                  type="radio"
+                  name="parking-problem-radio"
+                  value="3"
+                  class="parking-problem-radio-class">
+                <label for="parking-problem-3">
+                  <div class="customRB"></div>
+                  <span class="answerTextRB">I want to check if my current parking situation is likely to result in a ticket</span>
+                </label>
+            </div>
+          </fieldset>
+        </section>
+        <!--Type of parking issue for preemptively checking bylaws-->
+        <section id="potential-issue-section" class="section-container">
+          <fieldset class="fieldset-radio">
+            <legend>
+              <h2 class="question-primary">Which parking situation are you unsure about?</h2>
+            </legend>
+            <div class="field-radio-button">
+              <input id="potential-ticket-1"
+                type="radio"
+                name="potential-ticket-radio"
+                value="1"
+                checked="checked"
+                class="potential-ticket-radio-class">
+                <label for="potential-ticket-1">
+                  <div class="customRB"></div>
+                  <span class="answerTextRB">Parking too close to a stop/yield sign</span>
+                </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-2"
+                type="radio"
+                name="potential-ticket-radio"
+                value="2"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-2">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Parking too close to a crosswalk</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-3"
+                type="radio"
+                name="potential-ticket-radio"
+                value="3"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-3">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Parking too close to a fire hydrant</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-4"
+                type="radio"
+                name="potential-ticket-radio"
+                value="4"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-4">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Parking too close to an intersection</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-5"
+                type="radio"
+                name="potential-ticket-radio"
+                value="5"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-5">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Angle parking requirements</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-6"
+                type="radio"
+                name="potential-ticket-radio"
+                value="6"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-6">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Vehicle length limits</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-7"
+                type="radio"
+                name="potential-ticket-radio"
+                value="7"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-7">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Leaving a trailer unattached</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-8"
+                type="radio"
+                name="potential-ticket-radio"
+                value="8"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-8">
+                <div class="customRB"></div>
+                <span class="answerTextRB">RV parking</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-9"
+                type="radio"
+                name="potential-ticket-radio"
+                value="9"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-9">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Parking too close to the centre line</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-10"
+                type="radio"
+                name="potential-ticket-radio"
+                value="10"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-10">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Parallel parking requirements</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-11"
+                type="radio"
+                name="potential-ticket-radio"
+                value="11"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-11">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Parking in a closed pay and display zone</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-12"
+                type="radio"
+                name="potential-ticket-radio"
+                value="12"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-12">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Parking in front of a hooded meter</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-13"
+                type="radio"
+                name="potential-ticket-radio"
+                value="13"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-13">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Parking on a sidewalk</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-14"
+                type="radio"
+                name="potential-ticket-radio"
+                value="14"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-14">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Potentially blocking traffic</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-15"
+                type="radio"
+                name="potential-ticket-radio"
+                value="15"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-15">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Parking around bus zones</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-16"
+                type="radio"
+                name="potential-ticket-radio"
+                value="16"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-16">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Parking in emergency zones</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-17"
+                type="radio"
+                name="potential-ticket-radio"
+                value="17"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-17">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Parking on seasonal ban routes</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-18"
+                type="radio"
+                name="potential-ticket-radio"
+                value="18"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-18">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Parking in a residential permit zone</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-19"
+                type="radio"
+                name="potential-ticket-radio"
+                value="19"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-19">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Disabled zone requirements</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-20"
+                type="radio"
+                name="potential-ticket-radio"
+                value="20"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-20">
+                <div class="customRB"></div>
+                <span class="answerTextRB">No stopping zone exceptions</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-21"
+                type="radio"
+                name="potential-ticket-radio"
+                value="21"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-21">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Commercial loading zone requirements</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-22"
+                type="radio"
+                name="potential-ticket-radio"
+                value="22"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-22">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Passenger loading zone requirements</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-23"
+                type="radio"
+                name="potential-ticket-radio"
+                value="23"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-23">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Marked space requirements</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-24"
+                type="radio"
+                name="potential-ticket-radio"
+                value="24"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-24">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Leaving a vehicle on a jack</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-25"
+                type="radio"
+                name="potential-ticket-radio"
+                value="25"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-25">
+                <div class="customRB"></div>
+                <span class="answerTextRB">When vehicle is considered abandoned</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-26"
+                type="radio"
+                name="potential-ticket-radio"
+                value="26"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-26">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Parking in an alley</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-27"
+                type="radio"
+                name="potential-ticket-radio"
+                value="27"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-27">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Double parking</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-28"
+                type="radio"
+                name="potential-ticket-radio"
+                value="28"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-28">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Parking around bridges/tunnels</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-29"
+                type="radio"
+                name="potential-ticket-radio"
+                value="29"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-29">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Pay and display zone requirements</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-30"
+                type="radio"
+                name="potential-ticket-radio"
+                value="30"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-30">
+                <div class="customRB"></div>
+                <span class="answerTextRB">EPark zone requirements</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-31"
+                type="radio"
+                name="potential-ticket-radio"
+                value="31"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-31">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Parking in front of meters</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-32"
+                type="radio"
+                name="potential-ticket-radio"
+                value="32"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-32">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Overstaying posted time limits</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-33"
+                type="radio"
+                name="potential-ticket-radio"
+                value="33"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-33">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Metered space requirements</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-34"
+                type="radio"
+                name="potential-ticket-radio"
+                value="34"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-34">
+                <div class="customRB"></div>
+                <span class="answerTextRB">No parking zone exceptions</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="potential-ticket-35"
+                type="radio"
+                name="potential-ticket-radio"
+                value="35"
+                class="potential-ticket-radio-class">
+              <label for="potential-ticket-35">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Other</span>
+              </label>
+            </div>
+          </fieldset>
+        </section>
+        <!--Bylaw info box if just preemptively checking for potential ticket-->
+        <section class="section-container" id="check-bylaw-info-section">
+          <h2 class="question-primary" id="check-bylaw-primary-question-insert-here"></h2>
+          <span class="field-hint" id="bylaw-plain-language-hint-insert-here"></span>
+          <div class="info-box-div">
+            <p id="insert-check-bylaw-info-box-text-here"></p>
+            <p class="info-box-disclaimer-text"> *** Please remember I'm not a lawyer and don't guarantee this info is correct. You should check out <a href="" class="city-bylaw-link" target="_blank"><span id="city-bylaw-name"></span></a> yourself to be sure &#x1F642;</p>
+          </div>
+        </section>
+        <!--Ticket Issuer Radio Buttons-->
+        <section id="ticket-issuer-section" class="section-container">
+          <fieldset class="fieldset-radio">
+            <legend>
+              <h2 class="question-primary">Who issued your ticket?</h2>
+            </legend>
+            <div class="field-radio-button">
+              <input id="ticket-issuer-city"
+                type="radio"
+                name="ticket-issuer-radio"
+                value="1"
+                checked="checked"
+                class="ticket-issuer-radio-class">
+              <label for="ticket-issuer-city">
+                <div class="customRB"></div>
+                <span class="answerTextRB">City</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticket-issuer-private"
+                type="radio"
+                name="ticket-issuer-radio"
+                value="2"
+                class="ticket-issuer-radio-class">
+              <label for="ticket-issuer-private">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Private lot operator (e.g. Impark)</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticket-issuer-university"
+                type="radio"
+                name="ticket-issuer-radio"
+                value="3"
+                class="ticket-issuer-radio-class">
+              <label for="ticket-issuer-university">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Hospital, university, or other institution</span>
+              </label>
+            </div>
+          </fieldset>
+        </section>
+        <!--Which Municipality Radio Buttons-->
+        <section id="municipality-section" class="section-container">
+          <fieldset class="fieldset-radio">
+            <legend>
+              <h2 class="question-primary">Which municipality issued your ticket?</h2>
+            </legend>
+            <div class="field-radio-button">
+              <input id="municipality-edmonton"
+                type="radio"
+                name="municipality-radio"
+                value="1"
+                checked="checked"
+                class="municipality-radio-class">
+              <label for="municipality-edmonton">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Edmonton</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="municipality-other"
+                type="radio"
+                name="municipality-radio"
+                value="2"
+                class="municipality-radio-class">
+              <label for="municipality-other">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Other</span>
+              </label>
+            </div>
+          </fieldset>
+        </section>
+        <section id="city-unavailable-section" class="section-container">
+          <div class="field-container">
+            <label for="new-city-request-textfield">
+              <h2 class="question-primary">Bylaw ticket appeals aren't available in your city yet 😞</h2>
+              <p>However, you can still use this app to appeal tickets from private parking operators by going back a couple steps.</p>
+              <p>If you have time, <a href="mailto:?subject=Parkadoo%20add%20city&body=Hey,%20please%20add%20this%20city:">let me know which city</a> you'd like me to add next.</p>
+            </label>
+            <!-- Hid textfield because don't have in-form contact submissions yet-->
+            <input id="new-city-request-textfield"
+              type="text"
+              name="new-city-request-textfield"
+              style="display: none;"
+              >
+          </div>
+        </section>
+        <!--A Student or Employee of Issuer Radio Buttons-->
+        <section id="student-or-employee-section" class="section-container">
+          <fieldset class="fieldset-radio">
+            <legend>
+              <h2 class="question-primary">Are you an employee or student at the institution that issued the ticket?</h2>
+            </legend>
+            <div class="field-radio-button">
+              <input id="employee-or-student-yes"
+                type="radio"
+                name="yn-employee-or-student"
+                value="1"
+                class="student-or-employee-class">
+              <label for="employee-or-student-yes">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Yes</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="employee-or-student-no"
+                type="radio"
+                name="yn-employee-or-student"
+                value="2"
+                checked="checked"
+                class="student-or-employee-class">
+              <label for="employee-or-student-no">
+                <div class="customRB"></div>
+                <span class="answerTextRB">No</span>
+              </label>
+            </div>
+            <div class="info-box-div" id="student-employee-tip">
+              <p>As a student or employee of the issuer, be aware that although they can't force you to pay, the institution could withhold class credits or use other negative tactics against you if the vehicle is registered in your name and you refuse to pay the ticket.</p>
+            </div>
+          </fieldset>
+        </section>
+        <!--Ticket Number Text Field-->
+        <section id="ticket-number-section" class="section-container">
+          <div class="field-container">
+            <label for="ticket-number-text-field">
+              <span class="field-label-large">What is the ticket number?</span>
+            </label>
+            <input id="ticket-number-text-field"
+              type="text"
+              name="ticket-number-description">
+            <span class="field-example">e.g. AB34DL83DN6</span>
+          </div>
+        </section>
+        <!--Ticket Errors-->
+        <section id="ticket-accuracy-section" class="section-container">
+          <fieldset class="fieldset-radio">
+            <legend>
+              <h2 class="question-primary">Are there any errors in how your ticket was filled out?</h2>
+              <span class="field-hint">Check your ticket for mistakes such as incorrect dates or license plate numbers.</span>
+            </legend>
+            <div class="field-radio-button">
+              <input id="ticket-accuracy-yes"
+                type="radio"
+                name="yn-ticket-accuracy"
+                value="1"
+                class="ticket-accuracy-radio-class">
+              <label for="ticket-accuracy-yes">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Yes</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticket-accuracy-no"
+                type="radio"
+                name="yn-ticket-accuracy"
+                value="2"
+                checked="checked"
+                class="ticket-accuracy-radio-class">
+              <label for="ticket-accuracy-no">
+                <div class="customRB"></div>
+                <span class="answerTextRB">No</span>
+              </label>
+            </div>
+            <div class="field-container" id="ticket-error-description-subsection">
+              <label for="ticket-error-description-text-field">
+                <span class="field-label-large">Please describe the ticket error:</span>
+              </label>
+              <textarea class="abstract" id="ticket-error-description-text-field"
+                name="ticket-error-description"
+                rows="5"
+                cols="33"></textarea>
+              <span class="field-abstract-example">e.g. The ticket lists the offending vehicle license plate as F4R 3N4. However, my license plate is E4R EM4.</span>
+            </div>
+          </fieldset>
+        </section>
+        <!--Ticket Reason Radio Buttons-->
+        <section id="ticket-reason-section" class="section-container">
+          <fieldset class="fieldset-radio">
+            <legend>
+              <h2 class="question-primary">Which of the following best describes the parking offence on your ticket?</h2>
+              <span class="field-hint">Put on your reading glasses 🤓, there's a lot of reasons you can get a ticket...</span>
+            </legend>
+            <div class="field-radio-button">
+              <input id="ticket-reason-1"
+                type="radio"
+                name="ticket-reason-radio"
+                value="1"
+                checked="checked"
+                class="ticket-reason-radio-class">
+              <label for="ticket-reason-1">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Expired meter or insufficent payment</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason2"
+                type="radio"
+                name="ticket-reason-radio"
+                value="2"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason2">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Overstayed posted time limit</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason3"
+                type="radio"
+                name="ticket-reason-radio"
+                value="3"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason3">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Not within metered space</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason4"
+                type="radio"
+                name="ticket-reason-radio"
+                value="4"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason4">
+                <div class="customRB"></div>
+                <span class="answerTextRB">In a closed pay and display zone</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason5"
+                type="radio"
+                name="ticket-reason-radio"
+                value="5"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason5">
+                <div class="customRB"></div>
+                <span class="answerTextRB">In a space with a hooded meter</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason6"
+                type="radio"
+                name="ticket-reason-radio"
+                value="6"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason6">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Too close to stop/yield sign</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason7"
+                type="radio"
+                name="ticket-reason-radio"
+                value="7"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason7">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Too close to crosswalk</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason8"
+                type="radio"
+                name="ticket-reason-radio"
+                value="8"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason8">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Too close to fire hydrant</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason9"
+                type="radio"
+                name="ticket-reason-radio"
+                value="9"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason9">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Too close to intersection</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason10"
+                type="radio"
+                name="ticket-reason-radio"
+                value="10"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason10">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Within 3 meters of centre line</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason11"
+                type="radio"
+                name="ticket-reason-radio"
+                value="11"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason11">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Parallel parked more than 500mm from curb</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason12"
+                type="radio"
+                name="ticket-reason-radio"
+                value="12"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason12">
+                <div class="customRB"></div>
+                <span class="answerTextRB">On a sidewalk or boulevard</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason13"
+                type="radio"
+                name="ticket-reason-radio"
+                value="13"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason13">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Caused an obstruction</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason14"
+                type="radio"
+                name="ticket-reason-radio"
+                value="14"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason14">
+                <div class="customRB"></div>
+                <span class="answerTextRB">In a bus zone</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason15"
+                type="radio"
+                name="ticket-reason-radio"
+                value="15"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason15">
+                <div class="customRB"></div>
+                <span class="answerTextRB">On an emergency route</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason16"
+                type="radio"
+                name="ticket-reason-radio"
+                value="16"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason16">
+                <div class="customRB"></div>
+                <span class="answerTextRB">On a snow route</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason17"
+                type="radio"
+                name="ticket-reason-radio"
+                value="17"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason17">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Residential or other zone that required a permit</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason18"
+                type="radio"
+                name="ticket-reason-radio"
+                value="18"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason18">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Disabled zone</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason19"
+                type="radio"
+                name="ticket-reason-radio"
+                value="19"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason19">
+                <div class="customRB"></div>
+                <span class="answerTextRB">No stopping zone</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason20"
+                type="radio"
+                name="ticket-reason-radio"
+                value="20"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason20">
+                <div class="customRB"></div>
+                <span class="answerTextRB">No parking zone</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason21"
+                type="radio"
+                name="ticket-reason-radio"
+                value="21"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason21">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Commercial loading zone</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason22"
+                type="radio"
+                name="ticket-reason-radio"
+                value="22"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason22">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Passenger loading zone</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason23"
+                type="radio"
+                name="ticket-reason-radio"
+                value="23"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason23">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Marked space</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason24"
+                type="radio"
+                name="ticket-reason-radio"
+                value="24"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason24">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Angle parked incorrectly</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason25"
+                type="radio"
+                name="ticket-reason-radio"
+                value="25"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason25">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Vehicle left on a jack</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason26"
+                type="radio"
+                name="ticket-reason-radio"
+                value="26"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason26">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Length limit violation</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason27"
+                type="radio"
+                name="ticket-reason-radio"
+                value="27"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason27">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Abandoned vehicle</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason28"
+                type="radio"
+                name="ticket-reason-radio"
+                value="28"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason28">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Recreational vehicle</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason29"
+                type="radio"
+                name="ticket-reason-radio"
+                value="29"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason29">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Alley parking</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason30"
+                type="radio"
+                name="ticket-reason-radio"
+                value="30"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason30">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Double parking</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason31"
+                type="radio"
+                name="ticket-reason-radio"
+                value="31"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason31">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Prohibited bridge/tunnel parking</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason32"
+                type="radio"
+                name="ticket-reason-radio"
+                value="32"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason32">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Unattached trailer</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason33"
+                type="radio"
+                name="ticket-reason-radio"
+                value="33"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason33">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Pay and display zone violation</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason34"
+                type="radio"
+                name="ticket-reason-radio"
+                value="34"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason34">
+                <div class="customRB"></div>
+                <span class="answerTextRB">EPark zone violation</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticketReason35"
+                type="radio"
+                name="ticket-reason-radio"
+                value="35"
+                class="ticket-reason-radio-class">
+              <label for="ticketReason35">
+                <div class="customRB"></div>
+                <span class="answerTextRB">None of the above</span>
+              </label>
+            </div>
+            <!-- Conditional "other" text field -->
+            <div class="field-container" id="ticket-reason-other-subsection">
+              <label for="ticket-reason-other-text-field">
+                <span class="field-label-large">How would you describe the ticket reason:</span>
+                <span class="field-hint">I recommend reading <a href="https://www.edmonton.ca/transportation/Bylaws/C5590.pdf" target="_blank">Bylaw 5590</a> to see if this is valid ticketing reason.</span>
+              </label>
+              <input id="ticket-reason-other-text-field"
+                type="text"
+                name="text-ticket-reason-other">
+              <span class="field-example">e.g. Failing to park within marked space.</span>
+            </div>
+          </fieldset>
+        </section>
+        <!--Dispute Ticket Reason YN-->
+        <section id="ticket-appeal-bylaw-section" class="section-container">
+          <fieldset class="fieldset-radio">
+            <legend>
+              <h2 class="question-primary">Do you believe this bylaw was correctly applied to you?</h2>
+                <span class="field-hint">Refer to the bylaw snippet below.</span>
+            </legend>
+            <div class="field-radio-button">
+              <input id="ticket-valid-yes"
+                type="radio"
+                name="yn-ticket-valid"
+                value="1"
+                checked="checked"
+                class="yn-ticket-valid-class">
+              <label for="ticket-valid-yes">
+                <div class="customRB"></div>
+                <span class="answerTextRB">Yes</span>
+              </label>
+            </div>
+            <div class="field-radio-button">
+              <input id="ticket-valid-no"
+                type="radio"
+                name="yn-ticket-valid"
+                value="2"
+                class="yn-ticket-valid-class">
+              <label for="ticket-valid-no">
+                <div class="customRB"></div>
+                <span class="answerTextRB">No</span>
+              </label>
+            </div>
+          </fieldset>
+            <!-- Conditional reason text field -->
+            <div class="field-container" id="ticket-appeal-bylaw-subsection">
+              <label for="incorrect-bylaw-text-field">
+                <span class="field-label-large">Why was the violation incorrectly applied to you?</span>
+              </label>
+              <textarea id="incorrect-bylaw-text-field" class="abstract"
+                name="incorrect-bylaw-description"
+                rows="5"
+                cols="33"></textarea>
+              <span class="field-example">e.g. I was parallel parked less than 500mm away from the curb.</span>
+            </div>
+            <!-- Bylaw info box -->
+            <div id="infobox-container">
+              <h2 class="question-primary" id="check-bylaw-correct-primary-question-2-insert-here"></h2>
+              <span class="field-hint" id="bylaw-plain-language-hint-2-insert-here"></span>
+              <div class="info-box-div">
+                <p id="insert-bylaw-correct-info-box-text-here"></p>
+                <p class="info-box-disclaimer-text"> *** Please remember I'm not a lawyer and don't guarantee this info is correct. You should check out <a href="" class="city-bylaw-link" target="_blank"><span id="city-bylaw-name-2"></span></a> yourself to be sure &#x1F642;</p>
+              </div>
+            </div>
+        </section>
+        <!-- Private operator additional appeal reason text field -->
+        <section id="private-ticket-appeal-section" class="section-container">
+          <div class="field-container">
+            <label for="private-ticket-appeal-text-field">
+              <span class="field-label-large">Why are you appealing the ticket?</span>
+              <span class="field-hint">Describe in full sentences why you think your ticket should be cancelled. You can give multiple reasons.</span>
+            </label>
+            <input id="private-ticket-appeal-text-field"
+              type="text"
+              name="private-ticket-appeal-description">
+            <span class="field-example">e.g. I paid for parking but the receipt slipped off my vehicle's dash.</span>
+          </div>
+        </section>
+        <!--Ticket Date-->
+        <section id="ticket-date-section" class="section-container">
+        <div class="field-date">
+          <h2 class="question-primary">When did you receive the ticket?</h2>
+          <div class="date-container">
+            <div class="container-month">
+              <label for="date-month">
+                <span class="field-label-small">Month</span>
+              </label>
+              <select id="ticket-month" name="ticket-month">
+                <option value="Jan">January</option>
+                <option value="Feb">February</option>
+                <option value="Mar">March</option>
+                <option value="Apr">April</option>
+                <option value="May">May</option>
+                <option value="Jun">June</option>
+                <option value="Jul">July</option>
+                <option value="Aug">August</option>
+                <option value="Sep">September</option>
+                <option value="Oct">October</option>
+                <option value="Nov">November</option>
+                <option value="Dec">December</option>
+              </select>
+            </div>
+            <div class="container-day">
+              <label for="date-day">
+                <span class="field-label-small">Day</span>
+              </label>
+              <input id="ticket-day-number"
+                type="number"
+                name="ticket-day"
+                value="1"
+                min="1"
+                max="31">
+            </div>
+            <div class="container-year">
+              <label for="date-year">
+                <span class="field-label-small">Year</span>
+              </label>
+              <!--Pattern used to trigger numeric keyboard on ios-->
+              <input id="ticket-year-text"
+                type="text"
+                name="ticket-year"
+                value="2019"
+                maxlength="4">
+              <span class="field-example">e.g. 2019</span>
+            </div>
+          </div>
+        </div>
+        </section>
+        <!--Name-->
+        <section class="section-container" id="name-section">
+          <div class="field-container">
+            <label for="person-name-text-field">
+              <span class="field-label-large">What is your first and last name?</span>
+            </label>
+            <input id="person-name-text-field"
+              type="text"
+              name="person-name-description">
+            <span class="field-example">e.g. Rupert Pupkin</span>
+          </div>
+        </section>
+        <!-- Email -->
+        <section id="contact-details-section" class="section-container">
+          <div class="field-container">
+            <h2 class="question-primary">What is your email?</h2>
+            <label for="email-field">
+              <span class="field-hint">Your email is included so parking appeal officers can contact you.</span>
+            </label>
+            <input id="email-field"
+              type="email"
+              name="email-description">
+            <span class="field-example">e.g. rpupkin@gmail.com</span>
+          </div>
+        </section>
+        <!--Mailing address-->
+        <section id="mailing-address-section" class="section-container">
+          <div class="field-container">
+            <label for="mailing-address-text-field">
+              <span class="field-label-large">What is your mailing address?</span>
+              <span class="field-hint">This is needed for your appeal letter so format your answer with the street address on its own line.</span>
+            </label>
+            <textarea class="abstract" id="mailing-address-text-field"
+              name="mailing-address-description"
+              rows="5"
+              cols="33"
+              placeholder="Street Address&#10;City, Province  Postal Code"></textarea>
+            <span class="field-abstract-example">Street Address<br>City, Province  Postal Code </span>
+          </div>
+        </section>
+      <!--Last Section -->
+      <section class="section-container" id="finished-section-container" style="text-align: center;">
+        <h2 class="question-primary">All done &#x1F389;</h2>
+        <p id="finished-message">See that wasn't so bad. Are you ready to view your appeal letter?</p>
+      </section>
+      <!-- whitespace div so section gets pushed to top of window and scrolling is possible -->
+      <div id="add-whitespace"></div>
+      <!--CTA sticky-->
+      <div class="cta-sticky-container">
+        <div class="cta-button-container">
+        <span class="button-div">
+          <input class="button-cta" id="button-prev"
+            type="button"
+            name="previous"
+            value="Previous Question">
+        </span>
+        <span class="button-div">
+          <input class="button-cta button-next"
+            type="button"
+            name="next"
+            value="Fight My Ticket"
+            autofocus>
+        </span>
+      </div>
+      <div class="cta-submit-container">
+        <span class="button-div">
+          <input class="button-cta" id="button-submit"
+            type="submit"
+            name="submit"
+            value="Get My Letter">
+        </span>
+      </div>
+    </div>
+    </form>
+
+  </main>
+
+  <footer>
+    <!-- load reusable footer -->
+    <script src="/scripts/footer.js" type="module"></script>
+    <div id="footer-main"></div>
+  </footer>
+  <!-- Load scripts at bottom because need to load header/footer template scripts first -->
+  <script src="/scripts/main.js" type="module"></script>
+  <script src="/scripts/form-functionality/stepper-buttons.js" type="module"></script>
+  <script src="/scripts/app-generic/theme.js" type="module"></script>
+  <script src="/scripts/form-functionality/submit-answers.js" type="module"></script>
+</body>
+</html>

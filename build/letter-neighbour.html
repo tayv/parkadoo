@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>Parkadoo Appeal Letter</title>
+    <link rel="stylesheet" href="/styles/styles.css"/>
+    <link rel="stylesheet" href="/styles/letter-styles.css"/>
+    <link rel="stylesheet" href="/styles/colors.css"/>
+    <link rel="shortcut icon" href="/images/favicon.png" />
+    <meta name="robots" content="noindex" />
+  </head>
+<body>
+  <header>
+    <script src="/scripts/header.js" type="module"></script>
+    <div id="header-main"></div>
+  </header>
+  <main id="letter-main">
+    <div class="letter-container">
+      <!--Intro Message-->
+      <section class="section-container" id="letter-explanation">
+        <!--Message Field-->
+        <div class="field-container">
+            <h1 class="field-label-large">Here's your letter...</h1>
+            <p>Scroll down to view and print your letter. What you do after that is up to you...stealthily place it on the
+              offending vehicle as a note, deliver to a mailbox, or turn it into a paper airplane. The options are endless ✈️</p>
+        </div>
+      </section>
+    <!-- CTAs -->
+    <section class="letter-cta-container">
+      <span class="letter-button-div">
+        <input class="button-cta-letter" id="button-send"
+          type="button"
+          name="send"
+          value="✉️ Email Appeal Letter">
+      </span>
+      <span class="letter-button-div">
+        <input class="button-cta-letter" id="button-print"
+          type="button"
+          name="print"
+          value="🖨️ Print">
+      </span>
+      <span class="letter-button-div">
+        <input class="button-cta-letter" id="button-copy"
+          type="button"
+          name="copy"
+          value="👯 Copy To Clipboard">
+      </span>
+      <span class="letter-button-div">
+        <input class="button-cta-letter" id="button-edit"
+          type="button"
+          name="edit"
+          value="✏️ Edit Answers">
+      </span>
+    </section>
+    <!--Letter Section -->
+    <section class="section-container" id="letter-section">
+      <div id="letter-preview-container">
+        <div id="letter-output">
+          <span id="insert-letter-output-text-here">
+          </span>
+        </div>
+      </div>
+    </section>
+  </div>
+  </main>
+  <footer>
+    <!-- load reusable footer -->
+    <script src="/scripts/footer.js" type="module"></script>
+    <div id="footer-main"></div>
+  </footer>
+  <!-- Need to load scripts at bottom because need to load header/footer template scripts first -->
+  <script src="/scripts/app-generic/theme.js" type="module"></script>
+  <script src="/scripts/letter-actions.js" type="module"></script>
+</body>
+</html>
