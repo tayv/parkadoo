@@ -8,7 +8,11 @@ document.addEventListener("keydown", function(event) {
     // Form isn't finished so cancel the default form submit action
     event.preventDefault();
     // Go to the next step
-    document.querySelector(".button-next").click();
+    if (document.querySelector("#button-prev") == this.activeElement) {
+      document.querySelector("#button-prev").click();
+    } else {
+      document.querySelector(".button-next").click();
+    }
   }
 });
 
@@ -23,7 +27,7 @@ const focusInput = () => {
   if (inputs && inputs.type == "radio") {
     activeContainer.querySelector("input[type=radio]:checked").focus();
   } else {
-    //  activeContainer.querySelector("input").focus();
+      activeContainer.querySelector("input").focus();
     }
 }
 

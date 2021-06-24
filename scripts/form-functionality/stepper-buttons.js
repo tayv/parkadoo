@@ -97,7 +97,7 @@ const nextStepActions = () => {
         sectionVisibility(sectionsShowHideObj);
         calcAndSetWhiteSpace(activeSection);
         activeSection.scrollIntoView(true);
-    //    focusInput();
+        focusInput();
         checkButtonStep();
       } else {
           checkButtonStep();
@@ -117,7 +117,7 @@ const prevStepActions = () => {
         checkButtonStep();
         calcAndSetWhiteSpace(activeSection);
         activeSection.scrollIntoView(true);
-    //    focusInput();
+        focusInput();
     } return countStep;
   };
 
