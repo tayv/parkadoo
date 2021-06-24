@@ -17,10 +17,6 @@
     "url": "https://github.com/tayv/parkadoo/issues"
   },
   "homepage": "https://github.com/tayv/parkadoo#readme",
-  "dependencies": {
-    "dompurify": "^2.0.17",
-    "focus-visible": "^5.1.0"
-  },
   "devDependencies": {
     "http-server": "^0.11.1"
   }
