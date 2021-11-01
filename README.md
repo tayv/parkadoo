@@ -1,11 +1,12 @@
 # parkadoo
 
 ## What is parkadoo?
-This is an experimental project to help people understand Edmonton parking laws better and create a letter that can help with the appeal process. There are three letter types:
+This is an experimental project to help people understand Edmonton parking laws better and create a letter that can help with the appeal process. There are three letter types plus the ability to proactively avoid parking tickets:
 
 1. Public parking ticket appeal
 2. Private parking lot appeal
 3. Neighbour complaint/warning
+4. Quickly check list of city bylaws to see if you're likely to get a ticket
 
 Available to view at [parkadoo.com](https://parkadoo.com) or [parkadoo.netlify.app](parkadoo.netlify.app/)
 
@@ -26,6 +27,7 @@ Available to view at [parkadoo.com](https://parkadoo.com) or [parkadoo.netlify.a
 ### Creating an appeal letter
 
 https://user-images.githubusercontent.com/48400779/139738865-407aece7-31fe-4b14-b829-dc2eee35aff1.mov 
+
 https://user-images.githubusercontent.com/48400779/139738868-ba373c40-262f-49b2-9f2a-c87e194875de.mov
 
 
