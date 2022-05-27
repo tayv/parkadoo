@@ -1,15 +1,29 @@
 # parkadoo
 
+(Private repository)
+
+Available to view at [parkadoo.com](https://parkadoo.com) or [parkadoo.netlify.app](parkadoo.netlify.app/)
+
 ## What is parkadoo?
-This is an experimental project to help people understand Edmonton parking laws better and create a letter that can help with the appeal process. There are three letter types plus the ability to proactively avoid parking tickets:
+This was an experimental project to help people understand Edmonton parking laws better and create a letter that can help with the appeal process. There are three letter types plus the ability to proactively avoid parking tickets:
 
 1. Public parking ticket appeal
 2. Private parking lot appeal
 3. Neighbour complaint/warning
 4. Quickly check list of city bylaws to see if you're likely to get a ticket
 
-Available to view at [parkadoo.com](https://parkadoo.com) or [parkadoo.netlify.app](parkadoo.netlify.app/)
+## Philosophy
 
+### Design
+- Many form-based wizards are inflexible and frustrating to use, particularly on mobile devices. This project sought to explore a more fluid user experience by mimicking native messaging apps. 
+- Key experimental design pattern: 
+  + Allowing the step-by-step wizard to update active section via buttons but also on scroll. See example section below for video.
+  + For context this project began in 2019 when scroll based interaction patterns were more unusual, especially for forms. Nowadays it's fairly common to see form/survey products utilizing some variation of scroll-based interactions.
+
+### Code
+- Goal was to reduce external dependencies as much as possible. Uses vanilla JS, CSS, HTML
+- Use es6 modules instead of Node.js require
+- Privacy and offline first. User data is not collected and user answers are saved to user's device and clears after their browsing session ends
 
 ## UI examples
 
@@ -49,16 +63,9 @@ https://user-images.githubusercontent.com/48400779/139736229-f5e7fa38-093d-45a0-
 ## How to set up
 
 1. Clone git repository
-2. Navigate to project folder and run ```npm install``` to install dependencies 
-3. Open terminal and run ```npm start``` to start a local server 
+2. Navigate to project folder and run ```npm run install``` to install dependencies 
+3. Open terminal and run ```npm run start``` to start a local server 
 3. View on localhost address shown in terminal
-
-## Philosphy
-
-- Goal was to reduce external dependencies as much as possible. Uses vanilla JS, CSS, HTML
-- Uses es6 modules so needs a local server to run while developing
-- User data is not collected and user answers are saved to user's device and clears after their browsing session ends
-- Mimic native messaging apps by allowing the step-by-step wizard to update active section via buttons but also on scroll. See example section above for video.
 
 
 ## Other notes
