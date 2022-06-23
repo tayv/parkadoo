@@ -554,7 +554,7 @@ li {
 
 .article-box {
   padding: 1% 2% 1% 5%; /* 6% used to align link icon with section heading */
-  text-indent: -26px; /* For flush alignment next to the link icon for links with multiple lines */
+  text-indent: -21px; /* For flush alignment next to the link icon for links with multiple lines */
   line-height: 1.5; /* used to keep :hover bottom border from overlapping on multi line titles */
 }
 
