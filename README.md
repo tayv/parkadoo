@@ -1,7 +1,5 @@
 # 🚗 parkadoo
 
-(Private repository)
-
 Available to view at [parkadoo.com](https://parkadoo.com) or [parkadoo.netlify.app](parkadoo.netlify.app/)
 
 ## What is parkadoo?
