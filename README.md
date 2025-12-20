@@ -1,6 +1,6 @@
 # 🚗 parkadoo
 
-Available to view at [parkadoo.com](https://parkadoo.com) or [parkadoo.netlify.app](parkadoo.netlify.app/)
+This project is ancient and no longer live. View examples below or clone and run it locally if you're bored. 
 
 ## What is parkadoo?
 This was an experimental project to help people understand Edmonton parking laws better and create a letter that can help with the appeal process. There are three letter types plus the ability to proactively avoid parking tickets:
